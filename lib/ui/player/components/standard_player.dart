@@ -1,240 +1,535 @@
 import 'dart:ui';
-
-
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:widget_marquee/widget_marquee.dart';
 
-import '../../widgets/songinfo_bottom_sheet.dart';
-import '../player_controller.dart';
-import 'albumart_lyrics.dart';
-import 'backgroud_image.dart';
-import 'lyrics_switch.dart';
-import 'player_control.dart';
+import '/ui/player/components/animated_play_button.dart';
+import '/ui/player/components/backgroud_image.dart';
+import '/ui/player/components/lyrics_widget.dart';
+import '/ui/player/player_controller.dart';
+import '/models/album.dart';
+import '/ui/navigator.dart';
+import '/ui/utils/theme_controller.dart';
+import 'full_lyrics_page.dart';
+import '/ui/widgets/image_widget.dart';
+import '/ui/widgets/songinfo_bottom_sheet.dart';
 
-/// Standard player widget
-///
-/// This widget is used to display the player in the standard mode
-///
-/// It contains the album art image, lyrics switch, album art with lyrics and player controls
-/// and is used in the [Player] widget
 class StandardPlayer extends StatelessWidget {
   const StandardPlayer({super.key});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final PlayerController playerController = Get.find<PlayerController>();
+    final ctrl = Get.find<PlayerController>();
 
-    double playerArtImageSize =
-        size.width - 60; //((size.height < 750) ? 90 : 60);
-    //playerArtImageSize = playerArtImageSize > 350 ? 350 : playerArtImageSize;
-    final spaceAvailableForArtImage =
-        size.height - (70 + Get.mediaQuery.padding.bottom + 330);
-    playerArtImageSize = playerArtImageSize > spaceAvailableForArtImage
-        ? spaceAvailableForArtImage
-        : playerArtImageSize;
-    return Stack(
-      children: [
-        /// Stack first child
-        /// Album art image in background covering the whole screen
-        BackgroudImage(
-          key: Key("${playerController.currentSong.value?.id}_background"),
-          cacheHeight: 200,
-        ),
+    final botPad = MediaQuery.of(context).padding.bottom;
 
-        /// Stack child
-        /// Blur effect on background
-        BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+    // Album art size — square, max 85% of width
+    final artSize = (size.width * 0.85).clamp(220.0, 380.0);
+
+    return Obx(() => Opacity(
+          opacity: ctrl.panelPosition.value.clamp(0.0, 1.0),
           child: Stack(
             children: [
-              /// opacity effect on background
-              Positioned.fill(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.8),
-                  ),
-                ),
+        // ── Layer 1: Blurred album background ────────────────────────────────
+        BackgroudImage(
+          key: Key('${ctrl.currentSong.value?.id}_bg'),
+          cacheHeight: 300,
+        ),
+        BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.black.withOpacity(0.4),
+                  Colors.black.withOpacity(0.7),
+                  Colors.black.withOpacity(0.9),
+                ],
               ),
+            ),
+          ),
+        ),
 
-              /// used to hide queue header when player is minimized
-              /// gradient to used here
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  height: 65 + Get.mediaQuery.padding.bottom + 120,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Theme.of(context).primaryColor,
-                        Theme.of(context).primaryColor,
-                        Theme.of(context).primaryColor.withOpacity(0.4),
-                        Theme.of(context).primaryColor.withOpacity(0),
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      stops: const [0, 0.5, 0.8, 1],
+        // ── Layer 3: Scrollable player content ───────────────────────────────
+        SafeArea(
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    // ── Top bar ─────────────────────────────────────────────
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      child: Row(
+                        children: [
+                          // Minimize
+                          IconButton(
+                            onPressed: ctrl.playerPanelController.close,
+                            icon: const Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                          // Playing from
+                          Expanded(
+                            child: Obx(() => Column(
+                                  children: [
+                                    Text(
+                                      ctrl.playinfrom.value.typeString
+                                          .toUpperCase(),
+                                      style: const TextStyle(
+                                        color: Colors.white60,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w700,
+                                        letterSpacing: 1.5,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      '"${ctrl.playinfrom.value.nameString}"',
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                          ),
+                          // More options
+                          IconButton(
+                            onPressed: () => _openMoreSheet(context, ctrl),
+                            icon: const Icon(
+                              Icons.more_vert_rounded,
+                              color: Colors.white,
+                              size: 26,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+
+                    // ── Album art ───────────────────────────────────────────
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 28, vertical: 12),
+                      child: GestureDetector(
+                        onHorizontalDragEnd: (details) {
+                          if (details.primaryVelocity! < 0) ctrl.next();
+                          if (details.primaryVelocity! > 0) ctrl.prev();
+                        },
+                        child: Obx(
+                          () => ctrl.currentSong.value != null
+                              ? AnimatedSwitcher(
+                                  duration:
+                                      const Duration(milliseconds: 350),
+                                  transitionBuilder: (child, anim) =>
+                                      FadeTransition(
+                                    opacity: anim,
+                                    child: ScaleTransition(
+                                      scale: Tween(begin: 0.92, end: 1.0)
+                                          .animate(CurvedAnimation(
+                                        parent: anim,
+                                        curve: Curves.easeOutCubic,
+                                      )),
+                                      child: child,
+                                    ),
+                                  ),
+                                  child: Container(
+                                    key: ValueKey(
+                                        ctrl.currentSong.value!.id),
+                                    width: artSize,
+                                    height: artSize,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(16),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color:
+                                              Colors.black.withAlpha(140),
+                                          blurRadius: 40,
+                                          offset: const Offset(0, 20),
+                                          spreadRadius: 4,
+                                        ),
+                                      ],
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.circular(16),
+                                      child: ImageWidget(
+                                        size: artSize,
+                                        song: ctrl.currentSong.value!,
+                                        isPlayerArtImage: true,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : SizedBox(
+                                  width: artSize,
+                                  height: artSize,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white12,
+                                      borderRadius:
+                                          BorderRadius.circular(16),
+                                    ),
+                                    child: const Icon(
+                                        Icons.music_note_rounded,
+                                        color: Colors.white38,
+                                        size: 80),
+                                  ),
+                                ),
+                        ),
+                      ),
+                    ),
+
+                    // ── Song info + heart ───────────────────────────────────
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 28, vertical: 4),
+                      child: Obx(
+                        () => Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      final albumId = ctrl.currentSong.value?.extras?['album']?['id'];
+                                      if (albumId != null) {
+                                        ctrl.playerPanelController.close();
+                                        Get.toNamed(
+                                          ScreenNavigationSetup.albumScreen,
+                                          id: ScreenNavigationSetup.id,
+                                          arguments: (null as Album?, albumId as String),
+                                        );
+                                      }
+                                    },
+                                    borderRadius: BorderRadius.circular(4),
+                                    child: Marquee(
+                                      id: '${ctrl.currentSong.value?.id}_title_sp',
+                                      delay: const Duration(milliseconds: 800),
+                                      duration: const Duration(seconds: 12),
+                                      child: Text(
+                                        ctrl.currentSong.value?.title ?? '',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w800,
+                                          letterSpacing: -0.3,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  InkWell(
+                                    onTap: () {
+                                      final artists = ctrl.currentSong.value?.extras?['artists'];
+                                      if (artists != null && (artists as List).isNotEmpty) {
+                                        final artistId = artists[0]['id'];
+                                        if (artistId != null) {
+                                          ctrl.playerPanelController.close();
+                                          Get.toNamed(
+                                            ScreenNavigationSetup.artistScreen,
+                                            id: ScreenNavigationSetup.id,
+                                            arguments: [true, artistId],
+                                          );
+                                        }
+                                      }
+                                    },
+                                    borderRadius: BorderRadius.circular(4),
+                                    child: Marquee(
+                                      id: '${ctrl.currentSong.value?.id}_artist_sp',
+                                      delay: const Duration(milliseconds: 800),
+                                      duration: const Duration(seconds: 12),
+                                      child: Text(
+                                        ctrl.currentSong.value?.artist ?? '',
+                                        style: const TextStyle(
+                                          color: Colors.white60,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            GestureDetector(
+                              onTap: ctrl.toggleFavourite,
+                              child: Obx(
+                                () => AnimatedSwitcher(
+                                  duration:
+                                      const Duration(milliseconds: 250),
+                                  child: Icon(
+                                    ctrl.isCurrentSongFav.isTrue
+                                        ? Icons.favorite_rounded
+                                        : Icons.favorite_border_rounded,
+                                    key: ValueKey(
+                                        ctrl.isCurrentSongFav.value),
+                                    color: ctrl.isCurrentSongFav.isTrue
+                                        ? Colors.greenAccent
+                                        : Colors.white60,
+                                    size: 28,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // ── Progress bar ────────────────────────────────────────
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 28),
+                      child: GetX<PlayerController>(
+                        builder: (c) => ProgressBar(
+                          thumbRadius: 7,
+                          thumbGlowRadius: 18,
+                          barHeight: 3.5,
+                          baseBarColor: Colors.white24,
+                          bufferedBarColor: Colors.white38,
+                          progressBarColor: Colors.white,
+                          thumbColor: Colors.white,
+                          timeLabelTextStyle: const TextStyle(
+                            color: Colors.white60,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          progress: c.progressBarStatus.value.current,
+                          total: c.progressBarStatus.value.total,
+                          buffered: c.progressBarStatus.value.buffered,
+                          onSeek: c.seek,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    // ── Transport controls ──────────────────────────────────
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          // Shuffle
+                          Obx(() => _iconBtn(
+                                icon: Ionicons.shuffle,
+                                color: ctrl.isShuffleModeEnabled.value
+                                    ? Colors.white
+                                    : Colors.white38,
+                                size: 22,
+                                onTap: ctrl.toggleShuffleMode,
+                              )),
+
+                          // Previous
+                          _iconBtn(
+                            icon: Icons.skip_previous_rounded,
+                            color: Colors.white,
+                            size: 38,
+                            onTap: ctrl.prev,
+                          ),
+
+                          // Play / Pause
+                          _buildPlayButton(ctrl),
+
+                          // Next
+                          Obx(() {
+                            final isLast = ctrl.currentQueue.isEmpty ||
+                                (!(ctrl.isShuffleModeEnabled.isTrue ||
+                                        ctrl.isQueueLoopModeEnabled
+                                            .isTrue) &&
+                                    ctrl.currentQueue.last.id ==
+                                        ctrl.currentSong.value?.id);
+                            return _iconBtn(
+                              icon: Icons.skip_next_rounded,
+                              color:
+                                  isLast ? Colors.white30 : Colors.white,
+                              size: 38,
+                              onTap: isLast ? null : ctrl.next,
+                            );
+                          }),
+
+                          // Loop
+                          Obx(() => _iconBtn(
+                                icon: Icons.all_inclusive_rounded,
+                                color: ctrl.isLoopModeEnabled.value
+                                    ? Colors.white
+                                    : Colors.white38,
+                                size: 22,
+                                onTap: ctrl.toggleLoopMode,
+                              )),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 28),
+
+                    // ── Modern Spotify-style Lyrics Card ──────────────────────────────────
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                      child: Obx(() {
+                        final themeCtrl = Get.find<ThemeController>();
+                        final bgColor = themeCtrl.primaryColor.value;
+                        final hasLyrics = ctrl.lyrics['plainLyrics'] != null &&
+                                          ctrl.lyrics['plainLyrics'] != 'NA';
+                        
+                        return Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: bgColor.withOpacity(0.85),
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'lyrics'.tr.toUpperCase(),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w900,
+                                      letterSpacing: 1.2,
+                                    ),
+                                  ),
+                                  // Expand button
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (hasLyrics || ctrl.lyrics['synced'] != null) {
+                                        Get.to(
+                                          () => const FullLyricsPage(),
+                                          transition: Transition.downToUp,
+                                          duration: const Duration(milliseconds: 400),
+                                        );
+                                      }
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(6),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.2),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: const Icon(
+                                        Icons.open_in_full_rounded,
+                                        color: Colors.white,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
+                              // Lyrics content
+                              if (ctrl.isLyricsLoading.isTrue)
+                                const Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(40),
+                                    child: CircularProgressIndicator(
+                                        color: Colors.white38,
+                                        strokeWidth: 2),
+                                  ),
+                                )
+                              else if (!hasLyrics && ctrl.lyrics['synced'] == null)
+                                Text(
+                                  'lyricsNotAvailable'.tr,
+                                  style: const TextStyle(
+                                      color: Colors.white70, fontSize: 16),
+                                )
+                              else
+                                SizedBox(
+                                  height: 240,
+                                  child: LyricsWidget(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 0, vertical: 12),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        );
+                      }),
+                    ),
+
+                    SizedBox(height: botPad + 40),
+                  ],
                 ),
               ),
             ],
           ),
         ),
-
-        /// Stack child
-        /// Player content in landscape mode
-        Padding(
-          padding: const EdgeInsets.only(left: 25, right: 25),
-          child: (context.isLandscape)
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    /// Album art with lyrics in .45  of width
-                    SizedBox(
-                      width: size.width * .45,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 90.0,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 40),
-                          child: Center(
-                            child: AlbumArtNLyrics(
-                              playerArtImageSize: size.width * .29,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    /// Player controls in .48 of width
-                    SizedBox(
-                        width: size.width * .48,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 10.0,
-                              right: 10,
-                              bottom: Get.mediaQuery.padding.bottom),
-                          child: const PlayerControlWidget(),
-                        ))
-                  ],
-                )
-              :
-
-              /// Player content in portrait mode
-              Column(
-                  children: [
-                    /// Work as top padding depending on the lyrics visibility and screen size
-                    Obx(
-                      () => playerController.showLyricsflag.value
-                          ? SizedBox(
-                              height: size.height < 750 ? 60 : 90,
-                            )
-                          : SizedBox(
-                              height: size.height < 750 ? 110 : 140,
-                            ),
-                    ),
-
-                    /// Contains the lyrics switch and album art with lyrics
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const LyricsSwitch(),
-                        ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 500),
-                            child: AlbumArtNLyrics(
-                                playerArtImageSize: playerArtImageSize)),
-                      ],
-                    ),
-
-                    /// Extra space container
-                    Expanded(child: Container()),
-
-                    /// Contains the player controls
-                    Padding(
-                      padding: EdgeInsets.only(
-                          bottom: 80 + Get.mediaQuery.padding.bottom),
-                      child: Container(
-                          constraints: const BoxConstraints(maxWidth: 500),
-                          child: const PlayerControlWidget()),
-                    )
-                  ],
-                ),
-        ),
-
-        /// Stack child
-        /// Contains [Minimize button], Playing from [Album name], [More button] for current song context
-        /// This is not visible in mobile devices in landscape mode
-        if (!(context.isLandscape && GetPlatform.isMobile))
-          Padding(
-            padding: EdgeInsets.only(
-                top: Get.mediaQuery.padding.top + 20, left: 10, right: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /// Minimize button
-                IconButton(
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    size: 28,
-                  ),
-                  onPressed: playerController.playerPanelController.close,
-                ),
-
-                /// Playing from [Album name]
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0, left: 5, right: 5),
-                    child: Obx(
-                      () => Column(
-                        children: [
-                          Text(playerController.playinfrom.value.typeString,
-                              style: const TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold)),
-                          Obx(
-                            () => Text(
-                              "\"${playerController.playinfrom.value.nameString}\"",
-                              overflow: TextOverflow.ellipsis,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-                /// More button for current song context
-                IconButton(
-                  icon: const Icon(
-                    Icons.more_vert,
-                    size: 25,
-                  ),
-                  onPressed: () {
-                    showModalBottomSheet(
-                      constraints: const BoxConstraints(maxWidth: 500),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(10.0)),
-                      ),
-                      isScrollControlled: true,
-                      context: playerController
-                          .homeScaffoldkey.currentState!.context,
-                      barrierColor: Colors.transparent.withAlpha(100),
-                      builder: (context) => SongInfoBottomSheet(
-                        playerController.currentSong.value!,
-                        calledFromPlayer: true,
-                      ),
-                    ).whenComplete(() => Get.delete<SongInfoController>());
-                  },
-                ),
-              ],
-            ),
-          )
       ],
+    ),
+  ));
+}
+
+  void _openMoreSheet(BuildContext context, PlayerController ctrl) {
+    if (ctrl.currentSong.value == null) return;
+    showModalBottomSheet(
+      constraints: const BoxConstraints(maxWidth: 500),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+      ),
+      isScrollControlled: true,
+      context: ctrl.homeScaffoldkey.currentState!.context,
+      barrierColor: Colors.transparent.withAlpha(100),
+      builder: (_) => SongInfoBottomSheet(
+        ctrl.currentSong.value!,
+        calledFromPlayer: true,
+      ),
+    ).whenComplete(() => Get.delete<SongInfoController>());
+  }
+
+  Widget _buildPlayButton(PlayerController ctrl) {
+    return Container(
+      width: 68,
+      height: 68,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white,
+      ),
+      child: Center(
+        child: AnimatedPlayButton(
+          key: const Key('spotifyPlayBtn'),
+          iconSize: 32,
+        ),
+      ),
+    );
+  }
+
+  Widget _iconBtn({
+    required IconData icon,
+    required Color color,
+    double size = 26,
+    VoidCallback? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Icon(icon, color: color, size: size),
+      ),
     );
   }
 }

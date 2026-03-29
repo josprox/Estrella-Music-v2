@@ -4,14 +4,17 @@ import 'package:harmonymusic/ui/player/player_controller.dart';
 
 import '../../widgets/loader.dart';
 
-/// A button that animates between a play and pause icon.
-///
-/// It also shows a loading indicator when the audio is in a loading state.
+/// Animates between play and pause icons.
+/// [iconColor] controls the icon color (default black for use on white button).
 class AnimatedPlayButton extends StatefulWidget {
-  /// size of the icon.
   final double iconSize;
+  final Color iconColor;
 
-  const AnimatedPlayButton({super.key, this.iconSize = 40.0});
+  const AnimatedPlayButton({
+    super.key,
+    this.iconSize = 40.0,
+    this.iconColor = Colors.black,
+  });
 
   @override
   State<AnimatedPlayButton> createState() => _AnimatedPlayButtonState();
@@ -20,13 +23,13 @@ class AnimatedPlayButton extends StatefulWidget {
 class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  
+
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 280),
     );
   }
 
@@ -51,16 +54,18 @@ class _AnimatedPlayButtonState extends State<AnimatedPlayButton>
 
       return IconButton(
         iconSize: widget.iconSize,
+        padding: EdgeInsets.zero,
         onPressed: () {
           isPlaying ? controller.pause() : controller.play();
         },
         icon: isLoading
-            ? const LoadingIndicator(
-                dimension: 20,
+            ? LoadingIndicator(
+                dimension: widget.iconSize * 0.55,
               )
             : AnimatedIcon(
                 icon: AnimatedIcons.play_pause,
                 progress: _controller,
+                color: widget.iconColor,
               ),
       );
     });

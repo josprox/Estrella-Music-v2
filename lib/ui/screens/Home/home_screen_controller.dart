@@ -298,7 +298,7 @@ class HomeScreenController extends GetxController {
       // Set miniplayer height accordingly
       if (!playerCon.initFlagForPlayer) {
         if (isHomeOnTop) {
-          playerCon.playerPanelMinHeight.value = 75.0;
+          playerCon.playerPanelMinHeight.value = 165.0; // 75 + 90 for navbar clearance
         } else {
           Future.delayed(
               isResultScreenOnTop

@@ -68,6 +68,7 @@ class Home extends StatelessWidget {
         },
         child: Obx(
           () => Scaffold(
+              extendBody: true, // Allow liquid glass to overlay content
               bottomNavigationBar: settingsScreenController
                       .isBottomNavBarEnabled.isTrue
                   ? ScrollToHideWidget(
@@ -192,10 +193,14 @@ class Home extends StatelessWidget {
                     minHeight: playerController.playerPanelMinHeight.value,
                     maxHeight: size.height,
                     isDraggable: !isWideScreen,
+                    renderPanelSheet: false,
+                    boxShadow: const [],
                     onSwipeUp: () {
                       playerController.queuePanelController.open();
                     },
-                    panel: const Player(),
+                    panel: Obx(() => playerController.panelPosition.value > 0
+                        ? const Player()
+                        : const SizedBox.shrink()),
                     body: const ScreenNavigation(),
                     header: !isWideScreen
                         ? InkWell(

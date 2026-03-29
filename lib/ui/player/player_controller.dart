@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_lyric/lyric_ui/lyric_ui.dart';
 
 import '../../models/playling_from.dart';
 import '../../services/downloader.dart';
@@ -21,6 +22,57 @@ import '../widgets/sliding_up_panel.dart';
 import '/models/durationstate.dart';
 import '/services/music_service.dart';
 
+enum PlayButtonState { paused, playing, loading }
+
+class CustomLyricUI extends UINetease {
+  CustomLyricUI({
+    double defaultSize = 18,
+    double defaultExtSize = 14,
+    double otherMainSize = 16,
+    double bias = 0.5,
+    double lineGap = 25,
+    double inlineGap = 25,
+    LyricAlign lyricAlign = LyricAlign.CENTER,
+    LyricBaseLine lyricBaseLine = LyricBaseLine.CENTER,
+    bool highlight = true,
+    HighlightDirection highlightDirection = HighlightDirection.LTR,
+  }) : super(
+          defaultSize: defaultSize,
+          defaultExtSize: defaultExtSize,
+          otherMainSize: otherMainSize,
+          bias: bias,
+          lineGap: lineGap,
+          inlineGap: inlineGap,
+          lyricAlign: lyricAlign,
+          lyricBaseLine: lyricBaseLine,
+          highlight: highlight,
+          highlightDirection: highlightDirection,
+        );
+
+  @override
+  TextStyle getPlayingMainTextStyle() => TextStyle(
+        color: Colors.white,
+        fontSize: defaultSize,
+        fontWeight: FontWeight.w900,
+      );
+
+  @override
+  TextStyle getOtherMainTextStyle() => TextStyle(
+        color: Colors.white.withOpacity(0.35),
+        fontSize: otherMainSize,
+        fontWeight: FontWeight.w600,
+      );
+
+  @override
+  double getLineSpace() => lineGap;
+
+  @override
+  double getPlayingLineBias() => bias;
+
+  @override
+  Color getLyricHightlightColor() => Colors.white;
+}
+
 class PlayerController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final _audioHandler = Get.find<AudioHandler>();
@@ -28,6 +80,7 @@ class PlayerController extends GetxController
   final currentQueue = <MediaItem>[].obs;
 
   final playerPaneOpacity = (1.0).obs;
+  final panelPosition = 0.0.obs;
   final isPlayerpanelTopVisible = true.obs;
   final isPanelGTHOpened = false.obs;
   final playerPanelMinHeight = 0.0.obs;
@@ -66,8 +119,15 @@ class PlayerController extends GetxController
   bool isDesktopLyricsDialogOpen = false;
   // 0 for play, 1 for pause, 2 for blank
   final gesturePlayerVisibleState = 2.obs;
-  final lyricUi =
-      UINetease(highlight: true, defaultSize: 20, defaultExtSize: 12);
+  final lyricUi = CustomLyricUI(
+    highlight: true,
+    defaultSize: 22,      // Active line size
+    otherMainSize: 18,    // Inactive lines size
+    defaultExtSize: 14,
+    lineGap: 32,          // More space between lines
+    inlineGap: 10,
+    bias: 0.5,            // Keep active line centered
+  );
   RxMap<String, dynamic> lyrics =
       <String, dynamic>{"synced": "", "plainLyrics": ""}.obs;
   ScrollController scrollController = ScrollController();
@@ -144,6 +204,7 @@ class PlayerController extends GetxController
   }
 
   void panellistener(double x) {
+    panelPosition.value = x;
     if (x >= 0 && x <= 0.2) {
       playerPaneOpacity.value = 1 - (x * 5);
       isPlayerpanelTopVisible.value = true;
@@ -272,6 +333,13 @@ class PlayerController extends GetxController
         if (isDesktopLyricsDialogOpen) {
           Navigator.pop(Get.context!);
         }
+
+        // Auto-load lyrics in background for the new player scroll-style
+        Future.delayed(const Duration(milliseconds: 800), () {
+          if (currentSong.value?.id == mediaItem.id) {
+            showLyrics();
+          }
+        });
 
         // reset player visible state when player is in gesture mode
         if (Get.find<SettingsScreenController>().playerUi.value == 1) {
@@ -514,7 +582,7 @@ class PlayerController extends GetxController
         playerPanelMinHeight.value =
             miniPlayerHeight + Get.mediaQuery.viewPadding.bottom;
       } else {
-        playerPanelMinHeight.value = miniPlayerHeight;
+        playerPanelMinHeight.value = isWideScreen ? 105.0 : 165.0; // 75 + 90 navbar clearance
       }
       initFlagForPlayer = false;
     }
@@ -827,11 +895,9 @@ class PlayerController extends GetxController
     // ensure wakelock disabled when player controller disposed
     try {
       _setWakelock(false);
-    } catch (e) {
-      printERROR(e);
+    } on Exception catch (e) {
+      printERROR("Failed to set wakelock or title color: $e");
     }
     super.dispose();
   }
 }
-
-enum PlayButtonState { paused, playing, loading }

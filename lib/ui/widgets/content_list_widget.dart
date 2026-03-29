@@ -3,78 +3,114 @@ import 'package:get/get.dart';
 
 import '../screens/Search/search_result_screen_controller.dart';
 import '/ui/widgets/content_list_widget_item.dart';
+import '/ui/theme/app_spacing.dart';
 
 class ContentListWidget extends StatelessWidget {
-  ///ContentListWidget is used to render a section of Content like a list of Albums or Playlists in HomeScreen
+  /// ContentListWidget renders a horizontal-scroll section of Albums or Playlists
   const ContentListWidget(
       {super.key,
       this.content,
       this.isHomeContent = true,
       this.scrollController});
 
-  ///content will be of class Type AlbumContent or PlaylistContent
   final dynamic content;
   final bool isHomeContent;
   final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
-    final isAlbumContent = content.runtimeType.toString() == "AlbumContent";
-    // ignore: avoid_unnecessary_containers
-    return Container(
+    final isAlbumContent =
+        content.runtimeType.toString() == 'AlbumContent';
+    final tt = Theme.of(context).textTheme;
+    final cs = Theme.of(context).colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.xl),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          // ── Section header ────────────────────────────────────────────────
+          Padding(
+            padding: const EdgeInsets.only(
+                left: AppSpacing.sm,
+                right: AppSpacing.sm,
+                bottom: AppSpacing.md),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  !isHomeContent && content.title.length > 12
-                      ? "${content.title.substring(0, 12)}..."
-                      : content.title,
-                  //maxLines: 2,
-                  style: Theme.of(context).textTheme.titleLarge,
+                Flexible(
+                  child: Text(
+                    !isHomeContent && content.title.length > 14
+                        ? '${content.title.substring(0, 14)}…'
+                        : content.title,
+                    style: tt.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.3,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                !isHomeContent
-                    ? TextButton(
-                        onPressed: () {
-                          final scrresController =
-                              Get.find<SearchResultScreenController>();
-                          scrresController.viewAllCallback(content.title);
-                        },
-                        child: Text("viewAll".tr,
-                            style: Theme.of(Get.context!).textTheme.titleSmall))
-                    : const SizedBox.shrink()
+                if (!isHomeContent)
+                  TextButton(
+                    onPressed: () {
+                      final ctrl =
+                          Get.find<SearchResultScreenController>();
+                      ctrl.viewAllCallback(content.title);
+                    },
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.md,
+                          vertical: AppSpacing.xs),
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(AppSpacing.radiusPill),
+                        side: BorderSide(
+                          color: cs.primary.withOpacity(0.4),
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      'viewAll'.tr,
+                      style: tt.labelMedium?.copyWith(
+                        color: cs.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
-          const SizedBox(height: 5),
+
+          // ── Horizontal list ────────────────────────────────────────────────
           SizedBox(
-            height: 200,
-            //color: Colors.blueAccent,
+            height: 212,
             child: Scrollbar(
               thickness: GetPlatform.isDesktop ? null : 0,
               controller: scrollController,
               child: ListView.separated(
-                  controller: scrollController,
-                  addAutomaticKeepAlives: false, //Testing going
-                  addRepaintBoundaries: false, //on this
-                  physics: const BouncingScrollPhysics(),
-                  separatorBuilder: (context, index) => const SizedBox(
-                        width: 15,
-                      ),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: isAlbumContent
-                      ? content.albumList.length
-                      : content.playlistList.length,
-                  itemBuilder: (_, index) {
-                    if (isAlbumContent) {
-                      return ContentListItem(content: content.albumList[index]);
-                    }
-                    return ContentListItem(
-                        content: content.playlistList[index]);
-                  }),
+                controller: scrollController,
+                addAutomaticKeepAlives: false,
+                addRepaintBoundaries: false,
+                physics: const BouncingScrollPhysics(),
+                separatorBuilder: (_, __) =>
+                    const SizedBox(width: AppSpacing.md),
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm),
+                itemCount: isAlbumContent
+                    ? content.albumList.length
+                    : content.playlistList.length,
+                itemBuilder: (_, index) {
+                  return isAlbumContent
+                      ? ContentListItem(
+                          content: content.albumList[index])
+                      : ContentListItem(
+                          content: content.playlistList[index]);
+                },
+              ),
             ),
           ),
         ],

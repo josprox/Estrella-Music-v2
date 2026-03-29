@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:liquid_tabbar_minimize/liquid_tabbar_minimize.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
 
@@ -47,9 +48,11 @@ class MyApp extends StatelessWidget {
         home: const Home(),
         debugShowCheckedModeBanner: false,
         translations: Languages(),
-        locale:
-            Locale(Hive.box("AppPrefs").get('currentAppLanguageCode') ?? "en"),
+        locale: Hive.box("AppPrefs").get('currentAppLanguageCode') == null
+            ? Get.deviceLocale
+            : Locale(Hive.box("AppPrefs").get('currentAppLanguageCode')),
         fallbackLocale: const Locale("en"),
+        navigatorObservers: [LiquidRouteObserver.instance],
         builder: (context, child) {
           final mQuery = MediaQuery.of(context);
           final scale =

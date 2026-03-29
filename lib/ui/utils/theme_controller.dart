@@ -2,17 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:palette_generator/palette_generator.dart';
 import '/utils/helper.dart';
+import '/ui/theme/app_colors.dart';
+import '/ui/theme/app_typography.dart';
 
 class ThemeController extends GetxController {
-  final primaryColor = Colors.deepPurple[400].obs;
-  final textColor = Colors.white24.obs;
+  final primaryColor = const Color(0xFF6C63FF).obs;
+  final textColor = Colors.white.obs;
   final themedata = Rxn<ThemeData>();
 
-  /// The method channel for setting the title bar color on Windows.
   final platform = const MethodChannel('win_titlebar_color');
   String? currentSongId;
   late Brightness systemBrightness;
@@ -21,21 +21,23 @@ class ThemeController extends GetxController {
     systemBrightness =
         WidgetsBinding.instance.platformDispatcher.platformBrightness;
 
-    primaryColor.value =
-        Color(Hive.box('appPrefs').get("themePrimaryColor") ?? 4278199603);
+    // Read stored seed color (falls back to violet)
+    final storedColor = Hive.box('appPrefs').get("themePrimaryColor");
+    if (storedColor != null) {
+      primaryColor.value = Color(storedColor as int);
+    }
 
     changeThemeModeType(
         ThemeType.values[Hive.box('appPrefs').get("themeModeType") ?? 0]);
 
     _listenSystemBrightness();
-
     super.onInit();
   }
 
   void _listenSystemBrightness() {
-    final platformDispatcher = WidgetsBinding.instance.platformDispatcher;
-    platformDispatcher.onPlatformBrightnessChanged = () {
-      systemBrightness = platformDispatcher.platformBrightness;
+    final dispatcher = WidgetsBinding.instance.platformDispatcher;
+    dispatcher.onPlatformBrightnessChanged = () {
+      systemBrightness = dispatcher.platformBrightness;
       changeThemeModeType(
           ThemeType.values[Hive.box('appPrefs').get("themeModeType")],
           sysCall: true);
@@ -44,294 +46,232 @@ class ThemeController extends GetxController {
 
   void changeThemeModeType(dynamic value, {bool sysCall = false}) {
     if (value == ThemeType.system) {
-      themedata.value = _createThemeData(
-          null,
+      themedata.value = _buildThemeData(
+          primaryColor.value,
           systemBrightness == Brightness.light
               ? ThemeType.light
               : ThemeType.dark);
     } else {
       if (sysCall) return;
-      themedata.value = _createThemeData(
-          value == ThemeType.dynamic
-              ? _createMaterialColor(primaryColor.value!)
-              : null,
-          value);
+      themedata.value = _buildThemeData(primaryColor.value, value);
     }
     setWindowsTitleBarColor(themedata.value!.scaffoldBackgroundColor);
   }
 
+  /// Called from player when a new song starts — extracts dominant color
+  /// and rebuilds the dynamic theme.
   void setTheme(ImageProvider imageProvider, String songId) async {
     if (songId == currentSongId) return;
     PaletteGenerator generator = await PaletteGenerator.fromImageProvider(
         ResizeImage(imageProvider, height: 200, width: 200));
-    //final colorList = generator.colors;
+
     final paletteColor = generator.dominantColor ??
         generator.darkMutedColor ??
         generator.darkVibrantColor ??
         generator.lightMutedColor ??
         generator.lightVibrantColor;
-    primaryColor.value = paletteColor!.color;
+
+    if (paletteColor == null) return;
+
+    Color seed = paletteColor.color;
     textColor.value = paletteColor.bodyTextColor;
-    // printINFO(paletteColor.color.computeLuminance().toString());0.11 ref
-    if (paletteColor.color.computeLuminance() > 0.10) {
-      primaryColor.value = paletteColor.color.withLightness(0.10);
-      textColor.value = Colors.white54;
+
+    // Keep seed dark enough for the dark glass aesthetic
+    if (seed.computeLuminance() > 0.12) {
+      seed = HSLColor.fromColor(seed).withLightness(0.12).toColor();
     }
-    final primarySwatch = _createMaterialColor(primaryColor.value!);
-    themedata.value = _createThemeData(primarySwatch, ThemeType.dynamic,
-        textColor: textColor.value,
-        titleColorSwatch: _createMaterialColor(textColor.value));
+
+    primaryColor.value = seed;
+    themedata.value = _buildThemeData(seed, ThemeType.dynamic);
     currentSongId = songId;
-    Hive.box('appPrefs').put("themePrimaryColor", (primaryColor.value!).value);
+
+    Hive.box('appPrefs').put("themePrimaryColor", primaryColor.value.value);
     setWindowsTitleBarColor(themedata.value!.scaffoldBackgroundColor);
   }
 
-  ThemeData _createThemeData(MaterialColor? primarySwatch, ThemeType themeType,
-      {MaterialColor? titleColorSwatch, Color? textColor}) {
-    if (themeType == ThemeType.dynamic) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.light,
-            statusBarColor: Colors.transparent,
-            systemNavigationBarColor: Colors.white.withOpacity(0.002),
-            systemNavigationBarDividerColor: Colors.transparent,
-            systemNavigationBarIconBrightness: Brightness.light,
-            systemStatusBarContrastEnforced: false,
-            systemNavigationBarContrastEnforced: true),
-      );
+  // ─────────────────────────────────────────────────────────────────────────
+  // Theme builder — Material 3 enabled for all modes
+  // ─────────────────────────────────────────────────────────────────────────
 
-      final baseTheme = ThemeData(
-          useMaterial3: false,
-          primaryColor: primarySwatch![500],
-          colorScheme: ColorScheme.fromSwatch(
-              accentColor: primarySwatch[200],
-              brightness: Brightness.dark,
-              backgroundColor: primarySwatch[700],
-              primarySwatch: primarySwatch),
-          //accentColor: primarySwatch[200],
-          dialogBackgroundColor: primarySwatch[700],
-          cardColor: primarySwatch[600],
-          primaryColorLight: primarySwatch[400],
-          primaryColorDark: primarySwatch[700],
-          //secondaryHeaderColor: primarySwatch[50],
-          canvasColor: primarySwatch[700],
-          //scaffoldBackgroundColor: primarySwatch[700],
-          bottomSheetTheme: BottomSheetThemeData(
-              backgroundColor: primarySwatch[600],
-              modalBarrierColor: primarySwatch[400]),
-          textTheme: TextTheme(
-            titleLarge: const TextStyle(
-                fontSize: 23, fontWeight: FontWeight.bold, color: Colors.white),
-            titleMedium: const TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.white),
-            titleSmall: TextStyle(color: primarySwatch[100]),
-            bodyMedium: TextStyle(color: primarySwatch[100]),
-            labelMedium: TextStyle(
-                fontWeight: FontWeight.w800,
-                fontSize: 23,
-                color: textColor ?? primarySwatch[50]),
-            labelSmall: TextStyle(
-                fontSize: 15,
-                color: titleColorSwatch != null
-                    ? titleColorSwatch[900]
-                    : primarySwatch[100],
-                letterSpacing: 0,
-                fontWeight: FontWeight.bold),
+  ThemeData _buildThemeData(Color seedColor, ThemeType type) {
+    final isDark = type == ThemeType.dark || type == ThemeType.dynamic;
+    final brightness = isDark ? Brightness.dark : Brightness.light;
+
+    _applySystemUiOverlay(isDark);
+
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: seedColor,
+      brightness: brightness,
+      dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
+    ).copyWith(
+      surface: isDark ? AppColors.darkScaffold : AppColors.lightScaffold,
+      onSurface:
+          isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+      surfaceContainer:
+          isDark ? AppColors.darkSurface : AppColors.lightSurface,
+      surfaceContainerHigh:
+          isDark ? AppColors.darkCard : AppColors.lightCard,
+      surfaceContainerHighest:
+          isDark ? AppColors.darkElevated : AppColors.lightCard,
+    );
+
+    final textTheme =
+        isDark ? AppTypography.darkTextTheme : AppTypography.lightTextTheme;
+
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+      textTheme: textTheme,
+      scaffoldBackgroundColor:
+          isDark ? AppColors.darkScaffold : AppColors.lightScaffold,
+      canvasColor: isDark ? AppColors.darkSurface : AppColors.lightSurface,
+      cardColor: isDark ? AppColors.darkCard : AppColors.lightCard,
+      // ── Bottom Sheet ──────────────────────────────────────────────────────
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor:
+            isDark ? AppColors.darkSurface : AppColors.lightSurface,
+        surfaceTintColor: Colors.transparent,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+        ),
+        modalBarrierColor: Colors.black.withOpacity(0.45),
+      ),
+      // ── Navigation Bar ────────────────────────────────────────────────────
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        indicatorColor: colorScheme.primary.withOpacity(0.25),
+        labelTextStyle: WidgetStateProperty.all(
+          textTheme.labelMedium?.copyWith(
+            color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+            fontWeight: FontWeight.w600,
           ),
-          indicatorColor: Colors.white,
-          progressIndicatorTheme: ProgressIndicatorThemeData(
-              linearTrackColor: (primarySwatch[300])!.computeLuminance() > 0.3
-                  ? Colors.black54
-                  : Colors.white70,
-              color: textColor),
-          navigationRailTheme: NavigationRailThemeData(
-              backgroundColor: primarySwatch[700],
-              selectedIconTheme: const IconThemeData(color: Colors.white),
-              unselectedIconTheme: IconThemeData(color: primarySwatch[100]),
-              selectedLabelTextStyle: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15),
-              unselectedLabelTextStyle: TextStyle(
-                  color: primarySwatch[100], fontWeight: FontWeight.bold)),
-          sliderTheme: SliderThemeData(
-            inactiveTrackColor: primarySwatch[300],
-            activeTrackColor: textColor,
-            valueIndicatorColor: primarySwatch[400],
-            thumbColor: Colors.white,
-          ),
-          textSelectionTheme: TextSelectionThemeData(
-              cursorColor: primarySwatch[200],
-              selectionColor: primarySwatch[200],
-              selectionHandleColor: primarySwatch[200])
-          //scaffoldBackgroundColor: primarySwatch[700]
+        ),
+        iconTheme: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return IconThemeData(
+              color: isDark ? Colors.white : AppColors.textPrimaryLight,
+              size: 24,
+            );
+          }
+          return IconThemeData(
+            color: isDark
+                ? AppColors.textTertiaryDark
+                : AppColors.textSecondaryLight,
+            size: 24,
           );
-      return baseTheme.copyWith(
-          textTheme: GoogleFonts.interTextTheme(baseTheme.textTheme));
-    } else if (themeType == ThemeType.dark) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.light,
-            statusBarColor: Colors.transparent,
-            systemNavigationBarColor: Colors.white.withOpacity(0.002),
-            systemNavigationBarDividerColor: Colors.transparent,
-            systemNavigationBarIconBrightness: Brightness.light,
-            systemStatusBarContrastEnforced: false,
-            systemNavigationBarContrastEnforced: true),
-      );
-      final baseTheme = ThemeData(
-          useMaterial3: false,
-          brightness: Brightness.dark,
-          canvasColor: Colors.black,
-          primaryColor: Colors.black,
-          primaryColorDark: Colors.black,
-          primaryColorLight: Colors.grey[850],
-          colorScheme: ColorScheme.fromSwatch(
-              accentColor: Colors.grey[700], brightness: Brightness.dark),
-          progressIndicatorTheme: ProgressIndicatorThemeData(
-              color: Colors.grey[700], linearTrackColor: Colors.white),
-          textTheme: const TextTheme(
-              titleLarge: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
-              ),
-              titleMedium: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-              titleSmall: TextStyle(),
-              labelMedium: TextStyle(
-                fontWeight: FontWeight.w800,
-                fontSize: 23,
-              ),
-              labelSmall: TextStyle(
-                  fontSize: 15, letterSpacing: 0, fontWeight: FontWeight.bold),
-              bodyMedium: TextStyle(color: Colors.grey)),
-          navigationRailTheme: const NavigationRailThemeData(
-              backgroundColor: Colors.black,
-              selectedIconTheme: IconThemeData(
-                color: Colors.white,
-              ),
-              unselectedIconTheme: IconThemeData(color: Colors.white38),
-              selectedLabelTextStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15),
-              unselectedLabelTextStyle: TextStyle(
-                  color: Colors.white38, fontWeight: FontWeight.bold)),
-          bottomSheetTheme: const BottomSheetThemeData(
-              backgroundColor: Colors.black, modalBarrierColor: Colors.black),
-          sliderTheme: const SliderThemeData(
-            //base bar color
-            inactiveTrackColor: Colors.white30,
-            //buffered progress
-            activeTrackColor: Colors.white,
-            //progress bar color
-            valueIndicatorColor: Colors.black38,
-            thumbColor: Colors.white,
-          ),
-          textSelectionTheme: TextSelectionThemeData(
-              cursorColor: Colors.grey[700],
-              selectionColor: Colors.grey[700],
-              selectionHandleColor: Colors.grey[700]),
-          inputDecorationTheme: const InputDecorationTheme(
-              focusColor: Colors.white,
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white))));
-      return baseTheme.copyWith(
-          textTheme: GoogleFonts.interTextTheme(baseTheme.textTheme));
-    } else {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-            statusBarIconBrightness: Brightness.dark,
-            statusBarColor: Colors.transparent,
-            systemNavigationBarColor: Colors.white.withOpacity(0.002),
-            systemNavigationBarDividerColor: Colors.transparent,
-            systemNavigationBarIconBrightness: Brightness.dark,
-            systemStatusBarContrastEnforced: false,
-            systemNavigationBarContrastEnforced: false),
-      );
-      final baseTheme = ThemeData(
-          useMaterial3: false,
-          brightness: Brightness.light,
-          canvasColor: Colors.white,
-          colorScheme: ColorScheme.fromSwatch(
-              accentColor: Colors.grey[400],
-              backgroundColor: Colors.white,
-              cardColor: Colors.white,
-              brightness: Brightness.light),
-          primaryColor: Colors.white,
-          primaryColorLight: Colors.grey[300],
-          progressIndicatorTheme: ProgressIndicatorThemeData(
-              linearTrackColor: Colors.grey[700], color: Colors.grey[400]),
-          textTheme: TextTheme(
-              titleLarge: const TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
-              ),
-              titleMedium: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-              titleSmall: const TextStyle(),
-              labelMedium: const TextStyle(
-                fontWeight: FontWeight.w800,
-                fontSize: 23,
-              ),
-              labelSmall: const TextStyle(
-                  fontSize: 15, letterSpacing: 0, fontWeight: FontWeight.bold),
-              bodyMedium: TextStyle(color: Colors.grey[700])),
-          navigationRailTheme: NavigationRailThemeData(
-              backgroundColor: Colors.white,
-              selectedIconTheme: const IconThemeData(color: Colors.black),
-              unselectedIconTheme: IconThemeData(color: Colors.grey[800]),
-              selectedLabelTextStyle: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15),
-              unselectedLabelTextStyle: TextStyle(
-                  color: Colors.grey[800], fontWeight: FontWeight.bold)),
-          bottomSheetTheme: const BottomSheetThemeData(
-              backgroundColor: Colors.white, modalBarrierColor: Colors.white),
-          sliderTheme: SliderThemeData(
-            //base bar color
-            inactiveTrackColor: Colors.black38,
-            //buffered progress
-            activeTrackColor: Colors.grey[800],
-            //progress bar color
-            valueIndicatorColor: Colors.white38,
-            thumbColor: Colors.grey[800],
-          ),
-          textSelectionTheme: TextSelectionThemeData(
-              cursorColor: Colors.grey[400],
-              selectionColor: Colors.grey[400],
-              selectionHandleColor: Colors.grey[400]),
-          dialogTheme: DialogTheme(backgroundColor: Colors.grey[200]),
-          inputDecorationTheme: const InputDecorationTheme(
-              focusColor: Colors.black,
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black))));
-      return baseTheme.copyWith(
-          textTheme: GoogleFonts.interTextTheme(baseTheme.textTheme));
-    }
+        }),
+      ),
+      // ── Navigation Rail ───────────────────────────────────────────────────
+      navigationRailTheme: NavigationRailThemeData(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        indicatorColor: colorScheme.primary.withOpacity(0.2),
+        selectedIconTheme: const IconThemeData(color: Colors.white, size: 24),
+        unselectedIconTheme: IconThemeData(
+            color: isDark
+                ? AppColors.textTertiaryDark
+                : AppColors.textSecondaryLight,
+            size: 22),
+        selectedLabelTextStyle: TextStyle(
+          color: isDark ? Colors.white : AppColors.textPrimaryLight,
+          fontWeight: FontWeight.w700,
+          fontSize: 13,
+        ),
+        unselectedLabelTextStyle: TextStyle(
+          color: isDark
+              ? AppColors.textTertiaryDark
+              : AppColors.textSecondaryLight,
+          fontWeight: FontWeight.w500,
+          fontSize: 13,
+        ),
+      ),
+      // ── Slider ────────────────────────────────────────────────────────────
+      sliderTheme: SliderThemeData(
+        inactiveTrackColor:
+            isDark ? Colors.white.withOpacity(0.15) : Colors.black26,
+        activeTrackColor: colorScheme.primary,
+        secondaryActiveTrackColor: colorScheme.primary.withOpacity(0.3),
+        thumbColor: Colors.white,
+        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 7),
+        overlayShape: const RoundSliderOverlayShape(overlayRadius: 16),
+        valueIndicatorColor: colorScheme.primary,
+        trackHeight: 3.5,
+      ),
+      // ── Progress Indicator ────────────────────────────────────────────────
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: colorScheme.primary,
+        linearTrackColor:
+            isDark ? Colors.white.withOpacity(0.12) : Colors.black12,
+      ),
+      // ── Input / Text Field ────────────────────────────────────────────────
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor:
+            isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.05),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: colorScheme.primary, width: 1.5),
+        ),
+        hintStyle: TextStyle(
+            color: isDark ? AppColors.textTertiaryDark : Colors.black38),
+      ),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: colorScheme.primary,
+        selectionColor: colorScheme.primary.withOpacity(0.3),
+        selectionHandleColor: colorScheme.primary,
+      ),
+      // ── Dialog ───────────────────────────────────────────────────────────
+      dialogTheme: DialogThemeData(
+        backgroundColor:
+            isDark ? AppColors.darkCard : AppColors.lightCard,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+      ),
+      // ── Icon ─────────────────────────────────────────────────────────────
+      iconTheme: IconThemeData(
+          color:
+              isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight),
+      // ── FAB ──────────────────────────────────────────────────────────────
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: colorScheme.primary,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
+      // ── Divider ───────────────────────────────────────────────────────────
+      dividerTheme: DividerThemeData(
+        color:
+            isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08),
+        thickness: 1,
+        space: 1,
+      ),
+    );
   }
 
-  MaterialColor _createMaterialColor(Color color) {
-    List strengths = <double>[.05];
-    Map<int, Color> swatch = {};
-    final int r = color.red, g = color.green, b = color.blue;
-
-    for (int i = 1; i < 10; i++) {
-      strengths.add(0.1 * i);
-    }
-    for (var strength in strengths) {
-      final double ds = 0.5 - strength;
-      swatch[(strength * 1000).round()] = Color.fromRGBO(
-        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
-        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
-        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
-        1,
-      );
-    }
-    return MaterialColor(color.value, swatch);
+  void _applySystemUiOverlay(bool isDark) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarIconBrightness:
+            isDark ? Brightness.light : Brightness.dark,
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+        systemNavigationBarIconBrightness:
+            isDark ? Brightness.light : Brightness.dark,
+        systemStatusBarContrastEnforced: false,
+        systemNavigationBarContrastEnforced: false,
+      ),
+    );
   }
 
   Future<void> setWindowsTitleBarColor(Color color) async {
@@ -350,34 +290,32 @@ class ThemeController extends GetxController {
   }
 }
 
-extension ComplementaryColor on Color {
-  Color get complementaryColor => getComplementaryColor(this);
-  Color getComplementaryColor(Color color) {
-    int r = 255 - color.red;
-    int g = 255 - color.green;
-    int b = 255 - color.blue;
-    return Color.fromARGB(color.alpha, r, g, b);
-  }
-}
+// ─────────────────────────────────────────────────────────────────────────────
+// Color Extensions — kept for backwards compatibility with other files
+// ─────────────────────────────────────────────────────────────────────────────
 
 extension ColorWithHSL on Color {
   HSLColor get hsl => HSLColor.fromColor(this);
 
-  Color withSaturation(double saturation) {
-    return hsl.withSaturation(clampDouble(saturation, 0.0, 1.0)).toColor();
-  }
+  Color withSaturation(double saturation) =>
+      hsl.withSaturation(clampDouble(saturation, 0.0, 1.0)).toColor();
 
-  Color withLightness(double lightness) {
-    return hsl.withLightness(clampDouble(lightness, 0.0, 1.0)).toColor();
-  }
+  Color withLightness(double lightness) =>
+      hsl.withLightness(clampDouble(lightness, 0.0, 1.0)).toColor();
 
-  Color withHue(double hue) {
-    return hsl.withHue(clampDouble(hue, 0.0, 360.0)).toColor();
+  Color withHue(double hue) =>
+      hsl.withHue(clampDouble(hue, 0.0, 360.0)).toColor();
+}
+
+extension ComplementaryColor on Color {
+  Color get complementaryColor => getComplementaryColor(this);
+  Color getComplementaryColor(Color color) {
+    return Color.fromARGB(
+        color.alpha, 255 - color.red, 255 - color.green, 255 - color.blue);
   }
 }
 
 extension HexColor on Color {
-  /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
   static Color fromHex(String hexString) {
     final buffer = StringBuffer();
     if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
@@ -385,8 +323,8 @@ extension HexColor on Color {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
-  /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
-  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
+  String toHex({bool leadingHashSign = true}) =>
+      '${leadingHashSign ? '#' : ''}'
       '${alpha.toRadixString(16).padLeft(2, '0')}'
       '${red.toRadixString(16).padLeft(2, '0')}'
       '${green.toRadixString(16).padLeft(2, '0')}'

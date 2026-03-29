@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
+
+import '/ui/theme/app_spacing.dart';
+import '/ui/widgets/glass_morphism.dart';
 import '/ui/player/components/animated_play_button.dart';
 import '../player_controller.dart';
 
@@ -12,172 +15,182 @@ class PlayerControlWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PlayerController playerController = Get.find<PlayerController>();
+    final PlayerController ctrl = Get.find<PlayerController>();
+    final cs = Theme.of(context).colorScheme;
+    final tt = Theme.of(context).textTheme;
+
     return Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: ShaderMask(
-                  shaderCallback: (rect) {
-                    return const LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        Colors.white,
-                        Colors.white,
-                        Colors.white,
-                        Colors.white,
-                        Colors.white,
-                        Colors.white,
-                        Colors.transparent
-                      ],
-                    ).createShader(
-                        Rect.fromLTWH(0, 0, rect.width, rect.height));
-                  },
-                  blendMode: BlendMode.dstIn,
-                  child: Obx(() {
-                    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // ── Song info + favourite ─────────────────────────────────────────────
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: ShaderMask(
+                shaderCallback: (rect) {
+                  return const LinearGradient(
+                    colors: [
+                      Colors.white, Colors.white, Colors.transparent
+                    ],
+                    stops: [0, 0.80, 1],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ).createShader(
+                      Rect.fromLTWH(0, 0, rect.width, rect.height));
+                },
+                blendMode: BlendMode.dstIn,
+                child: Obx(() => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Marquee(
                           delay: const Duration(milliseconds: 300),
                           duration: const Duration(seconds: 10),
-                          id: "${playerController.currentSong.value}_title",
+                          id:
+                              '${ctrl.currentSong.value}_title',
                           child: Text(
-                            playerController.currentSong.value != null
-                                ? playerController.currentSong.value!.title
-                                : "NA",
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context).textTheme.labelMedium!,
+                            ctrl.currentSong.value?.title ?? 'NA',
+                            style: tt.headlineSmall?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white,
+                              fontSize: 22,
+                            ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 4),
                         Marquee(
                           delay: const Duration(milliseconds: 300),
                           duration: const Duration(seconds: 10),
-                          id: "${playerController.currentSong.value}_subtitle",
+                          id:
+                              '${ctrl.currentSong.value}_subtitle',
                           child: Text(
-                            playerController.currentSong.value != null
-                                ? playerController.currentSong.value!.artist!
-                                : "NA",
-                            textAlign: TextAlign.start,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.labelSmall,
+                            ctrl.currentSong.value?.artist ?? 'NA',
+                            style: tt.titleSmall?.copyWith(
+                              color: Colors.white60,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        )
+                        ),
                       ],
-                    );
-                  }),
-                ),
+                    )),
               ),
-              SizedBox(
-                width: 45,
-                child: IconButton(
-                    onPressed: playerController.toggleFavourite,
-                    icon: Obx(() => Icon(
-                          playerController.isCurrentSongFav.isFalse
-                              ? Icons.favorite_border
-                              : Icons.favorite,
-                          color: Theme.of(context).textTheme.titleMedium!.color,
-                        ))),
+            ),
+            const SizedBox(width: AppSpacing.md),
+            // Favourite button with glass circle
+            Obx(() => GlassIconButton(
+                  icon: ctrl.isCurrentSongFav.isTrue
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border_rounded,
+                  iconColor: ctrl.isCurrentSongFav.isTrue
+                      ? cs.primary
+                      : Colors.white60,
+                  size: 40,
+                  iconSize: 20,
+                  onPressed: ctrl.toggleFavourite,
+                )),
+          ],
+        ),
+
+        const SizedBox(height: AppSpacing.xl),
+
+        // ── Progress bar ─────────────────────────────────────────────────────
+        GetX<PlayerController>(
+          builder: (c) => ProgressBar(
+            thumbRadius: 7,
+            barHeight: 4,
+            thumbGlowRadius: 18,
+            baseBarColor: Colors.white.withOpacity(0.15),
+            bufferedBarColor: cs.primary.withOpacity(0.3),
+            progressBarColor: cs.primary,
+            thumbColor: Colors.white,
+            timeLabelTextStyle: tt.bodySmall?.copyWith(
+              color: Colors.white60,
+              fontSize: 12,
+            ),
+            progress: c.progressBarStatus.value.current,
+            total: c.progressBarStatus.value.total,
+            buffered: c.progressBarStatus.value.buffered,
+            onSeek: c.seek,
+          ),
+        ),
+
+        const SizedBox(height: AppSpacing.lg),
+
+        // ── Transport controls ────────────────────────────────────────────────
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Shuffle
+            Obx(() => _iconBtn(
+                  icon: Ionicons.shuffle,
+                  color: ctrl.isShuffleModeEnabled.value
+                      ? cs.primary
+                      : Colors.white30,
+                  onTap: ctrl.toggleShuffleMode,
+                )),
+
+            // Previous
+            _iconBtn(
+              icon: Icons.skip_previous_rounded,
+              color: Colors.white,
+              size: AppSpacing.iconXl,
+              onTap: ctrl.prev,
+            ),
+
+            // Play / Pause — large glowing button
+            GlassPlayButton(
+              size: 72,
+              child: AnimatedPlayButton(
+                key: const Key('playButton'),
+                iconSize: 34,
               ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          GetX<PlayerController>(builder: (controller) {
-            return ProgressBar(
-              thumbRadius: 7,
-              barHeight: 4.5,
-              baseBarColor: Theme.of(context).sliderTheme.inactiveTrackColor,
-              bufferedBarColor:
-                  Theme.of(context).sliderTheme.valueIndicatorColor,
-              progressBarColor: Theme.of(context).sliderTheme.activeTrackColor,
-              thumbColor: Theme.of(context).sliderTheme.thumbColor,
-              timeLabelTextStyle: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(fontSize: 14),
-              progress: controller.progressBarStatus.value.current,
-              total: controller.progressBarStatus.value.total,
-              buffered: controller.progressBarStatus.value.buffered,
-              onSeek: controller.seek,
-            );
-          }),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              IconButton(
-                  onPressed: playerController.toggleShuffleMode,
-                  icon: Obx(() => Icon(
-                        Ionicons.shuffle,
-                        color: playerController.isShuffleModeEnabled.value
-                            ? Theme.of(context).textTheme.titleLarge!.color
-                            : Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .color!
-                                .withOpacity(0.2),
-                      ))),
-              _previousButton(playerController, context),
-              const CircleAvatar(radius: 35, child: AnimatedPlayButton(key: Key("playButton"),)),
-              _nextButton(playerController, context),
-              Obx(() {
-                return IconButton(
-                    onPressed: playerController.toggleLoopMode,
-                    icon: Icon(
-                      Icons.all_inclusive,
-                      color: playerController.isLoopModeEnabled.value
-                          ? Theme.of(context).textTheme.titleLarge!.color
-                          : Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .color!
-                              .withOpacity(0.2),
-                    ));
-              }),
-            ],
-          ),
-        ]);
-  }
+            ),
 
+            // Next
+            Obx(() {
+              final isLast = ctrl.currentQueue.isEmpty ||
+                  (!(ctrl.isShuffleModeEnabled.isTrue ||
+                          ctrl.isQueueLoopModeEnabled.isTrue) &&
+                      ctrl.currentQueue.last.id ==
+                          ctrl.currentSong.value?.id);
+              return _iconBtn(
+                icon: Icons.skip_next_rounded,
+                color: isLast ? Colors.white24 : Colors.white,
+                size: AppSpacing.iconXl,
+                onTap: isLast ? null : ctrl.next,
+              );
+            }),
 
-  Widget _previousButton(
-      PlayerController playerController, BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        Icons.skip_previous,
-        color: Theme.of(context).textTheme.titleMedium!.color,
-      ),
-      iconSize: 30,
-      onPressed: playerController.prev,
+            // Loop
+            Obx(() => _iconBtn(
+                  icon: Icons.all_inclusive_rounded,
+                  color: ctrl.isLoopModeEnabled.value
+                      ? cs.primary
+                      : Colors.white30,
+                  onTap: ctrl.toggleLoopMode,
+                )),
+          ],
+        ),
+      ],
     );
   }
-}
 
-Widget _nextButton(PlayerController playerController, BuildContext context) {
-  return Obx(() {
-    final isLastSong = playerController.currentQueue.isEmpty ||
-        (!(playerController.isShuffleModeEnabled.isTrue ||
-                playerController.isQueueLoopModeEnabled.isTrue) &&
-            (playerController.currentQueue.last.id ==
-                playerController.currentSong.value?.id));
-    return IconButton(
-        icon: Icon(
-          Icons.skip_next,
-          color: isLastSong
-              ? Theme.of(context).textTheme.titleLarge!.color!.withOpacity(0.2)
-              : Theme.of(context).textTheme.titleMedium!.color,
-        ),
-        iconSize: 30,
-        onPressed: isLastSong ? null : playerController.next);
-  });
+  Widget _iconBtn({
+    required IconData icon,
+    required Color color,
+    double size = AppSpacing.iconLg,
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(24),
+      splashColor: Colors.white.withOpacity(0.1),
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.sm),
+        child: Icon(icon, color: color, size: size),
+      ),
+    );
+  }
 }
