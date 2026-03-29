@@ -75,7 +75,6 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
             .map<MediaItem?>((item) => MediaItemBuilder.fromJson(item))
             .whereType<MediaItem>()
             .toList();
-        box.close();
       }
       checkDownloadStatus();
       isContentFetched.value = true;
@@ -90,7 +89,6 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
     final box = await Hive.openBox("LibraryAlbums");
     isAddedToLibrary.value = box.containsKey(id);
     if (isAddedToLibrary.value) album.value = Album.fromJson(box.get(id));
-    box.close();
     return isAddedToLibrary.value;
   }
 
@@ -126,7 +124,6 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
     for (int i = 0; i < songListCopy.length; i++) {
       await songsBox.put(i, MediaItemBuilder.toJson(songListCopy[i]));
     }
-    await songsBox.close();
   }
 
   @override

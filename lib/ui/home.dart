@@ -28,14 +28,13 @@ class Home extends StatelessWidget {
     final homeScreenController = Get.find<HomeScreenController>();
     final size = MediaQuery.of(context).size;
     final isWideScreen = size.width > 800;
-    if (!playerController.initFlagForPlayer &&
-        settingsScreenController.isBottomNavBarEnabled.isFalse) {
+    if (!playerController.initFlagForPlayer) {
       if (isWideScreen) {
         playerController.playerPanelMinHeight.value =
             105 + Get.mediaQuery.padding.bottom;
       } else {
         playerController.playerPanelMinHeight.value =
-            75 + Get.mediaQuery.padding.bottom;
+            165.0; // Fixed height with Nav bar
       }
     }
     return PopScope(
@@ -69,13 +68,12 @@ class Home extends StatelessWidget {
         child: Obx(
           () => Scaffold(
               extendBody: true, // Allow liquid glass to overlay content
-              bottomNavigationBar: settingsScreenController
-                      .isBottomNavBarEnabled.isTrue
-                  ? ScrollToHideWidget(
+              bottomNavigationBar: (isWideScreen)
+                  ? null
+                  : ScrollToHideWidget(
                       isVisible: homeScreenController.isHomeSreenOnTop.isTrue &&
                           playerController.isPanelGTHOpened.isFalse,
-                      child: const BottomNavBar())
-                  : null,
+                      child: const BottomNavBar()),
               key: playerController.homeScaffoldkey,
               endDrawer: GetPlatform.isDesktop || isWideScreen
                   ? Container(
@@ -187,28 +185,31 @@ class Home extends StatelessWidget {
                     )
                   : null,
               drawerScrimColor: Colors.transparent,
-              body: Obx(() => SlidingUpPanel(
-                    onPanelSlide: playerController.panellistener,
-                    controller: playerController.playerPanelController,
-                    minHeight: playerController.playerPanelMinHeight.value,
-                    maxHeight: size.height,
-                    isDraggable: !isWideScreen,
-                    renderPanelSheet: false,
-                    boxShadow: const [],
-                    onSwipeUp: () {
-                      playerController.queuePanelController.open();
-                    },
-                    panel: Obx(() => playerController.panelPosition.value > 0
-                        ? const Player()
-                        : const SizedBox.shrink()),
-                    body: const ScreenNavigation(),
-                    header: !isWideScreen
-                        ? InkWell(
-                            onTap: playerController.playerPanelController.open,
-                            child: const MiniPlayer(),
-                          )
-                        : const MiniPlayer(),
-                  ))),
+              body: Obx(() => playerController.isPlayerVisible.value
+                  ? SlidingUpPanel(
+                      onPanelSlide: playerController.panellistener,
+                      controller: playerController.playerPanelController,
+                      minHeight: playerController.playerPanelMinHeight.value,
+                      maxHeight: size.height,
+                      isDraggable: !isWideScreen,
+                      renderPanelSheet: false,
+                      boxShadow: const [],
+                      onSwipeUp: () {
+                        playerController.queuePanelController.open();
+                      },
+                      panel: Obx(() => playerController.panelPosition.value > 0
+                          ? const Player()
+                          : const SizedBox.shrink()),
+                      body: const ScreenNavigation(),
+                      header: !isWideScreen
+                          ? InkWell(
+                              onTap:
+                                  playerController.playerPanelController.open,
+                              child: const MiniPlayer(),
+                            )
+                          : const MiniPlayer(),
+                    )
+                  : const ScreenNavigation())),
         ),
       ),
     );

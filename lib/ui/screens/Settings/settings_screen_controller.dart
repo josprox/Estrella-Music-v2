@@ -28,7 +28,6 @@ class SettingsScreenController extends GetxController {
   final loudnessNormalizationEnabled = false.obs;
   final noOfHomeScreenContent = 3.obs;
   final streamingQuality = AudioQuality.High.obs;
-  final playerUi = 0.obs;
   final slidableActionEnabled = true.obs;
   final isIgnoringBatteryOptimizations = false.obs;
   final autoOpenPlayer = false.obs;
@@ -42,7 +41,7 @@ class SettingsScreenController extends GetxController {
   final downloadingFormat = "".obs;
   final autoDownloadFavoriteSongEnabled = false.obs;
   final isTransitionAnimationDisabled = false.obs;
-  final isBottomNavBarEnabled = false.obs;
+  final isBottomNavBarEnabled = true.obs;
   final backgroundPlayEnabled = true.obs;
   final keepScreenAwake = false.obs;
   final restorePlaybackSession = false.obs;
@@ -86,12 +85,12 @@ class SettingsScreenController extends GetxController {
             ? "zh-CN"
             : appLang;
     isBottomNavBarEnabled.value =
-        isDesktop ? false : (setBox.get("isBottomNavBarEnabled") ?? true);
+        isDesktop ? false : true;
     noOfHomeScreenContent.value = setBox.get("noOfHomeScreenContent") ?? 3;
     isTransitionAnimationDisabled.value =
         setBox.get("isTransitionAnimationDisabled") ?? false;
     cacheSongs.value = setBox.get('cacheSongs') ?? false;
-    themeModetype.value = ThemeType.values[setBox.get('themeModeType') ?? 0];
+    themeModetype.value = ThemeType.dynamic;
     skipSilenceEnabled.value =
         isDesktop ? false : setBox.get("skipSilenceEnabled");
     loudnessNormalizationEnabled.value = isDesktop
@@ -103,7 +102,6 @@ class SettingsScreenController extends GetxController {
     cacheHomeScreenData.value = setBox.get("cacheHomeScreenData") ?? true;
     streamingQuality.value =
         AudioQuality.values[setBox.get('streamingQuality')];
-    playerUi.value = isDesktop ? 0 : (setBox.get('playerUi') ?? 0);
     backgroundPlayEnabled.value = setBox.get("backgroundPlayEnabled") ?? true;
     keepScreenAwake.value =
         setBox.get("keepScreenAwake") ?? GetPlatform.isDesktop ? true : false;
@@ -150,32 +148,7 @@ class SettingsScreenController extends GetxController {
     streamingQuality.value = val;
   }
 
-  void setPlayerUi(dynamic val) {
-    final playerCon = Get.find<PlayerController>();
-    setBox.put("playerUi", val);
-    if (val == 1 && playerCon.gesturePlayerStateAnimationController == null) {
-      playerCon.initGesturePlayerStateAnimationController();
-    }
 
-    playerUi.value = val;
-  }
-
-  void enableBottomNavBar(bool val) {
-    final homeScrCon = Get.find<HomeScreenController>();
-    final playerCon = Get.find<PlayerController>();
-    if (val) {
-      homeScrCon.onSideBarTabSelected(3);
-      isBottomNavBarEnabled.value = true;
-    } else {
-      isBottomNavBarEnabled.value = false;
-      homeScrCon.onSideBarTabSelected(5);
-    }
-    if (!Get.find<PlayerController>().initFlagForPlayer) {
-      playerCon.playerPanelMinHeight.value =
-          val ? 75.0 : 75.0 + Get.mediaQuery.viewPadding.bottom;
-    }
-    setBox.put("isBottomNavBarEnabled", val);
-  }
 
   void toggleSlidableAction(bool val) {
     setBox.put("slidableActionEnabled", val);
@@ -240,11 +213,7 @@ class SettingsScreenController extends GetxController {
     downloadLocationPath.value = defaultPath;
   }
 
-  void onThemeChange(dynamic val) {
-    setBox.put('themeModeType', ThemeType.values.indexOf(val));
-    themeModetype.value = val;
-    Get.find<ThemeController>().changeThemeModeType(val);
-  }
+  void onThemeChange(dynamic val) {}
 
   void onContentChange(dynamic value) {
     setBox.put('discoverContentType', value);

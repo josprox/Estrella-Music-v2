@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         home: const Home(),
         debugShowCheckedModeBanner: false,
         translations: Languages(),
-        locale: Hive.box("AppPrefs").get('currentAppLanguageCode') == null
+        locale: (Hive.box("AppPrefs").get('currentAppLanguageCode') == null || Hive.box("AppPrefs").get('autoLanguage', defaultValue: true))
             ? Get.deviceLocale
             : Locale(Hive.box("AppPrefs").get('currentAppLanguageCode')),
         fallbackLocale: const Locale("en"),
@@ -129,7 +129,9 @@ void _setAppInitPrefs() {
       'themePrimaryColor': 4278199603,
       'discoverContentType': "QP",
       'newVersionVisibility': updateCheckFlag,
-      "cacheHomeScreenData": true
+      "cacheHomeScreenData": true,
+      "restrorePlaybackSession": true,
+      "autoLanguage": true,
     });
   }
 }

@@ -58,9 +58,9 @@ class MiniPlayer extends StatelessWidget {
                             if (details.primaryVelocity! > 0) ctrl.prev();
                           },
                           onVerticalDragEnd: (details) {
-                            // Swipe down to pause/close
+                            // Swipe down to close and save resources
                             if (details.primaryVelocity! > 0) {
-                              ctrl.pause();
+                              ctrl.closePlayer();
                             }
                           },
                           behavior: HitTestBehavior.opaque,

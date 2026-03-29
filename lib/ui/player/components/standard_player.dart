@@ -395,10 +395,14 @@ class StandardPlayer extends StatelessWidget {
                         return Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: bgColor.withOpacity(0.85),
-                            borderRadius: BorderRadius.circular(24),
+                            color: bgColor.withOpacity(0.9), // Slightly more solid for better readability
+                            borderRadius: BorderRadius.circular(28),
+                            border: Border.all(
+                              color: Colors.white.withOpacity(0.1),
+                              width: 1,
+                            ),
                           ),
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

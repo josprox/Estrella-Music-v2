@@ -45,16 +45,10 @@ class ThemeController extends GetxController {
   }
 
   void changeThemeModeType(dynamic value, {bool sysCall = false}) {
-    if (value == ThemeType.system) {
-      themedata.value = _buildThemeData(
-          primaryColor.value,
-          systemBrightness == Brightness.light
-              ? ThemeType.light
-              : ThemeType.dark);
-    } else {
-      if (sysCall) return;
-      themedata.value = _buildThemeData(primaryColor.value, value);
-    }
+    // Always use dark theme or dynamic dark theme
+    themedata.value = _buildThemeData(
+        primaryColor.value,
+        value == ThemeType.dynamic ? ThemeType.dynamic : ThemeType.dark);
     setWindowsTitleBarColor(themedata.value!.scaffoldBackgroundColor);
   }
 
@@ -94,8 +88,8 @@ class ThemeController extends GetxController {
   // ─────────────────────────────────────────────────────────────────────────
 
   ThemeData _buildThemeData(Color seedColor, ThemeType type) {
-    final isDark = type == ThemeType.dark || type == ThemeType.dynamic;
-    final brightness = isDark ? Brightness.dark : Brightness.light;
+    const isDark = true;
+    const brightness = Brightness.dark;
 
     _applySystemUiOverlay(isDark);
 
@@ -104,32 +98,25 @@ class ThemeController extends GetxController {
       brightness: brightness,
       dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
     ).copyWith(
-      surface: isDark ? AppColors.darkScaffold : AppColors.lightScaffold,
-      onSurface:
-          isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
-      surfaceContainer:
-          isDark ? AppColors.darkSurface : AppColors.lightSurface,
-      surfaceContainerHigh:
-          isDark ? AppColors.darkCard : AppColors.lightCard,
-      surfaceContainerHighest:
-          isDark ? AppColors.darkElevated : AppColors.lightCard,
+      surface: AppColors.darkScaffold,
+      onSurface: AppColors.textPrimaryDark,
+      surfaceContainer: AppColors.darkSurface,
+      surfaceContainerHigh: AppColors.darkCard,
+      surfaceContainerHighest: AppColors.darkElevated,
     );
 
-    final textTheme =
-        isDark ? AppTypography.darkTextTheme : AppTypography.lightTextTheme;
+    final textTheme = AppTypography.darkTextTheme;
 
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
       textTheme: textTheme,
-      scaffoldBackgroundColor:
-          isDark ? AppColors.darkScaffold : AppColors.lightScaffold,
-      canvasColor: isDark ? AppColors.darkSurface : AppColors.lightSurface,
-      cardColor: isDark ? AppColors.darkCard : AppColors.lightCard,
+      scaffoldBackgroundColor: AppColors.darkScaffold,
+      canvasColor: AppColors.darkSurface,
+      cardColor: AppColors.darkCard,
       // ── Bottom Sheet ──────────────────────────────────────────────────────
       bottomSheetTheme: BottomSheetThemeData(
-        backgroundColor:
-            isDark ? AppColors.darkSurface : AppColors.lightSurface,
+        backgroundColor: AppColors.darkSurface,
         surfaceTintColor: Colors.transparent,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
@@ -144,21 +131,19 @@ class ThemeController extends GetxController {
         indicatorColor: colorScheme.primary.withOpacity(0.25),
         labelTextStyle: WidgetStateProperty.all(
           textTheme.labelMedium?.copyWith(
-            color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+            color: AppColors.textPrimaryDark,
             fontWeight: FontWeight.w600,
           ),
         ),
         iconTheme: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return IconThemeData(
-              color: isDark ? Colors.white : AppColors.textPrimaryLight,
+            return const IconThemeData(
+              color: Colors.white,
               size: 24,
             );
           }
-          return IconThemeData(
-            color: isDark
-                ? AppColors.textTertiaryDark
-                : AppColors.textSecondaryLight,
+          return const IconThemeData(
+            color: AppColors.textTertiaryDark,
             size: 24,
           );
         }),
@@ -169,28 +154,23 @@ class ThemeController extends GetxController {
         elevation: 0,
         indicatorColor: colorScheme.primary.withOpacity(0.2),
         selectedIconTheme: const IconThemeData(color: Colors.white, size: 24),
-        unselectedIconTheme: IconThemeData(
-            color: isDark
-                ? AppColors.textTertiaryDark
-                : AppColors.textSecondaryLight,
+        unselectedIconTheme: const IconThemeData(
+            color: AppColors.textTertiaryDark,
             size: 22),
-        selectedLabelTextStyle: TextStyle(
-          color: isDark ? Colors.white : AppColors.textPrimaryLight,
+        selectedLabelTextStyle: const TextStyle(
+          color: Colors.white,
           fontWeight: FontWeight.w700,
           fontSize: 13,
         ),
-        unselectedLabelTextStyle: TextStyle(
-          color: isDark
-              ? AppColors.textTertiaryDark
-              : AppColors.textSecondaryLight,
+        unselectedLabelTextStyle: const TextStyle(
+          color: AppColors.textTertiaryDark,
           fontWeight: FontWeight.w500,
           fontSize: 13,
         ),
       ),
       // ── Slider ────────────────────────────────────────────────────────────
       sliderTheme: SliderThemeData(
-        inactiveTrackColor:
-            isDark ? Colors.white.withOpacity(0.15) : Colors.black26,
+        inactiveTrackColor: Colors.white.withOpacity(0.15),
         activeTrackColor: colorScheme.primary,
         secondaryActiveTrackColor: colorScheme.primary.withOpacity(0.3),
         thumbColor: Colors.white,
@@ -202,14 +182,12 @@ class ThemeController extends GetxController {
       // ── Progress Indicator ────────────────────────────────────────────────
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: colorScheme.primary,
-        linearTrackColor:
-            isDark ? Colors.white.withOpacity(0.12) : Colors.black12,
+        linearTrackColor: Colors.white.withOpacity(0.12),
       ),
       // ── Input / Text Field ────────────────────────────────────────────────
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor:
-            isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.05),
+        fillColor: Colors.white.withOpacity(0.08),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide.none,
@@ -218,8 +196,8 @@ class ThemeController extends GetxController {
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: colorScheme.primary, width: 1.5),
         ),
-        hintStyle: TextStyle(
-            color: isDark ? AppColors.textTertiaryDark : Colors.black38),
+        hintStyle: const TextStyle(
+            color: AppColors.textTertiaryDark),
       ),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: colorScheme.primary,
@@ -228,17 +206,15 @@ class ThemeController extends GetxController {
       ),
       // ── Dialog ───────────────────────────────────────────────────────────
       dialogTheme: DialogThemeData(
-        backgroundColor:
-            isDark ? AppColors.darkCard : AppColors.lightCard,
+        backgroundColor: AppColors.darkCard,
         surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
       ),
       // ── Icon ─────────────────────────────────────────────────────────────
-      iconTheme: IconThemeData(
-          color:
-              isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight),
+      iconTheme: const IconThemeData(
+          color: AppColors.textPrimaryDark),
       // ── FAB ──────────────────────────────────────────────────────────────
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: colorScheme.primary,
@@ -250,8 +226,7 @@ class ThemeController extends GetxController {
       ),
       // ── Divider ───────────────────────────────────────────────────────────
       dividerTheme: DividerThemeData(
-        color:
-            isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08),
+        color: Colors.white.withOpacity(0.08),
         thickness: 1,
         space: 1,
       ),

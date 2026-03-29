@@ -268,7 +268,6 @@ class LibraryPlaylistsController extends GetxController
     }
 
     isContentFetched.value = true;
-    await box.close();
   }
 
   void updatePlaylistIntoDb(Playlist playlist) async {
@@ -330,7 +329,6 @@ class LibraryPlaylistsController extends GetxController
         }
       }
     }
-    box.close();
   }
 
   Future<bool> renamePlaylist(Playlist playlist) async {
@@ -401,7 +399,6 @@ class LibraryPlaylistsController extends GetxController
         for (MediaItem item in songItems!) {
           plastbox.add(MediaItemBuilder.toJson(item));
         }
-        plastbox.close();
       } else if ((createPlaylistNaddSong &&
           playlistCreationMode.value == "piped")) {
         final songIds = songItems!.map((e) => e.id).toList();
@@ -418,7 +415,6 @@ class LibraryPlaylistsController extends GetxController
     final box = await Hive.openBox('blacklistedPlaylist');
     box.add(playlist.playlistId);
     libraryPlaylists.remove(playlist);
-    box.close();
   }
 
   Future<void> resetBlacklistedPlaylist() async {
@@ -541,8 +537,6 @@ class LibraryPlaylistsController extends GetxController
         importProgress.value = 0.7 + (0.25 * (i + 1) / totalSongs);
       }
 
-      await songsBox.close();
-      await box.close();
       importProgress.value = 1.0;
 
       // Close progress dialog if it's still open
@@ -649,7 +643,6 @@ class LibraryAlbumsController extends GetxController {
         .toList();
 
     isContentFetched.value = true;
-    box.close();
   }
 
   void onSort(SortType sortType, bool isAscending) {
@@ -694,7 +687,6 @@ class LibraryArtistsController extends GetxController {
         .whereType<Artist>()
         .toList();
     isContentFetched.value = true;
-    box.close();
   }
 
   void onSort(SortType sortType, bool isAscending) {

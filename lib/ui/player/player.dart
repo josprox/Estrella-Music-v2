@@ -3,9 +3,7 @@ import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '/ui/player/components/gesture_player.dart';
 import '/ui/player/components/standard_player.dart';
-import '/ui/screens/Settings/settings_screen_controller.dart';
 import '../../utils/helper.dart';
 import '../widgets/snackbar.dart';
 import '../widgets/up_next_queue.dart';
@@ -24,16 +22,13 @@ class Player extends StatelessWidget {
     printINFO("player");
     final size = MediaQuery.of(context).size;
     final PlayerController playerController = Get.find<PlayerController>();
-    final settingsScreenController = Get.find<SettingsScreenController>();
     return Scaffold(
       /// SlidingUpPanel is used to create a panel that can slide up and down
       /// It is used to show the current queue panel in mobile
       body: Obx(
         () => SlidingUpPanel(
           boxShadow: const [],
-          minHeight: settingsScreenController.playerUi.value == 0
-              ? 65 + Get.mediaQuery.padding.bottom
-              : 0,
+          minHeight: 65 + Get.mediaQuery.padding.bottom,
           maxHeight: size.height,
           isDraggable: !GetPlatform.isDesktop,
           controller: GetPlatform.isDesktop
@@ -200,9 +195,7 @@ class Player extends StatelessWidget {
 
           /// show player ui based on selected player ui in settings
           /// Gesture player is only applicable for mobile
-          body: settingsScreenController.playerUi.value == 0
-              ? const StandardPlayer()
-              : const GesturePlayer(),
+          body: const StandardPlayer(),
         ),
       ),
     );

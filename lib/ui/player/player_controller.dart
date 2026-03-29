@@ -140,8 +140,10 @@ class PlayerController extends GetxController
 
   var _newSongFlag = true;
   final isCurrentSongBuffered = false.obs;
+  final isPlayerVisible = false.obs;
 
   late StreamSubscription<bool> keyboardSubscription;
+  Timer? _persistenceTimer;
 
   @override
   onInit() {
@@ -223,7 +225,9 @@ class PlayerController extends GetxController
     var keyboardVisibilityController = KeyboardVisibilityController();
     keyboardSubscription =
         keyboardVisibilityController.onChange.listen((bool visible) {
-      visible ? playerPanelController.hide() : playerPanelController.show();
+      if (playerPanelController.isAttached) {
+        visible ? playerPanelController.hide() : playerPanelController.show();
+      }
     });
   }
 
@@ -341,10 +345,7 @@ class PlayerController extends GetxController
           }
         });
 
-        // reset player visible state when player is in gesture mode
-        if (Get.find<SettingsScreenController>().playerUi.value == 1) {
-          gesturePlayerVisibleState.value = 2;
-        }
+        _saveSession();
       }
     });
   }
@@ -376,6 +377,29 @@ class PlayerController extends GetxController
           "restoreSession": true
         });
       }
+    }
+    _startSessionPersistence();
+  }
+
+  void _startSessionPersistence() {
+    _persistenceTimer?.cancel();
+    _persistenceTimer = Timer.periodic(const Duration(seconds: 10), (timer) {
+      if (buttonState.value == PlayButtonState.playing) {
+        _saveSession();
+      }
+    });
+  }
+
+  Future<void> _saveSession() async {
+    if (currentQueue.isEmpty || currentSong.value == null) return;
+    try {
+      final box = await Hive.openBox("prevSessionData");
+      await box.put("queue", currentQueue.map((e) => MediaItemBuilder.toJson(e)).toList());
+      await box.put("index", currentSongIndex.value);
+      await box.put("position", progressBarStatus.value.current.inMilliseconds);
+      await box.close();
+    } catch (e) {
+      printERROR("Failed to save session: $e");
     }
   }
 
@@ -568,6 +592,7 @@ class PlayerController extends GetxController
   }
 
   void _playerPanelCheck({bool restoreSession = false}) {
+    isPlayerVisible.value = true;
     final isWideScreen = Get.size.width > 800;
     final autoOpenPlayer = Hive.box("AppPrefs").get("autoOpenPlayer") ?? true;
     if ((!isWideScreen && autoOpenPlayer && playerPanelController.isAttached) &&
@@ -637,16 +662,15 @@ class PlayerController extends GetxController
     _audioHandler.pause();
   }
 
+  void closePlayer() {
+    pause();
+    isPlayerVisible.value = false;
+    playerPanelMinHeight.value = 0.0;
+  }
+
   void playPause() {
     if (initFlagForPlayer) return;
     _audioHandler.playbackState.value.playing ? pause() : play();
-    // for gesture player
-    if (Get.find<SettingsScreenController>().playerUi.value == 1) {
-      gesturePlayerVisibleState.value =
-          _audioHandler.playbackState.value.playing ? 0 : 1;
-      gesturePlayerStateAnimationController?.reset();
-      gesturePlayerStateAnimationController?.forward();
-    }
   }
 
   void prev() {
@@ -886,6 +910,7 @@ class PlayerController extends GetxController
   void dispose() {
     _audioHandler.customAction('dispose');
     keyboardSubscription.cancel();
+    _persistenceTimer?.cancel();
     scrollController.dispose();
     gesturePlayerStateAnimationController?.dispose();
     sleepTimer?.cancel();

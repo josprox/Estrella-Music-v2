@@ -90,28 +90,6 @@ class SettingsScreen extends StatelessWidget {
                 children: [
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: Text("themeMode".tr),
-                    subtitle: Obx(
-                      () => Text(
-                          settingsController.themeModetype.value ==
-                                  ThemeType.dynamic
-                              ? "dynamic".tr
-                              : settingsController.themeModetype.value ==
-                                      ThemeType.system
-                                  ? "systemDefault".tr
-                                  : settingsController.themeModetype.value ==
-                                          ThemeType.dark
-                                      ? "dark".tr
-                                      : "light".tr,
-                          style: Theme.of(context).textTheme.bodyMedium),
-                    ),
-                    onTap: () => showDialog(
-                      context: context,
-                      builder: (context) => const ThemeSelectorDialog(),
-                    ),
-                  ),
-                  ListTile(
-                    contentPadding: const EdgeInsets.only(left: 5, right: 10),
                     title: Text("language".tr),
                     subtitle: Text("languageDes".tr,
                         style: Theme.of(context).textTheme.bodyMedium),
@@ -143,42 +121,6 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (!isDesktop)
-                    ListTile(
-                      contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("playerUi".tr),
-                      subtitle: Text("playerUiDes".tr,
-                          style: Theme.of(context).textTheme.bodyMedium),
-                      trailing: Obx(
-                        () => DropdownButton(
-                          dropdownColor: Theme.of(context).cardColor,
-                          underline: const SizedBox.shrink(),
-                          value: settingsController.playerUi.value,
-                          items: [
-                            DropdownMenuItem(
-                                value: 0, child: Text("standard".tr)),
-                            DropdownMenuItem(
-                              value: 1,
-                              child: Text("gesture".tr),
-                            ),
-                          ],
-                          onChanged: settingsController.setPlayerUi,
-                        ),
-                      ),
-                    ),
-                  if (!isDesktop)
-                    ListTile(
-                        contentPadding:
-                            const EdgeInsets.only(left: 5, right: 10),
-                        title: Text("enableBottomNav".tr),
-                        subtitle: Text("enableBottomNavDes".tr,
-                            style: Theme.of(context).textTheme.bodyMedium),
-                        trailing: Obx(
-                          () => CustSwitch(
-                              value: settingsController
-                                  .isBottomNavBarEnabled.isTrue,
-                              onChanged: settingsController.enableBottomNavBar),
-                        )),
                   ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
                       title: Text("disableTransitionAnimation".tr),
