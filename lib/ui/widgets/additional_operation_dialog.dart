@@ -5,6 +5,7 @@ import 'package:harmonymusic/ui/widgets/sort_widget.dart';
 
 import 'custom_button.dart';
 import 'modification_list.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class AdditionalOperationDialog extends StatelessWidget {
   const AdditionalOperationDialog(
@@ -30,8 +31,8 @@ class AdditionalOperationDialog extends StatelessWidget {
               child: Text(
                 operationMode == OperationMode.delete ||
                         operationMode == OperationMode.addToPlaylist
-                    ? "selectSongs".tr
-                    : "reArrangeSongs".tr,
+                    ? S.current.selectSongs
+                    : S.current.reArrangeSongs,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
@@ -64,7 +65,7 @@ class AdditionalOperationDialog extends StatelessWidget {
                         ),
                         const SizedBox(width: 18),
                         Text(
-                          "selectAll".tr,
+                          S.current.selectAll,
                           style: Theme.of(context).textTheme.titleMedium,
                         )
                       ],

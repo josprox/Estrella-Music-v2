@@ -13,7 +13,7 @@ class CustSwitch extends StatelessWidget {
         Get.find<ThemeController>().themedata.value!.primaryColor ==
             Colors.white;
     return Switch(
-        activeColor: Colors.white,
+        activeThumbColor: Colors.white,
         activeTrackColor: isLightMode ? Colors.grey : null,
         inactiveTrackColor: isLightMode ? Colors.grey : null,
         inactiveThumbColor:

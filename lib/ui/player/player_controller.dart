@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:flutter_lyric/lyric_ui/lyric_ui.dart';
 
 import '../../models/playling_from.dart';
 import '../../services/catalog_recovery_service.dart';
@@ -22,33 +21,24 @@ import '../screens/Home/home_screen_controller.dart';
 import '../widgets/sliding_up_panel.dart';
 import '/models/durationstate.dart';
 import '/services/music_service.dart';
+import 'package:harmonymusic/generated/l10n.dart';
+import '../../utils/l10n_extensions.dart';
 
 enum PlayButtonState { paused, playing, loading }
 
 class CustomLyricUI extends UINetease {
   CustomLyricUI({
-    double defaultSize = 18,
-    double defaultExtSize = 14,
-    double otherMainSize = 16,
-    double bias = 0.5,
-    double lineGap = 25,
-    double inlineGap = 25,
-    LyricAlign lyricAlign = LyricAlign.CENTER,
-    LyricBaseLine lyricBaseLine = LyricBaseLine.CENTER,
-    bool highlight = true,
-    HighlightDirection highlightDirection = HighlightDirection.LTR,
-  }) : super(
-          defaultSize: defaultSize,
-          defaultExtSize: defaultExtSize,
-          otherMainSize: otherMainSize,
-          bias: bias,
-          lineGap: lineGap,
-          inlineGap: inlineGap,
-          lyricAlign: lyricAlign,
-          lyricBaseLine: lyricBaseLine,
-          highlight: highlight,
-          highlightDirection: highlightDirection,
-        );
+    super.defaultSize,
+    super.defaultExtSize,
+    super.otherMainSize,
+    super.bias,
+    super.lineGap,
+    super.inlineGap,
+    super.lyricAlign,
+    super.lyricBaseLine,
+    super.highlight,
+    super.highlightDirection,
+  });
 
   @override
   TextStyle getPlayingMainTextStyle() => TextStyle(
@@ -421,7 +411,7 @@ class PlayerController extends GetxController
     /// update playing from value
     playinfrom.value = PlaylingFrom(
         type: PlaylingFromType.SELECTION,
-        name: radio ? "randomRadio".tr : "randomSelection".tr);
+        name: radio ? S.current.randomRadio : S.current.randomSelection);
 
     /// set global radio mode flag
     isRadioModeOn = radio;
@@ -767,7 +757,7 @@ class PlayerController extends GetxController
     if (isShuffleModeEnabled.isTrue && isQueueLoopModeEnabled.isTrue) {
       if (!showMessage) return;
       ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-          Get.context!, "queueLoopNotDisMsg1".tr,
+          Get.context!, S.current.queueLoopNotDisMsg1,
           size: SanckBarSize.BIG, duration: const Duration(seconds: 2)));
       return;
     }
@@ -775,7 +765,7 @@ class PlayerController extends GetxController
     if (isRadioModeOn && isQueueLoopModeEnabled.isFalse) {
       if (!showMessage) return;
       ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-          Get.context!, "queueLoopNotDisMsg2".tr,
+          Get.context!, S.current.queueLoopNotDisMsg2,
           size: SanckBarSize.BIG, duration: const Duration(seconds: 2)));
       return;
     }
@@ -958,7 +948,7 @@ class PlayerController extends GetxController
   /// or returned streamInfo null due to network error
   void notifyPlayError(String message) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-        Get.context!, message == "networkError" ? message.tr : message,
+        Get.context!, message == "networkError" ? message.t : message,
         size: SanckBarSize.MEDIUM));
   }
 

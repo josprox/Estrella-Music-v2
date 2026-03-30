@@ -1,0 +1,7 @@
+{
+  "@@locale": "be",
+  "helloWorld": "Прывітанне свет",
+  "@helloWorld": {
+    "description": "Este texto es opcional"
+  }
+}

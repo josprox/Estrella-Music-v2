@@ -5,6 +5,7 @@ import '/ui/screens/Settings/settings_screen_controller.dart';
 import '/ui/widgets/piped_sync_widget.dart';
 import '../../widgets/create_playlist_dialog.dart';
 import 'library.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class CombinedLibrary extends StatelessWidget {
   const CombinedLibrary({super.key});
@@ -55,16 +56,16 @@ class CombinedLibrary extends StatelessWidget {
           splashFactory: NoSplash.splashFactory,
           controller: tabCon.tabController,
           tabs: [
-            Tab(text: "songs".tr),
-            Tab(text: "playlists".tr),
-            Tab(text: "albums".tr),
-            Tab(text: "artists".tr),
+            Tab(text: S.current.songs),
+            Tab(text: S.current.playlists),
+            Tab(text: S.current.albums),
+            Tab(text: S.current.artists),
           ],
         ),
         title: Padding(
           padding: const EdgeInsets.only(top: 60.0, left: 5),
           child:
-              Text('library'.tr, style: Theme.of(context).textTheme.titleLarge),
+              Text(S.current.library, style: Theme.of(context).textTheme.titleLarge),
         ),
       ),
       body: TabBarView(

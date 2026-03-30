@@ -6,6 +6,7 @@ import '../../navigator.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/separate_tab_item_widget.dart';
 import 'artist_screen_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class ArtistScreenBN extends StatelessWidget {
   const ArtistScreenBN(
@@ -35,7 +36,7 @@ class ArtistScreenBN extends StatelessWidget {
             controller: artistScreenController.tabController!,
             onTap: artistScreenController.onDestinationSelected,
             tabs:
-                ["about".tr, "songs".tr, "videos".tr, "albums".tr, "singles".tr]
+                [S.current.about, S.current.songs, S.current.videos, S.current.albums, S.current.singles]
                     .map((e) => Tab(
                           text: e,
                         ))

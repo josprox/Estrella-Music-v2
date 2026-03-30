@@ -18,6 +18,7 @@ import '/models/album.dart';
 import '/models/artist.dart';
 import '/models/media_Item_builder.dart';
 import '/models/playlist.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class LibrarySongsController extends GetxController {
   late RxList<MediaItem> librarySongsList = RxList();
@@ -214,22 +215,22 @@ class LibraryPlaylistsController extends GetxController
   final playlistCreationMode = "local".obs;
   static final initPlst = [
     Playlist(
-        title: "recentlyPlayed".tr,
+        title: S.current.recentlyPlayed,
         playlistId: "LIBRP",
         thumbnailUrl: Playlist.thumbPlaceholderUrl,
         isCloudPlaylist: false),
     Playlist(
-        title: "favorites".tr,
+        title: S.current.favorites,
         playlistId: "LIBFAV",
         thumbnailUrl: Playlist.thumbPlaceholderUrl,
         isCloudPlaylist: false),
     Playlist(
-        title: "cachedOrOffline".tr,
+        title: S.current.cachedOrOffline,
         playlistId: "SongsCache",
         thumbnailUrl: Playlist.thumbPlaceholderUrl,
         isCloudPlaylist: false),
     Playlist(
-        title: "downloads".tr,
+        title: S.current.downloads,
         playlistId: "SongDownloads",
         thumbnailUrl: Playlist.thumbPlaceholderUrl,
         isCloudPlaylist: false)
@@ -469,7 +470,7 @@ class LibraryPlaylistsController extends GetxController
       final result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['json'],
-        dialogTitle: 'importPlaylist'.tr,
+        dialogTitle: S.current.importPlaylist,
       );
 
       if (result == null || result.files.isEmpty) {
@@ -486,7 +487,7 @@ class LibraryPlaylistsController extends GetxController
 
       final file = File(result.files.single.path!);
       if (!await file.exists()) {
-        throw FileSystemException("fileNotFound".tr);
+        throw FileSystemException(S.current.fileNotFound);
       }
 
       final jsonString = await file.readAsString();
@@ -498,7 +499,7 @@ class LibraryPlaylistsController extends GetxController
       // Validate JSON structure
       if (!jsonData.containsKey('playlistInfo') ||
           !jsonData.containsKey('songs')) {
-        throw FormatException("invalidPlaylistFile".tr);
+        throw FormatException(S.current.invalidPlaylistFile);
       }
 
       // Create new playlist ID
@@ -508,14 +509,14 @@ class LibraryPlaylistsController extends GetxController
 
       // Create playlist object
       final newPlaylist = Playlist(
-        title: "${playlistInfo['title']} (${"imported".tr})",
+        title: "${playlistInfo['title']} (${S.current.imported})",
         playlistId: newPlaylistId,
         thumbnailUrl: playlistInfo['thumbnailUrl'] ??
             (playlistInfo['thumbnails'] != null &&
                     playlistInfo['thumbnails'].isNotEmpty
                 ? playlistInfo['thumbnails'][0]['url']
                 : Playlist.thumbPlaceholderUrl),
-        description: playlistInfo['description'] ?? "importedPlaylist".tr,
+        description: playlistInfo['description'] ?? S.current.importedPlaylist,
         isCloudPlaylist: false,
       );
       importProgress.value = 0.6;
@@ -552,7 +553,7 @@ class LibraryPlaylistsController extends GetxController
         ScaffoldMessenger.of(context).showSnackBar(
           snackbar(
             context,
-            "${"playlistImportedMsg".tr}: ${newPlaylist.title}",
+            "${S.current.playlistImportedMsg}: ${newPlaylist.title}",
             size: SanckBarSize.MEDIUM,
           ),
         );
@@ -565,15 +566,15 @@ class LibraryPlaylistsController extends GetxController
 
       printERROR("Error importing playlist: $e");
 
-      String errorMsg = "importError".tr;
+      String errorMsg = S.current.importError;
       if (e is FileSystemException) {
-        errorMsg = "importErrorFileAccess".tr;
+        errorMsg = S.current.importErrorFileAccess;
       } else if (e is FormatException) {
-        errorMsg = "importErrorFormat".tr;
+        errorMsg = S.current.importErrorFormat;
       } else if (e.toString().contains("invalidPlaylistFile")) {
-        errorMsg = "invalidPlaylistFile".tr;
+        errorMsg = S.current.invalidPlaylistFile;
       } else if (e is HiveError) {
-        errorMsg = "importErrorDatabase".tr;
+        errorMsg = S.current.importErrorDatabase;
       }
 
       if (context.mounted) {
@@ -595,7 +596,7 @@ class LibraryPlaylistsController extends GetxController
           borderRadius: BorderRadius.circular(15),
         ),
         title: Text(
-          "importingPlaylist".tr,
+          S.current.importingPlaylist,
           style: Theme.of(context).textTheme.titleLarge,
         ),
         content: Obx(() => Column(

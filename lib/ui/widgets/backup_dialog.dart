@@ -14,6 +14,7 @@ import '/ui/widgets/loader.dart';
 import '/utils/helper.dart';
 import '../../services/permission_service.dart';
 import 'common_dialog_widget.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class BackupDialog extends StatelessWidget {
   const BackupDialog({super.key});
@@ -32,7 +33,7 @@ class BackupDialog extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                 child: Text(
-                  "backupAppData".tr,
+                  S.current.backupAppData,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
@@ -54,14 +55,14 @@ class BackupDialog extends StatelessWidget {
                         children: [
                           Obx(() => Text(
                                 backupDialogController.scanning.isTrue
-                                    ? "scanning".tr
+                                    ? S.current.scanning
                                     : backupDialogController
                                             .backupRunning.isTrue
-                                        ? "backupInProgress".tr
+                                        ? S.current.backupInProgress
                                         : backupDialogController
                                                 .isbackupCompleted.isTrue
-                                            ? "backupMsg".tr
-                                            : "letsStrart".tr,
+                                            ? S.current.backupMsg
+                                            : S.current.letsStrart,
                                 textAlign: TextAlign.center,
                               )),
                           if (GetPlatform.isAndroid)
@@ -70,7 +71,7 @@ class BackupDialog extends StatelessWidget {
                                 ? Padding(
                                     padding: const EdgeInsets.only(top: 8.0),
                                     child: Text(
-                                      "androidBackupWarning".tr,
+                                      S.current.androidBackupWarning,
                                       textAlign: TextAlign.center,
                                       style: Theme.of(context)
                                           .textTheme
@@ -110,7 +111,7 @@ class BackupDialog extends StatelessWidget {
                                               .value = value!;
                                         },
                             ),
-                            Text("includeDownloadedFiles".tr),
+                            Text(S.current.includeDownloadedFiles),
                           ]),
                     )),
               SizedBox(
@@ -142,8 +143,8 @@ class BackupDialog extends StatelessWidget {
                             child: Obx(
                               () => Text(
                                 backupDialogController.isbackupCompleted.isTrue
-                                    ? "close".tr
-                                    : "backup".tr,
+                                    ? S.current.close
+                                    : S.current.backup,
                                 style: TextStyle(
                                     color: Theme.of(context).canvasColor),
                               ),

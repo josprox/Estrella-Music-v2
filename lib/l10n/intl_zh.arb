@@ -1,0 +1,7 @@
+{
+  "@@locale": "zh",
+  "helloWorld": "你好世界",
+  "@helloWorld": {
+    "description": "Este texto es opcional"
+  }
+}

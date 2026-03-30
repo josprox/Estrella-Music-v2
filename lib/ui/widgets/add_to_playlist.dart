@@ -10,6 +10,7 @@ import '/ui/widgets/create_playlist_dialog.dart';
 import '../../models/playlist.dart';
 import 'common_dialog_widget.dart';
 import 'snackbar.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class AddToPlaylist extends StatelessWidget {
   const AddToPlaylist(this.songItems, {super.key});
@@ -39,7 +40,7 @@ class AddToPlaylist extends StatelessWidget {
                           id:"createNewPlaylistx",
                           delay: const Duration(milliseconds: 300),
                           child: Text(
-                            "CreateNewPlaylist".tr,
+                            S.current.CreateNewPlaylist,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
@@ -73,7 +74,7 @@ class AddToPlaylist extends StatelessWidget {
                                   addToPlaylistController.playlistType.value,
                               onChanged:
                                   addToPlaylistController.changePlaylistType),
-                          Text("Piped".tr),
+                          Text(S.current.Piped),
                         ],
                       ),
                       const SizedBox(
@@ -87,7 +88,7 @@ class AddToPlaylist extends StatelessWidget {
                                   addToPlaylistController.playlistType.value,
                               onChanged:
                                   addToPlaylistController.changePlaylistType),
-                          Text("local".tr),
+                          Text(S.current.local),
                         ],
                       )
                     ],
@@ -120,12 +121,12 @@ class AddToPlaylist extends StatelessWidget {
                                 if (value) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       snackbar(context,
-                                          "songAddedToPlaylistAlert".tr,
+                                          S.current.songAddedToPlaylistAlert,
                                           size: SanckBarSize.MEDIUM));
                                   Navigator.of(context).pop();
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                      snackbar(context, "songAlreadyExists".tr,
+                                      snackbar(context, S.current.songAlreadyExists,
                                           size: SanckBarSize.MEDIUM));
                                   Navigator.of(context).pop();
                                 }
@@ -134,7 +135,7 @@ class AddToPlaylist extends StatelessWidget {
                           ),
                         )
                       : Center(
-                          child: Text("noLibPlaylist".tr),
+                          child: Text(S.current.noLibPlaylist),
                         ),
                 ),
               )

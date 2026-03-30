@@ -140,10 +140,10 @@ class PlayerControlWidget extends StatelessWidget {
             ),
 
             // Play / Pause — large glowing button
-            GlassPlayButton(
+            const GlassPlayButton(
               size: 72,
               child: AnimatedPlayButton(
-                key: const Key('playButton'),
+                key: Key('playButton'),
                 iconSize: 34,
               ),
             ),

@@ -13,6 +13,7 @@ import '/ui/widgets/snackbar.dart';
 import '/ui/player/player_controller.dart';
 import '/ui/navigator.dart';
 import '/models/playlist.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class ArtistScreen extends StatelessWidget {
   const ArtistScreen({super.key});
@@ -221,7 +222,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
                         final radioId = ctrl.artist_.radioId;
                         if (radioId == null) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            snackbar(context, 'radioNotAvailable'.tr,
+                            snackbar(context, S.current.radioNotAvailable,
                                 size: SanckBarSize.BIG),
                           );
                           return;
@@ -266,9 +267,9 @@ class _SpotifyArtistScreen extends StatelessWidget {
                                     context,
                                     ok
                                         ? add
-                                            ? 'artistBookmarkAddAlert'.tr
-                                            : 'artistBookmarkRemoveAlert'.tr
-                                        : 'operationFailed'.tr,
+                                            ? S.current.artistBookmarkAddAlert
+                                            : S.current.artistBookmarkRemoveAlert
+                                        : S.current.operationFailed,
                                     size: SanckBarSize.MEDIUM,
                                   ),
                                 );

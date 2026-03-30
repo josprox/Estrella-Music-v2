@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
 import 'package:sidebar_with_animation/animated_side_bar.dart';
 import '/ui/theme/app_colors.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 
 class SideNavBar extends StatelessWidget {
@@ -57,12 +58,12 @@ class SideNavBar extends StatelessWidget {
             leading: SizedBox(height: size.height < 750 ? 24 : 48),
             labelType: NavigationRailLabelType.all,
             destinations: [
-              _compactRailDest('home'.tr, Icons.home_rounded),
-              _compactRailDest('songs'.tr, Icons.audiotrack_rounded),
-              _compactRailDest('playlists'.tr, Icons.library_music_rounded),
-              _compactRailDest('albums'.tr, Icons.album_rounded),
-              _compactRailDest('artists'.tr, Icons.people_rounded),
-              _compactRailDest('settings'.tr, Icons.settings_rounded),
+              _compactRailDest(S.current.home, Icons.home_rounded),
+              _compactRailDest(S.current.songs, Icons.audiotrack_rounded),
+              _compactRailDest(S.current.playlists, Icons.library_music_rounded),
+              _compactRailDest(S.current.albums, Icons.album_rounded),
+              _compactRailDest(S.current.artists, Icons.people_rounded),
+              _compactRailDest(S.current.settings, Icons.settings_rounded),
             ],
           ),
         ),
@@ -102,32 +103,32 @@ class SideNavBar extends StatelessWidget {
           SideBarItem(
             iconSelected: Icons.home_rounded,
             iconUnselected: Icons.home_outlined,
-            text: 'home'.tr,
+            text: S.current.home,
           ),
           SideBarItem(
             iconSelected: Icons.audiotrack_rounded,
             iconUnselected: Icons.audiotrack,
-            text: 'songs'.tr,
+            text: S.current.songs,
           ),
           SideBarItem(
             iconSelected: Icons.library_music_rounded,
             iconUnselected: Icons.library_music_outlined,
-            text: 'playlists'.tr,
+            text: S.current.playlists,
           ),
           SideBarItem(
             iconSelected: Icons.album_rounded,
             iconUnselected: Icons.album_outlined,
-            text: 'albums'.tr,
+            text: S.current.albums,
           ),
           SideBarItem(
             iconSelected: Icons.people_rounded,
             iconUnselected: Icons.people_outline,
-            text: 'artists'.tr,
+            text: S.current.artists,
           ),
           SideBarItem(
             iconSelected: Icons.settings_rounded,
             iconUnselected: Icons.settings_outlined,
-            text: 'settings'.tr,
+            text: S.current.settings,
           ),
         ],
       ),

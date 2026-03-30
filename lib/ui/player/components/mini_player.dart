@@ -224,7 +224,7 @@ class _Controls extends StatelessWidget {
             shape: BoxShape.circle,
             color: Colors.white,
           ),
-          child: Center(
+          child: const Center(
             child: AnimatedPlayButton(
               iconSize: 22,
               iconColor: Colors.black,

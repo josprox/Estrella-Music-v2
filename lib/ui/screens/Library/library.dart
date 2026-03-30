@@ -9,6 +9,7 @@ import '../../widgets/content_list_widget_item.dart';
 import '../../widgets/list_widget.dart';
 import '../../widgets/sort_widget.dart';
 import '../Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SongsLibraryWidget extends StatelessWidget {
   const SongsLibraryWidget({super.key, this.isBottomNavActive = false});
@@ -31,7 +32,7 @@ class SongsLibraryWidget extends StatelessWidget {
               : Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "libSongs".tr,
+                    S.current.libSongs,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
@@ -83,7 +84,7 @@ class SongsLibraryWidget extends StatelessWidget {
                 : Expanded(
                     child: Center(
                         child: Text(
-                      "noOfflineSong".tr,
+                      S.current.noOfflineSong,
                       style: Theme.of(context).textTheme.titleMedium,
                     )),
                   );
@@ -129,7 +130,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     : Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          isAlbumContent ? "libAlbums".tr : "libPlaylists".tr,
+                          isAlbumContent ? S.current.libAlbums : S.current.libPlaylists,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
@@ -151,7 +152,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     isAdditionalOperationRequired: false,
                     isSearchFeatureRequired: true,
                     itemCountTitle:
-                        "${libralbumCntrller.libraryAlbums.length} ${"items".tr}",
+                        "${libralbumCntrller.libraryAlbums.length} ${S.current.items}",
                     requiredSortTypes: buildSortTypeSet(true),
                     onSort: (type, ascending) {
                       libralbumCntrller.onSort(type, ascending);
@@ -166,7 +167,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     isAdditionalOperationRequired: false,
                     isSearchFeatureRequired: true,
                     itemCountTitle:
-                        "${librplstCntrller.libraryPlaylists.length} ${"items".tr}",
+                        "${librplstCntrller.libraryPlaylists.length} ${S.current.items}",
                     requiredSortTypes: buildSortTypeSet(),
                     onSort: (type, ascending) {
                       librplstCntrller.onSort(type, ascending);
@@ -220,7 +221,7 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     })
                   : Center(
                       child: Text(
-                      "noBookmarks".tr,
+                      S.current.noBookmarks,
                       style: Theme.of(context).textTheme.titleMedium,
                     )),
             ),
@@ -252,7 +253,7 @@ class LibraryArtistWidget extends StatelessWidget {
               : Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "libArtists".tr,
+                    S.current.libArtists,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
@@ -262,7 +263,7 @@ class LibraryArtistWidget extends StatelessWidget {
               screenController: cntrller,
               isAdditionalOperationRequired: false,
               isSearchFeatureRequired: true,
-              itemCountTitle: "${cntrller.libraryArtists.length} ${"items".tr}",
+              itemCountTitle: "${cntrller.libraryArtists.length} ${S.current.items}",
               onSort: (type, ascending) {
                 cntrller.onSort(type, ascending);
               },
@@ -276,7 +277,7 @@ class LibraryArtistWidget extends StatelessWidget {
               : Expanded(
                   child: Center(
                       child: Text(
-                  "noBookmarks".tr,
+                  S.current.noBookmarks,
                   style: Theme.of(context).textTheme.titleMedium,
                 ))))
         ],

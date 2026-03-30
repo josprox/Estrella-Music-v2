@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'services/music_service.dart';
 import 'package:get/get.dart';
 

@@ -6,6 +6,7 @@ import '/ui/screens/Settings/settings_screen_controller.dart';
 import '../../widgets/modified_text_field.dart';
 import '/ui/navigator.dart';
 import 'search_screen_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -58,7 +59,7 @@ class SearchScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "search".tr,
+                        S.current.search,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
@@ -86,7 +87,7 @@ class SearchScreen extends StatelessWidget {
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.only(left: 5),
                           focusColor: Colors.white,
-                          hintText: "searchDes".tr,
+                          hintText: S.current.searchDes,
                           suffix: IconButton(
                             onPressed: searchScreenController.reset,
                             icon: const Icon(Icons.close),
@@ -124,7 +125,7 @@ class SearchScreen extends StatelessWidget {
                                           height: 60,
                                           child: Center(
                                               child: Text(
-                                            "urlSearchDes".tr,
+                                            S.current.urlSearchDes,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium,

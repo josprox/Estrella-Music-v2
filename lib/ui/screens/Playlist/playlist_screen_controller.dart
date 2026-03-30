@@ -21,6 +21,7 @@ import '../../../services/music_service.dart';
 import '../../../services/piped_service.dart';
 import '../Home/home_screen_controller.dart';
 import '../Library/library_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 ///PlaylistScreenController handles playlist screen
 ///
@@ -360,7 +361,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
     if (!await PermissionService.getExtStoragePermission()) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(snackbar(
-            context, "permissionDenied".tr,
+            context, S.current.permissionDenied,
             size: SanckBarSize.MEDIUM));
       }
       return;
@@ -372,7 +373,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
       // Show progress dialog
       if (context.mounted) {
-        _showProgressDialog(context, "exportingPlaylist".tr);
+        _showProgressDialog(context, S.current.exportingPlaylist);
       }
 
       // Get appropriate directory based on platform
@@ -420,7 +421,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       String locationMsg = _getLocationMessage(exportDir.path);
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(snackbar(
-            context, "${"playlistExportedMsg".tr}: $locationMsg",
+            context, "${S.current.playlistExportedMsg}: $locationMsg",
             size: SanckBarSize.MEDIUM));
       }
     } catch (e) {
@@ -431,15 +432,15 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
       printERROR("Error exporting playlist: $e");
 
-      String errorMsg = "exportError".tr;
+      String errorMsg = S.current.exportError;
       if (e is FileSystemException) {
         if (e.osError?.errorCode == 13) {
-          errorMsg = "exportErrorPermission".tr;
+          errorMsg = S.current.exportErrorPermission;
         } else if (e.osError?.errorCode == 28) {
-          errorMsg = "exportErrorStorage".tr;
+          errorMsg = S.current.exportErrorStorage;
         }
       } else if (e is FormatException) {
-        errorMsg = "exportErrorFormat".tr;
+        errorMsg = S.current.exportErrorFormat;
       }
 
       if (context.mounted) {
@@ -456,7 +457,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
     if (!await PermissionService.getExtStoragePermission()) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(snackbar(
-            context, "permissionDenied".tr,
+            context, S.current.permissionDenied,
             size: SanckBarSize.MEDIUM));
       }
       return;
@@ -468,7 +469,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
       // Show progress dialog
       if (context.mounted) {
-        _showProgressDialog(context, "exportingPlaylist".tr);
+        _showProgressDialog(context, S.current.exportingPlaylist);
       }
 
       // Get appropriate directory based on platform
@@ -511,7 +512,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       String locationMsg = _getLocationMessage(exportDir.path);
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(snackbar(
-            context, "${"playlistExportedMsg".tr}: $locationMsg",
+            context, "${S.current.playlistExportedMsg}: $locationMsg",
             size: SanckBarSize.MEDIUM));
       }
     } catch (e) {
@@ -522,15 +523,15 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
       printERROR("Error exporting playlist to CSV: $e");
 
-      String errorMsg = "exportError".tr;
+      String errorMsg = S.current.exportError;
       if (e is FileSystemException) {
         if (e.osError?.errorCode == 13) {
-          errorMsg = "exportErrorPermission".tr;
+          errorMsg = S.current.exportErrorPermission;
         } else if (e.osError?.errorCode == 28) {
-          errorMsg = "exportErrorStorage".tr;
+          errorMsg = S.current.exportErrorStorage;
         }
       } else if (e is FormatException) {
-        errorMsg = "exportErrorFormat".tr;
+        errorMsg = S.current.exportErrorFormat;
       }
 
       if (context.mounted) {

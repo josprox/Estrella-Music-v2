@@ -12,6 +12,7 @@ import '/services/music_service.dart';
 import '/ui/player/player_controller.dart';
 import '../ui/navigator.dart';
 import '../ui/widgets/snackbar.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class AppLinksController extends GetxController with ProcessLink {
   late AppLinks _appLinks;
@@ -69,7 +70,7 @@ mixin ProcessLink {
         await openPlaylistOrAlbum(browseId!);
       } else if (uri.pathSegments[0] == "shorts") {
         ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-            Get.context!, "notaSongVideo".tr,
+            Get.context!, S.current.notaSongVideo,
             size: SanckBarSize.MEDIUM));
       } else if (uri.pathSegments[0] == "watch") {
         final songId = uri.queryParameters['v'];
@@ -84,7 +85,7 @@ mixin ProcessLink {
       }
     } else {
       ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-          Get.context!, "notaValidLink".tr,
+          Get.context!, S.current.notaValidLink,
           size: SanckBarSize.MEDIUM));
     }
   }
@@ -119,7 +120,7 @@ mixin ProcessLink {
           playfrom: PlaylingFrom(type: PlaylingFromType.SELECTION));
     } else {
       ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-          Get.context!, "notaSongVideo".tr,
+          Get.context!, S.current.notaSongVideo,
           size: SanckBarSize.MEDIUM));
     }
   }

@@ -9,6 +9,7 @@ import '../widgets/snackbar.dart';
 import '../widgets/up_next_queue.dart';
 import '/ui/player/player_controller.dart';
 import '../widgets/sliding_up_panel.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 /// Player screen
 /// Contains the player ui
@@ -102,7 +103,7 @@ class Player extends StatelessWidget {
                             /// number of songs in queue
                             Obx(
                               () => Text(
-                                "${playerController.currentQueue.length} ${"songs".tr}",
+                                "${playerController.currentQueue.length} ${S.current.songs}",
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleSmall!
@@ -131,7 +132,7 @@ class Player extends StatelessWidget {
                                         : Colors.white.withOpacity(0.8),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: Center(child: Text("queueLoop".tr)),
+                                  child: Center(child: Text(S.current.queueLoop)),
                                 ),
                               ),
                             ),
@@ -143,7 +144,7 @@ class Player extends StatelessWidget {
                                     .isShuffleModeEnabled.isTrue) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       snackbar(context,
-                                          "queueShufflingDeniedMsg".tr,
+                                          S.current.queueShufflingDeniedMsg,
                                           size: SanckBarSize.BIG));
                                   return;
                                 }

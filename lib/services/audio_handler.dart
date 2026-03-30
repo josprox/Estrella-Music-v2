@@ -30,6 +30,7 @@ import '../ui/screens/Settings/settings_screen_controller.dart';
 import '../ui/screens/Library/library_controller.dart';
 // ignore: unused_import, implementation_imports, depend_on_referenced_packages
 import "package:media_kit/src/player/platform_player.dart" show MPVLogLevel;
+import 'package:harmonymusic/generated/l10n.dart';
 
 Future<AudioHandler> initAudioService() async {
   return await AudioService.init(
@@ -978,22 +979,22 @@ class MediaLibrary {
     return [
       MediaItem(
         id: songsRootId,
-        title: "songs".tr,
+        title: S.current.songs,
         playable: false,
       ),
       MediaItem(
         id: favoritesRootId,
-        title: "favorites".tr,
+        title: S.current.favorites,
         playable: false,
       ),
       MediaItem(
         id: albumsRootId,
-        title: "albums".tr,
+        title: S.current.albums,
         playable: false,
       ),
       MediaItem(
         id: playlistsRootId,
-        title: "playlists".tr,
+        title: S.current.playlists,
         playable: false,
       ),
     ];

@@ -6,6 +6,7 @@ import '/models/quick_picks.dart';
 import '../player/player_controller.dart';
 import 'image_widget.dart';
 import 'songinfo_bottom_sheet.dart';
+import '../../utils/l10n_extensions.dart';
 
 class QuickPicksWidget extends StatelessWidget {
   const QuickPicksWidget(
@@ -25,7 +26,7 @@ class QuickPicksWidget extends StatelessWidget {
           Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                content.title.toLowerCase().removeAllWhitespace.tr,
+                content.title.t,
                 style: Theme.of(context).textTheme.titleLarge,
               )),
           const SizedBox(height: 10),

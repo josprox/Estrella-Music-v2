@@ -6,6 +6,7 @@ import 'package:widget_marquee/widget_marquee.dart';
 import 'image_widget.dart';
 import 'snackbar.dart';
 import 'songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class UpNextQueue extends StatelessWidget {
   const UpNextQueue(
@@ -30,7 +31,7 @@ class UpNextQueue extends StatelessWidget {
           onReorder: (int oldIndex, int newIndex) {
             if (playerController.isShuffleModeEnabled.isTrue) {
               ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-                  Get.context!, "queuerearrangingDeniedMsg".tr,
+                  Get.context!, S.current.queuerearrangingDeniedMsg,
                   size: SanckBarSize.BIG));
               return;
             }
@@ -100,7 +101,7 @@ class UpNextQueue extends StatelessWidget {
                                     index) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       snackbar(context,
-                                          "songRemovedfromQueueCurrSong".tr,
+                                          S.current.songRemovedfromQueueCurrSong,
                                           size: SanckBarSize.BIG));
                                 } else {
                                   playerController.removeFromQueue(

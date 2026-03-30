@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../widgets/loader.dart';
 import '../player_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class LyricsWidget extends StatelessWidget {
   final EdgeInsetsGeometry padding;
@@ -58,7 +59,7 @@ class LyricsWidget extends StatelessWidget {
             child: TextSelectionTheme(
               data: Theme.of(context).textSelectionTheme,
               child: SelectableText(
-                hasPlain ? plain : "lyricsNotAvailable".tr,
+                hasPlain ? plain : S.current.lyricsNotAvailable,
                 textAlign: TextAlign.center,
                 style: playerController.isDesktopLyricsDialogOpen
                     ? Theme.of(context).textTheme.titleMedium!
@@ -81,7 +82,7 @@ class LyricsWidget extends StatelessWidget {
   Widget _buildNoLyrics(BuildContext context, PlayerController ctrl) {
     return Center(
       child: Text(
-        "lyricsNotAvailable".tr,
+        S.current.lyricsNotAvailable,
         textAlign: TextAlign.center,
         style: ctrl.isDesktopLyricsDialogOpen
             ? Theme.of(context).textTheme.titleMedium!

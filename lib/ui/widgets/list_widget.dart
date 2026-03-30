@@ -1,6 +1,8 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../generated/l10n.dart';
+import '../../utils/l10n_extensions.dart';
 
 import '/models/album.dart';
 import '../../models/artist.dart';
@@ -39,7 +41,7 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
       return Expanded(
         child: Center(
           child: Text(
-            "No ${title.toLowerCase().tr}!",
+            "${S.current.no} ${title.t}!",
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),

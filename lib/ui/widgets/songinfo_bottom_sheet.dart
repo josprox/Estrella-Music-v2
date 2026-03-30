@@ -22,6 +22,7 @@ import '../navigator.dart';
 import 'song_download_btn.dart';
 import 'image_widget.dart';
 import 'song_info_dialog.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SongInfoBottomSheet extends StatelessWidget {
   const SongInfoBottomSheet(this.song,
@@ -101,7 +102,7 @@ class SongInfoBottomSheet extends StatelessWidget {
             ListTile(
               visualDensity: const VisualDensity(vertical: -1),
               leading: const Icon(Icons.sensors),
-              title: Text("startRadio".tr),
+              title: Text(S.current.startRadio),
               onTap: () {
                 Navigator.of(context).pop();
                 playerController.startRadio(song);
@@ -112,19 +113,19 @@ class SongInfoBottomSheet extends StatelessWidget {
                 : ListTile(
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.playlist_play),
-                    title: Text("playNext".tr),
+                    title: Text(S.current.playNext),
                     onTap: () {
                       Navigator.of(context).pop();
                       playerController.playNext(song);
                       ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                          context, "${"playnextMsg".tr} ${song.title}",
+                          context, "${S.current.playnextMsg} ${song.title}",
                           size: SanckBarSize.BIG));
                     },
                   ),
             ListTile(
               visualDensity: const VisualDensity(vertical: -1),
               leading: const Icon(Icons.playlist_add),
-              title: Text("addToPlaylist".tr),
+              title: Text(S.current.addToPlaylist),
               onTap: () {
                 Navigator.of(context).pop();
                 showDialog(
@@ -138,12 +139,12 @@ class SongInfoBottomSheet extends StatelessWidget {
                 : ListTile(
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.merge),
-                    title: Text("enqueueSong".tr),
+                    title: Text(S.current.enqueueSong),
                     onTap: () {
                       playerController.enqueueSong(song).whenComplete(() {
                         if (!context.mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                            context, "songEnqueueAlert".tr,
+                            context, S.current.songEnqueueAlert,
                             size: SanckBarSize.MEDIUM));
                       });
                       Navigator.of(context).pop();
@@ -153,7 +154,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                 ? ListTile(
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.album),
-                    title: Text("goToAlbum".tr),
+                    title: Text(S.current.goToAlbum),
                     onTap: () {
                       Navigator.of(context).pop();
                       if (calledFromPlayer) {
@@ -177,8 +178,8 @@ class SongInfoBottomSheet extends StatelessWidget {
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.delete),
                     title: playlist!.title == "Library Songs"
-                        ? Text("removeFromLib".tr)
-                        : Text("removeFromPlaylist".tr),
+                        ? Text(S.current.removeFromLib)
+                        : Text(S.current.removeFromPlaylist),
                     onTap: () {
                       Navigator.of(context).pop();
                       songInfoController
@@ -194,17 +195,17 @@ class SongInfoBottomSheet extends StatelessWidget {
                 ? ListTile(
                     visualDensity: const VisualDensity(vertical: -1),
                     leading: const Icon(Icons.delete),
-                    title: Text("removeFromQueue".tr),
+                    title: Text(S.current.removeFromQueue),
                     onTap: () {
                       Navigator.of(context).pop();
                       if (playerController.currentSong.value!.id == song.id) {
                         ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                            context, "songRemovedfromQueueCurrSong".tr,
+                            context, S.current.songRemovedfromQueueCurrSong,
                             size: SanckBarSize.BIG));
                       } else {
                         playerController.removeFromQueue(song);
                         ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                            context, "songRemovedfromQueue".tr,
+                            context, S.current.songRemovedfromQueue,
                             size: SanckBarSize.MEDIUM));
                       }
                     })
@@ -217,7 +218,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                       contentPadding: const EdgeInsets.only(left: 15),
                       visualDensity: const VisualDensity(vertical: -1),
                       leading: const Icon(Icons.delete),
-                      title: Text("deleteDownloadData".tr),
+                      title: Text(S.current.deleteDownloadData),
                       onTap: () {
                         Navigator.of(context).pop();
                         final box = Hive.box("SongDownloads");
@@ -236,7 +237,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                             if (context.mounted) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   snackbar(
-                                      context, "deleteDownloadedDataAlert".tr,
+                                      context, S.current.deleteDownloadedDataAlert,
                                       size: SanckBarSize.BIG));
                             }
                           });
@@ -247,7 +248,7 @@ class SongInfoBottomSheet extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.open_with),
-              title: Text("openIn".tr),
+              title: Text(S.current.openIn),
               trailing: SizedBox(
                 width: 200,
                 child: Row(
@@ -278,7 +279,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                 contentPadding: const EdgeInsets.only(left: 15),
                 visualDensity: const VisualDensity(vertical: -1),
                 leading: const Icon(Icons.timer),
-                title: Text("sleepTimer".tr),
+                title: Text(S.current.sleepTimer),
                 onTap: () {
                   Navigator.of(context).pop();
                   showModalBottomSheet(
@@ -299,7 +300,7 @@ class SongInfoBottomSheet extends StatelessWidget {
               contentPadding: const EdgeInsets.only(left: 15),
               visualDensity: const VisualDensity(vertical: -1),
               leading: const Icon(Icons.share),
-              title: Text("shareSong".tr),
+              title: Text(S.current.shareSong),
               onTap: () =>
                   Share.share("https://youtube.com/watch?v=${song.id}"),
             ),
@@ -338,7 +339,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                   },
                   tileColor: Colors.transparent,
                   leading: const Icon(Icons.person),
-                  title: Text("${"viewArtist".tr} (${e['name']})"),
+                  title: Text("${S.current.viewArtist} (${e['name']})"),
                 ))
             .toList()
         : [const SizedBox.shrink()];

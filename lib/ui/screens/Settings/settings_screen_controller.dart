@@ -20,6 +20,7 @@ import '/ui/player/player_controller.dart';
 import '../Home/home_screen_controller.dart';
 import '/ui/utils/theme_controller.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SettingsScreenController extends GetxController {
   late String _supportDir;
@@ -133,7 +134,9 @@ class SettingsScreenController extends GetxController {
   }
 
   void setAppLanguage(String? val) {
-    Get.updateLocale(Locale(val!));
+    if (val == null) return;
+    S.load(Locale(val));
+    Get.updateLocale(Locale(val));
     Get.find<MusicServices>().hlCode = val;
     Get.find<HomeScreenController>().loadContentFromNetwork(silent: true);
     currentAppLanguageCode.value = val;
@@ -303,7 +306,7 @@ class SettingsScreenController extends GetxController {
     final box = await Hive.openBox('blacklistedPlaylist');
     box.clear();
     ScaffoldMessenger.of(Get.context!).showSnackBar(
-        snackbar(Get.context!, "unlinkAlert".tr, size: SanckBarSize.MEDIUM));
+        snackbar(Get.context!, S.current.unlinkAlert, size: SanckBarSize.MEDIUM));
     box.close();
   }
 

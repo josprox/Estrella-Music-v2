@@ -6,6 +6,7 @@ import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
 
 import 'additional_operation_dialog.dart';
 import 'modified_text_field.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 enum OperationMode { arrange, delete, addToPlaylist, none }
 
@@ -88,7 +89,7 @@ class SortWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         title: Text(
-          "importPlaylist".tr,
+          S.current.importPlaylist,
           style: Theme.of(context).textTheme.titleLarge,
         ),
         content: Column(
@@ -96,12 +97,12 @@ class SortWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "importPlaylistDesc".tr,
+              S.current.importPlaylistDesc,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 12),
             Text(
-              "importLargeFileNote".tr,
+              S.current.importLargeFileNote,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontStyle: FontStyle.italic,
                     color: Theme.of(context).colorScheme.secondary,
@@ -120,7 +121,7 @@ class SortWidget extends StatelessWidget {
                   ),
                 ),
                 icon: const Icon(Icons.file_open),
-                label: Text("selectFile".tr),
+                label: Text(S.current.selectFile),
                 onPressed: () {
                   Get.find<LibraryPlaylistsController>()
                       .importPlaylistFromJson(context);
@@ -137,7 +138,7 @@ class SortWidget extends StatelessWidget {
               foregroundColor: Theme.of(context).colorScheme.secondary,
             ),
             onPressed: () => Navigator.pop(context),
-            child: Text("close".tr),
+            child: Text(S.current.close),
           ),
         ],
       ),
@@ -179,7 +180,7 @@ class SortWidget extends StatelessWidget {
                         isSelected:
                             controller.sortType.value == SortType.Name,
                         icon: Icons.sort_by_alpha,
-                        tooltip: "sortByName".tr,
+                        tooltip: S.current.sortByName,
                         onPressed: () {
                           controller.onSortByName(onSort);
                         },
@@ -191,7 +192,7 @@ class SortWidget extends StatelessWidget {
                               isSelected:
                                   controller.sortType.value == SortType.Date,
                               icon: Icons.calendar_month,
-                              tooltip: "sortByDate".tr,
+                              tooltip: S.current.sortByDate,
                               onPressed: () {
                                 controller.onSortByDate(onSort);
                               },
@@ -202,7 +203,7 @@ class SortWidget extends StatelessWidget {
                         ? Obx(() => _customIconButton(
                               isSelected: controller.sortType.value ==
                                   SortType.Duration,
-                              tooltip: "sortByDuration".tr,
+                              tooltip: S.current.sortByDuration,
                               icon: Icons.timer,
                               onPressed: () {
                                 controller.onSortByDuration(onSort);
@@ -215,7 +216,7 @@ class SortWidget extends StatelessWidget {
                         icon: controller.isAscending.value
                             ? Icons.arrow_downward
                             : Icons.arrow_upward,
-                        tooltip: "sortAscendNDescend".tr,
+                        tooltip: S.current.sortAscendNDescend,
                         onPressed: () {
                           controller.onAscendNDescend(onSort);
                         },
@@ -224,13 +225,13 @@ class SortWidget extends StatelessWidget {
                     if (isImportFeatureRequired)
                       _customIconButton(
                         icon: Icons.import_contacts,
-                        tooltip: "importPlaylist".tr,
+                        tooltip: S.current.importPlaylist,
                         onPressed: () => _showImportDialog(context),
                       ),
                     if (isSearchFeatureRequired)
                       _customIconButton(
                         icon: Icons.search,
-                        tooltip: "search".tr,
+                        tooltip: S.current.search,
                         onPressed: () {
                           onSearchStart!(tag);
                           controller.toggleSearch();
@@ -260,16 +261,16 @@ class SortWidget extends StatelessWidget {
                           if (isPlaylistRearrageFeatureRequired)
                             PopupMenuItem(
                               value: OperationMode.arrange,
-                              child: Text("reArrangePlaylist".tr),
+                              child: Text(S.current.reArrangePlaylist),
                             ),
                           if (isSongDeletetioFeatureRequired)
                             PopupMenuItem(
                               value: OperationMode.delete,
-                              child: Text("removeMultiple".tr),
+                              child: Text(S.current.removeMultiple),
                             ),
                           PopupMenuItem(
                             value: OperationMode.addToPlaylist,
-                            child: Text("addMultipleSongs".tr),
+                            child: Text(S.current.addMultipleSongs),
                           ),
                         ],
                       ),
@@ -302,7 +303,7 @@ class SortWidget extends StatelessWidget {
                         contentPadding: const EdgeInsets.all(8),
                         filled: true,
                         border: const OutlineInputBorder(),
-                        hintText: "search".tr,
+                        hintText: S.current.search,
                         suffixIconColor:
                             Theme.of(context).colorScheme.secondary,
                         suffixIcon: IconButton(

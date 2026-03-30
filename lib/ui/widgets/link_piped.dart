@@ -8,6 +8,7 @@ import '../screens/Library/library_controller.dart';
 import 'common_dialog_widget.dart';
 import 'modified_text_field.dart';
 import 'snackbar.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class LinkPiped extends StatelessWidget {
   const LinkPiped({super.key});
@@ -25,7 +26,7 @@ class LinkPiped extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Piped".tr,
+                    S.current.Piped,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Padding(
@@ -53,13 +54,13 @@ class LinkPiped extends StatelessWidget {
                           cursorColor:
                               Theme.of(context).textTheme.titleSmall!.color,
                           decoration:
-                              InputDecoration(hintText: "hintApiUrl".tr))
+                              InputDecoration(hintText: S.current.hintApiUrl))
                       : const SizedBox.shrink()),
                   ModifiedTextField(
                       controller: pipedLinkedController.usernameInputController,
                       cursorColor:
                           Theme.of(context).textTheme.titleSmall!.color,
-                      decoration: InputDecoration(hintText: "username".tr)),
+                      decoration: InputDecoration(hintText: S.current.username)),
                   const SizedBox(
                     height: 15,
                   ),
@@ -69,7 +70,7 @@ class LinkPiped extends StatelessWidget {
                         cursorColor:
                             Theme.of(context).textTheme.titleSmall!.color,
                         decoration: InputDecoration(
-                          hintText: "password".tr,
+                          hintText: S.current.password,
                           suffixIcon: IconButton(
                             color:
                                 Theme.of(context).textTheme.titleSmall!.color,
@@ -100,7 +101,7 @@ class LinkPiped extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 10),
                           child: Text(
-                            "link".tr,
+                            S.current.link,
                             style:
                                 TextStyle(color: Theme.of(context).canvasColor),
                           ),
@@ -117,7 +118,7 @@ class PipedLinkedController extends GetxController {
   final usernameInputController = TextEditingController();
   final passwordInputController = TextEditingController();
   final pipedInstList =
-      <PipedInstance>[PipedInstance(name: "selectAuthIns".tr, apiUrl: "")].obs;
+      <PipedInstance>[PipedInstance(name: S.current.selectAuthIns, apiUrl: "")].obs;
   final selectedInst = "".obs;
   final _pipedServices = Get.find<PipedServices>();
   final passwordVisible = false.obs;
@@ -133,12 +134,12 @@ class PipedLinkedController extends GetxController {
     _pipedServices.getAllInstanceList().then((res) {
       if (res.code == 1) {
         pipedInstList.addAll(List<PipedInstance>.from(res.response) +
-            [PipedInstance(name: "customIns".tr, apiUrl: "custom")]);
+            [PipedInstance(name: S.current.customIns, apiUrl: "custom")]);
       } else {
         errorText.value =
-            "${res.errorMessage ?? "errorOccuredAlert".tr}! ${"customInsSelectMsg".tr}";
+            "${res.errorMessage ?? S.current.errorOccuredAlert}! ${S.current.customInsSelectMsg}";
         pipedInstList
-            .add(PipedInstance(name: "customIns".tr, apiUrl: "custom"));
+            .add(PipedInstance(name: S.current.customIns, apiUrl: "custom"));
       }
     });
   }
@@ -148,7 +149,7 @@ class PipedLinkedController extends GetxController {
     final userName = usernameInputController.text;
     final password = passwordInputController.text;
     if (selectedInst.isEmpty) {
-      errorText.value = "selectAuthInsMsg".tr;
+      errorText.value = S.current.selectAuthInsMsg;
       return;
     }
     if (userName.isEmpty ||
@@ -156,7 +157,7 @@ class PipedLinkedController extends GetxController {
         // ignore: invalid_use_of_protected_member
         (instApiUrlInputController.hasListeners &&
             instApiUrlInputController.text.isEmpty)) {
-      errorText.value = "allFieldsReqMsg".tr;
+      errorText.value = S.current.allFieldsReqMsg;
       return;
     }
     _pipedServices
@@ -172,10 +173,10 @@ class PipedLinkedController extends GetxController {
         Get.find<SettingsScreenController>().isLinkedWithPiped.value = true;
         Navigator.of(Get.context!).pop();
         ScaffoldMessenger.of(Get.context!).showSnackBar(
-            snackbar(Get.context!, "linkAlert".tr, size: SanckBarSize.MEDIUM));
+            snackbar(Get.context!, S.current.linkAlert, size: SanckBarSize.MEDIUM));
         Get.find<LibraryPlaylistsController>().syncPipedPlaylist();
       } else {
-        errorText.value = res.errorMessage ?? "errorOccuredAlert".tr;
+        errorText.value = res.errorMessage ?? S.current.errorOccuredAlert;
       }
     });
   }

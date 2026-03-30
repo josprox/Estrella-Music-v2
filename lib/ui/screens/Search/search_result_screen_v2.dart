@@ -7,6 +7,8 @@ import 'package:harmonymusic/ui/widgets/search_related_widgets.dart';
 import '../../navigator.dart';
 import '../../widgets/separate_tab_item_widget.dart';
 import 'search_result_screen_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
+import '../../../utils/l10n_extensions.dart';
 
 class SearchResultScreenBN extends StatelessWidget {
   const SearchResultScreenBN({super.key});
@@ -43,7 +45,7 @@ class SearchResultScreenBN extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "searchRes".tr,
+                        S.current.searchRes,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
@@ -51,7 +53,7 @@ class SearchResultScreenBN extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Obx(
                         () => Text(
-                          "${"for1".tr} \"${searchResScrController.queryString.value}\"",
+                          "${S.current.for1} \"${searchResScrController.queryString.value}\"",
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
@@ -66,10 +68,10 @@ class SearchResultScreenBN extends StatelessWidget {
                         searchResScrController.railItems.isEmpty) {
                       return Center(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "nomatch".tr,
+                              S.current.nomatch,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             Text(
@@ -114,13 +116,13 @@ class SearchResultScreenBN extends StatelessWidget {
                               ),
                               // Add your tabs here
                               tabs: [
-                                Tab(text: "results".tr),
+                                Tab(text: S.current.results),
                                 ...searchResScrController.railItems
                                     .map((item) => Tab(
                                           text: item
                                               .toLowerCase()
                                               .removeAllWhitespace
-                                              .tr,
+                                              .t,
                                         ))
                               ],
                             ),

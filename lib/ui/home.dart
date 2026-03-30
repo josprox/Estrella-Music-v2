@@ -16,6 +16,7 @@ import 'widgets/scroll_to_hide.dart';
 import 'widgets/sliding_up_panel.dart';
 import 'widgets/snackbar.dart';
 import 'widgets/up_next_queue.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -109,9 +110,9 @@ class Home extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                          "${playerController.currentQueue.length} ${"songs".tr}"),
+                                          "${playerController.currentQueue.length} ${S.current.songs}"),
                                       Text(
-                                        "upNext".tr,
+                                        S.current.upNext,
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleLarge,
@@ -141,7 +142,7 @@ class Home extends StatelessWidget {
                                                 ),
                                                 child: Center(
                                                     child:
-                                                        Text("queueLoop".tr)),
+                                                        Text(S.current.queueLoop)),
                                               ),
                                             ),
                                           ),
@@ -153,8 +154,7 @@ class Home extends StatelessWidget {
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(snackbar(
                                                           context,
-                                                          "queueShufflingDeniedMsg"
-                                                              .tr,
+                                                          S.current.queueShufflingDeniedMsg,
                                                           size: SanckBarSize
                                                               .BIG));
                                                   return;

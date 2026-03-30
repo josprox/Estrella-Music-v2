@@ -19,7 +19,8 @@ import '/utils/helper.dart';
 import '/models/media_Item_builder.dart';
 import '../ui/screens/Library/library_controller.dart';
 import 'music_service.dart';
-//import '../models/thumbnail.dart' as th;
+import 'package:harmonymusic/generated/l10n.dart';
+import '../utils/l10n_extensions.dart';
 
 class Downloader extends GetxService {
   final _dio = Dio();
@@ -180,22 +181,12 @@ class Downloader extends GetxService {
     final downloadingFormat = settingsScreenController.downloadingFormat.string;
 
     final playerResponse = await StreamProvider.fetch(song.id);
-    // if (!playerResponse.playable) {
-    //   printINFO("Network error! Check your network connection.");
-    //   ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-    //       Get.context!, playerResponse.statusMSG,
-    //       size: SanckBarSize.BIG,
-    //       duration: const Duration(seconds: 2),
-    //       top: !GetPlatform.isDesktop));
-    //   complete.complete();
-    //   return complete.future;
-    // }
 
     if (!playerResponse.playable) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
           Get.context!,
           playerResponse.statusMSG == "networkError"
-              ? playerResponse.statusMSG.tr
+              ? playerResponse.statusMSG.t
               : playerResponse.statusMSG,
           size: SanckBarSize.BIG,
           duration: const Duration(seconds: 2),
@@ -296,7 +287,7 @@ class Downloader extends GetxService {
     ).onError(
       (error, stackTrace) {
         ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-            Get.context!, "downloadError3".tr,
+            Get.context!, S.current.downloadError3,
             size: SanckBarSize.BIG,
             duration: const Duration(seconds: 2),
             top: !GetPlatform.isDesktop));

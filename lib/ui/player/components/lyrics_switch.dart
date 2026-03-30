@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 import 'package:harmonymusic/ui/utils/theme_controller.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -27,7 +28,7 @@ class LyricsSwitch extends StatelessWidget {
                 inactiveFgColor: Colors.white,
                 initialLabelIndex: playerController.lyricsMode.value,
                 totalSwitches: 2,
-                labels: ['synced'.tr, 'plain'.tr],
+                labels: [S.current.synced, S.current.plain],
                 radiusStyle: true,
                 onToggle: playerController.changeLyricsMode,
               ),

@@ -20,6 +20,7 @@ import '/ui/player/player_controller.dart';
 import '/ui/utils/theme_controller.dart';
 import 'components/custom_expansion_tile.dart';
 import 'settings_screen_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key, this.isBottomNavActive = false});
@@ -41,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "settings".tr,
+              S.current.settings,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
@@ -73,10 +74,10 @@ class SettingsScreen extends StatelessWidget {
                                 const EdgeInsets.only(left: 8, right: 10),
                             leading:
                                 const CircleAvatar(child: Icon(Icons.download)),
-                            title: Text("newVersionAvailable".tr),
+                            title: Text(S.current.newVersionAvailable),
                             visualDensity: const VisualDensity(horizontal: -2),
                             subtitle: Text(
-                              "goToDownloadPage".tr,
+                              S.current.goToDownloadPage,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
@@ -89,13 +90,13 @@ class SettingsScreen extends StatelessWidget {
                     : const SizedBox.shrink(),
               ),
               CustomExpansionTile(
-                title: "personalisation".tr,
+                title: S.current.personalisation,
                 icon: Icons.palette,
                 children: [
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: Text("language".tr),
-                    subtitle: Text("languageDes".tr,
+                    title: Text(S.current.language),
+                    subtitle: Text(S.current.languageDes,
                         style: Theme.of(context).textTheme.bodyMedium),
                     trailing: Obx(
                       () => DropdownButton(
@@ -127,8 +128,8 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("disableTransitionAnimation".tr),
-                      subtitle: Text("disableTransitionAnimationDes".tr,
+                      title: Text(S.current.disableTransitionAnimation),
+                      subtitle: Text(S.current.disableTransitionAnimationDes,
                           style: Theme.of(context).textTheme.bodyMedium),
                       trailing: Obx(
                         () => CustSwitch(
@@ -139,8 +140,8 @@ class SettingsScreen extends StatelessWidget {
                       )),
                   ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("enableSlidableAction".tr),
-                      subtitle: Text("enableSlidableActionDes".tr,
+                      title: Text(S.current.enableSlidableAction),
+                      subtitle: Text(S.current.enableSlidableActionDes,
                           style: Theme.of(context).textTheme.bodyMedium),
                       trailing: Obx(
                         () => CustSwitch(
@@ -151,23 +152,23 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
               CustomExpansionTile(
-                  title: "content".tr,
+                  title: S.current.content,
                   icon: Icons.music_video,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("setDiscoverContent".tr),
+                      title: Text(S.current.setDiscoverContent),
                       subtitle: Obx(() => Text(
                           settingsController.discoverContentType.value == "QP"
-                              ? "quickpicks".tr
+                              ? S.current.quickpicks
                               : settingsController.discoverContentType.value ==
                                       "TMV"
-                                  ? "topmusicvideos".tr
+                                  ? S.current.topmusicvideos
                                   : settingsController
                                               .discoverContentType.value ==
                                           "TR"
-                                      ? "trending".tr
-                                      : "basedOnLast".tr,
+                                      ? S.current.trending
+                                      : S.current.basedOnLast,
                           style: Theme.of(context).textTheme.bodyMedium)),
                       onTap: () => showDialog(
                         context: context,
@@ -177,8 +178,8 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("homeContentCount".tr),
-                      subtitle: Text("homeContentCountDes".tr,
+                      title: Text(S.current.homeContentCount),
+                      subtitle: Text(S.current.homeContentCountDes,
                           style: Theme.of(context).textTheme.bodyMedium),
                       trailing: Obx(
                         () => DropdownButton(
@@ -196,8 +197,8 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                         contentPadding:
                             const EdgeInsets.only(left: 5, right: 10),
-                        title: Text("cacheHomeScreenData".tr),
-                        subtitle: Text("cacheHomeScreenDataDes".tr,
+                        title: Text(S.current.cacheHomeScreenData),
+                        subtitle: Text(S.current.cacheHomeScreenDataDes,
                             style: Theme.of(context).textTheme.bodyMedium),
                         trailing: Obx(
                           () => CustSwitch(
@@ -209,14 +210,14 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                       contentPadding:
                           const EdgeInsets.only(left: 5, right: 10, top: 0),
-                      title: Text("Piped".tr),
-                      subtitle: Text("linkPipedDes".tr,
+                      title: Text(S.current.Piped),
+                      subtitle: Text(S.current.linkPipedDes,
                           style: Theme.of(context).textTheme.bodyMedium),
                       trailing: TextButton(
                           child: Obx(() => Text(
                                 settingsController.isLinkedWithPiped.value
-                                    ? "unLink".tr
-                                    : "link".tr,
+                                    ? S.current.unLink
+                                    : S.current.link,
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -238,12 +239,12 @@ class SettingsScreen extends StatelessWidget {
                         ? ListTile(
                             contentPadding: const EdgeInsets.only(
                                 left: 5, right: 10, top: 0),
-                            title: Text("resetblacklistedplaylist".tr),
-                            subtitle: Text("resetblacklistedplaylistDes".tr,
+                            title: Text(S.current.resetblacklistedplaylist),
+                            subtitle: Text(S.current.resetblacklistedplaylistDes,
                                 style: Theme.of(context).textTheme.bodyMedium),
                             trailing: TextButton(
                                 child: Text(
-                                  "reset".tr,
+                                  S.current.reset,
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
@@ -254,35 +255,35 @@ class SettingsScreen extends StatelessWidget {
                                       .resetBlacklistedPlaylist();
                                   ScaffoldMessenger.of(Get.context!)
                                       .showSnackBar(snackbar(Get.context!,
-                                          "blacklistPlstResetAlert".tr,
+                                          S.current.blacklistPlstResetAlert,
                                           size: SanckBarSize.MEDIUM));
                                 }),
                           )
                         : const SizedBox.shrink()),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("clearImgCache".tr),
+                      title: Text(S.current.clearImgCache),
                       subtitle: Text(
-                        "clearImgCacheDes".tr,
+                        S.current.clearImgCacheDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
                       onTap: () {
                         settingsController.clearImagesCache().then((value) =>
                             ScaffoldMessenger.of(Get.context!).showSnackBar(
-                                snackbar(Get.context!, "clearImgCacheAlert".tr,
+                                snackbar(Get.context!, S.current.clearImgCacheAlert,
                                     size: SanckBarSize.BIG)));
                       },
                     ),
                   ]),
               CustomExpansionTile(
-                title: "music&Playback".tr,
+                title: S.current.musicAndPlayback,
                 icon: Icons.music_note,
                 children: [
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: Text("streamingQuality".tr),
-                    subtitle: Text("streamingQualityDes".tr,
+                    title: Text(S.current.streamingQuality),
+                    subtitle: Text(S.current.streamingQualityDes,
                         style: Theme.of(context).textTheme.bodyMedium),
                     trailing: Obx(
                       () => DropdownButton(
@@ -291,10 +292,10 @@ class SettingsScreen extends StatelessWidget {
                         value: settingsController.streamingQuality.value,
                         items: [
                           DropdownMenuItem(
-                              value: AudioQuality.Low, child: Text("low".tr)),
+                              value: AudioQuality.Low, child: Text(S.current.low)),
                           DropdownMenuItem(
                             value: AudioQuality.High,
-                            child: Text("high".tr),
+                            child: Text(S.current.high),
                           ),
                         ],
                         onChanged: settingsController.setStreamingQuality,
@@ -305,8 +306,8 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                         contentPadding:
                             const EdgeInsets.only(left: 5, right: 10),
-                        title: Text("loudnessNormalization".tr),
-                        subtitle: Text("loudnessNormalizationDes".tr,
+                        title: Text(S.current.loudnessNormalization),
+                        subtitle: Text(S.current.loudnessNormalizationDes,
                             style: Theme.of(context).textTheme.bodyMedium),
                         trailing: Obx(
                           () => CustSwitch(
@@ -319,8 +320,8 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                         contentPadding:
                             const EdgeInsets.only(left: 5, right: 10),
-                        title: Text("cacheSongs".tr),
-                        subtitle: Text("cacheSongsDes".tr,
+                        title: Text(S.current.cacheSongs),
+                        subtitle: Text(S.current.cacheSongsDes,
                             style: Theme.of(context).textTheme.bodyMedium),
                         trailing: Obx(
                           () => CustSwitch(
@@ -332,8 +333,8 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                         contentPadding:
                             const EdgeInsets.only(left: 5, right: 10),
-                        title: Text("skipSilence".tr),
-                        subtitle: Text("skipSilenceDes".tr,
+                        title: Text(S.current.skipSilence),
+                        subtitle: Text(S.current.skipSilenceDes,
                             style: Theme.of(context).textTheme.bodyMedium),
                         trailing: Obx(
                           () => CustSwitch(
@@ -345,8 +346,8 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                         contentPadding:
                             const EdgeInsets.only(left: 5, right: 10),
-                        title: Text("backgroundPlay".tr),
-                        subtitle: Text("backgroundPlayDes".tr,
+                        title: Text(S.current.backgroundPlay),
+                        subtitle: Text(S.current.backgroundPlayDes,
                             style: Theme.of(context).textTheme.bodyMedium),
                         trailing: Obx(
                           () => CustSwitch(
@@ -357,8 +358,8 @@ class SettingsScreen extends StatelessWidget {
                         )),
                   ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("keepScreenOnWhilePlaying".tr),
-                      subtitle: Text("keepScreenOnWhilePlayingDes".tr,
+                      title: Text(S.current.keepScreenOnWhilePlaying),
+                      subtitle: Text(S.current.keepScreenOnWhilePlayingDes,
                           style: Theme.of(context).textTheme.bodyMedium),
                       trailing: Obx(
                         () => CustSwitch(
@@ -368,8 +369,8 @@ class SettingsScreen extends StatelessWidget {
                       )),
                   ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("restoreLastPlaybackSession".tr),
-                      subtitle: Text("restoreLastPlaybackSessionDes".tr,
+                      title: Text(S.current.restoreLastPlaybackSession),
+                      subtitle: Text(S.current.restoreLastPlaybackSessionDes,
                           style: Theme.of(context).textTheme.bodyMedium),
                       trailing: Obx(
                         () => CustSwitch(
@@ -380,8 +381,8 @@ class SettingsScreen extends StatelessWidget {
                       )),
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: Text("autoOpenPlayer".tr),
-                    subtitle: Text("autoOpenPlayerDes".tr,
+                    title: Text(S.current.autoOpenPlayer),
+                    subtitle: Text(S.current.autoOpenPlayerDes,
                         style: Theme.of(context).textTheme.bodyMedium),
                     trailing: Obx(
                       () => CustSwitch(
@@ -393,8 +394,8 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                       contentPadding:
                           const EdgeInsets.only(left: 5, right: 10, top: 0),
-                      title: Text("equalizer".tr),
-                      subtitle: Text("equalizerDes".tr,
+                      title: Text(S.current.equalizer),
+                      subtitle: Text(S.current.equalizerDes,
                           style: Theme.of(context).textTheme.bodyMedium),
                       onTap: () async {
                         try {
@@ -407,8 +408,8 @@ class SettingsScreen extends StatelessWidget {
                   if (!isDesktop)
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("stopMusicOnTaskClear".tr),
-                      subtitle: Text("stopMusicOnTaskClearDes".tr,
+                      title: Text(S.current.stopMusicOnTaskClear),
+                      subtitle: Text(S.current.stopMusicOnTaskClearDes,
                           style: Theme.of(context).textTheme.bodyMedium),
                       trailing: Obx(
                         () => CustSwitch(
@@ -423,7 +424,7 @@ class SettingsScreen extends StatelessWidget {
                           () => ListTile(
                             contentPadding:
                                 const EdgeInsets.only(left: 5, right: 10),
-                            title: Text("ignoreBatOpt".tr),
+                            title: Text(S.current.ignoreBatOpt),
                             onTap: settingsController
                                     .isIgnoringBatteryOptimizations.isFalse
                                 ? settingsController
@@ -432,14 +433,14 @@ class SettingsScreen extends StatelessWidget {
                             subtitle: Obx(() => RichText(
                                   text: TextSpan(
                                     text:
-                                        "${"status".tr}: ${settingsController.isIgnoringBatteryOptimizations.isTrue ? "enabled".tr : "disabled".tr}\n",
+                                        "${S.current.status}: ${settingsController.isIgnoringBatteryOptimizations.isTrue ? S.current.enabled : S.current.disabled}\n",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(fontWeight: FontWeight.bold),
                                     children: <TextSpan>[
                                       TextSpan(
-                                          text: "ignoreBatOptDes".tr,
+                                          text: S.current.ignoreBatOptDes,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium),
@@ -452,13 +453,13 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
               CustomExpansionTile(
-                title: "download".tr,
+                title: S.current.download,
                 icon: Icons.download,
                 children: [
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: Text("autoDownFavSong".tr),
-                    subtitle: Text("autoDownFavSongDes".tr,
+                    title: Text(S.current.autoDownFavSong),
+                    subtitle: Text(S.current.autoDownFavSongDes,
                         style: Theme.of(context).textTheme.bodyMedium),
                     trailing: Obx(
                       () => CustSwitch(
@@ -470,8 +471,8 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: Text("downloadingFormat".tr),
-                    subtitle: Text("downloadingFormatDes".tr,
+                    title: Text(S.current.downloadingFormat),
+                    subtitle: Text(S.current.downloadingFormatDes,
                         style: Theme.of(context).textTheme.bodyMedium),
                     trailing: Obx(
                       () => DropdownButton(
@@ -493,7 +494,7 @@ class SettingsScreen extends StatelessWidget {
                   ListTile(
                     trailing: TextButton(
                       child: Text(
-                        "reset".tr,
+                        S.current.reset,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!
@@ -505,7 +506,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     contentPadding:
                         const EdgeInsets.only(left: 5, right: 10, top: 0),
-                    title: Text("downloadLocation".tr),
+                    title: Text(S.current.downloadLocation),
                     subtitle: Obx(() => Text(
                         settingsController.isCurrentPathsupportDownDir
                             ? "In App storage directory"
@@ -518,9 +519,9 @@ class SettingsScreen extends StatelessWidget {
                   if (GetPlatform.isAndroid)
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("exportDowloadedFiles".tr),
+                      title: Text(S.current.exportDowloadedFiles),
                       subtitle: Text(
-                        "exportDowloadedFilesDes".tr,
+                        S.current.exportDowloadedFilesDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
@@ -534,7 +535,7 @@ class SettingsScreen extends StatelessWidget {
                     ListTile(
                       contentPadding:
                           const EdgeInsets.only(left: 5, right: 10, top: 0),
-                      title: Text("exportedFileLocation".tr),
+                      title: Text(S.current.exportedFileLocation),
                       subtitle: Obx(() => Text(
                           settingsController.exportLocationPath.value,
                           style: Theme.of(context).textTheme.bodyMedium)),
@@ -593,14 +594,14 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
               CustomExpansionTile(
-                  title: "${"backup".tr} & ${"restore".tr}",
+                  title: "${S.current.backup} & ${S.current.restore}",
                   icon: Icons.restore,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("backupAppData".tr),
+                      title: Text(S.current.backupAppData),
                       subtitle: Text(
-                        "backupSettingsAndPlaylistsDes".tr,
+                        S.current.backupSettingsAndPlaylistsDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
@@ -612,9 +613,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("restoreAppData".tr),
+                      title: Text(S.current.restoreAppData),
                       subtitle: Text(
-                        "restoreSettingsAndPlaylistsDes".tr,
+                        S.current.restoreSettingsAndPlaylistsDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       isThreeLine: true,
@@ -627,13 +628,13 @@ class SettingsScreen extends StatelessWidget {
                   ]),
               CustomExpansionTile(
                   icon: Icons.miscellaneous_services,
-                  title: "misc".tr,
+                  title: S.current.misc,
                   children: [
                     ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text("resetToDefault".tr),
+                      title: Text(S.current.resetToDefault),
                       subtitle: Text(
-                        "resetToDefaultDes".tr,
+                        S.current.resetToDefaultDes,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       onTap: () {
@@ -641,7 +642,7 @@ class SettingsScreen extends StatelessWidget {
                             .resetAppSettingsToDefault()
                             .then((_) {
                           ScaffoldMessenger.of(Get.context!).showSnackBar(
-                              snackbar(Get.context!, "resetToDefaultMsg".tr,
+                              snackbar(Get.context!, S.current.resetToDefaultMsg,
                                   size: SanckBarSize.BIG,
                                   duration: const Duration(seconds: 2)));
                         });
@@ -650,13 +651,13 @@ class SettingsScreen extends StatelessWidget {
                   ]),
               CustomExpansionTile(
                 icon: Icons.info,
-                title: "appInfo".tr,
+                title: S.current.appInfo,
                 children: [
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: Text("github".tr),
+                    title: Text(S.current.github),
                     subtitle: Text(
-                      "${"githubDes".tr}${((Get.find<PlayerController>().playerPanelMinHeight.value) == 0 || !isBottomNavActive) ? "" : "\n\n${settingsController.currentVersion} ${"by".tr} anandnet"}",
+                      "${S.current.githubDes}${((Get.find<PlayerController>().playerPanelMinHeight.value) == 0 || !isBottomNavActive) ? "" : "\n\n${settingsController.currentVersion} ${S.current.by} anandnet"}",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     isThreeLine: true,
@@ -689,7 +690,7 @@ class SettingsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Text(
-              "${settingsController.currentVersion} ${"by".tr} anandnet",
+              "${settingsController.currentVersion} ${S.current.by} anandnet",
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -716,26 +717,26 @@ class ThemeSelectorDialog extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "themeMode".tr,
+                S.current.themeMode,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
           ),
           radioWidget(
-            label: "dynamic".tr,
+            label: S.current.dynamic,
             controller: settingsController,
             value: ThemeType.dynamic,
           ),
           radioWidget(
-              label: "systemDefault".tr,
+              label: S.current.systemDefault,
               controller: settingsController,
               value: ThemeType.system),
           radioWidget(
-              label: "dark".tr,
+              label: S.current.dark,
               controller: settingsController,
               value: ThemeType.dark),
           radioWidget(
-              label: "light".tr,
+              label: S.current.light,
               controller: settingsController,
               value: ThemeType.light),
           Align(
@@ -743,7 +744,7 @@ class ThemeSelectorDialog extends StatelessWidget {
               child: InkWell(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("cancel".tr),
+                  child: Text(S.current.cancel),
                 ),
                 onTap: () => Navigator.of(context).pop(),
               ))
@@ -770,7 +771,7 @@ class DiscoverContentSelectorDialog extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "setDiscoverContent".tr,
+                S.current.setDiscoverContent,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
@@ -781,19 +782,19 @@ class DiscoverContentSelectorDialog extends StatelessWidget {
               child: Column(
                 children: [
                   radioWidget(
-                      label: "quickpicks".tr,
+                      label: S.current.quickpicks,
                       controller: settingsController,
                       value: "QP"),
                   radioWidget(
-                      label: "topmusicvideos".tr,
+                      label: S.current.topmusicvideos,
                       controller: settingsController,
                       value: "TMV"),
                   radioWidget(
-                      label: "trending".tr,
+                      label: S.current.trending,
                       controller: settingsController,
                       value: "TR"),
                   radioWidget(
-                      label: "basedOnLast".tr,
+                      label: S.current.basedOnLast,
                       controller: settingsController,
                       value: "BOLI"),
                 ],
@@ -806,7 +807,7 @@ class DiscoverContentSelectorDialog extends StatelessWidget {
               child: InkWell(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("cancel".tr),
+                  child: Text(S.current.cancel),
                 ),
                 onTap: () => Navigator.of(context).pop(),
               ))

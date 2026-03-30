@@ -9,6 +9,8 @@ import '../../widgets/loader.dart';
 import '../../widgets/search_related_widgets.dart';
 import '../../widgets/separate_tab_item_widget.dart';
 import 'search_result_screen_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
+import '../../../utils/l10n_extensions.dart';
 
 class SearchResultScreen extends StatelessWidget {
   const SearchResultScreen({super.key});
@@ -36,12 +38,12 @@ class SearchResultScreen extends StatelessWidget {
                                       .isResultContentFetced.value &&
                                   searchResScrController.railItems.isNotEmpty)
                               ? [
-                                  railDestination("results".tr),
+                                  railDestination(S.current.results),
                                   ...(searchResScrController.railItems.map(
                                       (element) => railDestination(element))),
                                 ]
                               : [
-                                  railDestination("results".tr),
+                                  railDestination(S.current.results),
                                   railDestination("")
                                 ],
                           leading: Column(
@@ -65,7 +67,7 @@ class SearchResultScreen extends StatelessWidget {
                               ),
                               const SizedBox(
                                 height: 10,
-                              ),
+                                ),
                             ],
                           ),
                           labelType: NavigationRailLabelType.all,
@@ -102,7 +104,7 @@ class SearchResultScreen extends StatelessWidget {
       icon: const SizedBox.shrink(),
       label: RotatedBox(
           quarterTurns: -1,
-          child: Text(label.toLowerCase().removeAllWhitespace.tr)),
+          child: Text(label.toLowerCase().removeAllWhitespace.t)),
     );
   }
 }
@@ -126,7 +128,7 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "nomatch".tr,
+                  S.current.nomatch,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 Text("'${searchResScrController.queryString.value}'"),

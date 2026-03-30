@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_tabbar_minimize/liquid_tabbar_minimize.dart';
 import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});
@@ -16,10 +17,10 @@ class BottomNavBar extends StatelessWidget {
         onTap: ctrl.onBottonBarTabSelected,
         labelVisibility: LabelVisibility.always,
         items: [
-          _dest(Icons.home_rounded, Icons.home_outlined, 'home'.tr, 'house', 'house.fill'),
-          _dest(Icons.search_rounded, Icons.search_outlined, 'search'.tr, 'magnifyingglass', 'magnifyingglass'),
-          _dest(Icons.library_music_rounded, Icons.library_music_outlined, 'library'.tr, 'music.note.list', 'music.note.list'),
-          _dest(Icons.settings_rounded, Icons.settings_outlined, 'settings'.tr, 'gearshape', 'gearshape.fill'),
+          _dest(Icons.home_rounded, Icons.home_outlined, S.current.home, 'house', 'house.fill'),
+          _dest(Icons.search_rounded, Icons.search_outlined, S.current.search, 'magnifyingglass', 'magnifyingglass'),
+          _dest(Icons.library_music_rounded, Icons.library_music_outlined, S.current.library, 'music.note.list', 'music.note.list'),
+          _dest(Icons.settings_rounded, Icons.settings_outlined, S.current.settings, 'gearshape', 'gearshape.fill'),
         ],
       ),
     );

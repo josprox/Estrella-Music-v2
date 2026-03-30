@@ -15,6 +15,7 @@ import '/ui/utils/theme_controller.dart';
 import 'full_lyrics_page.dart';
 import '/ui/widgets/image_widget.dart';
 import '/ui/widgets/songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class StandardPlayer extends StatelessWidget {
   const StandardPlayer({super.key});
@@ -410,7 +411,7 @@ class StandardPlayer extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'lyrics'.tr.toUpperCase(),
+                                    S.current.lyrics.toUpperCase(),
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
@@ -457,15 +458,15 @@ class StandardPlayer extends StatelessWidget {
                                 )
                               else if (!hasLyrics && ctrl.lyrics['synced'] == null)
                                 Text(
-                                  'lyricsNotAvailable'.tr,
+                                  S.current.lyricsNotAvailable,
                                   style: const TextStyle(
                                       color: Colors.white70, fontSize: 16),
                                 )
                               else
-                                SizedBox(
+                                const SizedBox(
                                   height: 240,
                                   child: LyricsWidget(
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                         horizontal: 0, vertical: 12),
                                   ),
                                 ),
@@ -512,9 +513,9 @@ class StandardPlayer extends StatelessWidget {
         shape: BoxShape.circle,
         color: Colors.white,
       ),
-      child: Center(
+      child: const Center(
         child: AnimatedPlayButton(
-          key: const Key('spotifyPlayBtn'),
+          key: Key('spotifyPlayBtn'),
           iconSize: 32,
         ),
       ),

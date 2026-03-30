@@ -12,6 +12,7 @@ import '/ui/screens/Settings/settings_screen_controller.dart';
 import '/utils/helper.dart';
 import '../../services/permission_service.dart';
 import 'common_dialog_widget.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class RestoreDialog extends StatelessWidget {
   const RestoreDialog({super.key});
@@ -30,7 +31,7 @@ class RestoreDialog extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                 child: Text(
-                  "restoreAppData".tr,
+                  S.current.restoreAppData,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
@@ -41,11 +42,11 @@ class RestoreDialog extends StatelessWidget {
                               .toInt() ==
                           restoreDialogController.filesToRestore.toInt()
                       ? Text(
-                          "restoreMsg".tr,
+                          S.current.restoreMsg,
                           textAlign: TextAlign.center,
                         )
                       : restoreDialogController.processingFiles.isTrue
-                          ? Text("processFiles".tr)
+                          ? Text(S.current.processFiles)
                           : restoreDialogController.restoreRunning.isTrue
                               ? Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -58,10 +59,10 @@ class RestoreDialog extends StatelessWidget {
                                     const SizedBox(
                                       height: 10,
                                     ),
-                                    Text("restoring".tr)
+                                    Text(S.current.restoring)
                                   ],
                                 )
-                              : Text("letsStrart".tr)),
+                              : Text(S.current.letsStrart)),
                 ),
               ),
               SizedBox(
@@ -103,8 +104,8 @@ class RestoreDialog extends StatelessWidget {
                                             .toInt() ==
                                         restoreDialogController.filesToRestore
                                             .toInt()
-                                    ? "restartApp".tr
-                                    : "restore".tr,
+                                    ? S.current.restartApp
+                                    : S.current.restore,
                                 style: TextStyle(
                                     color: Theme.of(context).canvasColor),
                               ),

@@ -1,0 +1,624 @@
+// DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
+// This is a library that provides messages for a it locale. All the
+// messages from the main program should be duplicated here with the same
+// function name.
+
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
+
+import 'package:intl/intl.dart';
+import 'package:intl/message_lookup_by_library.dart';
+
+final messages = new MessageLookup();
+
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
+
+class MessageLookup extends MessageLookupByLibrary {
+  String get localeName => 'it';
+
+  final messages = _notInlinedMessages(_notInlinedMessages);
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
+      "Crea una nuova Playlist",
+    ),
+    "Piped": MessageLookupByLibrary.simpleMessage("Piped"),
+    "about": MessageLookupByLibrary.simpleMessage("Informazioni su"),
+    "add5Minutes": MessageLookupByLibrary.simpleMessage("Aggiungi 5 minuti"),
+    "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
+      "Aggiungi canzoni alla playlist",
+    ),
+    "addToPlaylist": MessageLookupByLibrary.simpleMessage(
+      "Aggiungi alla playlist",
+    ),
+    "album": MessageLookupByLibrary.simpleMessage("Album"),
+    "albumBookmarkAddAlert": MessageLookupByLibrary.simpleMessage(
+      "Album inserito nei segnalibri!",
+    ),
+    "albumBookmarkRemoveAlert": MessageLookupByLibrary.simpleMessage(
+      "Segnalibro dell\'album rimosso!",
+    ),
+    "albums": MessageLookupByLibrary.simpleMessage("Album"),
+    "allFieldsReqMsg": MessageLookupByLibrary.simpleMessage(
+      "Tutti i campi sono obbligatori",
+    ),
+    "androidBackupWarning": MessageLookupByLibrary.simpleMessage(
+      "Non testato: Selezionando la casella di controllo dopo aver scaricato più di 60 file, il processo potrebbe consumare una grande quantità di memoria e causare il blocco del telefono o dell\'applicazione. Procedere a proprio rischio e pericolo.",
+    ),
+    "appInfo": MessageLookupByLibrary.simpleMessage("Informazioni App"),
+    "artistBookmarkAddAlert": MessageLookupByLibrary.simpleMessage(
+      "Artista aggiunto ai preferiti!",
+    ),
+    "artistBookmarkRemoveAlert": MessageLookupByLibrary.simpleMessage(
+      "Rimosso il segnalibro dell\'artista!",
+    ),
+    "artistDesNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Descrizione non disponibile!",
+    ),
+    "artists": MessageLookupByLibrary.simpleMessage("Artisti"),
+    "audioCodec": MessageLookupByLibrary.simpleMessage("Codec Audio"),
+    "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
+      "Scarica automaticamente le canzoni preferite",
+    ),
+    "autoDownFavSongDes": MessageLookupByLibrary.simpleMessage(
+      "Scarica automaticamente i brani preferiti quando vengono aggiunti ai preferiti",
+    ),
+    "autoOpenPlayer": MessageLookupByLibrary.simpleMessage(
+      "Apri il player automaticamente",
+    ),
+    "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
+      "Abilita/disabilita l\'apertura automatica del player in full screen all\'avvio della riproduzione di una canzone",
+    ),
+    "backFilesFound": MessageLookupByLibrary.simpleMessage("database trovati"),
+    "backgroundPlay": MessageLookupByLibrary.simpleMessage(
+      "Riproduzione musica Background",
+    ),
+    "backgroundPlayDes": MessageLookupByLibrary.simpleMessage(
+      "Abilitare/disabilitare la riproduzione della musica in background (l\'app è accessibile dalla barra delle applicazioni quando è in esecuzione in background)",
+    ),
+    "backup": MessageLookupByLibrary.simpleMessage("Backup"),
+    "backupAppData": MessageLookupByLibrary.simpleMessage(
+      "Backup dei dati dell\'app",
+    ),
+    "backupInProgress": MessageLookupByLibrary.simpleMessage(
+      "Backup in corso...",
+    ),
+    "backupMsg": MessageLookupByLibrary.simpleMessage(
+      "Il backup è stato salvato con successo!",
+    ),
+    "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
+      "Salva tutte le impostazioni, le playlist e i dati di accesso in un file di backup",
+    ),
+    "basedOnLast": MessageLookupByLibrary.simpleMessage(
+      "Basato sull\'ultima interazione",
+    ),
+    "bitrate": MessageLookupByLibrary.simpleMessage("Bitrate"),
+    "blacklistPlstResetAlert": MessageLookupByLibrary.simpleMessage(
+      "Reset eseguito correttamente!",
+    ),
+    "by": MessageLookupByLibrary.simpleMessage("da"),
+    "cacheHomeScreenData": MessageLookupByLibrary.simpleMessage(
+      "Cache dei dati del contenuto della schermata iniziale",
+    ),
+    "cacheHomeScreenDataDes": MessageLookupByLibrary.simpleMessage(
+      "Abilita la memorizzazione nella cache dei dati del contenuto della schermata iniziale; se l\'opzione è attivata, la schermata iniziale verrà caricata istantaneamente",
+    ),
+    "cacheSongs": MessageLookupByLibrary.simpleMessage("Canzoni nella cache"),
+    "cacheSongsDes": MessageLookupByLibrary.simpleMessage(
+      "Inserire canzoni nella cache durante la riproduzione per ascoltarle in futuro o in modalità offline, userà spazio aggiuntivo nel tuo dispositivo",
+    ),
+    "cachedOrOffline": MessageLookupByLibrary.simpleMessage(
+      "Salvati nella cache/Offline",
+    ),
+    "cancel": MessageLookupByLibrary.simpleMessage("Annulla"),
+    "cancelTimer": MessageLookupByLibrary.simpleMessage("Elimina Timer"),
+    "cancelTimerAlert": MessageLookupByLibrary.simpleMessage(
+      "Timer di riposo annullato",
+    ),
+    "clearImgCache": MessageLookupByLibrary.simpleMessage(
+      "Elimina cache immagini",
+    ),
+    "clearImgCacheAlert": MessageLookupByLibrary.simpleMessage(
+      "Cache immagini eliminate correttamente",
+    ),
+    "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
+      "Fare clic qui per cancellare le miniature/immagini memorizzate nella cache. (Non è consigliabile, a meno che non si vogliano aggiornare i dati delle immagini nella cache)",
+    ),
+    "close": MessageLookupByLibrary.simpleMessage("Chiudi"),
+    "closeApp": MessageLookupByLibrary.simpleMessage("Chiudi App"),
+    "communityplaylists": MessageLookupByLibrary.simpleMessage(
+      "Playlist della community",
+    ),
+    "content": MessageLookupByLibrary.simpleMessage("Contenuto"),
+    "create": MessageLookupByLibrary.simpleMessage("Crea"),
+    "createnAdd": MessageLookupByLibrary.simpleMessage("Crea & aggiungi"),
+    "customIns": MessageLookupByLibrary.simpleMessage("Istanza personalizzata"),
+    "customInsSelectMsg": MessageLookupByLibrary.simpleMessage(
+      "Selezionare l\'istanza personalizzata",
+    ),
+    "dark": MessageLookupByLibrary.simpleMessage("Scuro"),
+    "deleteDownloadData": MessageLookupByLibrary.simpleMessage(
+      "Rimuovi dagli scaricati",
+    ),
+    "deleteDownloadedDataAlert": MessageLookupByLibrary.simpleMessage(
+      "Correttamente rimossa dai file scaricati!",
+    ),
+    "disableTransitionAnimation": MessageLookupByLibrary.simpleMessage(
+      "Disabilita le animazioni di transizione",
+    ),
+    "disableTransitionAnimationDes": MessageLookupByLibrary.simpleMessage(
+      "Attivare questa opzione per disabilitare l\'animazione di transizione delle schede",
+    ),
+    "disabled": MessageLookupByLibrary.simpleMessage("Disabilitato"),
+    "discover": MessageLookupByLibrary.simpleMessage("Scopri"),
+    "dismiss": MessageLookupByLibrary.simpleMessage("Chiudi"),
+    "dontShowInfoAgain": MessageLookupByLibrary.simpleMessage(
+      "Non mostrare questa informazione di nuovo",
+    ),
+    "downFilesFound": MessageLookupByLibrary.simpleMessage(
+      "File scaricati trovati",
+    ),
+    "download": MessageLookupByLibrary.simpleMessage("Download"),
+    "downloadError2": MessageLookupByLibrary.simpleMessage(
+      "Il brano richiesto non è scaricabile a causa di una restrizione del server. È possibile riprovare",
+    ),
+    "downloadError3": MessageLookupByLibrary.simpleMessage(
+      "Download fallito a causa di un errore di rete/connessione! Riprovare",
+    ),
+    "downloadLocation": MessageLookupByLibrary.simpleMessage(
+      "Locazione download",
+    ),
+    "downloadingFormat": MessageLookupByLibrary.simpleMessage(
+      "Formato di Download File",
+    ),
+    "downloadingFormatDes": MessageLookupByLibrary.simpleMessage(
+      "Seleziona il formato di download file, \"Opus\" fornirà la miglior qualità",
+    ),
+    "downloads": MessageLookupByLibrary.simpleMessage("Scaricati"),
+    "duration": MessageLookupByLibrary.simpleMessage("Durata"),
+    "dynamic": MessageLookupByLibrary.simpleMessage("Dinamico"),
+    "emptyPlaylist": MessageLookupByLibrary.simpleMessage("Playlist vuota!"),
+    "enableBottomNav": MessageLookupByLibrary.simpleMessage(
+      "Barra di navigazione inferiore",
+    ),
+    "enableBottomNavDes": MessageLookupByLibrary.simpleMessage(
+      "Abilita la barra di navigazione inferiore",
+    ),
+    "enableSlidableAction": MessageLookupByLibrary.simpleMessage(
+      "Abilita le azioni scorrevoli",
+    ),
+    "enableSlidableActionDes": MessageLookupByLibrary.simpleMessage(
+      "Abilita le azioni scorrevoli sul riquadro del brano",
+    ),
+    "enabled": MessageLookupByLibrary.simpleMessage("Abilitato"),
+    "endOfThisSong": MessageLookupByLibrary.simpleMessage("Fine della canzone"),
+    "enqueueAll": MessageLookupByLibrary.simpleMessage("Metti in coda tutte"),
+    "enqueueSong": MessageLookupByLibrary.simpleMessage(
+      "Metti in coda la canzone",
+    ),
+    "equalizer": MessageLookupByLibrary.simpleMessage("Equalizzatore"),
+    "equalizerDes": MessageLookupByLibrary.simpleMessage(
+      "Apri l\'equalizzatore di sistema",
+    ),
+    "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
+      "C\'è stato un errore!",
+    ),
+    "export": MessageLookupByLibrary.simpleMessage("Esporta"),
+    "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
+      "Esporta file scaricati",
+    ),
+    "exportDowloadedFilesDes": MessageLookupByLibrary.simpleMessage(
+      "Clicca qui per esportare i file scaricati da una cartalla inApp ad una cartella esterna",
+    ),
+    "exportError": MessageLookupByLibrary.simpleMessage(
+      "Errore nell\'esportazione della playlist",
+    ),
+    "exportErrorFormat": MessageLookupByLibrary.simpleMessage(
+      "Errore nel formattare dati playlist",
+    ),
+    "exportErrorPermission": MessageLookupByLibrary.simpleMessage(
+      "Permesso negato durante l\'esportazione",
+    ),
+    "exportErrorStorage": MessageLookupByLibrary.simpleMessage(
+      "Spazio non sufficiente",
+    ),
+    "exportMsg": MessageLookupByLibrary.simpleMessage(
+      "File esportati correttamente",
+    ),
+    "exportPlaylist": MessageLookupByLibrary.simpleMessage("Esporta Playlist"),
+    "exportPlaylistCsv": MessageLookupByLibrary.simpleMessage(
+      "Esporta playlist come CSV",
+    ),
+    "exportPlaylistCsvSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Impossibile importare qui",
+    ),
+    "exportPlaylistJson": MessageLookupByLibrary.simpleMessage(
+      "Esporta playlist come JSON",
+    ),
+    "exportPlaylistJsonSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Questo formato non può essere importato",
+    ),
+    "exportToYouTubeMusic": MessageLookupByLibrary.simpleMessage(
+      "Esporta verso Youtube Music",
+    ),
+    "exportToYouTubeMusicSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Sposterà la tua playlist (meno di 50 brani) nella coda corrente, non dimenticare di aggiungere alla playlist/salvare dopo aver aperto YTMusic",
+    ),
+    "exportedFileLocation": MessageLookupByLibrary.simpleMessage(
+      "Locazione dei file scaricati esportati",
+    ),
+    "exporting": MessageLookupByLibrary.simpleMessage("In Esportazione..."),
+    "exportingPlaylist": MessageLookupByLibrary.simpleMessage(
+      "Esportando la playlist...",
+    ),
+    "favorites": MessageLookupByLibrary.simpleMessage("Preferiti"),
+    "featuredplaylists": MessageLookupByLibrary.simpleMessage(
+      "Playlist in evidenza",
+    ),
+    "fileNotFound": MessageLookupByLibrary.simpleMessage("File non trovato"),
+    "for1": MessageLookupByLibrary.simpleMessage("per"),
+    "gesture": MessageLookupByLibrary.simpleMessage("Gesto"),
+    "github": MessageLookupByLibrary.simpleMessage("GitHub"),
+    "githubDes": MessageLookupByLibrary.simpleMessage(
+      "Vedi il codice sorgente su GitHub.\nSe ti piace il progetto, non dimenticare di lasciare una ⭐",
+    ),
+    "goToAlbum": MessageLookupByLibrary.simpleMessage("Vai all\'album"),
+    "goToDownloadPage": MessageLookupByLibrary.simpleMessage(
+      "Clicca qui per andare alla pagina file scaricati",
+    ),
+    "high": MessageLookupByLibrary.simpleMessage("Alto"),
+    "hintApiUrl": MessageLookupByLibrary.simpleMessage(
+      "API URL dell\'istanza Piped",
+    ),
+    "home": MessageLookupByLibrary.simpleMessage("Pagina principale"),
+    "homeContentCount": MessageLookupByLibrary.simpleMessage(
+      "Numero di contenuti in Home",
+    ),
+    "homeContentCountDes": MessageLookupByLibrary.simpleMessage(
+      "Seleziona il numero di contenuti nella Home (approssimativo). Meno contenuti porterà ad avere un loading più veloce",
+    ),
+    "id": MessageLookupByLibrary.simpleMessage("Id"),
+    "ignoreBatOpt": MessageLookupByLibrary.simpleMessage(
+      "Ignora ottimizzazioni batteria",
+    ),
+    "ignoreBatOptDes": MessageLookupByLibrary.simpleMessage(
+      "In caso di problemi con notifiche o la riproduzione si interrompe a causa dell\'ottimizzazione sistema, abilita questa funzione",
+    ),
+    "importError": MessageLookupByLibrary.simpleMessage(
+      "Errore nell\'importazione della playlist",
+    ),
+    "importErrorDatabase": MessageLookupByLibrary.simpleMessage(
+      "Errore nel salvataggio sul database",
+    ),
+    "importErrorFileAccess": MessageLookupByLibrary.simpleMessage(
+      "Accesso negato al file selezionato",
+    ),
+    "importErrorFormat": MessageLookupByLibrary.simpleMessage(
+      "Formato file invalido",
+    ),
+    "importLargeFileNote": MessageLookupByLibrary.simpleMessage(
+      "Nota: Playlist grandi potrebbero richiedere più tempo per importare",
+    ),
+    "importPlaylist": MessageLookupByLibrary.simpleMessage("Importa Playlist"),
+    "importPlaylistDesc": MessageLookupByLibrary.simpleMessage(
+      "Seleziona un file playlist JSON esportato precedentemente da importare",
+    ),
+    "importingPlaylist": MessageLookupByLibrary.simpleMessage(
+      "Importando la playlist...",
+    ),
+    "includeDownloadedFiles": MessageLookupByLibrary.simpleMessage(
+      "Includere i file dei brani scaricati",
+    ),
+    "invalidPlaylistFile": MessageLookupByLibrary.simpleMessage(
+      "Struttura file playlist invalida",
+    ),
+    "items": MessageLookupByLibrary.simpleMessage("elementi"),
+    "keepScreenOnWhilePlaying": MessageLookupByLibrary.simpleMessage(
+      "Mantieni lo schermo attivo durante la riproduzione",
+    ),
+    "keepScreenOnWhilePlayingDes": MessageLookupByLibrary.simpleMessage(
+      "Se abilitato, lo schermo del dispositivo resterà acceso mentre la musica viene riprodotta",
+    ),
+    "language": MessageLookupByLibrary.simpleMessage("Lingua"),
+    "languageDes": MessageLookupByLibrary.simpleMessage("Seleziona lingua App"),
+    "letsStrart": MessageLookupByLibrary.simpleMessage("Iniziamo.."),
+    "libAlbums": MessageLookupByLibrary.simpleMessage("Album della libreria"),
+    "libArtists": MessageLookupByLibrary.simpleMessage(
+      "Artisti della libreria",
+    ),
+    "libPlaylists": MessageLookupByLibrary.simpleMessage(
+      "Playlist della libreria",
+    ),
+    "libSongs": MessageLookupByLibrary.simpleMessage("Brani della libreria"),
+    "library": MessageLookupByLibrary.simpleMessage("Libreria"),
+    "light": MessageLookupByLibrary.simpleMessage("Chiaro"),
+    "link": MessageLookupByLibrary.simpleMessage("Collega"),
+    "linkAlert": MessageLookupByLibrary.simpleMessage(
+      "Collegato correttamente!",
+    ),
+    "linkCopied": MessageLookupByLibrary.simpleMessage(
+      "Link copiato negli appunti",
+    ),
+    "linkPipedDes": MessageLookupByLibrary.simpleMessage(
+      "Collegamento con piped per le playlist",
+    ),
+    "local": MessageLookupByLibrary.simpleMessage("Locale"),
+    "loudnessDb": MessageLookupByLibrary.simpleMessage("LoudnessDb"),
+    "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
+      "Normalizzazione del volume",
+    ),
+    "loudnessNormalizationDes": MessageLookupByLibrary.simpleMessage(
+      "Imposta lo stesso livello di loudness per tutti i brani (sperimentale) (non funziona con i brani scaricati con la versione precedente (< v1.10.0))",
+    ),
+    "low": MessageLookupByLibrary.simpleMessage("Basso"),
+    "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Testo non disponibile!",
+    ),
+    "minutes": MessageLookupByLibrary.simpleMessage("minuti"),
+    "misc": MessageLookupByLibrary.simpleMessage("Varie"),
+    "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
+      "Musica e riproduzione",
+    ),
+    "networkError": MessageLookupByLibrary.simpleMessage(
+      "Errore di rete! Controllare la connessione di rete.",
+    ),
+    "networkError1": MessageLookupByLibrary.simpleMessage(
+      "Oops errore di rete!",
+    ),
+    "newVersionAvailable": MessageLookupByLibrary.simpleMessage(
+      "Nuova versione disponibile!",
+    ),
+    "noBookmarks": MessageLookupByLibrary.simpleMessage("Nessun segnalibro!"),
+    "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
+      "Non hai una nessuna lib per le playlist!",
+    ),
+    "noOfflineSong": MessageLookupByLibrary.simpleMessage(
+      "Nessun brano offline!",
+    ),
+    "nomatch": MessageLookupByLibrary.simpleMessage(
+      "Nessuna corrispondenza trovata",
+    ),
+    "notaSongVideo": MessageLookupByLibrary.simpleMessage(
+      "Non è una canzone/Video musicale!",
+    ),
+    "notaValidLink": MessageLookupByLibrary.simpleMessage(
+      "Non è un link valido!",
+    ),
+    "openIn": MessageLookupByLibrary.simpleMessage("Apri in"),
+    "operationFailed": MessageLookupByLibrary.simpleMessage(
+      "Operazione fallita",
+    ),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "personalisation": MessageLookupByLibrary.simpleMessage(
+      "Personalizzazione",
+    ),
+    "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
+      "Piped playlist sincronizzata!",
+    ),
+    "plain": MessageLookupByLibrary.simpleMessage("Semplice"),
+    "playNext": MessageLookupByLibrary.simpleMessage("Riproduci il prossimo"),
+    "playerUi": MessageLookupByLibrary.simpleMessage(
+      "Interfaccia utente del lettore",
+    ),
+    "playerUiDes": MessageLookupByLibrary.simpleMessage(
+      "Seleziona l\'interfaccia utente del lettore",
+    ),
+    "playingfromAlbum": MessageLookupByLibrary.simpleMessage("DALL\'ALBUM"),
+    "playingfromArtist": MessageLookupByLibrary.simpleMessage("DALL\'ARTISTA"),
+    "playingfromPlaylist": MessageLookupByLibrary.simpleMessage(
+      "DALLA PLAYLIST",
+    ),
+    "playingfromSelection": MessageLookupByLibrary.simpleMessage(
+      "DALLA SELEZIONE",
+    ),
+    "playlistBlacklistAlert": MessageLookupByLibrary.simpleMessage(
+      "Playlist inserita nella lista di blocco!",
+    ),
+    "playlistBookmarkAddAlert": MessageLookupByLibrary.simpleMessage(
+      "Playlist salvata nei segnalibri!",
+    ),
+    "playlistBookmarkRemoveAlert": MessageLookupByLibrary.simpleMessage(
+      "Segnalibro della playlist rimosso!",
+    ),
+    "playlistCreatedAlert": MessageLookupByLibrary.simpleMessage(
+      "Playlist creata!",
+    ),
+    "playlistCreatednsongAddedAlert": MessageLookupByLibrary.simpleMessage(
+      "Playlist creata & canzone aggiunta!",
+    ),
+    "playlistExportedMsg": MessageLookupByLibrary.simpleMessage(
+      "Playlist esportata con successo a",
+    ),
+    "playlistImportedMsg": MessageLookupByLibrary.simpleMessage(
+      "Playlist importata con successo",
+    ),
+    "playlistRemovedAlert": MessageLookupByLibrary.simpleMessage(
+      "Playlist rimossa!",
+    ),
+    "playlistRenameAlert": MessageLookupByLibrary.simpleMessage(
+      "Rinominata correttamente!",
+    ),
+    "playlists": MessageLookupByLibrary.simpleMessage("Playlist"),
+    "playnextMsg": MessageLookupByLibrary.simpleMessage("Prossimo brano"),
+    "processFiles": MessageLookupByLibrary.simpleMessage(
+      "Elaborazione dei file...",
+    ),
+    "queueLoop": MessageLookupByLibrary.simpleMessage("Ciclo di coda"),
+    "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
+      "La modalità di riproduzione in loop non può essere disattivata quando è abilitata la modalità casuale.",
+    ),
+    "queueLoopNotDisMsg2": MessageLookupByLibrary.simpleMessage(
+      "La modalità loop di coda non può essere abilitata in modalità radio.",
+    ),
+    "queueShufflingDeniedMsg": MessageLookupByLibrary.simpleMessage(
+      "La coda non può essere rimescolata quando è attivata la modalità shuffle",
+    ),
+    "queuerearrangingDeniedMsg": MessageLookupByLibrary.simpleMessage(
+      "La coda non può essere riorganizzata quando è attivata la modalità shuffle",
+    ),
+    "quickpicks": MessageLookupByLibrary.simpleMessage("Selezioni rapide"),
+    "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "La radio non è disponibile per questo artista!",
+    ),
+    "randomRadio": MessageLookupByLibrary.simpleMessage("Radio casuale"),
+    "randomSelection": MessageLookupByLibrary.simpleMessage(
+      "Selezione casuale",
+    ),
+    "reArrangePlaylist": MessageLookupByLibrary.simpleMessage(
+      "Riordina Playlist",
+    ),
+    "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Riordina canzoni"),
+    "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
+      "Ascoltati di recente",
+    ),
+    "removeFromLib": MessageLookupByLibrary.simpleMessage(
+      "Rimuovi dalla Libreria Canzoni",
+    ),
+    "removeFromPlaylist": MessageLookupByLibrary.simpleMessage(
+      "Rimuovi dalla playlist",
+    ),
+    "removeFromQueue": MessageLookupByLibrary.simpleMessage(
+      "Rimuovi dalla coda",
+    ),
+    "removeMultiple": MessageLookupByLibrary.simpleMessage(
+      "Rimuovi multiple canzoni",
+    ),
+    "removePlaylist": MessageLookupByLibrary.simpleMessage("Rimuovi Playlist"),
+    "rename": MessageLookupByLibrary.simpleMessage("Rinomina"),
+    "renamePlaylist": MessageLookupByLibrary.simpleMessage("Rinomina Playlist"),
+    "reset": MessageLookupByLibrary.simpleMessage("Reset"),
+    "resetToDefault": MessageLookupByLibrary.simpleMessage(
+      "Ripristina le impostazioni iniziali",
+    ),
+    "resetToDefaultDes": MessageLookupByLibrary.simpleMessage(
+      "Ripristina le impostazioni dell\'app ai valori iniziali (riavvio necessario)",
+    ),
+    "resetToDefaultMsg": MessageLookupByLibrary.simpleMessage(
+      "Ripristino impostazioni completato. Riavviare l\'app",
+    ),
+    "resetblacklistedplaylist": MessageLookupByLibrary.simpleMessage(
+      "Ripristino delle playlist in blacklist",
+    ),
+    "resetblacklistedplaylistDes": MessageLookupByLibrary.simpleMessage(
+      "Azzeramento di tutte le playlist in blacklist",
+    ),
+    "restartApp": MessageLookupByLibrary.simpleMessage("Riavvi App"),
+    "restore": MessageLookupByLibrary.simpleMessage("Ripristina"),
+    "restoreAppData": MessageLookupByLibrary.simpleMessage(
+      "Ripristino dei dati dell\'app",
+    ),
+    "restoreLastPlaybackSession": MessageLookupByLibrary.simpleMessage(
+      "Ripristina l\'ultima sessione di riproduzione",
+    ),
+    "restoreLastPlaybackSessionDes": MessageLookupByLibrary.simpleMessage(
+      "Ripristina automaticamente l\'ultima sessione di riproduzione all\'avvio app",
+    ),
+    "restoreMsg": MessageLookupByLibrary.simpleMessage(
+      "Ripristino riuscito!\nLe modifiche vengono applicate al riavvio",
+    ),
+    "restoreSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
+      "Ripristina tutte le impostazioni, i dati di accesso e le playlist da un file di backup. Sovrascrive tutti i dati attuali",
+    ),
+    "restoring": MessageLookupByLibrary.simpleMessage("Ripristino..."),
+    "results": MessageLookupByLibrary.simpleMessage("Risultati"),
+    "retry": MessageLookupByLibrary.simpleMessage("Riprova!"),
+    "scanning": MessageLookupByLibrary.simpleMessage("In Scansione..."),
+    "search": MessageLookupByLibrary.simpleMessage("Cerca"),
+    "searchDes": MessageLookupByLibrary.simpleMessage(
+      "Canzoni, Playlist, Album o Artisti",
+    ),
+    "searchRes": MessageLookupByLibrary.simpleMessage("Risultati ricerca"),
+    "selectAll": MessageLookupByLibrary.simpleMessage("Seleziona Tutto"),
+    "selectAuthIns": MessageLookupByLibrary.simpleMessage(
+      "Selezionare l\'istanza di autorizzazione",
+    ),
+    "selectAuthInsMsg": MessageLookupByLibrary.simpleMessage(
+      "Selezionare l\'istanza di autenticazione!",
+    ),
+    "selectFile": MessageLookupByLibrary.simpleMessage("Seleziona File"),
+    "selectSongs": MessageLookupByLibrary.simpleMessage("Seleziona canzoni"),
+    "setDiscoverContent": MessageLookupByLibrary.simpleMessage(
+      "Impostare la scoperta dei contenuti",
+    ),
+    "settings": MessageLookupByLibrary.simpleMessage("Impostazioni"),
+    "shareSong": MessageLookupByLibrary.simpleMessage("Condividi la canzone"),
+    "shuffleQueue": MessageLookupByLibrary.simpleMessage(
+      "Coda di riproduzione casuale",
+    ),
+    "singles": MessageLookupByLibrary.simpleMessage("Singoli"),
+    "skipSilence": MessageLookupByLibrary.simpleMessage("Salta Silenzio"),
+    "skipSilenceDes": MessageLookupByLibrary.simpleMessage(
+      "Il silenzio sarà saltato nella riproduzione musicale",
+    ),
+    "sleepTimeSetAlert": MessageLookupByLibrary.simpleMessage(
+      "Il timer del riposo è impostato",
+    ),
+    "sleepTimer": MessageLookupByLibrary.simpleMessage("Timer spegnimento"),
+    "songAddedToPlaylistAlert": MessageLookupByLibrary.simpleMessage(
+      "Canzone aggiunta alla playlist!",
+    ),
+    "songAlreadyExists": MessageLookupByLibrary.simpleMessage(
+      "Canzone già esistente!",
+    ),
+    "songAlreadyOfflineAlert": MessageLookupByLibrary.simpleMessage(
+      "Canzone già immessa offline tramite cache",
+    ),
+    "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
+      "Canzone messa in coda!",
+    ),
+    "songInfo": MessageLookupByLibrary.simpleMessage("Info sulla canzone"),
+    "songNotPlayable": MessageLookupByLibrary.simpleMessage(
+      "La canzone non è riproducibile a causa di una restrizione del server!",
+    ),
+    "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Rimossa da"),
+    "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
+      "Rimossa dalla coda!",
+    ),
+    "songRemovedfromQueueCurrSong": MessageLookupByLibrary.simpleMessage(
+      "Non puoi rimuovere la canzone attualmente in riproduzione",
+    ),
+    "songs": MessageLookupByLibrary.simpleMessage("Canzoni"),
+    "standard": MessageLookupByLibrary.simpleMessage("Standard"),
+    "startRadio": MessageLookupByLibrary.simpleMessage("Inizia Radio"),
+    "status": MessageLookupByLibrary.simpleMessage("Stato"),
+    "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(
+      "Arresto della musica quand il processo viene chiuso",
+    ),
+    "stopMusicOnTaskClearDes": MessageLookupByLibrary.simpleMessage(
+      "La riproduzione musicale si interrompe quando l\'app terminata dal task manager",
+    ),
+    "streamingQuality": MessageLookupByLibrary.simpleMessage(
+      "Qualità streaming",
+    ),
+    "streamingQualityDes": MessageLookupByLibrary.simpleMessage(
+      "Qualità dello streaming musica",
+    ),
+    "subscribers": MessageLookupByLibrary.simpleMessage("Iscritti"),
+    "synced": MessageLookupByLibrary.simpleMessage("Sincronizzato"),
+    "syncedLyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Testo sincronizzato non disponibile!",
+    ),
+    "systemDefault": MessageLookupByLibrary.simpleMessage("Default di sistema"),
+    "themeMode": MessageLookupByLibrary.simpleMessage("Modalità tema"),
+    "title": MessageLookupByLibrary.simpleMessage("Titolo"),
+    "topmusicvideos": MessageLookupByLibrary.simpleMessage(
+      "Top video musicali",
+    ),
+    "trending": MessageLookupByLibrary.simpleMessage("Tendenza"),
+    "unLink": MessageLookupByLibrary.simpleMessage("Scollega"),
+    "unlinkAlert": MessageLookupByLibrary.simpleMessage(
+      "Scollegato correttamente!",
+    ),
+    "upNext": MessageLookupByLibrary.simpleMessage("Successive"),
+    "urlSearchDes": MessageLookupByLibrary.simpleMessage(
+      "Url rilevato Cliccando su di esso si apre/riproduce il contenuto associato",
+    ),
+    "username": MessageLookupByLibrary.simpleMessage("Nome utente"),
+    "videos": MessageLookupByLibrary.simpleMessage("Video"),
+    "viewAll": MessageLookupByLibrary.simpleMessage("Vedi tutti"),
+    "viewArtist": MessageLookupByLibrary.simpleMessage("Vedi Artista"),
+  };
+}

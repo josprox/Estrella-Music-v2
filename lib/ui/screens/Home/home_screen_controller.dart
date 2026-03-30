@@ -69,16 +69,16 @@ class HomeScreenController extends GetxController {
       quickPicks.value = QuickPicks(
           quickPicksData.map((e) => MediaItemBuilder.fromJson(e)).toList(),
           title: quickPicksType);
-      middleContent.value = middleContentData
-          .map((e) => e["type"] == "Album Content"
-              ? AlbumContent.fromJson(e)
-              : PlaylistContent.fromJson(e))
-          .toList();
-      fixedContent.value = fixedContentData
-          .map((e) => e["type"] == "Album Content"
-              ? AlbumContent.fromJson(e)
-              : PlaylistContent.fromJson(e))
-          .toList();
+      middleContent.value = middleContentData.map((e) {
+        if (e["type"] == "Album Content") return AlbumContent.fromJson(e);
+        if (e["type"] == "QuickPicks Content") return QuickPicks.fromJson(e);
+        return PlaylistContent.fromJson(e);
+      }).toList();
+      fixedContent.value = fixedContentData.map((e) {
+        if (e["type"] == "Album Content") return AlbumContent.fromJson(e);
+        if (e["type"] == "QuickPicks Content") return QuickPicks.fromJson(e);
+        return PlaylistContent.fromJson(e);
+      }).toList();
       isContentFetched.value = true;
       printINFO("Loaded from offline db");
       return true;
@@ -379,6 +379,8 @@ class HomeScreenController extends GetxController {
       return content.map((e) {
         if (e.runtimeType == AlbumContent) {
           return (e as AlbumContent).toJson();
+        } else if (e.runtimeType == QuickPicks) {
+          return (e as QuickPicks).toJson();
         } else {
           return (e as PlaylistContent).toJson();
         }

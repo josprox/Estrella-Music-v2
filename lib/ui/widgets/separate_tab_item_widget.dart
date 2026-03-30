@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:harmonymusic/ui/widgets/modification_list.dart';
+import '../../utils/l10n_extensions.dart';
 
 import '../screens/Artists/artist_screen_controller.dart';
 import '../screens/Search/search_result_screen_controller.dart';
 import 'list_widget.dart';
 import 'loader.dart';
 import 'sort_widget.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SeparateTabItemWidget extends StatelessWidget {
   const SeparateTabItemWidget(
@@ -50,7 +52,7 @@ class SeparateTabItemWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    title.toLowerCase().removeAllWhitespace.tr,
+                    title.t,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   isCompleteList
@@ -59,7 +61,7 @@ class SeparateTabItemWidget extends StatelessWidget {
                           onPressed: () {
                             searchResController!.viewAllCallback(title);
                           },
-                          child: Text("viewAll".tr,
+                          child: Text(S.current.viewAll,
                               style:
                                   Theme.of(Get.context!).textTheme.titleSmall))
                 ],
@@ -74,7 +76,7 @@ class SeparateTabItemWidget extends StatelessWidget {
                     isSearchFeatureRequired: artistController != null,
                     titleLeftPadding: 9,
                     itemCountTitle:
-                        "${isResultWidget ? (searchResController?.separatedResultContent[title] ?? []).length : (artistController?.sepataredContent[title] != null ? artistController?.sepataredContent[title]['results'] : []).length} ${"items".tr}",
+                        "${isResultWidget ? (searchResController?.separatedResultContent[title] ?? []).length : (artistController?.sepataredContent[title] != null ? artistController?.sepataredContent[title]['results'] : []).length} ${S.current.items}",
                     requiredSortTypes: buildSortTypeSet(
                         title == 'Albums' || title == "Singles",
                         title == "Songs" || title == "Videos"),

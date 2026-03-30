@@ -81,11 +81,11 @@ class FullLyricsPage extends StatelessWidget {
                   ),
                   
                   // Lyrics content
-                  Expanded(
+                  const Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      padding: EdgeInsets.symmetric(horizontal: 24),
                       child: LyricsWidget(
-                        padding: const EdgeInsets.symmetric(vertical: 40),
+                        padding: EdgeInsets.symmetric(vertical: 40),
                         isFull: true,
                       ),
                     ),

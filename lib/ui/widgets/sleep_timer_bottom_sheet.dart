@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '/ui/player/player_controller.dart';
 import 'snackbar.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SleepTimerBottomSheet extends StatelessWidget {
   const SleepTimerBottomSheet({super.key});
@@ -18,7 +19,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.timer),
-              title: Text("sleepTimer".tr),
+              title: Text(S.current.sleepTimer),
             ),
             const Divider(),
             if (playerController.isSleepTimerActive.isTrue)
@@ -78,14 +79,14 @@ class SleepTimerBottomSheet extends StatelessWidget {
                                   .color!,
                             ),
                           ),
-                          child: Text("add5Minutes".tr)),
+                          child: Text(S.current.add5Minutes)),
                     OutlinedButton(
                         onPressed: () {
                           Future.delayed(const Duration(milliseconds: 200),
                               playerController.cancelSleepTimer);
                           Navigator.of(context).pop();
                           ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                              context, "cancelTimerAlert".tr,
+                              context, S.current.cancelTimerAlert,
                               size: SanckBarSize.BIG));
                         },
                         style: OutlinedButton.styleFrom(
@@ -96,7 +97,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
                                 Theme.of(context).textTheme.titleMedium!.color!,
                           ),
                         ),
-                        child: Text("cancelTimer".tr))
+                        child: Text(S.current.cancelTimer))
                   ],
                 ),
               ),
@@ -117,13 +118,13 @@ class SleepTimerBottomSheet extends StatelessWidget {
                   playerController.startSleepTimer(dur);
                 });
                 ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                    context, "sleepTimeSetAlert".tr,
+                    context, S.current.sleepTimeSetAlert,
                     size: SanckBarSize.BIG));
               },
               leading: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
-                  "$dur ${'minutes'.tr}",
+                  "$dur ${S.current.minutes}",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
@@ -137,7 +138,7 @@ class SleepTimerBottomSheet extends StatelessWidget {
       leading: Padding(
         padding: const EdgeInsets.only(left: 10.0),
         child: Text(
-          "endOfThisSong".tr,
+          S.current.endOfThisSong,
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),

@@ -8,6 +8,7 @@ import '/models/artist.dart';
 // import '/models/playlist.dart';
 import '/ui/widgets/content_list_widget.dart';
 import 'separate_tab_item_widget.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class ResultWidget extends StatelessWidget {
   const ResultWidget({super.key, this.isv2Used = false});
@@ -31,7 +32,7 @@ class ResultWidget extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "searchRes".tr,
+                          S.current.searchRes,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
@@ -39,7 +40,7 @@ class ResultWidget extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "${"for1".tr} \"${searchResScrController.queryString.value}\"",
+                          "${S.current.for1} \"${searchResScrController.queryString.value}\"",
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),

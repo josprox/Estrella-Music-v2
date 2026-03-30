@@ -13,6 +13,7 @@ import 'add_to_playlist.dart';
 import 'image_widget.dart';
 import 'snackbar.dart';
 import 'songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
   const SongListTile(
@@ -72,7 +73,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
               playerController.enqueueSong(song).whenComplete(() {
                 if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                    context, 'songEnqueueAlert'.tr,
+                    context, S.current.songEnqueueAlert,
                     size: SanckBarSize.MEDIUM));
               });
             },
@@ -85,7 +86,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
             onPressed: (_) {
               playerController.playNext(song);
               ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                  context, '${'playnextMsg'.tr} ${song.title}',
+                  context, '${S.current.playnextMsg} ${song.title}',
                   size: SanckBarSize.BIG));
             },
             backgroundColor: cs.tertiaryContainer,

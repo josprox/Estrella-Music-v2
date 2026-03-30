@@ -733,7 +733,7 @@ class MusicServices extends getx.GetxService {
               } else if (type == 'video') {
                 itemType = "Videos";
               } else {
-                itemType = (item.artist?.split(",")[0] ?? "Song") + "s";
+                itemType = "${item.artist?.split(",")[0] ?? "Song"}s";
               }
             } else {
               itemType = "${item.runtimeType}s";

@@ -20,6 +20,7 @@ import '../Settings/settings_screen.dart';
 import '/models/quick_picks.dart';
 
 import '/ui/theme/app_spacing.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -274,7 +275,7 @@ class _NetworkError extends StatelessWidget {
       child: Column(children: [
         Align(
           alignment: Alignment.topLeft,
-          child: Text('home'.tr, style: tt.headlineSmall),
+          child: Text(S.current.home, style: tt.headlineSmall),
         ),
         Expanded(
           child: Center(
@@ -284,7 +285,7 @@ class _NetworkError extends StatelessWidget {
                   Icon(Icons.wifi_off_rounded,
                       size: 64, color: cs.onSurface.withOpacity(0.3)),
                   const SizedBox(height: AppSpacing.lg),
-                  Text('networkError1'.tr,
+                  Text(S.current.networkError1,
                       style: tt.titleMedium?.copyWith(
                           color: cs.onSurface.withOpacity(0.6))),
                   const SizedBox(height: AppSpacing.xl),
@@ -310,7 +311,7 @@ class _NetworkError extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Text('retry'.tr,
+                      child: Text(S.current.retry,
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700)),

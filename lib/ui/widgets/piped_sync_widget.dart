@@ -4,6 +4,7 @@ import 'package:harmonymusic/utils/helper.dart';
 
 import '../screens/Library/library_controller.dart';
 import 'snackbar.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class PipedSyncWidget extends StatelessWidget {
   const PipedSyncWidget({super.key, required this.padding});
@@ -32,11 +33,11 @@ class PipedSyncWidget extends StatelessWidget {
                 librplstCntrller.controller.stop();
                 librplstCntrller.controller.reset();
                 ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-                    Get.context!, "pipedplstSyncAlert".tr,
+                    Get.context!, S.current.pipedplstSyncAlert,
                     size: SanckBarSize.MEDIUM));
               } catch (e) {
                 ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-                    Get.context!, "errorOccuredAlert".tr,
+                    Get.context!, S.current.errorOccuredAlert,
                     size: SanckBarSize.BIG));
                 printERROR(e);
               }

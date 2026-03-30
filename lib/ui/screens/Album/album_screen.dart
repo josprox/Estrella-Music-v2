@@ -16,6 +16,7 @@ import '../../widgets/song_list_tile.dart';
 import '../../widgets/songinfo_bottom_sheet.dart';
 import '../../widgets/sort_widget.dart';
 import 'album_screen_controller.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class AlbumScreen extends StatelessWidget {
   const AlbumScreen({super.key});
@@ -95,20 +96,6 @@ class AlbumScreen extends StatelessWidget {
                                       : BoxFit.fitWidth,
                                   width: landscape ? null : size.width,
                                   height: landscape ? size.height : null,
-                                  // placeholder: (context, n) => Align(
-                                  //   alignment:landscape?Alignment.centerLeft: Alignment.topCenter,
-                                  //   child: SizedBox(
-                                  //     width: landscape ? size.height : size.width,
-                                  //     height: landscape ? size.height : size.width,
-                                  //     child: Center(
-                                  //       child: Icon(Icons.album,
-                                  //           size: 150,
-                                  //           color: Theme.of(context)
-                                  //               .textTheme.titleSmall!.color
-                                  //         ),
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 )));
                       }))
                   : SizedBox(
@@ -130,7 +117,7 @@ class AlbumScreen extends StatelessWidget {
                         SizedBox(
                           width: 50,
                           child: IconButton(
-                              tooltip: "back".tr,
+                              tooltip: S.current.back,
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
@@ -192,8 +179,8 @@ class AlbumScreen extends StatelessWidget {
                                           Obx(() => IconButton(
                                             tooltip: albumController
                                                       .isAddedToLibrary.isFalse
-                                                  ? "addToLibrary".tr
-                                                  : "removeFromLibrary".tr,
+                                                  ? S.current.addToLibrary
+                                                  : S.current.removeFromLibrary,
                                               splashRadius: 10,
                                               onPressed: () {
                                                 final add = albumController
@@ -205,18 +192,14 @@ class AlbumScreen extends StatelessWidget {
                                                         add: add)
                                                     .then((value) {
                                                   if (!context.mounted) return;
-
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(snackbar(
                                                           context,
                                                           value
                                                               ? add
-                                                                  ? "albumBookmarkAddAlert"
-                                                                      .tr
-                                                                  : "albumBookmarkRemoveAlert"
-                                                                      .tr
-                                                              : "operationFailed"
-                                                                  .tr,
+                                                                  ? S.current.albumBookmarkAddAlert
+                                                                  : S.current.albumBookmarkRemoveAlert
+                                                              : S.current.operationFailed,
                                                           size: SanckBarSize
                                                               .MEDIUM));
                                                 });
@@ -227,7 +210,7 @@ class AlbumScreen extends StatelessWidget {
                                                   : Icons.bookmark_added))),
                                           // Play button
                                           IconButton(
-                                            tooltip: "play".tr,
+                                            tooltip: S.current.play,
                                               onPressed: () {
                                                 playerController
                                                     .playPlayListSong(
@@ -254,7 +237,7 @@ class AlbumScreen extends StatelessWidget {
                                               )),
                                           // Enqueue button
                                           IconButton(
-                                            tooltip: "enqueueAlbumSongs".tr,
+                                            tooltip: S.current.enqueueAlbumSongs,
                                               onPressed: () {
                                                 Get.find<PlayerController>()
                                                     .enqueueSongList(
@@ -266,8 +249,7 @@ class AlbumScreen extends StatelessWidget {
                                                             context)
                                                         .showSnackBar(snackbar(
                                                             context,
-                                                            "songEnqueueAlert"
-                                                                .tr,
+                                                            S.current.songEnqueueAlert,
                                                             size: SanckBarSize
                                                                 .MEDIUM));
                                                   }
@@ -280,14 +262,13 @@ class AlbumScreen extends StatelessWidget {
                                                     .titleMedium!
                                                     .color,
                                               )),
-
                                           // Download button
                                           GetX<Downloader>(
                                               builder: (controller) {
                                             final id = albumController
                                                 .album.value.browseId;
                                             return IconButton(
-                                              tooltip: "downloadAlbumSongs".tr,
+                                              tooltip: S.current.downloadAlbumSongs,
                                               onPressed: () {
                                                 if (albumController
                                                     .isDownloaded.isTrue) {
@@ -326,8 +307,8 @@ class AlbumScreen extends StatelessWidget {
                                                             const Center(
                                                                 child:
                                                                     LoadingIndicator(
-                                                              dimension: 30,
-                                                            ))
+                                                                dimension: 30,
+                                                              ))
                                                           ],
                                                         )
                                                       : controller.playlistQueue
@@ -351,19 +332,8 @@ class AlbumScreen extends StatelessWidget {
                                                               Icons.download),
                                             );
                                           }),
-
-                                          // if (albumController
-                                          //     .isAddedToLibrary.isTrue)
-                                          //   IconButton(
-                                          //       onPressed: () {
-                                          //         albumController
-                                          //             .syncPlaylistSongs();
-                                          //       },
-                                          //       icon: const Icon(
-                                          //           Icons.cloud_sync)),
-
                                           IconButton(
-                                            tooltip: "shareAlbum".tr,
+                                            tooltip: S.current.shareAlbum,
                                               visualDensity:
                                                   const VisualDensity(
                                                       vertical: -3),
@@ -431,7 +401,7 @@ class AlbumScreen extends StatelessWidget {
                                         albumController.isContentFetched.isFalse
                                             ? const LoadingIndicator()
                                             : Text(
-                                                "emptyPlaylist".tr,
+                                                S.current.emptyPlaylist,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .titleSmall,

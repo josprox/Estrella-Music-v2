@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 
 import 'loader.dart';
 import 'snackbar.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class SongDownloadButton extends StatelessWidget {
   const SongDownloadButton(
@@ -75,7 +76,7 @@ class SongDownloadButton extends StatelessWidget {
                             if (!context.mounted) return;
                             Navigator.of(context).pop();
                             ScaffoldMessenger.of(context).showSnackBar(snackbar(
-                                context, "songAlreadyOfflineAlert".tr,
+                                context, S.current.songAlreadyOfflineAlert,
                                 size: SanckBarSize.BIG));
                           } else {
                             downloader.download(song);

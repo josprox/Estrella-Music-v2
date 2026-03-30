@@ -7,6 +7,7 @@ import 'package:harmonymusic/ui/widgets/loader.dart';
 
 import '../../services/permission_service.dart';
 import 'common_dialog_widget.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class ExportFileDialog extends StatelessWidget {
   const ExportFileDialog({super.key});
@@ -25,7 +26,7 @@ class ExportFileDialog extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(bottom: 10.0, top: 10),
                 child: Text(
-                  "exportDowloadedFiles".tr,
+                  S.current.exportDowloadedFiles,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
@@ -35,7 +36,7 @@ class ExportFileDialog extends StatelessWidget {
                   child: Obx(() => exportFileDialogController.exportProgress
                               .toInt() ==
                           exportFileDialogController.filesToExport.length
-                      ? Text("exportMsg".tr)
+                      ? Text(S.current.exportMsg)
                       : exportFileDialogController.exportRunning.isTrue
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,12 +48,12 @@ class ExportFileDialog extends StatelessWidget {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                Text("exporting".tr)
+                                Text(S.current.exporting)
                               ],
                             )
                           : exportFileDialogController.ready.isTrue
                               ? Text(
-                                  "${exportFileDialogController.filesToExport.length} ${"downFilesFound".tr}")
+                                  "${exportFileDialogController.filesToExport.length} ${S.current.downFilesFound}")
                               : exportFileDialogController.scanning.isTrue
                                   ? Column(
                                       mainAxisAlignment:
@@ -62,7 +63,7 @@ class ExportFileDialog extends StatelessWidget {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        Text("scanning".tr)
+                                        Text(S.current.scanning)
                                       ],
                                     )
                                   : const SizedBox()),
@@ -92,8 +93,8 @@ class ExportFileDialog extends StatelessWidget {
                             exportFileDialogController.exportProgress.toInt() ==
                                     exportFileDialogController
                                         .filesToExport.length
-                                ? "close".tr
-                                : "export".tr,
+                                ? S.current.close
+                                : S.current.export,
                             style:
                                 TextStyle(color: Theme.of(context).canvasColor),
                           ),

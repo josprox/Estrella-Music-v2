@@ -1,0 +1,135 @@
+[
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Hola mundo",
+      "key": "helloWorld",
+      "desc": "Este texto es opcional",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-03-29T21:52:20.553902",
+    "platform": "flutter"
+  }
+]

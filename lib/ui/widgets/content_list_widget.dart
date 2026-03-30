@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../screens/Search/search_result_screen_controller.dart';
 import '/ui/widgets/content_list_widget_item.dart';
 import '/ui/theme/app_spacing.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class ContentListWidget extends StatelessWidget {
   /// ContentListWidget renders a horizontal-scroll section of Albums or Playlists
@@ -73,7 +74,7 @@ class ContentListWidget extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      'viewAll'.tr,
+                      S.current.viewAll,
                       style: tt.labelMedium?.copyWith(
                         color: cs.primary,
                         fontWeight: FontWeight.w600,

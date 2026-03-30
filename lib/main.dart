@@ -8,6 +8,8 @@ import 'package:liquid_tabbar_minimize/liquid_tabbar_minimize.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
 
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'generated/l10n.dart';
 import '/services/app_backup_service.dart';
 import '/services/auth_service.dart';
 import '/services/catalog_recovery_service.dart';
@@ -15,7 +17,6 @@ import '/services/cloud_backup_service.dart';
 import '/services/legacy_music_migration_service.dart';
 import '/services/user_data_bootstrap_service.dart';
 import '/ui/screens/Search/search_screen_controller.dart';
-import '/utils/get_localization.dart';
 import '/services/downloader.dart';
 import '/services/piped_service.dart';
 import 'utils/app_link_controller.dart';
@@ -36,6 +37,9 @@ Future<void> main() async {
     await dotenv.load(fileName: '.env');
   } catch (_) {}
   await initHive();
+  final appPrefs = await Hive.openBox('AppPrefs');
+  final appLang = appPrefs.get('currentAppLanguageCode') ?? Get.deviceLocale?.languageCode ?? "en";
+  await S.load(Locale(appLang));
   _setAppInitPrefs();
   startApplicationServices();
   Get.put<AudioHandler>(await initAudioService(), permanent: true);
@@ -57,12 +61,17 @@ class MyApp extends StatelessWidget {
         title: 'Harmony Music',
         home: const AuthGate(),
         debugShowCheckedModeBanner: false,
-        translations: Languages(),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         locale: (Hive.box("AppPrefs").get('currentAppLanguageCode') == null ||
                 Hive.box("AppPrefs").get('autoLanguage', defaultValue: true))
             ? Get.deviceLocale
             : Locale(Hive.box("AppPrefs").get('currentAppLanguageCode')),
-        fallbackLocale: const Locale("en"),
         navigatorObservers: [LiquidRouteObserver.instance],
         builder: (context, child) {
           final mQuery = MediaQuery.of(context);

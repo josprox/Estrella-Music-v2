@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:get/get.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 class PlaylingFrom {
   PlaylingFromType type;
@@ -11,18 +11,18 @@ class PlaylingFrom {
   get typeString {
     switch (type) {
       case PlaylingFromType.ALBUM:
-        return "playingfromAlbum".tr;
+        return S.current.playingfromAlbum;
       case PlaylingFromType.PLAYLIST:
-        return "playingfromPlaylist".tr;
+        return S.current.playingfromPlaylist;
       case PlaylingFromType.SELECTION:
-        return "playingfromSelection".tr;
+        return S.current.playingfromSelection;
       case PlaylingFromType.ARTIST:
-        return "playingfromArtist".tr;
+        return S.current.playingfromArtist;
     }
   }
 
   get nameString {
-    if (type == PlaylingFromType.SELECTION) return "randomSelection".tr;
+    if (type == PlaylingFromType.SELECTION) return S.current.randomSelection;
     return name;
   }
 }
