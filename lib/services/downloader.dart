@@ -27,9 +27,10 @@ class Downloader extends GetxService {
   RxMap<String, List<MediaItem>> playlistQueue =
       <String, List<MediaItem>>{}.obs;
   final currentPlaylistId = "".obs;
-  final songDownloadingProgress = 0.obs;
+  final songProgressMap = <String, int>{}.obs;
   final playlistDownloadingProgress = 0.obs;
   final isJobRunning = false.obs;
+  final int maxConcurrentDownloads = 3;
 
   RxList<MediaItem> songQueue = <MediaItem>[].obs;
 
@@ -128,25 +129,48 @@ class Downloader extends GetxService {
 
   Future<void> downloadSongList(List<MediaItem> jobSongList,
       {bool isPlaylist = false}) async {
+    final List<Future<void>> activeDownloads = [];
+    int completedCount = 0;
+
     for (MediaItem song in jobSongList) {
-      // intrrupt downloading task in case of playlist download cancel request
       if (isPlaylist && !playlistQueue.containsKey(currentPlaylistId.value)) {
         currentPlaylistId.value = "";
         playlistDownloadingProgress.value = 0;
-        return;
+        break;
       }
 
-      if (!Hive.box("SongDownloads").containsKey(song.id)) {
-        currentSong = song;
-        songDownloadingProgress.value = 0;
-        await writeFileStream(song);
+      if (Hive.box("SongDownloads").containsKey(song.id)) {
+        songQueue.remove(song);
+        continue;
       }
-      songQueue.remove(song);
-      //for playlist downloading counter update
-      if (isPlaylist) {
-        playlistDownloadingProgress.value = jobSongList.indexOf(song) + 1;
+
+      // Wait if we reached the limit of concurrent downloads
+      while (activeDownloads.length >= maxConcurrentDownloads) {
+        await Future.delayed(const Duration(milliseconds: 100));
+        activeDownloads.removeWhere((f) => f.hashCode == -1); // Dummy to trigger cleanup if I used a wrapper, but I'll use then() instead
       }
+
+      final downloadTask = _downloadSongTask(song, isPlaylist, jobSongList);
+      activeDownloads.add(downloadTask);
+      downloadTask.then((_) {
+        activeDownloads.remove(downloadTask);
+        completedCount++;
+        if (isPlaylist) {
+          playlistDownloadingProgress.value = completedCount;
+        }
+      });
     }
+
+    await Future.wait(activeDownloads);
+  }
+
+  Future<void> _downloadSongTask(
+      MediaItem song, bool isPlaylist, List<MediaItem> jobSongList) async {
+    currentSong = song; // This might still flicker if multiple songs are downloading, but we'll use individual progress in UI
+    songProgressMap[song.id] = 0;
+    await writeFileStream(song);
+    songQueue.remove(song);
+    songProgressMap.remove(song.id);
   }
 
   Future<void> writeFileStream(MediaItem song) async {
@@ -201,7 +225,7 @@ class Downloader extends GetxService {
         options: Options(headers: {"Range": 'bytes=0-$totalBytes'}),
         filePath, onReceiveProgress: (count, total) {
       if (total <= 0) return;
-      songDownloadingProgress.value = ((count / total) * 100).toInt();
+      songProgressMap[song.id] = ((count / total) * 100).toInt();
     }).then(
       (value) async {
         printINFO(value.data);

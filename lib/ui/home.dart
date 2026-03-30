@@ -24,6 +24,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     printINFO("Home");
     final PlayerController playerController = Get.find<PlayerController>();
+    final panelController = playerController.playerPanelController;
     final settingsScreenController = Get.find<SettingsScreenController>();
     final homeScreenController = Get.find<HomeScreenController>();
     final size = MediaQuery.of(context).size;
@@ -41,8 +42,8 @@ class Home extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        if (playerController.playerPanelController.isPanelOpen) {
-          playerController.playerPanelController.close();
+        if (panelController.isAttached && panelController.isPanelOpen) {
+          panelController.close();
         } else {
           if (Get.nestedKey(ScreenNavigationSetup.id)!.currentState!.canPop()) {
             Get.nestedKey(ScreenNavigationSetup.id)!.currentState!.pop();
@@ -134,7 +135,8 @@ class Home extends StatelessWidget {
                                                           .isFalse
                                                       ? Colors.white24
                                                       : Colors.white
-                                                          .withOpacity(0.8),
+                                                          .withValues(
+                                                              alpha: 0.8),
                                                   borderRadius:
                                                       BorderRadius.circular(20),
                                                 ),
@@ -203,8 +205,11 @@ class Home extends StatelessWidget {
                       body: const ScreenNavigation(),
                       header: !isWideScreen
                           ? InkWell(
-                              onTap:
-                                  playerController.playerPanelController.open,
+                              onTap: () {
+                                if (panelController.isAttached) {
+                                  panelController.open();
+                                }
+                              },
                               child: const MiniPlayer(),
                             )
                           : const MiniPlayer(),

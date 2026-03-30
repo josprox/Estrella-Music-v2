@@ -10,6 +10,7 @@ import 'package:terminate_restart/terminate_restart.dart';
 
 import '/services/app_backup_service.dart';
 import '/services/auth_service.dart';
+import '/services/catalog_recovery_service.dart';
 import '/services/cloud_backup_service.dart';
 import '/services/legacy_music_migration_service.dart';
 import '/services/user_data_bootstrap_service.dart';
@@ -97,6 +98,7 @@ class MyApp extends StatelessWidget {
 Future<void> startApplicationServices() async {
   Get.put(AuthService(), permanent: true);
   Get.put(AppBackupService(), permanent: true);
+  Get.put(CatalogRecoveryService(), permanent: true);
   Get.put(CloudBackupService(), permanent: true);
   Get.put(LegacyMusicMigrationService(), permanent: true);
   Get.put(UserDataBootstrapService(), permanent: true);

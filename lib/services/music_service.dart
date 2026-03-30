@@ -109,25 +109,56 @@ class MusicServices extends getx.GetxService {
   }
 
   Future<Response> _sendRequest(String action, Map<dynamic, dynamic> data,
-      {additionalParams = ""}) async {
+      {additionalParams = "", int attempt = 0}) async {
     //print("$baseUrl$action$fixedParms$additionalParams          data:$data");
     try {
       final response =
           await dio.post("$baseUrl$action$fixedParms$additionalParams",
               options: Options(
                 headers: _headers,
+                validateStatus: (_) => true,
               ),
               data: data);
 
       if (response.statusCode == 200) {
         return response;
-      } else {
-        return _sendRequest(action, data, additionalParams: additionalParams);
       }
+      if (_shouldRetry(response.statusCode) && attempt < 1) {
+        return _sendRequest(
+          action,
+          data,
+          additionalParams: additionalParams,
+          attempt: attempt + 1,
+        );
+      }
+      throw NetworkError(
+        statusCode: response.statusCode,
+        responseData: response.data,
+        message: 'Request failed for $action',
+      );
     } on DioException catch (e) {
       printINFO("Error $e");
-      throw NetworkError();
+      if (_shouldRetry(e.response?.statusCode) && attempt < 1) {
+        return _sendRequest(
+          action,
+          data,
+          additionalParams: additionalParams,
+          attempt: attempt + 1,
+        );
+      }
+      throw NetworkError(
+        statusCode: e.response?.statusCode,
+        responseData: e.response?.data,
+        message: e.message ?? 'Network Error',
+      );
     }
+  }
+
+  bool _shouldRetry(int? statusCode) {
+    if (statusCode == null) {
+      return true;
+    }
+    return statusCode == 429 || statusCode >= 500;
   }
 
   // Future<List<Map<String, dynamic>>>
@@ -537,13 +568,17 @@ class MusicServices extends getx.GetxService {
   Future<List> getSongWithId(String songId) async {
     final data = Map.of(_context);
     data['videoId'] = songId;
-    final response = (await _sendRequest("player", data)).data;
-    final category =
-        nav(response, ["microformat", "microformatDataRenderer", "category"]);
-    if (category == "Music" ||
-        (response["videoDetails"]).containsKey("musicVideoType")) {
-      final list = await getWatchPlaylist(videoId: songId);
-      return [true, list['tracks']];
+    try {
+      final response = (await _sendRequest("player", data)).data;
+      final category =
+          nav(response, ["microformat", "microformatDataRenderer", "category"]);
+      if (category == "Music" ||
+          (response["videoDetails"]).containsKey("musicVideoType")) {
+        final list = await getWatchPlaylist(videoId: songId);
+        return [true, list['tracks']];
+      }
+    } on NetworkError catch (error) {
+      printERROR("No fue posible resolver la cancion $songId: $error");
     }
     return [false, null];
   }
@@ -946,6 +981,19 @@ class MusicServices extends getx.GetxService {
   }
 }
 
-class NetworkError extends Error {
-  final message = "Network Error !";
+class NetworkError implements Exception {
+  NetworkError({
+    this.statusCode,
+    this.responseData,
+    this.message = "Network Error !",
+  });
+
+  final int? statusCode;
+  final dynamic responseData;
+  final String message;
+
+  @override
+  String toString() {
+    return 'NetworkError(statusCode: $statusCode, message: $message, responseData: $responseData)';
+  }
 }

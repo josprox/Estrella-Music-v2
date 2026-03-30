@@ -25,30 +25,29 @@ class SongDownloadButton extends StatelessWidget {
     return Obx(() {
       final song =
           calledFromPlayer ? playerController.currentSong.value : song_;
-      if (song == null && calledFromPlayer) return const SizedBox.shrink();
+      if (song == null) return const SizedBox.shrink();
       final isDownloadingDone = (downloader.songQueue.contains(song) &&
-          downloader.currentSong == song &&
-          downloader.songDownloadingProgress.value == 100);
+          downloader.songProgressMap[song.id] == 100);
       if (isDownloadingDoneCallback != null) {
         isDownloadingDoneCallback!(isDownloadingDone);
       }
 
       return (isDownloadingDone ||
-              Hive.box("SongDownloads").containsKey(song!.id))
+              Hive.box("SongDownloads").containsKey(song.id))
           ? Icon(
               Icons.download_done,
               color: Theme.of(context).textTheme.titleMedium!.color,
             )
           : downloader.songQueue.contains(song) &&
                   downloader.isJobRunning.isTrue &&
-                  downloader.currentSong == song
+                  downloader.songProgressMap.containsKey(song.id)
               ? Obx(() => Stack(
                     alignment: Alignment.center,
                     children: [
                       Align(
                         alignment: Alignment.center,
                         child: Text(
-                          "${downloader.songDownloadingProgress.value}%",
+                          "${downloader.songProgressMap[song.id]}%",
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium!
@@ -59,7 +58,7 @@ class SongDownloadButton extends StatelessWidget {
                       LoadingIndicator(
                         dimension: 30,
                         strokeWidth: 4,
-                        value: (downloader.songDownloadingProgress.value) / 100,
+                        value: (downloader.songProgressMap[song.id] ?? 0) / 100,
                       )
                     ],
                   ))

@@ -15,6 +15,13 @@ class ContentListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isAlbum = content.runtimeType.toString() == "Album";
+    final subtitle = isAlbum
+        ? isLibraryItem
+            ? ""
+            : "${content.artists[0]['name'] ?? ""} | ${content.year ?? ""}"
+        : isLibraryItem
+            ? ""
+            : content.description ?? "";
     return InkWell(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
@@ -30,7 +37,7 @@ class ContentListItem extends StatelessWidget {
       },
       child: Container(
         width: 130,
-        height: 180,
+        height: 194,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,21 +138,20 @@ class ContentListItem extends StatelessWidget {
                 children: [
                   Text(
                     content.title,
-                    // overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: Theme.of(context).textTheme.titleMedium,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(height: 1.25),
                   ),
-                  Text(
-                    isAlbum
-                        ? isLibraryItem
-                            ? ""
-                            : "${content.artists[0]['name'] ?? ""} | ${content.year ?? ""}"
-                        : isLibraryItem
-                            ? ""
-                            : content.description ?? "",
-                    maxLines: 1,
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
+                  if (subtitle.trim().isNotEmpty)
+                    Text(
+                      subtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                 ],
               ),
             )
