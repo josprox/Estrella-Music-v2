@@ -8,6 +8,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_lyric/lyric_ui/lyric_ui.dart';
 
 import '../../models/playling_from.dart';
+import '../../services/catalog_recovery_service.dart';
 import '../../services/downloader.dart';
 import '../screens/Playlist/playlist_screen_controller.dart';
 import '../widgets/snackbar.dart';
@@ -58,7 +59,7 @@ class CustomLyricUI extends UINetease {
 
   @override
   TextStyle getOtherMainTextStyle() => TextStyle(
-        color: Colors.white.withOpacity(0.35),
+        color: Colors.white.withValues(alpha: 0.35),
         fontSize: otherMainSize,
         fontWeight: FontWeight.w600,
       );
@@ -76,6 +77,7 @@ class CustomLyricUI extends UINetease {
 class PlayerController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final _audioHandler = Get.find<AudioHandler>();
+  final _catalogRecoveryService = Get.find<CatalogRecoveryService>();
   final _musicServices = Get.find<MusicServices>();
   final currentQueue = <MediaItem>[].obs;
 
@@ -121,12 +123,12 @@ class PlayerController extends GetxController
   final gesturePlayerVisibleState = 2.obs;
   final lyricUi = CustomLyricUI(
     highlight: true,
-    defaultSize: 22,      // Active line size
-    otherMainSize: 18,    // Inactive lines size
+    defaultSize: 22, // Active line size
+    otherMainSize: 18, // Inactive lines size
     defaultExtSize: 14,
-    lineGap: 32,          // More space between lines
+    lineGap: 32, // More space between lines
     inlineGap: 10,
-    bias: 0.5,            // Keep active line centered
+    bias: 0.5, // Keep active line centered
   );
   RxMap<String, dynamic> lyrics =
       <String, dynamic>{"synced": "", "plainLyrics": ""}.obs;
@@ -394,7 +396,8 @@ class PlayerController extends GetxController
     if (currentQueue.isEmpty || currentSong.value == null) return;
     try {
       final box = await Hive.openBox("prevSessionData");
-      await box.put("queue", currentQueue.map((e) => MediaItemBuilder.toJson(e)).toList());
+      await box.put("queue",
+          currentQueue.map((e) => MediaItemBuilder.toJson(e)).toList());
       await box.put("index", currentSongIndex.value);
       await box.put("position", progressBarStatus.value.current.inMilliseconds);
       await box.close();
@@ -423,23 +426,54 @@ class PlayerController extends GetxController
     /// set global radio mode flag
     isRadioModeOn = radio;
 
+    MediaItem? queueSeedSong = mediaItem;
+
     Future.delayed(
       Duration.zero,
       () async {
-        final content = await _musicServices.getWatchPlaylist(
-            videoId: mediaItem?.id ?? "", radio: radio, playlistId: playlistid);
-        radioContinuationParam = content['additionalParamsForNext'];
-        await _audioHandler
-            .updateQueue(List<MediaItem>.from(content['tracks']));
-        if (isShuffleModeEnabled.isTrue) {
-          await _audioHandler.customAction("shuffleCmd", {"index": 0});
-        }
+        try {
+          final content = await _musicServices.getWatchPlaylist(
+            videoId: queueSeedSong?.id ?? "",
+            radio: radio,
+            playlistId: playlistid,
+          );
+          radioContinuationParam = content['additionalParamsForNext'];
+          await _audioHandler
+              .updateQueue(List<MediaItem>.from(content['tracks']));
+          if (isShuffleModeEnabled.isTrue) {
+            await _audioHandler.customAction("shuffleCmd", {"index": 0});
+          }
 
-        // added here to broadcast current mediaitem via Audio Service as list is updated
-        // if radio is started on current playing song
-        if (radio && (currentSong.value?.id == mediaItem?.id)) {
-          _audioHandler
-              .customAction("upadateMediaItemInAudioService", {"index": 0});
+          // added here to broadcast current mediaitem via Audio Service as list is updated
+          // if radio is started on current playing song
+          if (radio && (currentSong.value?.id == queueSeedSong?.id)) {
+            _audioHandler
+                .customAction("upadateMediaItemInAudioService", {"index": 0});
+          }
+        } on NetworkError catch (error) {
+          printERROR("Error resolving queue for song: $error");
+          final recoveredSong = await _recoverQueueSeedSong(queueSeedSong);
+          if (recoveredSong == null) {
+            return;
+          }
+          queueSeedSong = recoveredSong;
+          final content = await _musicServices.getWatchPlaylist(
+            videoId: recoveredSong.id,
+            radio: radio,
+            playlistId: playlistid,
+          );
+          radioContinuationParam = content['additionalParamsForNext'];
+          await _audioHandler
+              .updateQueue(List<MediaItem>.from(content['tracks']));
+          if (isShuffleModeEnabled.isTrue) {
+            await _audioHandler.customAction("shuffleCmd", {"index": 0});
+          }
+          if (radio && (currentSong.value?.id == recoveredSong.id)) {
+            _audioHandler
+                .customAction("upadateMediaItemInAudioService", {"index": 0});
+          }
+        } catch (e) {
+          printERROR("Error resolving queue for song: $e");
         }
       },
     ).then((value) async {
@@ -448,8 +482,8 @@ class PlayerController extends GetxController
         await _audioHandler.customAction("playByIndex", {"index": 0});
       } else {
         if (Hive.box("AppPrefs").get("discoverContentType") == "BOLI") {
-          Get.find<HomeScreenController>()
-              .changeDiscoverContent("BOLI", songId: mediaItem!.id);
+          Get.find<HomeScreenController>().changeDiscoverContent("BOLI",
+              songId: queueSeedSong?.id ?? mediaItem!.id);
         }
       }
     });
@@ -500,6 +534,27 @@ class PlayerController extends GetxController
   Future<void> startRadio(MediaItem? mediaItem, {String? playlistid}) async {
     radioInitiatorItem = mediaItem ?? playlistid;
     await pushSongToQueue(mediaItem, playlistid: playlistid, radio: true);
+  }
+
+  Future<MediaItem?> _recoverQueueSeedSong(MediaItem? song) async {
+    if (song == null) {
+      return null;
+    }
+
+    final recoveredSong = await _catalogRecoveryService.findSimilarSong(
+      title: song.title,
+      artistName: song.artist,
+      albumName: song.album,
+    );
+    if (recoveredSong == null || recoveredSong.id == song.id) {
+      return null;
+    }
+
+    await _catalogRecoveryService.persistRecoveredSong(
+      oldSong: song,
+      recoveredSong: recoveredSong,
+    );
+    return recoveredSong;
   }
 
   Future<void> _addRadioContinuation(dynamic item) async {
@@ -607,7 +662,8 @@ class PlayerController extends GetxController
         playerPanelMinHeight.value =
             miniPlayerHeight + Get.mediaQuery.viewPadding.bottom;
       } else {
-        playerPanelMinHeight.value = isWideScreen ? 105.0 : 165.0; // 75 + 90 navbar clearance
+        playerPanelMinHeight.value =
+            isWideScreen ? 105.0 : 165.0; // 75 + 90 navbar clearance
       }
       initFlagForPlayer = false;
     }

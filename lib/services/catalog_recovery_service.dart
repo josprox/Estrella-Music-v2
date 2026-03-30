@@ -329,9 +329,8 @@ class CatalogRecoveryService extends GetxService {
 
   Future<Set<String>> _collectContentBoxNames(String libraryBoxName) async {
     final wasOpen = Hive.isBoxOpen(libraryBoxName);
-    final box = wasOpen
-        ? Hive.box(libraryBoxName)
-        : await Hive.openBox(libraryBoxName);
+    final box =
+        wasOpen ? Hive.box(libraryBoxName) : await Hive.openBox(libraryBoxName);
 
     final boxNames = box.keys
         .map((key) => key?.toString() ?? '')
@@ -376,8 +375,9 @@ class CatalogRecoveryService extends GetxService {
     required MediaItem recoveredSong,
   }) async {
     final wasOpen = Hive.isBoxOpen('SongDownloads');
-    final box =
-        wasOpen ? Hive.box('SongDownloads') : await Hive.openBox('SongDownloads');
+    final box = wasOpen
+        ? Hive.box('SongDownloads')
+        : await Hive.openBox('SongDownloads');
 
     if (box.containsKey(oldSong.id)) {
       final value = box.get(oldSong.id);
@@ -412,7 +412,8 @@ class CatalogRecoveryService extends GetxService {
     if (existingJson['url'] != null) {
       merged['url'] = existingJson['url'];
     }
-    if (merged['trackDetails'] == null && existingJson['trackDetails'] != null) {
+    if (merged['trackDetails'] == null &&
+        existingJson['trackDetails'] != null) {
       merged['trackDetails'] = existingJson['trackDetails'];
     }
     if (merged['year'] == null && existingJson['year'] != null) {
@@ -427,7 +428,8 @@ class CatalogRecoveryService extends GetxService {
 
   Future<void> _deleteCachedSong(String songId) async {
     final wasOpen = Hive.isBoxOpen('SongsCache');
-    final box = wasOpen ? Hive.box('SongsCache') : await Hive.openBox('SongsCache');
+    final box =
+        wasOpen ? Hive.box('SongsCache') : await Hive.openBox('SongsCache');
     await box.delete(songId);
     if (!wasOpen && box.isOpen) {
       await box.close();
@@ -446,8 +448,9 @@ class CatalogRecoveryService extends GetxService {
 
   Future<void> _deleteSongUrlCache(String songId) async {
     final wasOpen = Hive.isBoxOpen('SongsUrlCache');
-    final box =
-        wasOpen ? Hive.box('SongsUrlCache') : await Hive.openBox('SongsUrlCache');
+    final box = wasOpen
+        ? Hive.box('SongsUrlCache')
+        : await Hive.openBox('SongsUrlCache');
     await box.delete(songId);
     if (!wasOpen && box.isOpen) {
       await box.close();

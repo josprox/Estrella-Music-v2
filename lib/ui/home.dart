@@ -134,9 +134,8 @@ class Home extends StatelessWidget {
                                                           .isQueueLoopModeEnabled
                                                           .isFalse
                                                       ? Colors.white24
-                                                      : Colors.white
-                                                          .withValues(
-                                                              alpha: 0.8),
+                                                      : Colors.white.withValues(
+                                                          alpha: 0.8),
                                                   borderRadius:
                                                       BorderRadius.circular(20),
                                                 ),

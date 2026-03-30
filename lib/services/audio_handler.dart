@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:flutter/services.dart';
 
-
 import 'package:hive/hive.dart';
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
@@ -15,6 +14,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '/models/album.dart';
+import '/services/catalog_recovery_service.dart';
 import '../models/playlist.dart';
 import '/services/equalizer.dart';
 import '/services/stream_service.dart';
@@ -444,7 +444,6 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
   @override
   Future<void> customAction(String name, [Map<String, dynamic>? extras]) async {
     switch (name) {
-
       case 'dispose':
         await _player.dispose();
         super.stop();
@@ -454,9 +453,9 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         final songIndex = extras!['index'];
         currentIndex = songIndex;
         final isNewUrlReq = extras['newUrl'] ?? false;
-        final currentSong = queue.value[currentIndex];
-        final futureStreamInfo =
-            checkNGetUrl(currentSong.id, generateNewUrl: isNewUrlReq);
+        var currentSong = queue.value[currentIndex];
+        final futurePlayback =
+            _resolveSongPlayback(currentSong, generateNewUrl: isNewUrlReq);
         final bool restoreSession = extras['restoreSession'] ?? false;
         isSongLoading = true;
         playbackState.add(playbackState.value
@@ -465,8 +464,9 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
           await _playList.clear();
         }
 
-        mediaItem.add(currentSong);
-        final streamInfo = await futureStreamInfo;
+        final resolvedPlayback = await futurePlayback;
+        currentSong = resolvedPlayback.song;
+        final streamInfo = resolvedPlayback.streamInfo;
         if (songIndex != currentIndex) {
           return;
         } else if (!streamInfo.playable) {
@@ -479,6 +479,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
               errorMessage: streamInfo.statusMSG));
           return;
         }
+        mediaItem.add(currentSong);
         currentSongUrl = currentSong.extras!['url'] = streamInfo.audio!.url;
         playbackState
             .add(playbackState.value.copyWith(queueIndex: currentIndex));
@@ -542,14 +543,14 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         break;
 
       case 'setSourceNPlay':
-        final currMed = (extras!['mediaItem'] as MediaItem);
-        final futureStreamInfo = checkNGetUrl(currMed.id);
+        var currMed = (extras!['mediaItem'] as MediaItem);
+        final futurePlayback = _resolveSongPlayback(currMed);
         isSongLoading = true;
         currentIndex = 0;
         await _playList.clear();
-        mediaItem.add(currMed);
-        queue.add([currMed]);
-        final streamInfo = (await futureStreamInfo);
+        final resolvedPlayback = await futurePlayback;
+        currMed = resolvedPlayback.song;
+        final streamInfo = resolvedPlayback.streamInfo;
         if (!streamInfo.playable) {
           currentSongUrl = null;
           isSongLoading = false;
@@ -558,6 +559,8 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
               .copyWith(processingState: AudioProcessingState.error));
           return;
         }
+        mediaItem.add(currMed);
+        queue.add([currMed]);
         currentSongUrl = currMed.extras!['url'] = streamInfo.audio!.url;
 
         await _playList.add(_createAudioSource(currMed));
@@ -863,12 +866,87 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
       return streamInfo;
     }
   }
+
+  Future<_ResolvedSongPlayback> _resolveSongPlayback(
+    MediaItem song, {
+    bool generateNewUrl = false,
+  }) async {
+    try {
+      final streamInfo = await checkNGetUrl(
+        song.id,
+        generateNewUrl: generateNewUrl,
+      );
+      if (streamInfo.playable) {
+        return _ResolvedSongPlayback(song: song, streamInfo: streamInfo);
+      }
+
+      final recoveredSong = await _recoverSong(song);
+      if (recoveredSong == null || recoveredSong.id == song.id) {
+        return _ResolvedSongPlayback(song: song, streamInfo: streamInfo);
+      }
+
+      final recoveredStreamInfo = await checkNGetUrl(
+        recoveredSong.id,
+        generateNewUrl: true,
+      );
+      if (!recoveredStreamInfo.playable) {
+        return _ResolvedSongPlayback(song: song, streamInfo: streamInfo);
+      }
+
+      await Get.find<CatalogRecoveryService>().persistRecoveredSong(
+        oldSong: song,
+        recoveredSong: recoveredSong,
+      );
+      await _replaceSongInQueue(song.id, recoveredSong);
+      return _ResolvedSongPlayback(
+        song: recoveredSong,
+        streamInfo: recoveredStreamInfo,
+      );
+    } catch (e) {
+      printERROR("Error resolving song playback for ${song.id}: $e");
+      return _ResolvedSongPlayback(
+        song: song,
+        streamInfo: HMStreamingData(
+          playable: false,
+          statusMSG: "networkError",
+        ),
+      );
+    }
+  }
+
+  Future<MediaItem?> _recoverSong(MediaItem song) async {
+    return Get.find<CatalogRecoveryService>().findSimilarSong(
+      title: song.title,
+      artistName: song.artist,
+      albumName: song.album,
+    );
+  }
+
+  Future<void> _replaceSongInQueue(
+      String oldSongId, MediaItem recoveredSong) async {
+    final updatedQueue = queue.value
+        .map((item) => item.id == oldSongId ? recoveredSong : item)
+        .toList();
+    queue.add(updatedQueue);
+    if (mediaItem.value?.id == oldSongId) {
+      mediaItem.add(recoveredSong);
+    }
+  }
 }
 
 class UrlError extends Error {
   String message() => 'Unable to fetch url';
 }
 
+class _ResolvedSongPlayback {
+  _ResolvedSongPlayback({
+    required this.song,
+    required this.streamInfo,
+  });
+
+  final MediaItem song;
+  final HMStreamingData streamInfo;
+}
 
 // for Android Auto
 class MediaLibrary {

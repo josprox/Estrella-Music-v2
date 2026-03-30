@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:harmonymusic/base_class/playlist_album_screen_con_base.dart';
 import 'package:harmonymusic/models/album.dart';
 import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/services/catalog_recovery_service.dart';
+import 'package:harmonymusic/services/music_service.dart' show NetworkError;
 import 'package:harmonymusic/utils/helper.dart';
 import 'package:hive/hive.dart';
 
@@ -17,6 +19,7 @@ import '../Library/library_controller.dart';
 ///Album title,image,songs
 class AlbumScreenController extends PlaylistAlbumScreenControllerBase
     with AdditionalOpeartionMixin, GetSingleTickerProviderStateMixin {
+  final catalogRecoveryService = Get.find<CatalogRecoveryService>();
   final album =
       Album(title: "", browseId: "", thumbnailUrl: "", artists: []).obs;
   final isOfflineAlbum = false.obs;
@@ -30,7 +33,6 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
   Animation<double> get scaleAnimation => _scaleAnimation;
   Animation<double> get heightAnimation => _heightAnimation;
 
-
   @override
   void onInit() {
     super.onInit();
@@ -39,7 +41,8 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
       duration: const Duration(milliseconds: 400),
     );
 
-    _scaleAnimation = Tween<double>(begin: 0, end: 1.0).animate(animationController);
+    _scaleAnimation =
+        Tween<double>(begin: 0, end: 1.0).animate(animationController);
 
     _heightAnimation = Tween<double>(begin: 10.0, end: 90.0).animate(
         CurvedAnimation(
@@ -53,13 +56,14 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
 
   @override
   void fetchAlbumDetails(Album? album_, String albumId) async {
+    final wasInLibrary = await checkIfAddedToLibrary(albumId);
     try {
       if (album_ != null) {
         album.value = album_;
         animationController.forward();
       }
       // Check if the album is offline
-      if (!await checkIfAddedToLibrary(albumId)) {
+      if (!wasInLibrary) {
         // Fetch album details online
         final content =
             await musicServices.getPlaylistOrAlbumSongs(albumId: albumId);
@@ -77,11 +81,44 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
             .toList();
       }
       checkDownloadStatus();
-      isContentFetched.value = true;
+    } on NetworkError catch (error) {
+      printERROR("Error fetching album details: $error");
+      final recoveredAlbum = await catalogRecoveryService.findSimilarAlbum(
+        title: _albumTitleHint(),
+        artistName: _albumArtistHint(),
+      );
+      if (recoveredAlbum != null && recoveredAlbum.browseId != albumId) {
+        final content = await musicServices.getPlaylistOrAlbumSongs(
+          albumId: recoveredAlbum.browseId,
+        );
+        content['browseId'] = recoveredAlbum.browseId;
+        album.value = Album.fromJson(content);
+        animationController.forward();
+        songList.value = List<MediaItem>.from(content['tracks']);
+        if (wasInLibrary) {
+          await catalogRecoveryService.persistRecoveredAlbum(
+            oldBrowseId: albumId,
+            album: album.value,
+            tracks: songList.toList(),
+          );
+        }
+        checkDownloadStatus();
+      }
     } catch (e) {
       // Handle any errors that occur during the fetch
       printERROR("Error fetching album details: $e");
+    } finally {
+      isContentFetched.value = true;
     }
+  }
+
+  String _albumTitleHint() {
+    return album.value.title.trim();
+  }
+
+  String _albumArtistHint() {
+    final artistName = album.value.artists?.firstOrNull?['name']?.toString();
+    return artistName?.trim() ?? '';
   }
 
   @override

@@ -16,6 +16,7 @@ import '../../../mixins/additional_opeartion_mixin.dart';
 import '../../../models/album.dart' show Album;
 import '../../../models/media_Item_builder.dart';
 import '../../../models/playlist.dart';
+import '../../../services/catalog_recovery_service.dart';
 import '../../../services/music_service.dart';
 import '../../../services/piped_service.dart';
 import '../Home/home_screen_controller.dart';
@@ -27,6 +28,8 @@ import '../Library/library_controller.dart';
 class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
     with AdditionalOpeartionMixin, GetSingleTickerProviderStateMixin {
   final MusicServices _musicServices = Get.find<MusicServices>();
+  final CatalogRecoveryService _catalogRecoveryService =
+      Get.find<CatalogRecoveryService>();
   final playlist = Playlist(
     title: "",
     playlistId: "",
@@ -60,8 +63,9 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
     _scaleAnimation =
         Tween<double>(begin: 0, end: 1.0).animate(animationController);
 
-    _heightAnimation =
-        Tween<double>(begin: 10.0, end: 75.0).animate(CurvedAnimation(parent: animationController, curve: Curves.easeOutBack));
+    _heightAnimation = Tween<double>(begin: 10.0, end: 75.0).animate(
+        CurvedAnimation(
+            parent: animationController, curve: Curves.easeOutBack));
 
     final args = Get.arguments as List;
     final Playlist? playlist = args[0];
@@ -76,6 +80,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
   void fetchPlaylistDetails(Playlist? playlist_, String playlistId) async {
     final isIdOnly = playlist_ == null;
     final isPipedPlaylist = playlist_?.isPipedPlaylist ?? false;
+    bool wasInLibrary = false;
     isDefaultPlaylist.value = (playlistId == "SongDownloads" ||
         playlistId == "SongsCache" ||
         playlistId == "LIBRP" ||
@@ -100,29 +105,44 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
     try {
       // Check if the playlist is offline
-      if (await checkIfAddedToLibrary(playlistId)) {
+      wasInLibrary = await checkIfAddedToLibrary(playlistId);
+      if (wasInLibrary) {
         final songsBox = await Hive.openBox(playlistId);
         if (songsBox.values.isEmpty) {
-          _fetchSongOnline(playlistId, isIdOnly, isPipedPlaylist).then((value) {
-            updateSongsIntoDb();
-          });
+          await _fetchSongOnline(
+            playlistId,
+            isIdOnly,
+            isPipedPlaylist,
+            persistRecovery: true,
+          );
+          await updateSongsIntoDb();
         } else {
           // If the playlist is offline, fetch the songs from the local database
           // Playlist details are already fetched in _checkIfAddedToLibrary method
           fetchSongsfromDatabase(playlistId);
         }
       } else {
-        _fetchSongOnline(playlistId, isIdOnly, isPipedPlaylist);
+        await _fetchSongOnline(
+          playlistId,
+          isIdOnly,
+          isPipedPlaylist,
+          persistRecovery: false,
+        );
       }
-      isContentFetched.value = true;
     } catch (e) {
       // Handle any errors that occur during the fetch
       printERROR("Error fetching playlist details: $e");
+    } finally {
+      isContentFetched.value = true;
     }
   }
 
   Future<void> _fetchSongOnline(
-      String id, bool isIdOnly, bool isPipedPlaylist) async {
+    String id,
+    bool isIdOnly,
+    bool isPipedPlaylist, {
+    required bool persistRecovery,
+  }) async {
     isContentFetched.value = false;
 
     if (isPipedPlaylist) {
@@ -132,21 +152,58 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       return;
     }
 
-    final content =
-        await _musicServices.getPlaylistOrAlbumSongs(playlistId: id);
+    try {
+      final content =
+          await _musicServices.getPlaylistOrAlbumSongs(playlistId: id);
 
-    if (isIdOnly) {
-      content['playlistId'] = id;
-      playlist.value = Playlist.fromJson(content);
-      _animationController.forward();
+      if (isIdOnly) {
+        content['playlistId'] = id;
+        playlist.value = Playlist.fromJson(content);
+        _animationController.forward();
+      }
+      songList.value = List<MediaItem>.from(content['tracks']);
+      checkDownloadStatus();
+    } on NetworkError catch (error) {
+      printERROR("Error fetching playlist details: $error");
+      final recoveredPlaylist =
+          await _catalogRecoveryService.findSimilarPlaylist(
+        title: _playlistTitleHint(),
+        description: playlist.value.description,
+      );
+      if (recoveredPlaylist != null && recoveredPlaylist.playlistId != id) {
+        final content = await _musicServices.getPlaylistOrAlbumSongs(
+          playlistId: recoveredPlaylist.playlistId,
+        );
+        content['playlistId'] = recoveredPlaylist.playlistId;
+        playlist.value = Playlist.fromJson(content);
+        _animationController.forward();
+        songList.value = List<MediaItem>.from(content['tracks']);
+        if (persistRecovery) {
+          await _catalogRecoveryService.persistRecoveredPlaylist(
+            oldPlaylistId: id,
+            playlist: playlist.value,
+            tracks: songList.toList(),
+          );
+        }
+        checkDownloadStatus();
+      }
+    } finally {
+      isContentFetched.value = true;
     }
-    songList.value = List<MediaItem>.from(content['tracks']);
-    checkDownloadStatus();
+  }
+
+  String _playlistTitleHint() {
+    return playlist.value.title.trim();
   }
 
   @override
   void syncPlaylistSongs() {
-    _fetchSongOnline(playlist.value.playlistId, false, false).then((value) {
+    _fetchSongOnline(
+      playlist.value.playlistId,
+      false,
+      false,
+      persistRecovery: isAddedToLibrary.isTrue,
+    ).then((value) {
       updateSongsIntoDb();
       isContentFetched.value = true;
     });
@@ -258,7 +315,8 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
   }
 
   @override
-  void fetchAlbumDetails(Album? album_,String albumId) {} // Not used in this class
+  void fetchAlbumDetails(
+      Album? album_, String albumId) {} // Not used in this class
 
   /// This function updates the local playlist thumbnail based on the first song's thumbnail
   void _updatePlaylistThumbSongBased() {
@@ -372,7 +430,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       }
 
       printERROR("Error exporting playlist: $e");
-      
+
       String errorMsg = "exportError".tr;
       if (e is FileSystemException) {
         if (e.osError?.errorCode == 13) {
@@ -463,7 +521,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       }
 
       printERROR("Error exporting playlist to CSV: $e");
-      
+
       String errorMsg = "exportError".tr;
       if (e is FileSystemException) {
         if (e.osError?.errorCode == 13) {
@@ -487,58 +545,64 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
   String _generateCsvContent() {
     final buffer = StringBuffer();
-    
+
     // CSV Header
-    buffer.writeln('PlaylistBrowseId,PlaylistName,MediaId,Title,Artists,Duration,ThumbnailUrl,AlbumId,AlbumTitle,ArtistIds');
-    
+    buffer.writeln(
+        'PlaylistBrowseId,PlaylistName,MediaId,Title,Artists,Duration,ThumbnailUrl,AlbumId,AlbumTitle,ArtistIds');
+
     // CSV Rows - one for each song
     for (final song in songList) {
       // Keep playlistBrowseId blank for offline/piped playlists
-      final playlistBrowseId = (!playlist.value.isCloudPlaylist || playlist.value.isPipedPlaylist)
-          ? ''
-          : _escapeCsvField(playlist.value.playlistId);
+      final playlistBrowseId =
+          (!playlist.value.isCloudPlaylist || playlist.value.isPipedPlaylist)
+              ? ''
+              : _escapeCsvField(playlist.value.playlistId);
       final playlistName = _escapeCsvField(playlist.value.title);
       final mediaId = _escapeCsvField(song.id);
       final title = _escapeCsvField(song.title);
-      
+
       // Extract artists as comma-separated string
       final artistsList = song.extras?['artists'] as List?;
       final artists = artistsList != null
           ? _escapeCsvField(artistsList.map((a) => a['name']).join(', '))
           : '';
-      
+
       // Format duration as HH:MM:SS or MM:SS
-      final duration = song.duration != null
-          ? _formatDuration(song.duration!)
-          : '';
-      
+      final duration =
+          song.duration != null ? _formatDuration(song.duration!) : '';
+
       final thumbnailUrl = _escapeCsvField(song.artUri.toString());
-      
+
       // Extract album information
       final albumData = song.extras?['album'] as Map?;
-      final albumId = albumData != null ? _escapeCsvField(albumData['id'] ?? '') : '';
-      final albumTitle = albumData != null ? _escapeCsvField(albumData['name'] ?? '') : '';
-      
+      final albumId =
+          albumData != null ? _escapeCsvField(albumData['id'] ?? '') : '';
+      final albumTitle =
+          albumData != null ? _escapeCsvField(albumData['name'] ?? '') : '';
+
       // Extract all artist IDs (comma-separated)
       final artistIds = artistsList != null && artistsList.isNotEmpty
           ? _escapeCsvField(artistsList.map((a) => a['id'] ?? '').join(','))
           : '';
-      
-      buffer.writeln('$playlistBrowseId,$playlistName,$mediaId,$title,$artists,$duration,$thumbnailUrl,$albumId,$albumTitle,$artistIds');
+
+      buffer.writeln(
+          '$playlistBrowseId,$playlistName,$mediaId,$title,$artists,$duration,$thumbnailUrl,$albumId,$albumTitle,$artistIds');
     }
-    
+
     return buffer.toString();
   }
 
   String _escapeCsvField(String field) {
     // Escape double quotes by doubling them
     String escaped = field.replaceAll('"', '""');
-    
+
     // If field contains comma, newline, or double quote, wrap in quotes
-    if (escaped.contains(',') || escaped.contains('\n') || escaped.contains('"')) {
+    if (escaped.contains(',') ||
+        escaped.contains('\n') ||
+        escaped.contains('"')) {
       escaped = '"$escaped"';
     }
-    
+
     return escaped;
   }
 
@@ -546,7 +610,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
     final hours = duration.inHours;
     final minutes = duration.inMinutes.remainder(60);
     final seconds = duration.inSeconds.remainder(60);
-    
+
     if (hours > 0) {
       return '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
     } else {

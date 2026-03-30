@@ -6,6 +6,7 @@ import 'package:hive/hive.dart';
 import '../../widgets/add_to_playlist.dart';
 import '/ui/widgets/sort_widget.dart';
 import '../../../models/artist.dart';
+import '../../../services/catalog_recovery_service.dart';
 import '../../../utils/helper.dart';
 import '../Library/library_controller.dart';
 import '/services/music_service.dart';
@@ -30,6 +31,7 @@ class ArtistScreenController extends GetxController
   final additionalOperationMode = OperationMode.none.obs;
   bool continuationInProgress = false;
   late Artist artist_;
+  bool hasArtistSeed = false;
   Map<String, List> tempListContainer = {};
   TabController? tabController;
   bool isTabTransitionReversed = false;
@@ -60,32 +62,125 @@ class ArtistScreenController extends GetxController
     super.onReady();
   }
 
-  _init(bool isIdOnly, dynamic artist) {
-    if (!isIdOnly) artist_ = artist as Artist;
-    _fetchArtistContent(isIdOnly ? artist as String : artist.browseId);
-    _checkIfAddedToLibrary(isIdOnly ? artist as String : artist.browseId);
+  Future<void> _init(bool isIdOnly, dynamic artist) async {
+    if (!isIdOnly) {
+      artist_ = artist as Artist;
+      hasArtistSeed = true;
+    }
+    final artistId = isIdOnly ? artist as String : artist.browseId;
+    await _checkIfAddedToLibrary(artistId);
+    await _fetchArtistContent(artistId);
   }
 
   Future<void> _checkIfAddedToLibrary(String id) async {
     final box = await Hive.openBox("LibraryArtists");
     isAddedToLibrary.value = box.containsKey(id);
+    if (isAddedToLibrary.value) {
+      artist_ = Artist.fromJson(box.get(id));
+      hasArtistSeed = true;
+    }
     await box.close();
   }
 
   Future<void> _fetchArtistContent(String id) async {
-    artistData.value = await musicServices.getArtist(id);
+    try {
+      final content = await musicServices.getArtist(id);
+      _applyArtistContent(
+        content,
+        browseId: id,
+      );
+    } on NetworkError catch (error) {
+      printERROR("Error fetching artist details: $error");
+      final recoveredArtist =
+          await Get.find<CatalogRecoveryService>().findSimilarArtist(
+        artistName: _artistNameHint(),
+      );
+      if (recoveredArtist != null && recoveredArtist.browseId != id) {
+        final content = await musicServices.getArtist(recoveredArtist.browseId);
+        _applyArtistContent(
+          content,
+          browseId: recoveredArtist.browseId,
+          persistRecovery: isAddedToLibrary.isTrue,
+          previousBrowseId: id,
+        );
+      } else {
+        _ensureArtistPlaceholder(id);
+      }
+    } catch (e) {
+      printERROR("Error fetching artist details: $e");
+      _ensureArtistPlaceholder(id);
+    } finally {
+      isArtistContentFetced.value = true;
+    }
+  }
+
+  void _applyArtistContent(
+    Map<String, dynamic> content, {
+    required String browseId,
+    bool persistRecovery = false,
+    String? previousBrowseId,
+  }) {
+    artistData.value = content;
     artistData["Singles"] = artistData["Singles & EPs"];
     artistData["Songs"] = artistData["Top songs"];
-    isArtistContentFetced.value = true;
-    //inspect(artistData.value);
-    final data = artistData;
+
+    final subscribers = artistData['subscribers']?.toString().trim();
     artist_ = Artist(
-        browseId: id,
-        name: data['name'],
-        thumbnailUrl:
-            data['thumbnails'] != null ? data['thumbnails'][0]['url'] : "",
-        subscribers: "${data['subscribers']} subscribers",
-        radioId: data["radioId"]);
+      browseId: browseId,
+      name: artistData['name'] ?? _artistNameHint(fallback: 'Artista'),
+      thumbnailUrl: artistData['thumbnails'] != null
+          ? artistData['thumbnails'][0]['url']
+          : "",
+      subscribers: subscribers == null || subscribers.isEmpty
+          ? ""
+          : "$subscribers subscribers",
+      radioId: artistData["radioId"],
+    );
+    hasArtistSeed = true;
+
+    if (persistRecovery && previousBrowseId != null) {
+      Get.find<CatalogRecoveryService>().persistRecoveredArtist(
+        oldBrowseId: previousBrowseId,
+        artist: artist_,
+      );
+    }
+  }
+
+  String _artistNameHint({String fallback = ''}) {
+    if (hasArtistSeed) {
+      final value = artist_.name.trim();
+      if (value.isNotEmpty) {
+        return value;
+      }
+    }
+    final value = artistData['name']?.toString().trim();
+    if (value != null && value.isNotEmpty) {
+      return value;
+    }
+    return fallback;
+  }
+
+  void _ensureArtistPlaceholder(String browseId) {
+    if (!hasArtistSeed) {
+      artist_ = Artist(
+        browseId: browseId,
+        name: _artistNameHint(fallback: 'Artista'),
+        thumbnailUrl: '',
+        subscribers: '',
+      );
+      hasArtistSeed = true;
+    }
+    artistData.value = {
+      'name': artist_.name,
+      'thumbnails': [
+        {'url': artist_.thumbnailUrl}
+      ],
+      'description': '',
+      'subscribers': artist_.subscribers ?? '',
+      'radioId': artist_.radioId,
+    };
+    artistData["Singles"] = artistData["Singles & EPs"];
+    artistData["Songs"] = artistData["Top songs"];
   }
 
   Future<bool> addNremoveFromLibrary({bool add = true}) async {
@@ -135,27 +230,27 @@ class ArtistScreenController extends GetxController
 
     // observered - continuation available only for song & vid
     if (val != 0) {
-    final scrollController = val == 1
-        ? songScrollController
-        : val == 2
-            ? videoScrollController
-            : val == 3
-                ? albumScrollController
-                : singlesScrollController;
+      final scrollController = val == 1
+          ? songScrollController
+          : val == 2
+              ? videoScrollController
+              : val == 3
+                  ? albumScrollController
+                  : singlesScrollController;
 
-    scrollController.addListener(() {
-      double maxScroll = scrollController.position.maxScrollExtent;
-      double currentScroll = scrollController.position.pixels;
-      if (currentScroll >= maxScroll / 2 &&
-          sepataredContent[tabName]['additionalParams'] !=
-              '&ctoken=null&continuation=null') {
-        if (!continuationInProgress) {
-          continuationInProgress = true;
-          getContinuationContents(artistData[tabName], tabName);
+      scrollController.addListener(() {
+        double maxScroll = scrollController.position.maxScrollExtent;
+        double currentScroll = scrollController.position.pixels;
+        if (currentScroll >= maxScroll / 2 &&
+            sepataredContent[tabName]['additionalParams'] !=
+                '&ctoken=null&continuation=null') {
+          if (!continuationInProgress) {
+            continuationInProgress = true;
+            getContinuationContents(artistData[tabName], tabName);
+          }
         }
-      }
-    });
-   }
+      });
+    }
     isSeparatedArtistContentFetced.value = true;
   }
 
