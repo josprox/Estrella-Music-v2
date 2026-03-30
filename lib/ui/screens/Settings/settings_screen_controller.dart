@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:audio_service/audio_service.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:harmonymusic/services/auth_service.dart';
 import 'package:harmonymusic/services/permission_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
@@ -77,15 +79,15 @@ class SettingsScreenController extends GetxController {
 
   Future<void> _setInitValue() async {
     final isDesktop = GetPlatform.isDesktop;
-    final appLang =
-        setBox.get('currentAppLanguageCode') ?? Get.deviceLocale?.languageCode ?? "en";
+    final appLang = setBox.get('currentAppLanguageCode') ??
+        Get.deviceLocale?.languageCode ??
+        "en";
     currentAppLanguageCode.value = appLang == "zh_Hant"
         ? "zh-TW"
         : appLang == "zh_Hans"
             ? "zh-CN"
             : appLang;
-    isBottomNavBarEnabled.value =
-        isDesktop ? false : true;
+    isBottomNavBarEnabled.value = isDesktop ? false : true;
     noOfHomeScreenContent.value = setBox.get("noOfHomeScreenContent") ?? 3;
     isTransitionAnimationDisabled.value =
         setBox.get("isTransitionAnimationDisabled") ?? false;
@@ -147,8 +149,6 @@ class SettingsScreenController extends GetxController {
     setBox.put("streamingQuality", AudioQuality.values.indexOf(val));
     streamingQuality.value = val;
   }
-
-
 
   void toggleSlidableAction(bool val) {
     setBox.put("slidableActionEnabled", val);
@@ -271,16 +271,15 @@ class SettingsScreenController extends GetxController {
     setBox.put('keepScreenAwake', val);
     keepScreenAwake.value = val;
     try {
-        if (val) {
-          // enable wakelock immediately if music is playing
-          if (Get.find<PlayerController>().buttonState.value ==
-              PlayButtonState.playing) {
-            WakelockPlus.enable();
-          }
-        } else {
-          WakelockPlus.disable();
+      if (val) {
+        // enable wakelock immediately if music is playing
+        if (Get.find<PlayerController>().buttonState.value ==
+            PlayButtonState.playing) {
+          WakelockPlus.enable();
         }
-     
+      } else {
+        WakelockPlus.disable();
+      }
     } catch (e) {
       // ignore if player/controller not available
     }
@@ -327,5 +326,12 @@ class SettingsScreenController extends GetxController {
     } else {
       return (await getApplicationDocumentsDirectory()).path;
     }
+  }
+
+  Future<void> logoutUser() async {
+    try {
+      await Get.find<AudioHandler>().stop();
+    } catch (_) {}
+    await Get.find<AuthService>().logout();
   }
 }

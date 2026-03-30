@@ -1,12 +1,18 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:liquid_tabbar_minimize/liquid_tabbar_minimize.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
 
+import '/services/app_backup_service.dart';
+import '/services/auth_service.dart';
+import '/services/cloud_backup_service.dart';
+import '/services/legacy_music_migration_service.dart';
+import '/services/user_data_bootstrap_service.dart';
 import '/ui/screens/Search/search_screen_controller.dart';
 import '/utils/get_localization.dart';
 import '/services/downloader.dart';
@@ -14,9 +20,9 @@ import '/services/piped_service.dart';
 import 'utils/app_link_controller.dart';
 import '/services/audio_handler.dart';
 import '/services/music_service.dart';
-import '/ui/home.dart';
 import '/ui/player/player_controller.dart';
 import 'ui/screens/Settings/settings_screen_controller.dart';
+import 'ui/auth/auth_gate.dart';
 import '/ui/utils/theme_controller.dart';
 import 'ui/screens/Home/home_screen_controller.dart';
 import 'ui/screens/Library/library_controller.dart';
@@ -25,6 +31,9 @@ import 'utils/update_check_flag_file.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await dotenv.load(fileName: '.env');
+  } catch (_) {}
   await initHive();
   _setAppInitPrefs();
   startApplicationServices();
@@ -45,10 +54,11 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return GetMaterialApp(
         title: 'Harmony Music',
-        home: const Home(),
+        home: const AuthGate(),
         debugShowCheckedModeBanner: false,
         translations: Languages(),
-        locale: (Hive.box("AppPrefs").get('currentAppLanguageCode') == null || Hive.box("AppPrefs").get('autoLanguage', defaultValue: true))
+        locale: (Hive.box("AppPrefs").get('currentAppLanguageCode') == null ||
+                Hive.box("AppPrefs").get('autoLanguage', defaultValue: true))
             ? Get.deviceLocale
             : Locale(Hive.box("AppPrefs").get('currentAppLanguageCode')),
         fallbackLocale: const Locale("en"),
@@ -85,6 +95,11 @@ class MyApp extends StatelessWidget {
 }
 
 Future<void> startApplicationServices() async {
+  Get.put(AuthService(), permanent: true);
+  Get.put(AppBackupService(), permanent: true);
+  Get.put(CloudBackupService(), permanent: true);
+  Get.put(LegacyMusicMigrationService(), permanent: true);
+  Get.put(UserDataBootstrapService(), permanent: true);
   Get.lazyPut(() => PipedServices(), fenix: true);
   Get.lazyPut(() => MusicServices(), fenix: true);
   Get.lazyPut(() => ThemeController(), fenix: true);

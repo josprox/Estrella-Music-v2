@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:harmonymusic/services/auth_service.dart';
 import 'package:harmonymusic/utils/helper.dart';
 import 'package:harmonymusic/utils/lang_mapping.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -8,6 +9,8 @@ import '../../widgets/common_dialog_widget.dart';
 import '../../widgets/cust_switch.dart';
 import '../../widgets/export_file_dialog.dart';
 import '../../widgets/backup_dialog.dart';
+import '../../widgets/cloud_backup_dialog.dart';
+import '../../widgets/legacy_music_migration_dialog.dart';
 import '../../widgets/restore_dialog.dart';
 import '../Library/library_controller.dart';
 import '../../widgets/snackbar.dart';
@@ -25,6 +28,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settingsController = Get.find<SettingsScreenController>();
+    final authService = Get.find<AuthService>();
     final topPadding = context.isLandscape ? 50.0 : 90.0;
     final isDesktop = GetPlatform.isDesktop;
     return Padding(
@@ -538,6 +542,54 @@ class SettingsScreen extends StatelessWidget {
                         settingsController.setExportedLocation();
                       },
                     ),
+                ],
+              ),
+              CustomExpansionTile(
+                title: "Cuenta y migracion",
+                icon: Icons.account_circle_outlined,
+                children: [
+                  Obx(
+                    () => ListTile(
+                      contentPadding: const EdgeInsets.only(left: 5, right: 10),
+                      title: Text(authService.displayName),
+                      subtitle: Text(
+                        authService.emailLabel,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      trailing: TextButton(
+                        onPressed: settingsController.logoutUser,
+                        child: const Text('Cerrar sesion'),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.only(left: 5, right: 10),
+                    title: const Text('Backup en la nube'),
+                    subtitle: Text(
+                      'Sube, restaura y administra respaldos desde el servidor.',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (context) => const CloudBackupDialog(),
+                    ).whenComplete(
+                      () => Get.delete<CloudBackupDialogController>(),
+                    ),
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.only(left: 5, right: 10),
+                    title: const Text('Migrar desde Joss Music Kotlin'),
+                    subtitle: Text(
+                      'Importa playlists, canciones, albumes y artistas desde song.db o un backup legado.',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (context) => const LegacyMusicMigrationDialog(),
+                    ).whenComplete(
+                      () => Get.delete<LegacyMusicMigrationDialogController>(),
+                    ),
+                  ),
                 ],
               ),
               CustomExpansionTile(

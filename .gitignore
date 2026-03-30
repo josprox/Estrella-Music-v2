@@ -65,6 +65,7 @@ app.*.map.json
 .fvmrc
 
 settings.json
+.env
 
 android/app/.cxx/Debug/*
 
