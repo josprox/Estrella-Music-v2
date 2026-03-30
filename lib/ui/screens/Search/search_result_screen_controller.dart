@@ -51,7 +51,11 @@ class SearchResultScreenController extends GetxController
         (!separatedResultContent.containsKey(railItems[value - 1]) ||
             separatedResultContent[railItems[value - 1]].isEmpty)) {
       final tabName = railItems[value - 1];
-      final itemCount = (tabName == 'Songs' || tabName == 'Videos') ? 25 : 10;
+      final itemCount = (tabName == 'Songs' ||
+              tabName == 'Videos' ||
+              tabName == 'Episodes')
+          ? 25
+          : 10;
       final x = await musicServices.search(queryString.value,
           filter: tabName.replaceAll(" ", "_").toLowerCase(), limit: itemCount, filterParams: resultContent['searchEndpoint'][tabName]);
       separatedResultContent[tabName] = x[tabName];
@@ -103,7 +107,10 @@ class SearchResultScreenController extends GetxController
             "Albums",
             "Featured playlists",
             "Community playlists",
-            "Artists"
+            "Artists",
+            "Podcasts",
+            "Episodes",
+            "Profiles"
           ]).contains(element));
       railItems.value = List<String>.from(allKeys);
       final len =
@@ -143,15 +150,15 @@ class SearchResultScreenController extends GetxController
   }
 
   void onSort(SortType sortType, bool isAscending, String title) {
-    if (title == "Songs" || title == "Videos") {
+    if (title == "Songs" || title == "Videos" || title == "Episodes") {
       final songList = separatedResultContent[title].toList();
       sortSongsNVideos(songList, sortType, isAscending);
       separatedResultContent[title] = songList;
-    } else if (title.contains('playlists')) {
+    } else if (title.contains('playlists') || title == "Podcasts") {
       final playlists = separatedResultContent[title].toList();
       sortPlayLists(playlists, sortType, isAscending);
       separatedResultContent[title] = playlists;
-    } else if (title == "Artists") {
+    } else if (title == "Artists" || title == "Profiles") {
       final artistList = separatedResultContent[title].toList();
       sortArtist(artistList, sortType, isAscending);
       separatedResultContent[title] = artistList;

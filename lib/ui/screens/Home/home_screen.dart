@@ -17,6 +17,7 @@ import '../../widgets/quickpickswidget.dart';
 import '../../widgets/shimmer_widgets/home_shimmer.dart';
 import 'home_screen_controller.dart';
 import '../Settings/settings_screen.dart';
+import '/models/quick_picks.dart';
 
 import '/ui/theme/app_spacing.dart';
 
@@ -36,7 +37,7 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: Obx(
         () => ((homeScreenController.tabIndex.value == 0 &&
                         !GetPlatform.isDesktop) ||
-                    homeScreenController.tabIndex.value == 2) &&
+                    homeScreenController.tabIndex.value == 1) &&
                 settingsScreenController.isBottomNavBarEnabled.isFalse
             ? Obx(
                 () => Padding(
@@ -48,11 +49,11 @@ class HomeScreen extends StatelessWidget {
                         : playerController.playerPanelMinHeight.value,
                   ),
                   child: _GlassFab(
-                    icon: homeScreenController.tabIndex.value == 2
+                    icon: homeScreenController.tabIndex.value == 1
                         ? Icons.add_rounded
                         : Icons.search_rounded,
                     onTap: () {
-                      if (homeScreenController.tabIndex.value == 2) {
+                      if (homeScreenController.tabIndex.value == 1) {
                         showDialog(
                             context: context,
                             builder: (_) =>
@@ -173,31 +174,30 @@ class Body extends StatelessWidget {
                     : Obx(() {
                         homeScreenController
                             .disposeDetachedScrollControllers();
-                        final items =
-                            homeScreenController.isContentFetched.value
-                                ? [
-                                    Obx(() {
-                                      final sc = ScrollController();
-                                      homeScreenController
-                                          .contentScrollControllers
-                                          .add(sc);
-                                      return QuickPicksWidget(
-                                          content: homeScreenController
-                                              .quickPicks.value,
-                                          scrollController: sc);
-                                    }),
-                                    ...getWidgetList(
-                                        homeScreenController.middleContent,
-                                        homeScreenController),
-                                    ...getWidgetList(
-                                        homeScreenController.fixedContent,
-                                        homeScreenController),
-                                  ]
-                                : [const HomeShimmer()];
+
+                        final items = homeScreenController.isContentFetched.value
+                            ? [
+                                Obx(() {
+                                  final sc = ScrollController();
+                                  homeScreenController.contentScrollControllers
+                                      .add(sc);
+                                  return QuickPicksWidget(
+                                      content:
+                                          homeScreenController.quickPicks.value,
+                                      scrollController: sc);
+                                }),
+                                ...getWidgetList(
+                                    homeScreenController.middleContent,
+                                    homeScreenController),
+                                ...getWidgetList(
+                                    homeScreenController.fixedContent,
+                                    homeScreenController),
+                              ]
+                            : [const HomeShimmer()];
 
                         return ListView.builder(
-                          padding: EdgeInsets.only(
-                              bottom: 200, top: topPadding),
+                          padding:
+                              EdgeInsets.only(bottom: 200, top: topPadding),
                           itemCount: items.length,
                           itemBuilder: (_, i) => items[i],
                         );
@@ -244,12 +244,16 @@ class Body extends StatelessWidget {
     }
   }
 
+
   List<Widget> getWidgetList(
       dynamic list, HomeScreenController homeScreenController) {
     return list
         .map((content) {
           final sc = ScrollController();
           homeScreenController.contentScrollControllers.add(sc);
+          if (content.runtimeType == QuickPicks) {
+            return QuickPicksWidget(content: content, scrollController: sc);
+          }
           return ContentListWidget(content: content, scrollController: sc);
         })
         .whereType<Widget>()

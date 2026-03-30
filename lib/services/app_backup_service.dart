@@ -8,6 +8,7 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 import '../utils/helper.dart';
+import 'music_service.dart';
 
 class AppBackupService extends GetxService {
   Future<String> get supportDirPath async {
@@ -191,6 +192,13 @@ class AppBackupService extends GetxService {
 
     if (reopenCoreBoxes) {
       await ensureCoreBoxesOpen();
+
+      // Refresh visitor data from restored prefs
+      final appPrefs = Hive.box('AppPrefs');
+      final visitorData = appPrefs.get('visitorId');
+      if (visitorData != null && visitorData['id'] != null) {
+        Get.find<MusicServices>().setVisitorId(visitorData['id'].toString());
+      }
     }
   }
 

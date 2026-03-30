@@ -28,6 +28,8 @@ class HomeScreenController extends GetxController {
   final List<ScrollController> contentScrollControllers = [];
   bool reverseAnimationtransiton = false;
 
+  final exploreNetworkError = false.obs;
+
   @override
   onInit() {
     super.onInit();
@@ -165,6 +167,17 @@ class HomeScreenController extends GetxController {
         }
       }
 
+      // Merge Explore and Podcast content
+      try {
+        final exploreData = await _musicServices.explore();
+        homeContentListMap.addAll(exploreData);
+        
+        final podcastData = await _musicServices.podcastDiscover();
+        homeContentListMap.addAll(podcastData);
+      } catch (e) {
+        printERROR("Failed to fetch explore/podcast content: $e");
+      }
+
       middleContent.value = _setContentList(middleContentTemp);
       fixedContent.value = _setContentList(homeContentListMap);
 
@@ -187,7 +200,7 @@ class HomeScreenController extends GetxController {
   ) {
     List contentTemp = [];
     for (var content in contents) {
-      if((content["contents"]).isEmpty) continue;
+      if ((content["contents"]).isEmpty) continue;
       if ((content["contents"][0]).runtimeType == Playlist) {
         final tmp = PlaylistContent(
             playlistList: (content["contents"]).whereType<Playlist>().toList(),
@@ -202,10 +215,18 @@ class HomeScreenController extends GetxController {
         if (tmp.albumList.length >= 2) {
           contentTemp.add(tmp);
         }
+      } else if ((content["contents"][0]).runtimeType == MediaItem) {
+        final tmp = QuickPicks(
+            (content["contents"]).whereType<MediaItem>().toList(),
+            title: content["title"]);
+        if (tmp.songList.length >= 2) {
+          contentTemp.add(tmp);
+        }
       }
     }
     return contentTemp;
   }
+
 
   Future<void> changeDiscoverContent(dynamic val, {String? songId}) async {
     QuickPicks? quickPicks_;

@@ -14,7 +14,7 @@ class Artist {
   final String? subscribers;
   final String thumbnailUrl;
   factory Artist.fromJson(dynamic json) => Artist(
-      name: json['artist'],
+      name: json['artist'] ?? json['title'] ?? "Unknown Artist",
       browseId: json['browseId'],
       radioId: json['radioId'],
       subscribers: (json['subscribers']) == null
@@ -22,7 +22,7 @@ class Artist {
           : (json['subscribers']).runtimeType.toString() == "String"
               ? json['subscribers']
               : json['subscribers']['text'],
-      thumbnailUrl: Thumbnail(json["thumbnails"][0]["url"]).high);
+      thumbnailUrl: Thumbnail(json["thumbnails"] != null && json["thumbnails"].isNotEmpty ? json["thumbnails"][0]["url"] : "").high);
 
   Map<String, dynamic> toJson() => {
         'artist': name,

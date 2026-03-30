@@ -205,7 +205,10 @@ String? _getParam2(String filter) {
     'videos': 'Q',
     'albums': 'Y',
     'artists': 'g',
-    'playlists': 'o'
+    'playlists': 'o',
+    'podcasts': 'M',
+    'episodes': 'O',
+    'profiles': 'k'
   };
   return filterParams[filter];
 }

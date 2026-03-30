@@ -34,7 +34,9 @@ class MediaItemBuilder {
           'artists': json['artists'],
           'date': json['date'],
           'trackDetails': json['trackDetails'],
-          'year': json['year']
+          'year': json['year'],
+          'podcastId': json['podcastId'],
+          'resultType': json['resultType']
         });
   }
 
@@ -70,6 +72,8 @@ class MediaItemBuilder {
         ],
         'url': mediaItem.extras!['url'],
         'trackDetails': mediaItem.extras?['trackDetails'],
-        'year': mediaItem.extras?['year']
+        'year': mediaItem.extras?['year'],
+        'podcastId': mediaItem.extras?['podcastId'],
+        'resultType': mediaItem.extras?['resultType']
       };
 }

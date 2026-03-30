@@ -59,29 +59,19 @@ class ResultWidget extends StatelessWidget {
       SearchResultScreenController searchResScrController) {
     List<Widget> list = [];
     for (dynamic item in searchResScrController.resultContent.entries) {
-      if (item.key == "Songs" || item.key == "Videos") {
+      if (item.key == "Songs" || item.key == "Videos" || item.key == "Episodes") {
         list.add(SeparateTabItemWidget(
           items: List<MediaItem>.from(item.value),
           title: item.key,
           isCompleteList: false,
         ));
-      } else if (item.key == "Albums") {
+      } else if (item.key == "Albums" || item.key == "Podcasts") {
         list.add(ContentListWidget(
           content: AlbumContent(
               title: item.key, albumList: List<Album>.from(item.value)),
           isHomeContent: false,
         ));
-      } 
-      // else if (item.key.contains("playlist")) {
-      //   list.add(ContentListWidget(
-      //     content: PlaylistContent(
-      //       title: item.key,
-      //       playlistList: List<Playlist>.from(item.value),
-      //     ),
-      //     isHomeContent: false,
-      //   ));
-      // } 
-      else if (item.key.contains("Artist")) {
+      } else if (item.key.contains("Artist") || item.key == "Profiles") {
         list.add(SeparateTabItemWidget(
           items: List<Artist>.from(item.value),
           title: item.key,

@@ -1,4 +1,5 @@
 
+import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ import '/ui/widgets/loader.dart';
 import '/ui/widgets/snackbar.dart';
 import '/ui/player/player_controller.dart';
 import '/ui/navigator.dart';
+import '/models/playlist.dart';
 
 class ArtistScreen extends StatelessWidget {
   const ArtistScreen({super.key});
@@ -376,8 +378,16 @@ class _SpotifyArtistScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () =>
-                          ctrl.onDestinationSelected(1), // songs tab
+                      onTap: () {
+                        Get.toNamed(
+                          ScreenNavigationSetup.artistContentListScreen,
+                          id: ScreenNavigationSetup.id,
+                          arguments: {
+                            'browseEndpoint': ctrl.artistData['Songs'],
+                            'title': 'Songs',
+                          },
+                        );
+                      },
                       child: const Text(
                         'Show all',
                         style: TextStyle(
@@ -470,7 +480,16 @@ class _SpotifyArtistScreen extends StatelessWidget {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () => ctrl.onDestinationSelected(3), // Albums tab
+                              onTap: () {
+                                Get.toNamed(
+                                  ScreenNavigationSetup.artistContentListScreen,
+                                  id: ScreenNavigationSetup.id,
+                                  arguments: {
+                                    'browseEndpoint': albums,
+                                    'title': 'Albums',
+                                  },
+                                );
+                              },
                               child: const Text(
                                 'Show all',
                                 style: TextStyle(
@@ -505,11 +524,93 @@ class _SpotifyArtistScreen extends StatelessWidget {
               );
             }),
 
+            // ── Singles ────────────────────────────────────────────
+            _buildHorizontalSection(ctrl, 'Singles'),
+            
+            // ── Videos ────────────────────────────────────────────
+            _buildHorizontalSection(ctrl, 'Videos', isVideo: true),
+            
+            // ── Playlists ─────────────────────────────────────────
+            _buildHorizontalSection(ctrl, 'Playlists', isPlaylist: true),
+
             const SliverToBoxAdapter(child: SizedBox(height: 200)),
           ],
         );
       }),
     );
+  }
+  Widget _buildHorizontalSection(ArtistScreenController ctrl, String sectionKey, {bool isVideo = false, bool isPlaylist = false}) {
+    return Obx(() {
+      final section = ctrl.artistData[sectionKey];
+      if (section == null) return const SliverToBoxAdapter();
+      final content = section['content'] as List?;
+      if (content == null || content.isEmpty) {
+        return const SliverToBoxAdapter();
+      }
+      final items = content.take(15).toList();
+      return SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 24, bottom: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      sectionKey,
+                      style: TextStyle(
+                        color: Colors.white.withAlpha(240),
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(
+                          ScreenNavigationSetup.artistContentListScreen,
+                          id: ScreenNavigationSetup.id,
+                          arguments: {
+                            'browseEndpoint': section,
+                            'title': sectionKey,
+                          },
+                        );
+                      },
+                      child: const Text(
+                        'Show all',
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                height: 220, 
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: _AlbumCard(item: items[index], isVideo: isVideo, isPlaylist: isPlaylist),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
 
@@ -741,21 +842,38 @@ class _LatestReleaseCard extends StatelessWidget {
 // ─────────────────────────────────────────────────────────────────────────────
 class _AlbumCard extends StatelessWidget {
   final dynamic item;
-  const _AlbumCard({required this.item});
+  final bool isVideo;
+  final bool isPlaylist;
+  const _AlbumCard({required this.item, this.isVideo = false, this.isPlaylist = false});
 
   @override
   Widget build(BuildContext context) {
     final title = item?.title ?? '';
-    final year = item?.year ?? '';
-    final type = item?.description ?? 'Album';
-    final thumbUrl = (item?.thumbnailUrl as String?) ?? '';
+    final year = (item is MediaItem) ? (item.extras?['year'] ?? '') : (item?.year ?? '');
+    final type = (item is MediaItem)
+        ? (item.extras?['description'] ?? (isVideo ? 'Video' : isPlaylist ? 'Playlist' : 'Album'))
+        : (item?.description ?? (isVideo ? 'Video' : isPlaylist ? 'Playlist' : 'Album'));
+    final thumbUrl = isVideo ? (item?.artUri ?? '').toString() : (item?.thumbnailUrl as String?) ?? '';
 
     return InkWell(
-      onTap: () => Get.toNamed(
-        ScreenNavigationSetup.albumScreen,
-        id: ScreenNavigationSetup.id,
-        arguments: (null as Album?, item.browseId as String),
-      ),
+      onTap: () {
+        if (isVideo) {
+          final pCtrl = Get.find<PlayerController>();
+          pCtrl.startRadio(null, playlistid: 'RDAMVM${item.videoId}');
+        } else if (isPlaylist) {
+          Get.toNamed(
+            ScreenNavigationSetup.playlistScreen,
+            id: ScreenNavigationSetup.id,
+            arguments: (null as Playlist?, item.browseId as String, null, null),
+          );
+        } else {
+          Get.toNamed(
+            ScreenNavigationSetup.albumScreen,
+            id: ScreenNavigationSetup.id,
+            arguments: (null as Album?, item.browseId as String),
+          );
+        }
+      },
       borderRadius: BorderRadius.circular(16),
       child: Container(
         width: 140, // Fixed width for horizontal list items

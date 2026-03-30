@@ -8,6 +8,7 @@ import 'package:harmonymusic/ui/screens/Home/home_screen.dart';
 
 import 'screens/Album/album_screen.dart';
 import 'screens/Playlist/playlist_screen.dart';
+import 'screens/Artists/artist_content_list_screen.dart';
 import 'screens/Search/search_result_screen.dart';
 import 'screens/Search/search_screen.dart';
 
@@ -19,6 +20,7 @@ class ScreenNavigationSetup {
   static const searchScreen = '/searchScreen';
   static const searchResultScreen = '/searchResultScreen';
   static const artistScreen = '/artistScreen';
+  static const artistContentListScreen = '/artistContentListScreen';
   static const albumScreen = '/albumScreen';
   static const playlistScreen = '/playlistScreen';
 }
@@ -70,6 +72,11 @@ class ScreenNavigation extends StatelessWidget {
                   page: () => ArtistScreen(
                         key: Key(id),
                       ),
+                  settings: settings);
+            
+            case ScreenNavigationSetup.artistContentListScreen:
+              return GetPageRoute(
+                  page: () => const ArtistContentListScreen(),
                   settings: settings);
             
             default:

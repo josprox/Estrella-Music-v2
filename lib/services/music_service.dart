@@ -34,6 +34,7 @@ class MusicServices extends getx.GetxService {
       'client': {
         "clientName": "WEB_REMIX",
         "clientVersion": "1.20230213.01.00",
+        "visitorData": null,
       },
       'user': {}
     }
@@ -63,11 +64,12 @@ class MusicServices extends getx.GetxService {
       final visitorData = appPrefsBox.get("visitorId");
       if (visitorData != null && !isExpired(epoch: visitorData['exp'])) {
         _headers['X-Goog-Visitor-Id'] = visitorData['id'];
+        _context['context']['client']['visitorData'] = visitorData['id'];
         appPrefsBox.put("visitorId", {
           'id': visitorData['id'],
           'exp': DateTime.now().millisecondsSinceEpoch ~/ 1000 + 2590200
         });
-        printINFO("Got Visitor id ($visitorData['id']) from Box");
+        printINFO("Got Visitor id (${visitorData['id']}) from Box");
         return;
       }
     }
@@ -75,6 +77,7 @@ class MusicServices extends getx.GetxService {
     final visitorId = await genrateVisitorId();
     if (visitorId != null) {
       _headers['X-Goog-Visitor-Id'] = visitorId;
+      _context['context']['client']['visitorData'] = visitorId;
       printINFO("New Visitor id generated ($visitorId)");
       appPrefsBox.put("visitorId", {
         'id': visitorId,
@@ -83,8 +86,20 @@ class MusicServices extends getx.GetxService {
       return;
     }
     // not able to generate in that case
-    _headers['X-Goog-Visitor-Id'] =
-        visitorId ?? "CgttN24wcmd5UzNSWSi2lvq2BjIKCgJKUBIEGgAgYQ%3D%3D";
+    final defaultId = visitorId ?? "CgttN24wcmd5UzNSWSi2lvq2BjIKCgJKUBIEGgAgYQ%3D%3D";
+    _headers['X-Goog-Visitor-Id'] = defaultId;
+    _context['context']['client']['visitorData'] = defaultId;
+  }
+
+  void setVisitorId(String id) {
+    _headers['X-Goog-Visitor-Id'] = id;
+    _context['context']['client']['visitorData'] = id;
+    final appPrefsBox = Hive.box('AppPrefs');
+    appPrefsBox.put("visitorId", {
+      'id': id,
+      'exp': DateTime.now().millisecondsSinceEpoch ~/ 1000 + 2592000
+    });
+    printINFO("Visitor id updated manually ($id)");
   }
 
   set hlCode(String code) {
@@ -601,7 +616,10 @@ class MusicServices extends getx.GetxService {
       'community_playlists',
       'featured_playlists',
       'songs',
-      'videos'
+      'videos',
+      'podcasts',
+      'episodes',
+      'profiles'
     ];
 
     if (filter != null && !filters.contains(filter)) {
@@ -702,12 +720,24 @@ class MusicServices extends getx.GetxService {
         String? typeFilter = filter;
         category = "mixed"; // Just a default value
         final mixedItems = parseSearchResults(itemResults,
-            ['artist', 'playlist', 'song', 'video', 'station'], type, category);
+            ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'], type, category);
         if (filter == null) {
           for (var item in mixedItems) {
-            final itemType = item.runtimeType == MediaItem
-                ? (item.artist.split(",")[0]) + "s"
-                : "${item.runtimeType}s";
+            final String itemType;
+            if (item is MediaItem) {
+              final String? type = item.extras?['resultType'];
+              if (type == 'episode') {
+                itemType = "Episodes";
+              } else if (type == 'song') {
+                itemType = "Songs";
+              } else if (type == 'video') {
+                itemType = "Videos";
+              } else {
+                itemType = (item.artist?.split(",")[0] ?? "Song") + "s";
+              }
+            } else {
+              itemType = "${item.runtimeType}s";
+            }
             if (searchResults.containsKey(itemType) &&
                 (searchResults[itemType]).length < 3) {
               (searchResults[itemType] as List).add(item);
@@ -719,7 +749,7 @@ class MusicServices extends getx.GetxService {
           category = nav(res, ['musicShelfRenderer', ...title_text]);
           searchResults[category] = parseSearchResults(
               res['musicShelfRenderer']['contents'],
-              ['artist', 'playlist', 'song', 'video', 'station'],
+              ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'],
               type,
               category);
         }
@@ -972,6 +1002,58 @@ class MusicServices extends getx.GetxService {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<dynamic> home() async {
+    final data = Map.from(_context);
+    data["browseId"] = "FEmusic_home";
+    final response = await _sendRequest("browse", data);
+    final results = nav(response.data, single_column_tab + section_list) ?? [];
+    return parseMixedContent(results);
+  }
+
+  Future<dynamic> explore({int limit = 4}) async {
+    final data = Map.from(_context);
+    data["browseId"] = "FEmusic_explore";
+    final response = await _sendRequest("browse", data);
+    final results = nav(response.data, single_column_tab + section_list) ?? [];
+    return parseMixedContent(results).take(limit).toList();
+  }
+
+  Future<dynamic> podcastDiscover({int limit = 4}) async {
+    final data = Map.from(_context);
+    data["browseId"] = "FEmusic_non_music_audio";
+    final response = await _sendRequest("browse", data);
+    final results = nav(response.data, single_column_tab + section_list) ?? [];
+    final home = [...parseMixedContent(results)];
+    return home;
+  }
+
+  Future<Map<String, dynamic>> podcast(String channelId) async {
+    final data = Map.from(_context);
+    data['context']['client']["hl"] = 'en';
+    data['browseId'] = channelId;
+    final response = (await _sendRequest("browse", data)).data;
+    final results = nav(response, [...single_column_tab, ...section_list]) ?? [];
+
+    final Map<String, dynamic> podcastData = {'description': null, 'episodes': []};
+    final Map<String, dynamic>? header = (response['header']?['podcastHeaderRenderer']) ??
+        response['header']?['musicImmersiveHeaderRenderer'] ??
+        response['header']?['musicVisualHeaderRenderer'];
+
+    if(header != null) {
+      podcastData['name'] = nav(header, title_text) ?? "";
+      final descriptionShelf = findObjectByKey(results, description_shelf[0], isKey: true);
+      if (descriptionShelf != null) {
+        podcastData['description'] = nav(descriptionShelf, description);
+      }
+      podcastData['channelId'] = channelId;
+      podcastData['thumbnails'] = nav(header, thumbnails) ?? nav(header, ['thumbnail', 'musicThumbnailRenderer', 'thumbnail', 'thumbnails']);
+    }
+
+    // Attempt to parse mixed content for episodes and sections
+    podcastData.addAll(parseArtistContents(results));
+    return podcastData;
   }
 
   @override

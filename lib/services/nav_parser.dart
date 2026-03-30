@@ -175,15 +175,23 @@ List<Map<String, dynamic>> parseMixedContent(List<dynamic> rows) {
             content = parseAlbum(data, reqAlbumObj: false);
           } else if (pageType == "MUSIC_PAGE_TYPE_ARTIST") {
             content = parseRelatedArtist(data);
-          } else if (pageType == "MUSIC_PAGE_TYPE_PLAYLIST") {
+          } else if (pageType == "MUSIC_PAGE_TYPE_PLAYLIST" || pageType == "MUSIC_PAGE_TYPE_PODCAST_SHOW") {
             content = parsePlaylist(data);
+          } else if (pageType == "MUSIC_PAGE_TYPE_PODCAST_EPISODE") {
+            content = parseSong(data);
           }
         } else {
           data = nav(result, [mrlir]);
-          content = parseSongFlat(data);
+          if (data != null) {
+            content = parseSongFlat(data);
+          } else {
+            continue;
+          }
         }
 
-        contents.add(content);
+        if (content != null) {
+          contents.add(content);
+        }
       }
 
       items.add({'title': title, 'contents': contents});
@@ -672,25 +680,58 @@ dynamic parseTopResult(
 
   searchResult['thumbnails'] = nav(data, thumbnails);
 
-  if (resultType == 'song' || resultType == 'video') {
+  if (resultType == 'song' || resultType == 'video' || resultType == 'episode') {
     return MediaItemBuilder.fromJson(searchResult);
   } else if (resultType == 'playlist') {
     return Playlist.fromJson(searchResult);
-  } else if (resultType == 'album') {
+  } else if (resultType == 'album' || resultType == 'podcast') {
     return Album.fromJson(searchResult);
-  } else if (resultType == 'Artist') {
+  } else if (resultType == 'Artist' || resultType == 'artist' || resultType == 'profile') {
     return Artist.fromJson(searchResult);
   }
   return searchResult;
 }
 
 String? getSearchResultType(
-    String? resultTypeLocal, List<String> resultTypesLocal) {
+    Map<String, dynamic> data, List<String> resultTypesLocal) {
+  final browseEndpoint = data['navigationEndpoint']?['browseEndpoint'];
+  final pageTypeVal = browseEndpoint?[
+      'browseEndpointContextSupportedConfigs']?['browseEndpointContextMusicConfig']?['pageType'];
+
+  if (pageTypeVal == 'MUSIC_PAGE_TYPE_PODCAST_SHOW_DETAIL_PAGE') {
+    return 'podcast';
+  }
+  if (pageTypeVal == 'MUSIC_PAGE_TYPE_NON_MUSIC_AUDIO_TRACK_PAGE') {
+    return 'episode';
+  }
+
+  String? resultTypeLocal = getItemText(data, 1);
   if (resultTypeLocal == null) {
     return null;
   }
-  List<String> resultTypes = ['artist', 'playlist', 'song', 'video', 'station'];
+  List<String> resultTypes = [
+    'artist',
+    'playlist',
+    'song',
+    'video',
+    'station',
+    'podcast',
+    'episode',
+    'profile'
+  ];
   resultTypeLocal = resultTypeLocal.toLowerCase();
+  
+  if ((resultTypeLocal.contains("podcast") || resultTypeLocal.contains("pódcast")) &&
+      !resultTypeLocal.contains("episode") &&
+      !resultTypeLocal.contains("episodio")) {
+    return 'podcast';
+  } else if (resultTypeLocal.contains("episode") ||
+      resultTypeLocal.contains("episodio")) {
+    return 'episode';
+  } else if (resultTypeLocal.contains("profile")) {
+    return 'profile';
+  }
+
   if (!resultTypesLocal.contains(resultTypeLocal)) {
     return 'album';
   } else {
@@ -725,7 +766,7 @@ dynamic parseSearchResult(Map<String, dynamic> data,
   }
 
   resultType = ((resultType == null)
-      ? getSearchResultType(getItemText(data, 1), searchResultTypes)
+      ? getSearchResultType(data, searchResultTypes)
       : resultType)!;
   searchResult['resultType'] = resultType;
 
@@ -733,8 +774,9 @@ dynamic parseSearchResult(Map<String, dynamic> data,
     searchResult['title'] = getItemText(data, 0);
   }
 
-  if (resultType == 'artist') {
+  if (resultType == 'artist' || resultType == 'profile') {
     searchResult['artist'] = getItemText(data, 0);
+    searchResult['title'] = searchResult['artist'];
     final list = data['flexColumns'][1]
         ['musicResponsiveListItemFlexColumnRenderer']['text']['runs'];
     searchResult['subscribers'] = list.length < 2 ? "" : list[2];
@@ -798,23 +840,57 @@ dynamic parseSearchResult(Map<String, dynamic> data,
         searchResult['resultType'] = 'album';
       }
     }
+  } else if (resultType == 'podcast') {
+    final flexItem = getFlexColumnItem(data, 1);
+    final runs = flexItem['text']?['runs'] ?? [];
+    if (runs.length > 2) {
+      searchResult['artist'] = runs[2]['text'];
+    }
+    if (runs.isNotEmpty) {
+      searchResult['itemCount'] = runs.last['text'];
+    }
+  } else if (resultType == 'episode') {
+    final flexItem = getFlexColumnItem(data, 1);
+    final runs = flexItem['text']?['runs'] ?? [];
+    int podcastIndex = -1;
+    for (int i = 0; i < runs.length; i++) {
+      final pageTypeVal = nav(runs[i], [...navigation_browse, ...page_type]);
+      if (pageTypeVal == 'MUSIC_PAGE_TYPE_PODCAST_SHOW_DETAIL_PAGE') {
+        podcastIndex = i;
+        break;
+      }
+    }
+    if (podcastIndex != -1) {
+      searchResult['album'] = runs[podcastIndex]['text'];
+      searchResult['podcastId'] = nav(runs[podcastIndex], navigation_browse_id);
+    }
+    if (runs.isNotEmpty) {
+      searchResult['length'] = runs.last['text'];
+    }
   }
-  if ((['song', 'video']).contains(resultType)) {
+  if ((['song', 'video', 'episode']).contains(resultType)) {
     searchResult['videoId'] = nav(data,
         [...play_button, 'playNavigationEndpoint', 'watchEndpoint', 'videoId']);
     searchResult['videoType'] = videoType;
   }
 
-  if ((['song', 'video', 'album']).contains(resultType)) {
+  if ((['song', 'video', 'album', 'episode']).contains(resultType)) {
     searchResult['length'] = null;
     searchResult['year'] = null;
     final flexItem = getFlexColumnItem(data, 1);
     final runs = (flexItem['text']['runs']);
     final songInfo = parseSongRuns(runs);
     searchResult.addAll(songInfo);
+    if (resultType == 'episode' && searchResult['length'] == null) {
+      final flexItem_ = getFlexColumnItem(data, 1);
+      final runs_ = flexItem_['text']?['runs'] ?? [];
+      if (runs_.isNotEmpty) {
+        searchResult['length'] = runs_.last['text'];
+      }
+    }
   }
 
-  if ((['artist', 'album', 'playlist']).contains(resultType)) {
+  if ((['artist', 'album', 'playlist', 'podcast', 'profile']).contains(resultType)) {
     searchResult['browseId'] = nav(data, navigation_browse_id);
     if (searchResult['browseId'] == null) {
       return {};
@@ -827,16 +903,16 @@ dynamic parseSearchResult(Map<String, dynamic> data,
 
   searchResult['thumbnails'] = nav(data, thumbnails);
 
-  if (resultType == 'song' || resultType == 'video') {
+  if (resultType == 'song' || resultType == 'video' || resultType == 'episode') {
     if (searchResult['videoId'] != null) {
       return MediaItemBuilder.fromJson(searchResult);
     }
     return;
-  } else if (resultType.contains('playlist')) {
+  } else if (resultType.contains('playlist') || resultType == 'podcast') {
     return Playlist.fromJson(searchResult);
   } else if (resultType == 'album') {
     return Album.fromJson(searchResult);
-  } else if (resultType == 'artist') {
+  } else if (resultType == 'artist' || resultType == 'profile') {
     return Artist.fromJson(searchResult);
   }
 

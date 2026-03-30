@@ -13,6 +13,7 @@ import '../models/artist.dart';
 import '../models/playlist.dart';
 import '../ui/screens/Library/library_controller.dart';
 import '../utils/helper.dart';
+import 'music_service.dart';
 
 class LegacyMigrationSummary {
   const LegacyMigrationSummary({
@@ -59,6 +60,13 @@ class LegacyMusicMigrationService extends GetxService {
     );
 
     try {
+      if (resolved.settingsFile != null) {
+        final visitorId = _extractVisitorDataFromSettings(resolved.settingsFile!);
+        if (visitorId != null && visitorId.isNotEmpty) {
+          Get.find<MusicServices>().setVisitorId(visitorId);
+        }
+      }
+
       final songArtists = _loadSongArtists(database);
       final albumArtists = _loadAlbumArtists(database);
       final bookmarkedAlbumIds = _loadBookmarkedAlbumIds(database);
@@ -150,10 +158,36 @@ class LegacyMusicMigrationService extends GetxService {
     final dbFile = File('${extractDir.path}/song.db');
     await dbFile.writeAsBytes(legacyDbFile.content as List<int>, flush: true);
 
+    final legacySettingsFile = archive.files
+        .where((entry) => entry.name.endsWith('settings.preferences_pb'))
+        .firstOrNull;
+    File? settingsFile;
+    if (legacySettingsFile != null) {
+      settingsFile = File('${extractDir.path}/settings.preferences_pb');
+      await settingsFile.writeAsBytes(legacySettingsFile.content as List<int>,
+          flush: true);
+    }
+
     return _ResolvedLegacySource(
       databaseFile: dbFile,
+      settingsFile: settingsFile,
       cleanupDirectory: extractDir,
     );
+  }
+
+  String? _extractVisitorDataFromSettings(File settingsFile) {
+    try {
+      final bytes = settingsFile.readAsBytesSync();
+      final content = String.fromCharCodes(bytes);
+      if (content.contains('visitorData')) {
+        final reg = RegExp(r'Cg[a-zA-Z0-9_\-%]{10,}');
+        final match = reg.firstMatch(content);
+        return match?.group(0);
+      }
+    } catch (e) {
+      printERROR('Fallo al extraer visitorData de settings: $e');
+    }
+    return null;
   }
 
   Map<String, List<Map<String, String>>> _loadSongArtists(Database database) {
@@ -617,10 +651,12 @@ class LegacyMusicMigrationService extends GetxService {
 class _ResolvedLegacySource {
   const _ResolvedLegacySource({
     required this.databaseFile,
+    this.settingsFile,
     this.cleanupDirectory,
   });
 
   final File databaseFile;
+  final File? settingsFile;
   final Directory? cleanupDirectory;
 }
 
