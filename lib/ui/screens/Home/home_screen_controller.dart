@@ -295,7 +295,7 @@ class HomeScreenController extends GetxController {
     showVersionDialog.value =
         Hive.box("AppPrefs").get("newVersionVisibility") ?? true;
     if (showVersionDialog.isTrue) {
-      newVersionCheck(Get.find<SettingsScreenController>().currentVersion)
+      newVersionCheck(Get.find<SettingsScreenController>().currentVersion.value)
           .then((value) {
         if (value) {
           showDialog(

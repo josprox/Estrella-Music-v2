@@ -8,6 +8,7 @@ import 'package:harmonymusic/services/auth_service.dart';
 import 'package:harmonymusic/services/permission_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../utils/update_check_flag_file.dart';
@@ -49,23 +50,33 @@ class SettingsScreenController extends GetxController {
   final keepScreenAwake = false.obs;
   final restorePlaybackSession = false.obs;
   final cacheHomeScreenData = true.obs;
-  final currentVersion = "V1.12.2";
+  final currentVersion = "".obs;
 
   @override
   void onInit() {
     _setInitValue();
+    _fetchVersion();
     if (updateCheckFlag) _checkNewVersion();
     _createInAppSongDownDir();
     super.onInit();
   }
 
-  get currentVision => currentVersion;
+  Future<void> _fetchVersion() async {
+    try {
+      final pInfo = await PackageInfo.fromPlatform();
+      currentVersion.value = "V${pInfo.version}";
+    } catch (_) {
+      currentVersion.value = "V1.0.0";
+    }
+  }
+
+  get currentVision => currentVersion.value;
   get isCurrentPathsupportDownDir =>
       "$_supportDir/Music" == downloadLocationPath.toString();
   String get supportDirPath => _supportDir;
 
   _checkNewVersion() {
-    newVersionCheck(currentVersion)
+    newVersionCheck(currentVersion.value)
         .then((value) => isNewVersionAvailable.value = value);
   }
 

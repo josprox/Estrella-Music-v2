@@ -10,6 +10,7 @@ class AuthService extends GetxService {
   static const _jwtTokenKey = 'jwt_token';
   static const _refreshTokenKey = 'refresh_token';
   static const _tokenExpirationKey = 'token_expiration';
+  static const _cachedProfileKey = 'cached_user_profile';
 
   final Dio _dio = Dio(
     BaseOptions(
@@ -122,6 +123,7 @@ class AuthService extends GetxService {
     await _storage.delete(key: _jwtTokenKey);
     await _storage.delete(key: _refreshTokenKey);
     await _storage.delete(key: _tokenExpirationKey);
+    await _storage.delete(key: _cachedProfileKey);
   }
 
   Future<bool> _isTokenExpiringSoon({int daysThreshold = 15}) async {
@@ -175,27 +177,59 @@ class AuthService extends GetxService {
     if (await _isTokenExpiringSoon()) {
       final refreshResult = await refreshToken();
       if (!(refreshResult['success'] == true)) {
-        await _clearTokenData();
-        isAuthenticated.value = false;
-        userProfile.value = null;
-        isLoadingSession.value = false;
-        return;
+        if (refreshResult['isNetworkError'] == true) {
+          // Keep session active for offline mode
+          await _loadCachedProfile();
+          isLoadingSession.value = false;
+          return;
+        } else {
+          await _clearTokenData();
+          isAuthenticated.value = false;
+          userProfile.value = null;
+          isLoadingSession.value = false;
+          return;
+        }
       }
     }
 
     final profileResult = await fetchUserProfile();
     if (profileResult['success'] == true) {
       isAuthenticated.value = true;
-      userProfile.value = Map<String, dynamic>.from(
+      final profileData = Map<String, dynamic>.from(
         profileResult['user'] as Map<String, dynamic>? ?? <String, dynamic>{},
       );
+      userProfile.value = profileData;
+      await _storage.write(
+        key: _cachedProfileKey,
+        value: jsonEncode(profileData),
+      );
     } else {
-      await _clearTokenData();
-      isAuthenticated.value = false;
-      userProfile.value = null;
+      if (profileResult['isNetworkError'] == true) {
+        // Fallback to offline cached profile
+        await _loadCachedProfile();
+      } else {
+        await _clearTokenData();
+        isAuthenticated.value = false;
+        userProfile.value = null;
+      }
     }
 
     isLoadingSession.value = false;
+  }
+
+  Future<void> _loadCachedProfile() async {
+    try {
+      final cachedProfileData = await _storage.read(key: _cachedProfileKey);
+      if (cachedProfileData != null && cachedProfileData.isNotEmpty) {
+        userProfile.value = Map<String, dynamic>.from(
+          jsonDecode(cachedProfileData),
+        );
+      }
+      isAuthenticated.value = true; // Still assume authenticated offline
+    } catch (_) {
+      // Ignore cache load errors
+      isAuthenticated.value = true; 
+    }
   }
 
   Future<Map<String, dynamic>> login({
@@ -226,6 +260,7 @@ class AuthService extends GetxService {
           _asInt(data['expires_in']) ?? 7776000,
         );
         await restoreSession();
+        // The user override logic was here, handled by restoreSession cache now
         return {
           'success': true,
           'user': userProfile.value ?? _flattenUser(data['user']),
@@ -350,7 +385,11 @@ class AuthService extends GetxService {
     } on DioException catch (e) {
       return _handleError(e);
     } catch (e) {
-      return {'success': false, 'message': e.toString()};
+      return {
+        'success': false,
+        'message': e.toString(),
+        'isNetworkError': true,
+      };
     }
   }
 
@@ -392,7 +431,11 @@ class AuthService extends GetxService {
     } on DioException catch (e) {
       return _handleError(e);
     } catch (e) {
-      return {'success': false, 'message': e.toString()};
+      return {
+        'success': false,
+        'message': e.toString(),
+        'isNetworkError': true,
+      };
     }
   }
 
@@ -429,9 +472,14 @@ class AuthService extends GetxService {
       debugPrint('[AuthService] response: ${error.response?.data}');
     }
 
+    final isNetworkError = error.type != DioExceptionType.badResponse ||
+        (error.response?.statusCode != 401 &&
+            error.response?.statusCode != 403);
+
     final responseData = _asMap(error.response?.data);
     return {
       'success': false,
+      'isNetworkError': isNetworkError,
       'message': responseData['message']?.toString() ??
           error.message ??
           'Error de conexión.',

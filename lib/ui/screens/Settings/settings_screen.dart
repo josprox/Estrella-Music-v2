@@ -546,10 +546,10 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
               CustomExpansionTile(
-                title: "Cuenta y migracion",
-                icon: Icons.account_circle_outlined,
+                title: "General",
+                icon: Icons.settings,
                 children: [
-                  Obx(
+                   Obx(
                     () => ListTile(
                       contentPadding: const EdgeInsets.only(left: 5, right: 10),
                       title: Text(authService.displayName),
@@ -591,95 +591,82 @@ class SettingsScreen extends StatelessWidget {
                       () => Get.delete<LegacyMusicMigrationDialogController>(),
                     ),
                   ),
-                ],
-              ),
-              CustomExpansionTile(
-                  title: "${S.current.backup} & ${S.current.restore}",
-                  icon: Icons.restore,
-                  children: [
-                    ListTile(
-                      contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text(S.current.backupAppData),
-                      subtitle: Text(
-                        S.current.backupSettingsAndPlaylistsDes,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      isThreeLine: true,
-                      onTap: () => showDialog(
-                        context: context,
-                        builder: (context) => const BackupDialog(),
-                      ).whenComplete(
-                          () => Get.delete<BackupDialogController>()),
+                  const Divider(indent: 10, endIndent: 10, height: 1),
+                  ListTile(
+                    contentPadding: const EdgeInsets.only(left: 5, right: 10),
+                    title: Text(S.current.backupAppData),
+                    subtitle: Text(
+                      S.current.backupSettingsAndPlaylistsDes,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    ListTile(
-                      contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text(S.current.restoreAppData),
-                      subtitle: Text(
-                        S.current.restoreSettingsAndPlaylistsDes,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      isThreeLine: true,
-                      onTap: () => showDialog(
-                        context: context,
-                        builder: (context) => const RestoreDialog(),
-                      ).whenComplete(
-                          () => Get.delete<RestoreDialogController>()),
+                    isThreeLine: true,
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (context) => const BackupDialog(),
+                    ).whenComplete(
+                        () => Get.delete<BackupDialogController>()),
+                  ),
+                  ListTile(
+                    contentPadding: const EdgeInsets.only(left: 5, right: 10),
+                    title: Text(S.current.restoreAppData),
+                    subtitle: Text(
+                      S.current.restoreSettingsAndPlaylistsDes,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                  ]),
-              CustomExpansionTile(
-                  icon: Icons.miscellaneous_services,
-                  title: S.current.misc,
-                  children: [
-                    ListTile(
-                      contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                      title: Text(S.current.resetToDefault),
-                      subtitle: Text(
-                        S.current.resetToDefaultDes,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      onTap: () {
-                        settingsController
-                            .resetAppSettingsToDefault()
-                            .then((_) {
-                          ScaffoldMessenger.of(Get.context!).showSnackBar(
-                              snackbar(Get.context!, S.current.resetToDefaultMsg,
-                                  size: SanckBarSize.BIG,
-                                  duration: const Duration(seconds: 2)));
-                        });
-                      },
+                    isThreeLine: true,
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (context) => const RestoreDialog(),
+                    ).whenComplete(
+                        () => Get.delete<RestoreDialogController>()),
+                  ),
+                  const Divider(indent: 10, endIndent: 10, height: 1),
+                  ListTile(
+                    contentPadding: const EdgeInsets.only(left: 5, right: 10),
+                    title: Text(S.current.resetToDefault),
+                    subtitle: Text(
+                      S.current.resetToDefaultDes,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                  ]),
-              CustomExpansionTile(
-                icon: Icons.info,
-                title: S.current.appInfo,
-                children: [
+                    onTap: () {
+                      settingsController
+                          .resetAppSettingsToDefault()
+                          .then((_) {
+                        ScaffoldMessenger.of(Get.context!).showSnackBar(
+                            snackbar(Get.context!, S.current.resetToDefaultMsg,
+                                size: SanckBarSize.BIG,
+                                duration: const Duration(seconds: 2)));
+                      });
+                    },
+                  ),
+                  const Divider(indent: 10, endIndent: 10, height: 1),
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
                     title: Text(S.current.github),
                     subtitle: Text(
-                      "${S.current.githubDes}${((Get.find<PlayerController>().playerPanelMinHeight.value) == 0 || !isBottomNavActive) ? "" : "\n\n${settingsController.currentVersion} ${S.current.by} anandnet"}",
+                      "${S.current.githubDes}${((Get.find<PlayerController>().playerPanelMinHeight.value) == 0 || !isBottomNavActive) ? "" : "\n\n${settingsController.currentVersion.value} ${S.current.by} josprox"}",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     isThreeLine: true,
                     onTap: () {
                       launchUrl(
                         Uri.parse(
-                          'https://github.com/anandnet/Harmony-Music',
+                          'https://github.com/josprox/Estrella-Music',
                         ),
                         mode: LaunchMode.externalApplication,
                       );
                     },
                   ),
-                  const Divider(),
+                  const SizedBox(height: 10),
                   SizedBox(
                     child: Column(
                       children: [
                         Text(
-                          "Harmony Music",
+                          "Estrella Music",
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
-                        Text(settingsController.currentVersion,
-                            style: Theme.of(context).textTheme.titleMedium)
+                        Obx(() => Text(settingsController.currentVersion.value,
+                            style: Theme.of(context).textTheme.titleMedium))
                       ],
                     ),
                   ),
@@ -689,9 +676,11 @@ class SettingsScreen extends StatelessWidget {
           )),
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
-            child: Text(
-              "${settingsController.currentVersion} ${S.current.by} anandnet",
-              style: Theme.of(context).textTheme.bodySmall,
+            child: Obx(
+              () => Text(
+                "${settingsController.currentVersion.value} ${S.current.by} josprox",
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
             ),
           ),
         ],

@@ -12,7 +12,18 @@ class CustSwitch extends StatelessWidget {
     final isLightMode =
         Get.find<ThemeController>().themedata.value!.primaryColor ==
             Colors.white;
+    final WidgetStateProperty<Icon?> thumbIcon =
+        WidgetStateProperty.resolveWith<Icon?>(
+      (Set<WidgetState> states) {
+        if (states.contains(WidgetState.selected)) {
+          return const Icon(Icons.check, color: Colors.blueAccent);
+        }
+        return const Icon(Icons.close, color: Colors.grey);
+      },
+    );
+
     return Switch(
+        thumbIcon: thumbIcon,
         activeThumbColor: Colors.white,
         activeTrackColor: isLightMode ? Colors.grey : null,
         inactiveTrackColor: isLightMode ? Colors.grey : null,

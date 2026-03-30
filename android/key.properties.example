@@ -1,0 +1,4 @@
+storePassword=TODO_CAMBIA_ESTO
+keyPassword=TODO_CAMBIA_ESTO
+keyAlias=TODO_CAMBIA_ESTO
+storeFile=../../../ejemplo.keystore

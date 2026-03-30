@@ -13,19 +13,39 @@ class CustomExpansionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: ExpansionTile(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        collapsedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        childrenPadding: const EdgeInsets.all(8),
-        tilePadding: const EdgeInsets.only(right: 16,left: 10),
-        textColor: Theme.of(context).textTheme.titleMedium!.color,
-        iconColor: Theme.of(context).textTheme.titleMedium!.color,
-        collapsedBackgroundColor: Theme.of(context).colorScheme.secondary.withAlpha(30),
-        backgroundColor: Theme.of(context).colorScheme.secondary.withAlpha(30),
-        title: Text(title),
-        leading: Icon(icon),
-        children: children,
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondary.withAlpha(20),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 8),
+              child: Row(
+                children: [
+                  Icon(icon, 
+                    color: Theme.of(context).colorScheme.primary,
+                    size: 20,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ],
+              ),
+            ),
+            ...children,
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
     );
   }
