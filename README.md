@@ -1,93 +1,87 @@
 <div align="center">
 
-# ❗**This repository is no longer maintained.**
+<img src="cover.png" width="800" alt="Estrella Music v2 Cover">
+
+# Estrella Music v2
+**The Modern Flutter Evolution of Music Streaming**
 
 </div>
 
-<img src="https://github.com/anandnet/Harmony-Music/blob/main/cover.png" width="1200" >
+---
 
-# Harmony Music
-A cross platform app for music streaming made with Flutter(Android, Windows, linux).
+## 🌟 What is Estrella Music v2?
 
-# Features
-* Ability to play song from Ytube/Ytube Music.
-* Song cache while playing
-* Radio feature support
-* Background music
-* Playlist creation & bookmark support
-* Artist & Album bookmark support
-* Import song,Playlist,Album,Artist via sharing from Ytube/Ytube Music.
-* Streaming quality control
-* Song downloading support
-* Language support
-* Skip silence
-* Dynamic Theme
-* Flexibility to switch between Bottom & Side Nav bar
-* Equalizer support
-* Android Auto support
-* Synced & Plain Lyrics support
-* Sleep Timer
-* No Advertisment
-* No Login required
-* Piped playlist integration
+**Estrella Music v2** is a high-performance, cross-platform music streaming application built using Flutter. This version represents a powerful fusion between the robust engine of [Harmony Music](https://github.com/anandnet/Harmony-Music) and the feature-rich legacy of the original [Estrella Music Kotlin project](https://github.com/josprox/Joss-Music).
 
+By combining the best of both worlds, we've created an experience that is faster, more beautiful, and tightly integrated with the YouTube Music ecosystem, while maintaining full compatibility with your existing music library.
 
-# Download
-* Pleass choose one source for android apk. you won't be able to update from cross build apk source.
+---
 
-<a href="https://github.com/anandnet/Harmony-Music/releases/latest"><img src ="https://github.com/anandnet/Harmony-Music/blob/main/don_github.png" width = "250"></a> <a href= "https://f-droid.org/packages/com.anandnet.harmonymusic"><img src = "https://github.com/anandnet/Harmony-Music/blob/main/down_fdroid.png" width = '250'></a></a> 
+## 🚀 Key Features
 
-# Translation
-<a href="https://hosted.weblate.org/engage/harmony-music/">
-<img src="https://hosted.weblate.org/widget/harmony-music/project-translations/multi-auto.svg" alt="Translation status" />
-</a>
+- **🎵 Unlimited Streaming**: Access millions of songs, albums, and playlists from YouTube Music.
+- **🔄 Legacy Migration**: Easily import your playlists, favorites, and history from the original Estrella Music (Kotlin) project using `song.db` or `.backup` files.
+- **📱 Immersive Material 3 UI**: A sleek, modern design with dynamic themes that adapt to your album art and system preferences.
+- **🛠 Premium Update System**: Integrated blocking update gate with a world-class UI to ensure you're always on the latest, most stable version.
+- **🔊 Advanced Playback**:
+  - High-quality audio engine with caching for offline listening.
+  - Radio feature support for continuous discovering.
+  - Gapless playback and skip silence support.
+  - Background playback with native media controls.
+- **📜 Lyrics Support**: Both synced (LRC) and plain text lyrics support via LRCLIB.
+- **🚗 Navigation & Desktop**: Support for **Android Auto**, Windows, and Linux.
+- **☁️ Cloud & Local Backups**: Secure your data with automated cloud backups via OneSignal and manual local exports.
+- **🚫 Ad-Free Experience**: No advertisements, ever.
 
-You can also help us in translation, click status image or <a href="https://hosted.weblate.org/projects/harmony-music/project-translations/"> here </a> to go to Weblate.
+---
 
-# Troubleshoot
-* if you are facing Notification control issue or music playback stopped by system optimization, please enable ignore battery optimization option from settings
+## 🛠 Tech Stack
 
-# License
-```
-Harmony Music is a free software licensed under GPL v3.0 with following condition.
+- **Core**: [Flutter](https://flutter.dev) (Dart)
+- **State Management**: [GetX](https://pub.dev/packages/get)
+- **Audio Engine**: `just_audio` (Android), `media_kit` (Windows/Linux)
+- **Networking**: [Dio](https://pub.dev/packages/dio) & [YouTube Explode](https://pub.dev/packages/youtube_explode_dart)
+- **Database**: [Hive](https://pub.dev/packages/hive)
+- **Notifications**: [OneSignal](https://pub.dev/packages/onesignal_flutter)
 
-- Copied/Modified version of this software can not be used for 'non-free' and profit purposes.
-- You can not publish copied/modified version of this app on closed source app repository
-  like PlayStore/AppStore.
+---
 
-```
+## 📥 Installation & Setup
 
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/josprox/Estrella-Music-v2.git
+   ```
+2. **Setup environment**:
+   Create a `.env` file based on `.env.example` and add your `API_URL`, `ONESIGNAL_APP_ID`, and `UPDATE_CHECK_URL`.
+3. **Install dependencies**:
+   ```bash
+   flutter pub get
+   ```
+4. **Run the app**:
+   ```bash
+   flutter run
+   ```
 
-# Disclaimer
-```
-This project has been created while learning & learning is the main intention.
-This project is not sponsored or affiliated with, funded, authorized, endorsed by any content provider.
-Any Song, content, trademark used in this app are intellectual property of their respective owners.
-Harmony music is not responsible for any infringement of copyright or other intellectual property rights that may result
-from the use of the songs and other content available through this app.
+---
 
-This Software is released "as-is", without any warranty, responsibility or liability.
-In no event shall the Author of this Software be liable for any special, consequential,
-incidental or indirect damages whatsoever (including, without limitation, any 
-other pecuniary loss) arising out of the use of inability to use this product, even if
-Author of this Sotware is aware of the possibility of such damages and known defect.
-```
+## 🙏 Credits & Acknowledgments
 
-# Learning References & Credits
-<a href = 'https://docs.flutter.dev/'>Flutter documentation</a> - a best guide to learn cross platform Ui/app developemnt<br/>
-<a href = 'https://suragch.medium.com/'>Suragch</a>'s Article related to Just audio & state management,architectural style<br/>
-<a href = 'https://github.com/sigma67'>sigma67</a>'s unofficial ytmusic api project<br/>
-App UI inspired by <a href = 'https://github.com/vfsfitvnm'>vfsfitvnm</a>'s ViMusic<br/>
-Synced lyrics provided by <a href = 'https://lrclib.net' >LRCLIB</a> <br/>
-<a href = 'https://piped.video' >Piped</a> for playlists.
+This project is built upon the incredible work of the open-source community:
 
-#### Major Packages used
-* just_audio: ^0.9.40  -  audio player for android
-* media_kit: ^1.1.9 - audio player for linux and windows
-* audio_service: ^0.18.15 - manage background music & platform audio services
-* get: ^4.6.6 -  package for high-performance state management, intelligent dependency injection, and route management
-* youtube_explode_dart: ^2.0.2 - Third party package to provide song url
-* hive: ^2.2.3 - offline db used 
-* hive_flutter: ^1.1.0
+- [**Harmony Music**](https://github.com/anandnet/Harmony-Music): The foundational Flutter engine for this version.
+- [**Estrella Music (Kotlin)**](https://github.com/josprox/Joss-Music): The original vision and feature set.
+- [**InnerTune**](https://github.com/z-huang/InnerTune) & [**ViMusic**](https://github.com/vfsfitvnm/ViMusic): Major UI and functional inspirations.
+- [**LRCLIB**](https://lrclib.net): Lyrics synchronization.
+- [**Piped**](https://piped.video): Playlist integration.
 
+---
 
+## ⚠️ Disclaimer & License
+
+**Estrella Music v2** is a free software licensed under **GPL v3.0**. 
+
+- Copied/Modified versions of this software cannot be used for 'non-free' or profit purposes.
+- You cannot publish modified versions of this app on closed-source repositories such as Google Play Store or Apple App Store.
+
+*This project is not affiliated with, funded, authorized, or endorsed by Google LLC or YouTube. All trademarks are the property of their respective owners.*
