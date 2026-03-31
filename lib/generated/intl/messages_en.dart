@@ -436,6 +436,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "includeDownloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Include downloded songs files",
     ),
+    "infoNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Information not available",
+    ),
     "invalidPlaylistFile": MessageLookupByLibrary.simpleMessage(
       "Invalid playlist file structure",
     ),
@@ -448,6 +451,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "languageDes": MessageLookupByLibrary.simpleMessage("Set App language"),
+    "latestVersion": MessageLookupByLibrary.simpleMessage(
+      "Latest Version Available",
+    ),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Let\'s start.."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Library Albums"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Library Artists"),
@@ -462,6 +468,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Link with piped for playlists",
+    ),
+    "loadInfoUpdate": MessageLookupByLibrary.simpleMessage(
+      "Could not load update information",
     ),
     "local": MessageLookupByLibrary.simpleMessage("Local"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("LoudnessDb"),
@@ -772,6 +781,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Unlinked successfully!",
     ),
     "upNext": MessageLookupByLibrary.simpleMessage("Up Next"),
+    "updateApp": MessageLookupByLibrary.simpleMessage("Update Application"),
     "urlSearchDes": MessageLookupByLibrary.simpleMessage(
       "Url detected click on it to open/play associated content",
     ),

@@ -525,4 +525,9 @@
   "auth_register_error": "No fue posible crear la cuenta.",
   "auth_recovery_email_sent": "Correo enviado.",
   "auth_recovery_email_error": "No fue posible enviar el correo."
-}
+,
+  "latestVersion": "Última Versión Disponible",
+  "updateApp": "Actualizar Aplicación",
+  "loadInfoUpdate": "No se pudo cargar la información de la actualización",
+  "infoNotAvailable": "Información no disponible"
+}

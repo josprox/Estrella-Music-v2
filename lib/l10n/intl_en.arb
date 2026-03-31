@@ -525,4 +525,9 @@
   "auth_register_error": "Could not create account.",
   "auth_recovery_email_sent": "Email sent.",
   "auth_recovery_email_error": "Could not send email."
-}
+,
+  "latestVersion": "Latest Version Available",
+  "updateApp": "Update Application",
+  "loadInfoUpdate": "Could not load update information",
+  "infoNotAvailable": "Information not available"
+}

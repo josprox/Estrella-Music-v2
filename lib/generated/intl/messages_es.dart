@@ -474,6 +474,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "includeDownloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Incluir archivos de canciones descargadas",
     ),
+    "infoNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Información no disponible",
+    ),
     "invalidPlaylistFile": MessageLookupByLibrary.simpleMessage(
       "Estructura de archivo de lista de reproducción no válida",
     ),
@@ -487,6 +490,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "language": MessageLookupByLibrary.simpleMessage("Idioma"),
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Establecer el idioma de la aplicación",
+    ),
+    "latestVersion": MessageLookupByLibrary.simpleMessage(
+      "Última Versión Disponible",
     ),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Empecemos.."),
     "libAlbums": MessageLookupByLibrary.simpleMessage(
@@ -512,6 +518,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Vincular con Piped para listas de reproducción",
+    ),
+    "loadInfoUpdate": MessageLookupByLibrary.simpleMessage(
+      "No se pudo cargar la información de la actualización",
     ),
     "local": MessageLookupByLibrary.simpleMessage("Local"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("SonoridadDb"),
@@ -860,6 +869,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "¡Desvinculado con éxito!",
     ),
     "upNext": MessageLookupByLibrary.simpleMessage("A continuación"),
+    "updateApp": MessageLookupByLibrary.simpleMessage("Actualizar Aplicación"),
     "urlSearchDes": MessageLookupByLibrary.simpleMessage(
       "URL detectada haz clic en ella para abrir/reproducir el contenido asociado",
     ),

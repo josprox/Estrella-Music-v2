@@ -3133,6 +3133,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Latest Version Available`
+  String get latestVersion {
+    return Intl.message(
+      'Latest Version Available',
+      name: 'latestVersion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Application`
+  String get updateApp {
+    return Intl.message(
+      'Update Application',
+      name: 'updateApp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not load update information`
+  String get loadInfoUpdate {
+    return Intl.message(
+      'Could not load update information',
+      name: 'loadInfoUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Information not available`
+  String get infoNotAvailable {
+    return Intl.message(
+      'Information not available',
+      name: 'infoNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

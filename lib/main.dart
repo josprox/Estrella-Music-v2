@@ -15,6 +15,7 @@ import '/services/auth_service.dart';
 import '/services/catalog_recovery_service.dart';
 import '/services/cloud_backup_service.dart';
 import '/services/legacy_music_migration_service.dart';
+import '/services/notification_service.dart';
 import '/services/user_data_bootstrap_service.dart';
 import '/ui/screens/Search/search_screen_controller.dart';
 import '/services/downloader.dart';
@@ -39,6 +40,7 @@ Future<void> main() async {
   try {
     await dotenv.load(fileName: '.env');
   } catch (_) {}
+  await NotificationService.initOneSignal();
   await initHive();
   final appPrefs = await Hive.openBox('AppPrefs');
   
