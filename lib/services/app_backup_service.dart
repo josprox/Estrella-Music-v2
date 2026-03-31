@@ -22,9 +22,7 @@ class AppBackupService extends GetxService {
     return (await getApplicationDocumentsDirectory()).path;
   }
 
-  Future<List<String>> collectFilesToBackup({
-    bool includeDownloadedFiles = false,
-  }) async {
+  Future<List<String>> collectFilesToBackup() async {
     final files = <String>[];
     final dbDir = Directory(await databaseDirPath);
     if (await dbDir.exists()) {
@@ -32,20 +30,6 @@ class AppBackupService extends GetxService {
         if (entity is File && entity.path.endsWith('.hive')) {
           files.add(entity.path);
         }
-      }
-    }
-
-    if (!includeDownloadedFiles) {
-      return files;
-    }
-
-    final downloadBox = await Hive.openBox('SongDownloads');
-    for (final entry in downloadBox.values) {
-      final songPath = entry['url']?.toString();
-      if (songPath != null &&
-          songPath.isNotEmpty &&
-          File(songPath).existsSync()) {
-        files.add(songPath);
       }
     }
 
@@ -63,7 +47,6 @@ class AppBackupService extends GetxService {
 
   Future<File> createBackupArchive({
     required String outputPath,
-    bool includeDownloadedFiles = false,
   }) async {
     final outputFile = File(outputPath);
     if (await outputFile.exists()) {
@@ -74,9 +57,7 @@ class AppBackupService extends GetxService {
     final encoder = ZipFileEncoder();
     encoder.create(outputPath);
 
-    final files = await collectFilesToBackup(
-      includeDownloadedFiles: includeDownloadedFiles,
-    );
+    final files = await collectFilesToBackup();
 
     for (final filePath in files) {
       final file = File(filePath);
@@ -90,14 +71,11 @@ class AppBackupService extends GetxService {
     return outputFile;
   }
 
-  Future<Uint8List> createBackupBytes({
-    bool includeDownloadedFiles = false,
-  }) async {
+  Future<Uint8List> createBackupBytes() async {
     final tempDir = await getTemporaryDirectory();
     final archiveFile = await createBackupArchive(
       outputPath:
           '${tempDir.path}/estrella_${DateTime.now().millisecondsSinceEpoch}.hmb',
-      includeDownloadedFiles: includeDownloadedFiles,
     );
     try {
       return await archiveFile.readAsBytes();
@@ -108,14 +86,11 @@ class AppBackupService extends GetxService {
     }
   }
 
-  Future<File> createTemporaryBackupArchive({
-    bool includeDownloadedFiles = false,
-  }) async {
+  Future<File> createTemporaryBackupArchive() async {
     final tempDir = await getTemporaryDirectory();
     return createBackupArchive(
       outputPath:
           '${tempDir.path}/estrella_${DateTime.now().millisecondsSinceEpoch}.hmb',
-      includeDownloadedFiles: includeDownloadedFiles,
     );
   }
 

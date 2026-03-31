@@ -16,7 +16,11 @@ class UserDataBootstrapService extends GetxService {
 
   String? _preparedUserKey;
   String? _attemptedUserKey;
+  String? _currentProcessingUserKey;
   Future<void>? _runningTask;
+
+  final foundBackups = <CloudBackupFile>[].obs;
+  final requiresUserConfirmation = false.obs;
 
   AuthService get _authService => Get.find<AuthService>();
   CloudBackupService get _cloudBackupService => Get.find<CloudBackupService>();
@@ -46,7 +50,21 @@ class UserDataBootstrapService extends GetxService {
     if (isPreparing.value) {
       return false;
     }
-    return _preparedUserKey != userKey && _attemptedUserKey != userKey;
+    if (_preparedUserKey == userKey || _attemptedUserKey == userKey) {
+      return false;
+    }
+
+    return !_isBootstrapConfirmedLocally(userKey);
+  }
+
+  bool _isBootstrapConfirmedLocally(String userKey) {
+    return Hive.box('AppPrefs')
+        .get('bootstrap_confirmed_$userKey', defaultValue: false);
+  }
+
+  Future<void> _confirmBootstrap(String userKey) async {
+    _preparedUserKey = userKey;
+    await Hive.box('AppPrefs').put('bootstrap_confirmed_$userKey', true);
   }
 
   void resetRuntimeState() {
@@ -85,111 +103,128 @@ class UserDataBootstrapService extends GetxService {
     isPreparing.value = true;
     lastError.value = '';
     willReplaceLocalData.value = false;
+    foundBackups.clear();
+    requiresUserConfirmation.value = false;
+    _currentProcessingUserKey = userKey;
 
     try {
       statusMessage.value = 'Revisando tu biblioteca local...';
       final hasLocalData = await _hasMeaningfulLocalData();
+      willReplaceLocalData.value = hasLocalData;
 
       statusMessage.value = 'Buscando backups de tu cuenta...';
-      final latestAppBackup = await _getLatestBackup(
-        CloudBackupService.defaultAppName,
+      final estrellaBackups = await _cloudBackupService.listBackups(
+        appName: CloudBackupService.defaultAppName,
       );
-      if (latestAppBackup != null) {
+      final jossBackups = await _cloudBackupService.listBackups(
+        appName: CloudBackupService.legacyMusicAppName,
+      );
+
+      final allRecentBackups = [...estrellaBackups, ...jossBackups];
+
+      if (allRecentBackups.isNotEmpty) {
+        // Find if the latest backup was already processed
+        final latest = allRecentBackups.first;
         if (_wasBackupAlreadyProcessed(
               userKey: userKey,
-              source: latestAppBackup.appName,
-              fileId: latestAppBackup.fileId,
+              source: latest.appName,
+              fileId: latest.fileId,
             ) &&
             hasLocalData) {
-          statusMessage.value = 'Tu backup ya estaba sincronizado.';
-          _preparedUserKey = userKey;
+          statusMessage.value = 'Tu biblioteca ya está sincronizada.';
+          await _confirmBootstrap(userKey);
           return;
         }
 
-        willReplaceLocalData.value = hasLocalData;
-        statusMessage.value = hasLocalData
-            ? 'Encontramos un backup de tu cuenta. Reemplazaremos los datos locales.'
-            : 'Restaurando tu backup de Estrella Music...';
-        final bytes =
-            await _cloudBackupService.downloadBackupBytes(latestAppBackup);
-        statusMessage.value = 'Restaurando tu backup de Estrella Music...';
-        await _appBackupService.restoreBackupBytes(
-          bytes,
-          clearExistingMediaAssets: true,
-          reopenCoreBoxes: true,
-        );
-        await _persistProcessedBackup(
-          userKey: userKey,
-          source: latestAppBackup.appName,
-          fileId: latestAppBackup.fileId,
-          fileName: latestAppBackup.fileName,
-        );
-        _applyLocaleFromAppPrefs();
-        statusMessage.value = 'Tu biblioteca quedo restaurada.';
-        _preparedUserKey = userKey;
-        return;
-      }
-
-      final latestLegacyBackup = await _getLatestBackup(
-        CloudBackupService.legacyMusicAppName,
-      );
-      if (latestLegacyBackup != null) {
-        if (_wasBackupAlreadyProcessed(
-              userKey: userKey,
-              source: latestLegacyBackup.appName,
-              fileId: latestLegacyBackup.fileId,
-            ) &&
-            hasLocalData) {
-          statusMessage.value = 'Tu migracion ya estaba aplicada.';
-          _preparedUserKey = userKey;
-          return;
-        }
-
-        willReplaceLocalData.value = hasLocalData;
-        statusMessage.value = 'Descargando tu respaldo de Joss Music...';
-        final bytes =
-            await _cloudBackupService.downloadBackupBytes(latestLegacyBackup);
-        if (hasLocalData) {
-          statusMessage.value =
-              'Borrando los datos locales antes de migrar tu respaldo...';
-          await _appBackupService.clearLocalMusicData();
-        }
-
-        statusMessage.value = 'Migrando tu respaldo de Joss Music...';
-        await _legacyMigrationService.importFromBackupBytes(
-          bytes,
-          sourceName: latestLegacyBackup.fileName,
-        );
-        await _persistProcessedBackup(
-          userKey: userKey,
-          source: latestLegacyBackup.appName,
-          fileId: latestLegacyBackup.fileId,
-          fileName: latestLegacyBackup.fileName,
-        );
-        statusMessage.value = 'Tus datos fueron migrados a Estrella Music.';
-        _preparedUserKey = userKey;
+        foundBackups.assignAll(allRecentBackups);
+        requiresUserConfirmation.value = true;
+        statusMessage.value = '¡Encontramos respaldos de tu cuenta!';
+        // Wait for user input via requiresUserConfirmation flow
         return;
       }
 
       statusMessage.value = hasLocalData
           ? 'No encontramos backups remotos. Conservamos tus datos locales.'
           : 'No encontramos backups remotos. Entrando...';
-      _preparedUserKey = userKey;
+      await _confirmBootstrap(userKey);
     } catch (e) {
       lastError.value = e.toString().replaceFirst('Bad state: ', '');
       statusMessage.value = willReplaceLocalData.value
-          ? 'No se pudo completar la restauracion automatica. Entrando a la app.'
+          ? 'No se pudo completar la búsqueda de respaldos. Entrando...'
           : 'No se pudo recuperar tu backup. Entrando...';
       printERROR('Bootstrap de usuario fallo: $e');
-      _preparedUserKey = userKey;
+      await _confirmBootstrap(userKey);
+    } finally {
+      if (!requiresUserConfirmation.value) {
+        isPreparing.value = false;
+      }
+    }
+  }
+
+  Future<void> restoreSelectedBackup(CloudBackupFile backup) async {
+    final userKey = _currentProcessingUserKey;
+    if (userKey == null) return;
+
+    requiresUserConfirmation.value = false;
+    isPreparing.value = true;
+    lastError.value = '';
+
+    try {
+      final isLegacy = backup.appName == CloudBackupService.legacyMusicAppName;
+      final label = isLegacy ? 'Joss Music' : 'Estrella Music';
+
+      statusMessage.value = 'Descargando tu respaldo de $label...';
+      final bytes = await _cloudBackupService.downloadBackupBytes(backup);
+
+      if (willReplaceLocalData.value) {
+        statusMessage.value = 'Borrando datos locales antes de restaurar...';
+        await _appBackupService.clearLocalMusicData();
+      }
+
+      statusMessage.value = 'Restaurando tu respaldo de $label...';
+      if (isLegacy) {
+        await _legacyMigrationService.importFromBackupBytes(
+          bytes,
+          sourceName: backup.fileName,
+        );
+      } else {
+        await _appBackupService.restoreBackupBytes(
+          bytes,
+          clearExistingMediaAssets: true,
+          reopenCoreBoxes: true,
+        );
+      }
+
+      await _persistProcessedBackup(
+        userKey: userKey,
+        source: backup.appName,
+        fileId: backup.fileId,
+        fileName: backup.fileName,
+      );
+
+      _applyLocaleFromAppPrefs();
+      statusMessage.value = '¡Tu biblioteca ha sido restaurada!';
+      await _confirmBootstrap(userKey);
+    } catch (e) {
+      lastError.value = e.toString().replaceFirst('Bad state: ', '');
+      statusMessage.value = 'La restauración falló. Entrando a la app...';
+      printERROR('Restauración manual falló: $e');
+      await _confirmBootstrap(userKey);
     } finally {
       isPreparing.value = false;
     }
   }
 
-  Future<CloudBackupFile?> _getLatestBackup(String appName) async {
-    final backups = await _cloudBackupService.listBackups(appName: appName);
-    return backups.isEmpty ? null : backups.first;
+  Future<void> continueWithLocalData() async {
+    final userKey = _currentProcessingUserKey;
+    if (userKey == null) return;
+
+    requiresUserConfirmation.value = false;
+    isPreparing.value = true;
+    statusMessage.value = 'Entrando con tus datos locales...';
+
+    await _confirmBootstrap(userKey);
+    isPreparing.value = false;
   }
 
   Future<bool> _hasMeaningfulLocalData() async {

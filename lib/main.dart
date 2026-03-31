@@ -31,6 +31,9 @@ import 'ui/screens/Library/library_controller.dart';
 import 'utils/system_tray.dart';
 import 'utils/update_check_flag_file.dart';
 
+import 'package:workmanager/workmanager.dart';
+import 'services/background_backup_handler.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
@@ -38,6 +41,25 @@ Future<void> main() async {
   } catch (_) {}
   await initHive();
   final appPrefs = await Hive.openBox('AppPrefs');
+  
+  // Initialize Background Backup
+  Workmanager().initialize(
+    callbackDispatcher,
+    isInDebugMode: false,
+  );
+  
+  if (GetPlatform.isAndroid || GetPlatform.isIOS) {
+    Workmanager().registerPeriodicTask(
+      "periodic-backup-task",
+      "backupTask",
+      frequency: const Duration(hours: 12),
+      existingWorkPolicy: ExistingPeriodicWorkPolicy.keep,
+      constraints: Constraints(
+        networkType: NetworkType.connected, // Allows any network as requested
+      ),
+    );
+  }
+
   final appLang = appPrefs.get('currentAppLanguageCode') ?? Get.deviceLocale?.languageCode ?? "en";
   await S.load(Locale(appLang));
   _setAppInitPrefs();

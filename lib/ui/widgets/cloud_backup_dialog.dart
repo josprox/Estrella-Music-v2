@@ -48,21 +48,6 @@ class CloudBackupDialog extends StatelessWidget {
                       child: Text(controller.errorMessage.value),
                     ),
             ),
-            Obx(
-              () => CheckboxListTile(
-                value: controller.includeDownloadedFiles.value,
-                onChanged: controller.isBusy.isTrue
-                    ? null
-                    : (value) => controller.includeDownloadedFiles.value =
-                        value ?? false,
-                contentPadding: EdgeInsets.zero,
-                title: const Text('Incluir archivos descargados'),
-                subtitle: const Text(
-                  'Si lo activas, el backup puede pesar bastante más.',
-                ),
-                controlAffinity: ListTileControlAffinity.leading,
-              ),
-            ),
             const SizedBox(height: 6),
             Row(
               children: [
@@ -172,7 +157,6 @@ class CloudBackupDialog extends StatelessWidget {
 
 class CloudBackupDialogController extends GetxController {
   final backups = <CloudBackupFile>[].obs;
-  final includeDownloadedFiles = false.obs;
   final isBusy = false.obs;
   final isRestored = false.obs;
   final errorMessage = ''.obs;
@@ -207,9 +191,7 @@ class CloudBackupDialogController extends GetxController {
     isBusy.value = true;
     errorMessage.value = '';
     try {
-      final bytes = await _appBackupService.createBackupBytes(
-        includeDownloadedFiles: includeDownloadedFiles.value,
-      );
+      final bytes = await _appBackupService.createBackupBytes();
       final timestamp = DateTime.now()
           .toIso8601String()
           .replaceAll(':', '')
