@@ -644,7 +644,7 @@ class SettingsScreen extends StatelessWidget {
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
                     title: Text(S.current.github),
                     subtitle: Text(
-                      "${S.current.githubDes}${((Get.find<PlayerController>().playerPanelMinHeight.value) == 0 || !isBottomNavActive) ? "" : "\n\n${settingsController.currentVersion.value} ${S.current.by} josprox"}",
+                      "${S.current.githubDes}${((Get.find<PlayerController>().playerPanelMinHeight.value) == 0 || !isBottomNavActive) ? "" : "\n\n${S.current.developedBy}"}",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     isThreeLine: true,
@@ -677,9 +677,23 @@ class SettingsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Obx(
-              () => Text(
-                "${settingsController.currentVersion.value} ${S.current.by} josprox",
-                style: Theme.of(context).textTheme.bodySmall,
+              () => Column(
+                children: [
+                  Text(
+                    "${settingsController.currentVersion.value} • ${S.current.developedBy}",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    S.current.copyrightNotice,
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withOpacity(0.5),
+                        ),
+                  ),
+                ],
               ),
             ),
           ),

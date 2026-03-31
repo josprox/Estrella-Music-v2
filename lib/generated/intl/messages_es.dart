@@ -255,6 +255,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Listas de reproducción de la comunidad",
     ),
     "content": MessageLookupByLibrary.simpleMessage("Contenido"),
+    "copyrightNotice": MessageLookupByLibrary.simpleMessage(
+      "© 2026 JOSPROX. Licencia GPL v3.0",
+    ),
     "create": MessageLookupByLibrary.simpleMessage("Crear"),
     "createnAdd": MessageLookupByLibrary.simpleMessage("Crear y añadir"),
     "customIns": MessageLookupByLibrary.simpleMessage(
@@ -270,6 +273,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "deleteDownloadedDataAlert": MessageLookupByLibrary.simpleMessage(
       "¡Eliminado correctamente de las descargas!",
+    ),
+    "developedBy": MessageLookupByLibrary.simpleMessage(
+      "Desarrollado y Mantenido por Joss Estrada (JOSPROX)",
     ),
     "disableTransitionAnimation": MessageLookupByLibrary.simpleMessage(
       "Desactivar animación de transición",

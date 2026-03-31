@@ -233,6 +233,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Community Playlists",
     ),
     "content": MessageLookupByLibrary.simpleMessage("Content"),
+    "copyrightNotice": MessageLookupByLibrary.simpleMessage(
+      "© 2026 JOSPROX. License GPL v3.0",
+    ),
     "create": MessageLookupByLibrary.simpleMessage("Create"),
     "createnAdd": MessageLookupByLibrary.simpleMessage("Create & add"),
     "customIns": MessageLookupByLibrary.simpleMessage("Custom Instance"),
@@ -246,6 +249,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "deleteDownloadedDataAlert": MessageLookupByLibrary.simpleMessage(
       "Successfully removed from downloads!",
+    ),
+    "developedBy": MessageLookupByLibrary.simpleMessage(
+      "Developed and Maintained by Joss Estrada (JOSPROX)",
     ),
     "disableTransitionAnimation": MessageLookupByLibrary.simpleMessage(
       "Disable transition animation",

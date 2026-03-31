@@ -65,6 +65,16 @@ By combining the best of both worlds, we've created an experience that is faster
 
 ---
 
+## 📜 License & Authorship
+
+**Estrella Music v2** is developed and maintained by **Joss Estrada (JOSPROX)**.
+
+- **Copyright © 2026 Joss Estrada (JOSPROX)**. All rights reserved.
+- This software is licensed under the **GNU General Public License v3.0**.
+- For detailed acknowledgments, please refer to the [CREDITS.md](CREDITS.md) file.
+
+---
+
 ## 🙏 Credits & Acknowledgments
 
 This project is built upon the incredible work of the open-source community:

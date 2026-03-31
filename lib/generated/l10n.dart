@@ -3173,6 +3173,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Developed and Maintained by Joss Estrada (JOSPROX)`
+  String get developedBy {
+    return Intl.message(
+      'Developed and Maintained by Joss Estrada (JOSPROX)',
+      name: 'developedBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `© 2026 JOSPROX. License GPL v3.0`
+  String get copyrightNotice {
+    return Intl.message(
+      '© 2026 JOSPROX. License GPL v3.0',
+      name: 'copyrightNotice',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

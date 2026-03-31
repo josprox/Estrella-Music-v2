@@ -529,5 +529,7 @@
   "latestVersion": "Última Versión Disponible",
   "updateApp": "Actualizar Aplicación",
   "loadInfoUpdate": "No se pudo cargar la información de la actualización",
-  "infoNotAvailable": "Información no disponible"
+  "infoNotAvailable": "Información no disponible",
+  "developedBy": "Desarrollado y Mantenido por Joss Estrada (JOSPROX)",
+  "copyrightNotice": "© 2026 JOSPROX. Licencia GPL v3.0"
 }

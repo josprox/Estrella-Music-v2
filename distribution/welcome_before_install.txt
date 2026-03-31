@@ -1,0 +1,35 @@
+================================================================================
+                    ESTRELLA MUSIC v2 - BIENVENIDO/A
+               Desarrollado por Joss Estrada (JOSPROX)
+================================================================================
+
+Gracias por elegir Estrella Music v2, la evolucion multiplataforma diseñada para
+llevar tu experiencia musical al siguiente nivel.
+
+Acerca de esta version:
+-----------------------
+Estrella Music v2 es una fusion entre el potente motor de Harmony Music y el
+legado y vision del proyecto original Estrella Music (Kotlin). Disfruta de
+una interfaz Material 3 inmersiva, streaming sin anuncios y una gestion de
+biblioteca avanzada.
+
+Requisitos del Sistema:
+-----------------------
+* Sistema Operativo: Windows 10 o Windows 11 (Arquitectura de 64 bits).
+* Espacio en Disco: Al menos 200 MB de espacio libre.
+* Conexion a Internet: Obligatoria para streaming y actualizaciones.
+
+Antes de continuar:
+------------------
+* Si estas instalando una version de desarrollo personalizada, asegurese de
+  tener configurado correctamente su archivo .env con las URLs de API actuales.
+* Sus datos personales se manejaran de forma segura segun las politicas de
+  autenticacion de su servidor configurado.
+
+Aviso Legal:
+------------
+Este software se distribuye "TAL CUAL", sin garantia de ningun tipo, expresa o
+implicita. Se distribuye bajo los terminos de la licencia GNU GPL v3.0.
+
+Haga clic en "Siguiente" para continuar con la instalacion.
+================================================================================

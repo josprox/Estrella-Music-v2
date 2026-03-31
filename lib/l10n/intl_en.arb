@@ -529,5 +529,7 @@
   "latestVersion": "Latest Version Available",
   "updateApp": "Update Application",
   "loadInfoUpdate": "Could not load update information",
-  "infoNotAvailable": "Information not available"
+  "infoNotAvailable": "Information not available",
+  "developedBy": "Developed and Maintained by Joss Estrada (JOSPROX)",
+  "copyrightNotice": "© 2026 JOSPROX. License GPL v3.0"
 }
