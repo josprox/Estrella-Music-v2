@@ -62,5 +62,157 @@
   "randomRadio": "റാൻഡം റേഡിയോ",
   "playnextMsg": "വെരാൻ പോകുന്നത്",
   "keepScreenOnWhilePlaying": "പ്ലേ ചെയ്യുമ്പോൾ സ്‌ക്രീൻ ഓണായിരിക്കട്ടെ",
-  "keepScreenOnWhilePlayingDes": "സജ്ജമാക്കിയാൽ, സംഗീതം പ്ലേ ചെയ്യുമ്പോൾ ഡിവൈസിന്റെ സ്‌ക്രീൻ ഓണായിരിക്കുമെന്ന് ഉറപ്പ ചെയ്യും"
+  "keepScreenOnWhilePlayingDes": "സജ്ജമാക്കിയാൽ, സംഗീതം പ്ലേ ചെയ്യുമ്പോൾ ഡിവൈസിന്റെ സ്‌ക്രീൻ ഓണായിരിക്കുമെന്ന് ഉറപ്പ ചെയ്യും",
+  "auth_login_success": "ലോഗിൻ ചെയ്തു",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "ക്ലൗഡ് ബാക്കപ്പ്",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "ജോസ് മ്യൂസിക് കോട്ലിനിൽ നിന്ന് മൈഗ്രേറ്റ് ചെയ്യുക",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "നിങ്ങൾക്ക് ഒരു ബാക്കപ്പ് നടത്താൻ താൽപ്പര്യമുണ്ടോ?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "ഏത് ഡാറ്റയാണ് ബാക്കപ്പ് ചെയ്യേണ്ടതെന്ന് തിരഞ്ഞെടുക്കുക",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "സമീപകാല തിരയലുകൾ",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "മടങ്ങുക",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "ഞാൻ എൻ്റെ പാസ്‌വേഡ് മറന്നു",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "ലോഗിൻ",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "രജിസ്റ്റർ ചെയ്യുക",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "ഇ-മെയിൽ",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "രഹസ്യവാക്ക്",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "പാസ്വേഡ് സ്ഥിരീകരിക്കുക",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "എസ്ട്രെല്ല സംഗീതത്തിലേക്ക് സ്വാഗതം",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "എസ്ട്രെല്ല സംഗീതത്തിലേക്ക് സ്വാഗതം",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "username": "ഉപയോക്തൃനാമം",
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "പേരിന്റെ ആദ്യഭാഗം",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "പേരിന്റെ അവസാന ഭാഗം",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "അസെപ്റ്റോ യൂസർ മിസ് ഡാറ്റസ്...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "ജനറൽ",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "പുറത്തുകടക്കുക",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "അപ്‌ലോഡ് ചെയ്യുക, പുനഃസ്ഥാപിക്കുക, നിയന്ത്രിക്കുക...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "പ്ലേലിസ്റ്റുകളും പാട്ടുകളും ഇറക്കുമതി ചെയ്യുക...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "ആപ്പ് പുനരാരംഭിക്കുക",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "ബാക്കപ്പ് ഇപ്പോൾ അപ്‌ലോഡ് ചെയ്യുക",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "ഇതുവരെ ബാക്കപ്പുകളൊന്നുമില്ല...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "നിങ്ങൾക്ക് ഒരു സജീവ സെഷൻ ആവശ്യമാണ്...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "ബാക്കപ്പ് ശരിയായി അപ്‌ലോഡ് ചെയ്‌തു.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "ബാക്കപ്പ് പുനഃസ്ഥാപിച്ചു. ആപ്പ് പുനരാരംഭിക്കുക.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "ബാക്കപ്പ് ഇല്ലാതാക്കി.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "പോപ്പ്",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "പാറ",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "ഹിപ് ഹോപ്പ്",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "ഇലക്ട്രോണിക്സ്",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "ജാസ്",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "ലാറ്റിൻ",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "ഫയൽ തിരഞ്ഞെടുത്ത് ഇറക്കുമതി ചെയ്യുക",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "close": "അടയ്ക്കുക",
+  "@close": {
+    "description": ""
+  }
 }

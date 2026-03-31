@@ -62,6 +62,28 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Artistas"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("Codec"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Aceito usar meus dados...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Conecte-se"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("Cadastre-se"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Confirme sua senha",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Primeiro nome"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Esqueci minha senha",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Sobrenome"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Login realizado com sucesso",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Bem-vindo à Estrella Music",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Bem-vindo à Estrella Music",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Download automático de músicas favoritas",
     ),
@@ -74,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "Ativar/desativar automaticamente abrir a tela de reprodução em tela cheia em uma seleção de música para tocar",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Retornar"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "bancos de dados encontrados",
     ),
@@ -95,6 +118,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Salva todas as configurações, playlists e dados de login em um arquivo de backup",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Você precisa de uma sessão ativa...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Reinicie o aplicativo",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Carregar backup agora",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Quer fazer um backup?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Cópia de segurança excluída.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Ainda não há backups...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Cópia de segurança restaurada. Reinicie o aplicativo.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Escolha quais dados fazer backup",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Backup carregado corretamente.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "Baseado nas últimas interações",
@@ -188,6 +238,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("Baixadas"),
     "duration": MessageLookupByLibrary.simpleMessage("Duração"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Dinâmica"),
+    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("Playlist vazia!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "Barra de navegação inferior",
@@ -252,6 +303,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Arquivo não encontrado",
     ),
     "for1": MessageLookupByLibrary.simpleMessage("Para"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Eletrônica"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip-hop"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("Latim"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Pop"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Pedra"),
     "gesture": MessageLookupByLibrary.simpleMessage("Gestos"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -346,6 +403,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Letra não disponível!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Selecione o arquivo e importe",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("minutos"),
     "misc": MessageLookupByLibrary.simpleMessage("Diversos"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -375,6 +435,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("Abrir em"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("Operação falhou"),
     "password": MessageLookupByLibrary.simpleMessage("Senha"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Senha"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Personalização"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Lista de reprodução sincronizada!",
@@ -512,6 +573,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Músicas,Playlist,Álbum ou Artista",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Resultados da pesquisa"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Pesquisas recentes",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Selecionar tudo"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Selecione Instância de Autenticação",
@@ -525,6 +589,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "Definir conteúdo sugerido",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Configurações"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Backup na nuvem",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Carregar, restaurar e gerenciar...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage(
+      "Em geral",
+    ),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Sair"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Importe playlists, músicas...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Migrar do Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage(
       "Compartilhar essa música",
     ),

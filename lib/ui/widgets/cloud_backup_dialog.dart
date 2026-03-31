@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terminate_restart/terminate_restart.dart';
+import '../../generated/l10n.dart';
 
 import '../../services/app_backup_service.dart';
 import '../../services/auth_service.dart';
@@ -25,12 +26,12 @@ class CloudBackupDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Backup en la nube',
+              S.of(context).settings_cloud_backup,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
             Text(
-              'Sube un respaldo `.hmb` de la app al servidor y, si lo necesitas, restaura cualquiera de los backups guardados.',
+              S.of(context).settings_cloud_backup_dialog_desc,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 12),
@@ -66,8 +67,8 @@ class CloudBackupDialog extends StatelessWidget {
                       ),
                       label: Text(
                         controller.isRestored.isTrue
-                            ? 'Reiniciar app'
-                            : 'Subir backup ahora',
+                            ? S.of(context).backup_btn_restart
+                            : S.of(context).backup_btn_upload,
                       ),
                     ),
                   ),
@@ -93,7 +94,7 @@ class CloudBackupDialog extends StatelessWidget {
                   ? Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: Text(
-                        'La restauración terminó. Reinicia la app para cargar el estado restaurado.',
+                        S.of(context).backup_restore_success,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
@@ -104,9 +105,9 @@ class CloudBackupDialog extends StatelessWidget {
             Expanded(
               child: Obx(() {
                 if (controller.backups.isEmpty) {
-                  return const Center(
+                  return Center(
                     child: Text(
-                        'Todavía no hay backups en la nube para esta app.'),
+                        S.of(context).backup_no_backups),
                   );
                 }
 
@@ -126,7 +127,7 @@ class CloudBackupDialog extends StatelessWidget {
                         spacing: 4,
                         children: [
                           IconButton(
-                            tooltip: 'Restaurar',
+                            tooltip: S.of(context).restore,
                             onPressed: controller.isBusy.isTrue
                                 ? null
                                 : () =>
@@ -134,7 +135,7 @@ class CloudBackupDialog extends StatelessWidget {
                             icon: const Icon(Icons.cloud_download_outlined),
                           ),
                           IconButton(
-                            tooltip: 'Eliminar',
+                            tooltip: S.of(context).delete,
                             onPressed: controller.isBusy.isTrue
                                 ? null
                                 : () =>
@@ -174,7 +175,7 @@ class CloudBackupDialogController extends GetxController {
   Future<void> refreshBackups() async {
     if (!_authService.isAuthenticated.value) {
       errorMessage.value =
-          'Necesitas una sesión activa para usar backup en la nube.';
+          S.current.backup_auth_required;
       backups.clear();
       return;
     }
@@ -205,7 +206,7 @@ class CloudBackupDialogController extends GetxController {
       ScaffoldMessenger.of(context).showSnackBar(
         snackbar(
           context,
-          'Backup subido correctamente.',
+          S.current.backup_upload_success,
           size: SanckBarSize.MEDIUM,
         ),
       );
@@ -234,7 +235,7 @@ class CloudBackupDialogController extends GetxController {
       ScaffoldMessenger.of(context).showSnackBar(
         snackbar(
           context,
-          'Backup restaurado. Reinicia la app.',
+          S.current.backup_restore_success,
           size: SanckBarSize.MEDIUM,
         ),
       );
@@ -260,7 +261,7 @@ class CloudBackupDialogController extends GetxController {
       await refreshBackups();
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        snackbar(context, 'Backup eliminado.', size: SanckBarSize.MEDIUM),
+        snackbar(context, S.current.backup_delete_success, size: SanckBarSize.MEDIUM),
       );
     } catch (e) {
       errorMessage.value = e.toString().replaceFirst('Bad state: ', '');

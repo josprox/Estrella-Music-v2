@@ -144,5 +144,156 @@
   "removeMultiple": "ଏକାଧିକ ଗୀତ କାଢ଼ି ଦିଅନ୍ତୁ",
   "album": "ସଂଗ୍ରହପୁସ୍ତକ",
   "keepScreenOnWhilePlaying": "ସଙ୍ଗୀତ ଚଲିଥିବାବେଳେ ସ୍କ୍ରୀନ୍ ଚାଲୁ ରଖନ୍ତୁ",
-  "keepScreenOnWhilePlayingDes": "ସକ୍ରିୟ କଲେ, ସଙ୍ଗୀତ ଚଳାଉଥିବା ସମୟରେ ଡିଭାଇସର ସ୍କ୍ରୀନ୍ ଜାଗ୍ରତ ରହିବ"
+  "keepScreenOnWhilePlayingDes": "ସକ୍ରିୟ କଲେ, ସଙ୍ଗୀତ ଚଳାଉଥିବା ସମୟରେ ଡିଭାଇସର ସ୍କ୍ରୀନ୍ ଜାଗ୍ରତ ରହିବ",
+  "auth_login_success": "ସଫଳତାର ସହିତ ଲଗ୍ ଇନ୍ କଲେ |",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "କ୍ଲାଉଡ୍ ବ୍ୟାକଅପ୍ |",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "ଜୋସ୍ ମ୍ୟୁଜିକ୍ କୋଟଲିନ୍ ରୁ ସ୍ଥାନାନ୍ତର |",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "ଆପଣ ଏକ ନକଲ ସଂରକ୍ଷଣ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "କେଉଁ ତଥ୍ୟ ବ୍ୟାକଅପ୍ କରିବାକୁ ବାଛନ୍ତୁ |",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "ସାମ୍ପ୍ରତିକ ସନ୍ଧାନ |",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "ଫେରନ୍ତୁ",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "ମୁଁ ମୋର ପାସୱାର୍ଡ ଭୁଲିଗଲି",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "ଲଗଇନ୍ କରନ୍ତୁ |",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "ପଞ୍ଜିକରଣ କର |",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "ଇ-ମେଲ୍ |",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "ପାସୱାର୍ଡ",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "ପାସୱାର୍ଡ ନିଶ୍ଚିତ କରନ୍ତୁ |",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "ଏଷ୍ଟ୍ରେଲା ସଙ୍ଗୀତକୁ ସ୍ୱାଗତ |",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "ଏଷ୍ଟ୍ରେଲା ସଙ୍ଗୀତକୁ ସ୍ୱାଗତ |",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "ପ୍ରଥମ ନାମ",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "ଶେଷ ନାମ",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Acepto usar mis datos ...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "ଜେନେରାଲ୍ |",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "ଲଗ୍ ଆଉଟ୍ କରନ୍ତୁ |",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "ଅପଲୋଡ୍, ପୁନରୁଦ୍ଧାର ଏବଂ ପରିଚାଳନା ...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "ପ୍ଲେଲିଷ୍ଟ, ଗୀତ ଆମଦାନୀ କରନ୍ତୁ ...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "ଆପ୍ ପୁନ Rest ଆରମ୍ଭ କରନ୍ତୁ |",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "ବର୍ତ୍ତମାନ ବ୍ୟାକଅପ୍ ଅପଲୋଡ୍ କରନ୍ତୁ |",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "ଏପର୍ଯ୍ୟନ୍ତ କ back ଣସି ବ୍ୟାକଅପ୍ ନାହିଁ ...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "ଆପଣଙ୍କୁ ଏକ ସକ୍ରିୟ ଅଧିବେଶନ ଦରକାର ...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "ବ୍ୟାକଅପ୍ ସଠିକ୍ ଭାବରେ ଅପଲୋଡ୍ ହୋଇଛି |",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "ବ୍ୟାକଅପ୍ ପୁନ restored ସ୍ଥାପିତ ହେଲା | ଆପ୍ ପୁନ Rest ଆରମ୍ଭ କରନ୍ତୁ |",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "ବ୍ୟାକଅପ୍ ବିଲୋପ ହେଲା |",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "ପପ୍",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "ପଥର",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "ହିପ୍ ହପ୍",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "ଇଲେକ୍ଟ୍ରୋନିକ୍ସ",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "ଜାଜ୍",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "ଲାଟିନ୍",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "ଫାଇଲ୍ ଏବଂ ଆମଦାନୀ ଚୟନ କରନ୍ତୁ |",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "close": "ବନ୍ଦ",
+  "@close": {
+    "description": ""
+  }
 }

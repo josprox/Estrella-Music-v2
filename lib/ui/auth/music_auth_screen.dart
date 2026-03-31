@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:harmonymusic/generated/l10n.dart';
 import '../../services/auth_service.dart';
 import 'widgets/animated_auth_background.dart';
 
@@ -63,7 +64,7 @@ class _MusicAuthScreenState extends State<MusicAuthScreen> {
 
     if (result['success'] == true) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sesión iniciada correctamente.')),
+        SnackBar(content: Text(S.of(context).auth_login_success)),
       );
       return;
     }
@@ -96,8 +97,8 @@ class _MusicAuthScreenState extends State<MusicAuthScreen> {
         content: Text(
           result['message']?.toString() ??
               (result['success'] == true
-                  ? 'Cuenta creada correctamente.'
-                  : 'No fue posible crear la cuenta.'),
+                  ? S.of(context).auth_register_success
+                  : S.of(context).auth_register_error),
         ),
       ),
     );
@@ -124,8 +125,8 @@ class _MusicAuthScreenState extends State<MusicAuthScreen> {
         content: Text(
           result['message']?.toString() ??
               (result['success'] == true
-                  ? 'Correo enviado.'
-                  : 'No fue posible enviar el correo.'),
+                  ? S.of(context).auth_recovery_email_sent
+                  : S.of(context).auth_recovery_email_error),
         ),
       ),
     );
@@ -138,14 +139,14 @@ class _MusicAuthScreenState extends State<MusicAuthScreen> {
   String _humanizeError(String? errorKey) {
     switch (errorKey) {
       case 'AUTH_NOT_CONFIGURED':
-        return 'Falta configurar el backend de autenticación en el archivo .env.';
+        return S.current.auth_error_not_configured;
       case 'INVALID_CREDENTIALS':
-        return 'Correo o contraseña incorrectos.';
+        return S.current.auth_error_invalid_credentials;
       case 'ACCOUNT_NOT_VERIFIED':
-        return 'Tu cuenta aún no está verificada.';
+        return S.current.auth_error_not_verified;
       default:
         return errorKey == null || errorKey.isEmpty
-            ? 'No fue posible completar la operación.'
+            ? S.current.auth_error_unknown
             : errorKey;
     }
   }
@@ -351,9 +352,9 @@ class _BrandPanel extends StatelessWidget {
                   ),
             ),
             const SizedBox(height: 14),
-            const Text(
-              'Trajimos el login, registro y recuperación de contraseña del proyecto anterior, adaptados para esta app musical.',
-              style: TextStyle(
+            Text(
+              S.of(context).auth_brand_description_1,
+              style: const TextStyle(
                 color: Colors.white70,
                 fontSize: 18,
                 height: 1.5,
@@ -362,8 +363,8 @@ class _BrandPanel extends StatelessWidget {
             const SizedBox(height: 22),
             Text(
               isConfigured
-                  ? 'Tu sesión vive en almacenamiento seguro y se valida con el mismo backend que ya usabas.'
-                  : 'Falta configurar el archivo .env para conectar el backend de autenticación.',
+                  ? S.of(context).auth_brand_description_2
+                  : S.of(context).auth_brand_not_configured,
               style: TextStyle(
                 color: isConfigured
                     ? const Color(0xFFFFD166)
@@ -399,8 +400,8 @@ class _WelcomeCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Bienvenido a Estrella Music',
+        Text(
+          S.of(context).auth_welcome_title,
           style: TextStyle(
             fontSize: 34,
             fontWeight: FontWeight.w800,
@@ -409,8 +410,8 @@ class _WelcomeCard extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 14),
-        const Text(
-          'Accede con tu cuenta, crea una nueva o recupera tu contraseña para dejar lista la migración completa.',
+        Text(
+          S.of(context).auth_welcome_subtitle,
           style: TextStyle(
             fontSize: 16,
             color: Colors.white70,
@@ -447,8 +448,8 @@ class _WelcomeCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                   ),
                 ),
-                child: const Text(
-                  'Iniciar sesión',
+                child: Text(
+                  S.of(context).auth_btn_login,
                   style: TextStyle(fontWeight: FontWeight.w800),
                 ),
               ),
@@ -465,8 +466,8 @@ class _WelcomeCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                   ),
                 ),
-                child: const Text(
-                  'Crear cuenta',
+                child: Text(
+                  S.of(context).auth_btn_register,
                   style: TextStyle(fontWeight: FontWeight.w800),
                 ),
               ),
@@ -507,8 +508,8 @@ class _LoginCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Iniciar sesión',
+          Text(
+            S.of(context).auth_btn_login,
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w800,
@@ -523,8 +524,8 @@ class _LoginCard extends StatelessWidget {
           const SizedBox(height: 24),
           _AuthTextField(
             controller: emailController,
-            label: 'Correo electrónico',
-            hint: 'nombre@correo.com',
+            label: S.of(context).email,
+            hint: S.of(context).auth_hint_email,
             icon: Icons.email_outlined,
             keyboardType: TextInputType.emailAddress,
             validator: (value) {
@@ -544,7 +545,7 @@ class _LoginCard extends StatelessWidget {
           const SizedBox(height: 18),
           _AuthTextField(
             controller: passwordController,
-            label: 'Contraseña',
+            label: S.of(context).password_text,
             hint: 'Tu contraseña',
             icon: Icons.lock_outline_rounded,
             obscureText: true,
@@ -557,7 +558,7 @@ class _LoginCard extends StatelessWidget {
           ),
           const SizedBox(height: 22),
           _PrimaryButton(
-            label: 'Entrar',
+            label: S.of(context).auth_btn_login,
             loading: isSubmitting,
             onPressed: onSubmit,
           ),
@@ -565,10 +566,10 @@ class _LoginCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TextButton(onPressed: onBack, child: const Text('Volver')),
+              TextButton(onPressed: onBack, child: Text(S.of(context).back)),
               TextButton(
                 onPressed: onForgotPassword,
-                child: const Text('Olvidé mi contraseña'),
+                child: Text(S.of(context).auth_forgot_password),
               ),
             ],
           ),
@@ -618,8 +619,8 @@ class _RegisterCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Crear cuenta',
+          Text(
+            S.of(context).auth_btn_register,
             style: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w800,
@@ -629,7 +630,7 @@ class _RegisterCard extends StatelessWidget {
           const SizedBox(height: 24),
           _AuthTextField(
             controller: usernameController,
-            label: 'Usuario',
+            label: S.of(context).username,
             hint: 'tu_usuario',
             icon: Icons.person_outline,
             validator: (value) {
@@ -652,7 +653,7 @@ class _RegisterCard extends StatelessWidget {
           const SizedBox(height: 14),
           _AuthTextField(
             controller: firstNameController,
-            label: 'Nombre',
+            label: S.of(context).auth_first_name,
             hint: 'Tu nombre',
             icon: Icons.badge_outlined,
             validator: (value) {
@@ -664,7 +665,7 @@ class _RegisterCard extends StatelessWidget {
           const SizedBox(height: 14),
           _AuthTextField(
             controller: lastNameController,
-            label: 'Apellidos',
+            label: S.of(context).auth_last_name,
             hint: 'Tus apellidos',
             icon: Icons.badge_rounded,
             validator: (value) {
@@ -676,8 +677,8 @@ class _RegisterCard extends StatelessWidget {
           const SizedBox(height: 14),
           _AuthTextField(
             controller: emailController,
-            label: 'Correo electrónico',
-            hint: 'nombre@correo.com',
+            label: S.of(context).email,
+            hint: S.of(context).auth_hint_email,
             icon: Icons.email_outlined,
             keyboardType: TextInputType.emailAddress,
             validator: (value) {
@@ -691,7 +692,7 @@ class _RegisterCard extends StatelessWidget {
           const SizedBox(height: 14),
           _AuthTextField(
             controller: passwordController,
-            label: 'Contraseña',
+            label: S.of(context).password_text,
             hint: 'Crea una contraseña segura',
             icon: Icons.lock_outline_rounded,
             obscureText: true,
@@ -712,7 +713,7 @@ class _RegisterCard extends StatelessWidget {
           const SizedBox(height: 14),
           _AuthTextField(
             controller: confirmController,
-            label: 'Confirmar contraseña',
+            label: S.of(context).auth_confirm_password,
             hint: 'Repite tu contraseña',
             icon: Icons.lock_reset_rounded,
             obscureText: true,
@@ -732,12 +733,12 @@ class _RegisterCard extends StatelessWidget {
                 onChanged: onAgreeChanged,
                 activeColor: const Color(0xFFFF9F1C),
               ),
-              const Expanded(
+              Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 12),
+                  padding: const EdgeInsets.only(top: 12),
                   child: Text(
-                    'Acepto usar mis datos para autenticarme en el servicio.',
-                    style: TextStyle(color: Colors.white70),
+                    S.of(context).auth_agree_personal_data,
+                    style: const TextStyle(color: Colors.white70),
                   ),
                 ),
               ),
@@ -745,12 +746,12 @@ class _RegisterCard extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           _PrimaryButton(
-            label: 'Registrarme',
+            label: S.of(context).auth_btn_register,
             loading: isSubmitting,
             onPressed: onSubmit,
           ),
           const SizedBox(height: 8),
-          TextButton(onPressed: onBack, child: const Text('Volver')),
+          TextButton(onPressed: onBack, child: Text(S.of(context).back)),
         ],
       ),
     );
@@ -782,42 +783,42 @@ class _ForgotPasswordCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Recuperar contraseña',
-            style: TextStyle(
+          Text(
+            S.of(context).auth_forgot_password,
+            style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w800,
               color: Colors.white,
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Te enviaremos las instrucciones al correo de tu cuenta.',
-            style: TextStyle(color: Colors.white70),
+          Text(
+            S.of(context).auth_forgot_password_subtitle,
+            style: const TextStyle(color: Colors.white70),
           ),
           const SizedBox(height: 24),
           _AuthTextField(
             controller: emailController,
-            label: 'Correo electrónico',
-            hint: 'nombre@correo.com',
+            label: S.of(context).email,
+            hint: S.of(context).auth_hint_email,
             icon: Icons.email_outlined,
             keyboardType: TextInputType.emailAddress,
             validator: (value) {
               final text = value?.trim() ?? '';
               if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(text)) {
-                return 'Ingresa un correo válido.';
+                return S.of(context).auth_error_invalid_email;
               }
               return null;
             },
           ),
           const SizedBox(height: 22),
           _PrimaryButton(
-            label: 'Enviar correo',
+            label: S.of(context).auth_btn_send_email,
             loading: isSubmitting,
             onPressed: onSubmit,
           ),
           const SizedBox(height: 8),
-          TextButton(onPressed: onBack, child: const Text('Volver')),
+          TextButton(onPressed: onBack, child: Text(S.of(context).back)),
         ],
       ),
     );

@@ -62,6 +62,30 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Виконавці"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("Аудіокодек"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Acepto usar mis datos...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Логін"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage(
+      "зареєструватися",
+    ),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Підтвердьте пароль",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("ім\'я"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Я забув свій пароль",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Прізвище"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Успішно ввійшли",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Ласкаво просимо до Estrella Music",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Ласкаво просимо до Estrella Music",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Автоматичне завантаження улюблених пісень",
     ),
@@ -74,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "Увімкнути / вимкнути автовідкриття плеєра на весь екран при виборі пісні для відтворення",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Повернення"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "Базу даних знайдено",
     ),
@@ -95,6 +120,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Зберігає всі налаштування, списки відтворення та дані для входу у файл резервної копії",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Вам потрібна активна сесія...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Перезапустіть програму",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Завантажте резервну копію зараз",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Ви хочете зробити резервну копію?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Резервну копію видалено.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Резервних копій ще немає...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Резервну копію відновлено. Перезапустіть програму.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Виберіть дані для резервного копіювання",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Резервну копію завантажено правильно.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "На основі останньої взаємодії",
@@ -184,6 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("Завантаження"),
     "duration": MessageLookupByLibrary.simpleMessage("Тривалість"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Динамічна"),
+    "email": MessageLookupByLibrary.simpleMessage("Електронна пошта"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage(
       "Пустий список відтворення!",
     ),
@@ -268,6 +321,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Файл не знайдено"),
     "for1": MessageLookupByLibrary.simpleMessage("для"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("електроніка"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("хіп-хоп"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Джаз"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("латинь"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Поп"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Рок"),
     "gesture": MessageLookupByLibrary.simpleMessage("Жест"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -365,6 +424,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Тексти пісень недоступні!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Виберіть файл і імпортуйте",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("хв."),
     "misc": MessageLookupByLibrary.simpleMessage("Інше"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -398,6 +460,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Операція не вдалася",
     ),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Пароль"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Персоналізація"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Список відтворення синхронізовано!",
@@ -535,6 +598,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Пісні, плейлиси, альбом або виконавець",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Результати пошуку"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Останні пошуки",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Вибрати все"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Виберіть екземпляр авторизації",
@@ -548,6 +614,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "Налаштувати показ контенту",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Налаштування"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Хмарне резервне копіювання",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Завантажуйте, відновлюйте та керуйте...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage(
+      "Загальний",
+    ),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Вийти"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Імпортувати списки відтворення, пісні...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Перехід із Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Поділитися цією піснею"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Перемішати чергу"),
     "singles": MessageLookupByLibrary.simpleMessage("Сингли"),

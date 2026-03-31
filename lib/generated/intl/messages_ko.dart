@@ -46,9 +46,51 @@ class MessageLookup extends MessageLookupByLibrary {
       "설명을 찾지 못했습니다!",
     ),
     "artists": MessageLookupByLibrary.simpleMessage("아티스트"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Accepto usar mis datos...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("로그인"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("등록하다"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage("비밀번호 확인"),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("이름"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "비밀번호를 잊어버렸어요",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("성"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "성공적으로 로그인되었습니다",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Estrella Music에 오신 것을 환영합니다.",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Estrella Music에 오신 것을 환영합니다.",
+    ),
+    "back": MessageLookupByLibrary.simpleMessage("반품"),
     "backgroundPlay": MessageLookupByLibrary.simpleMessage("백그라운드에서 음악 재생"),
     "backgroundPlayDes": MessageLookupByLibrary.simpleMessage(
       "백그라운드 음악 재생을 활성화/비활성화 (백그라운드에서 동작하는 동안은 시스템 트레이에서 접근 가능합니다)",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "활성 세션이 필요합니다...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage("앱 다시 시작"),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage("지금 백업 업로드"),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "백업을 수행하시겠습니까?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "백업이 삭제되었습니다.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage("아직 백업이 없습니다..."),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "백업이 복원되었습니다. 앱을 다시 시작하세요.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "백업할 데이터 선택",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "백업이 올바르게 업로드되었습니다.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage("당신의 최근 취향에 기반함"),
     "blacklistPlstResetAlert": MessageLookupByLibrary.simpleMessage("초기화 성공!"),
@@ -74,7 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "클릭하면 캐시된 썸네일과 이미지를 비웁니다. (캐시된 이미지들을 갱신하고 싶은 경우가 아니라면 추천하지 않습니다)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("닫기"),
+    "close": MessageLookupByLibrary.simpleMessage("닫다"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage("커뮤니티 플레이리스트"),
     "create": MessageLookupByLibrary.simpleMessage("생성"),
     "createnAdd": MessageLookupByLibrary.simpleMessage("생성 및 추가"),
@@ -105,6 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "downloads": MessageLookupByLibrary.simpleMessage("다운로드"),
     "dynamic": MessageLookupByLibrary.simpleMessage("동적"),
+    "email": MessageLookupByLibrary.simpleMessage("이메일"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("빈 플레이리스트!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage("하단의 네비게이션 바"),
     "enableBottomNavDes": MessageLookupByLibrary.simpleMessage(
@@ -134,6 +177,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "favorites": MessageLookupByLibrary.simpleMessage("즐겨찾기"),
     "featuredplaylists": MessageLookupByLibrary.simpleMessage("인기 플레이리스트"),
     "for1": MessageLookupByLibrary.simpleMessage("어구"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("전자제품"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("힙합"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("재즈"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("라틴어"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("팝"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("바위"),
     "github": MessageLookupByLibrary.simpleMessage("Github"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
       "Github 소스 코드 보기\n이 프로젝트가 마음에 든다면, ⭐을 남겨주세요",
@@ -176,6 +225,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "local": MessageLookupByLibrary.simpleMessage("기기"),
     "low": MessageLookupByLibrary.simpleMessage("낮음"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage("가사를 찾지 못했습니다!"),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "파일을 선택하고 가져오기",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("분"),
     "networkError1": MessageLookupByLibrary.simpleMessage("네트워크 에러!"),
     "newVersionAvailable": MessageLookupByLibrary.simpleMessage(
@@ -192,6 +244,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("열기"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("동작 실패"),
     "password": MessageLookupByLibrary.simpleMessage("비밀번호"),
+    "password_text": MessageLookupByLibrary.simpleMessage("비밀번호"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Piped 플레이리스트 동기화됨!",
     ),
@@ -245,12 +298,25 @@ class MessageLookup extends MessageLookupByLibrary {
     "search": MessageLookupByLibrary.simpleMessage("검색"),
     "searchDes": MessageLookupByLibrary.simpleMessage("음악,플레이리스트,앨범 혹은 아티스트"),
     "searchRes": MessageLookupByLibrary.simpleMessage("검색 결과"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage("최근 검색어"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage("인증 인스턴스를 선택"),
     "selectAuthInsMsg": MessageLookupByLibrary.simpleMessage(
       "인증 인스턴스를 선택해주세요!",
     ),
     "setDiscoverContent": MessageLookupByLibrary.simpleMessage("탐색할 컨텐츠를 설정"),
     "settings": MessageLookupByLibrary.simpleMessage("설정"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage("클라우드 백업"),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "업로드, 복원 및 관리...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("일반적인"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("로그아웃"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "재생목록, 노래 가져오기...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Joss Music Kotlin에서 마이그레이션",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("이 곡을 공유"),
     "singles": MessageLookupByLibrary.simpleMessage("싱글"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("묵음 건너뛰기"),
@@ -295,7 +361,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unLink": MessageLookupByLibrary.simpleMessage("로그아웃"),
     "unlinkAlert": MessageLookupByLibrary.simpleMessage("로그아웃 성공!"),
     "upNext": MessageLookupByLibrary.simpleMessage("재생 예정"),
-    "username": MessageLookupByLibrary.simpleMessage("사용자명"),
+    "username": MessageLookupByLibrary.simpleMessage("사용자 이름"),
     "videos": MessageLookupByLibrary.simpleMessage("동영상"),
     "viewAll": MessageLookupByLibrary.simpleMessage("모두 보기"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("아티스트 정보"),

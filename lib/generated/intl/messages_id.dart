@@ -60,6 +60,28 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Artis"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("Codec Audio"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Terima penggunaan data yang salah...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Login"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("Daftar"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Konfirmasi Kata Sandi",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Nama depan"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Saya lupa kata sandi saya",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Nama belakang"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Berhasil masuk",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Selamat datang di Musik Estrella",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Selamat datang di Musik Estrella",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Unduh otomatis lagu favorit",
     ),
@@ -72,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "Mengaktifkan/menonaktifkan pembukaan otomatis layar pemutaran secara penuh pada pilihan lagu yang akan diputar",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Kembali"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "Database ditemukan",
     ),
@@ -93,6 +116,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Menyimpan semua pengaturan, daftar putar, dan data masuk ke file cadangan",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Anda memerlukan sesi aktif...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Mulai ulang aplikasi",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Unggah cadangan sekarang",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Apakah Anda ingin melakukan pencadangan?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Cadangan dihapus.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Belum ada cadangan...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Cadangan dipulihkan. Mulai ulang aplikasi.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Pilih data mana yang akan dicadangkan",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Cadangan diunggah dengan benar.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "Berdasarkan interaksi terakhir",
@@ -129,7 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "Klik disini untuk menghapus cache dari thumbnail/gambar. (Tidak direkomendasikan kecuali ingin memperbahaui data cache dari gambar)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("Tutup"),
+    "close": MessageLookupByLibrary.simpleMessage("Menutup"),
     "closeApp": MessageLookupByLibrary.simpleMessage("Tutup Aplikasi"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "Daftar Putar Komunitas",
@@ -180,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("Unduhan"),
     "duration": MessageLookupByLibrary.simpleMessage("Durasi"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Dinamis"),
+    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage(
       "Daftar Putar Kosong!",
     ),
@@ -250,6 +301,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "File tidak ditemukan",
     ),
     "for1": MessageLookupByLibrary.simpleMessage("Untuk"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronik"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("Latin"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Pop"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Batu"),
     "gesture": MessageLookupByLibrary.simpleMessage("Gerakan"),
     "github": MessageLookupByLibrary.simpleMessage("Github"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -344,6 +401,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Lirik tidak tersedia!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Pilih file dan impor",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("menit"),
     "misc": MessageLookupByLibrary.simpleMessage("Lain-lain"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -377,6 +437,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("Buka di"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("Operasi gagal"),
     "password": MessageLookupByLibrary.simpleMessage("Sandi"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Kata sandi"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Personalisasi"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Daftar putar yang disalurkan tersinkronkan!",
@@ -514,6 +575,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Lagu, Daftar Putar, Album atau Artis",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Hasil pencarian"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Pencarian terkini",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Pilih semua"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage("Pilih Instans Auth"),
     "selectAuthInsMsg": MessageLookupByLibrary.simpleMessage(
@@ -525,6 +589,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tetapkan konten yang dapat ditemukan",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Pengaturan"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Cadangan awan",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Unggah, pulihkan, dan kelola...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("Umum"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Keluar"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Impor daftar putar, lagu...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Bermigrasi dari Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Bagikan lagu ini"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Acak Antrean"),
     "singles": MessageLookupByLibrary.simpleMessage("Single"),
@@ -595,7 +673,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "urlSearchDes": MessageLookupByLibrary.simpleMessage(
       "Url terdeteksi, klik untuk membuka/memutar konten terkait",
     ),
-    "username": MessageLookupByLibrary.simpleMessage("Nama pengguna"),
+    "username": MessageLookupByLibrary.simpleMessage("Nama belakang"),
     "videos": MessageLookupByLibrary.simpleMessage("Video"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Lihat semua"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Lihat Artis"),

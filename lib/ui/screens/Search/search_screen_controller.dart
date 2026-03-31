@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 
 import '/utils/app_link_controller.dart' show ProcessLink;
 import '/services/music_service.dart';
@@ -27,34 +28,34 @@ class SearchScreenController extends GetxController with ProcessLink {
   final searchText = ''.obs;
 
   final categories = [
-    const SearchCategory(
-      name: 'Pop',
-      color: Color(0xFFFF007F),
+    SearchCategory(
+      name: S.current.genre_pop,
+      color: const Color(0xFFFF007F),
       imageUrl: 'https://images.unsplash.com/photo-1514525253361-bee8a187c9bc?q=80&w=250&auto=format&fit=crop',
     ),
-    const SearchCategory(
-      name: 'Rock',
-      color: Color(0xFF0056D2),
+    SearchCategory(
+      name: S.current.genre_rock,
+      color: const Color(0xFF0056D2),
       imageUrl: 'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=250&auto=format&fit=crop',
     ),
-    const SearchCategory(
-      name: 'Hip Hop',
-      color: Color(0xFFF16E00),
+    SearchCategory(
+      name: S.current.genre_hiphop,
+      color: const Color(0xFFF16E00),
       imageUrl: 'https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=250&auto=format&fit=crop',
     ),
-    const SearchCategory(
-      name: 'Electronic',
-      color: Color(0xFF8A2BE2),
+    SearchCategory(
+      name: S.current.genre_electronic,
+      color: const Color(0xFF8A2BE2),
       imageUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=250&auto=format&fit=crop',
     ),
-    const SearchCategory(
-      name: 'Jazz',
-      color: Color(0xFFD4AF37),
+    SearchCategory(
+      name: S.current.genre_jazz,
+      color: const Color(0xFFD4AF37),
       imageUrl: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?q=80&w=250&auto=format&fit=crop',
     ),
-    const SearchCategory(
-      name: 'Latin',
-      color: Color(0xFF008080),
+    SearchCategory(
+      name: S.current.genre_latin,
+      color: const Color(0xFF008080),
       imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=250&auto=format&fit=crop',
     ),
   ];

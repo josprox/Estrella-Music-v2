@@ -177,7 +177,7 @@
   "exporting": "Экспортирование...",
   "scanning": "Сканирование...",
   "downFilesFound": "скачанных файлов найдено",
-  "close": "Закрыть",
+  "close": "Закрывать",
   "exportMsg": "Файлы успешно экспортированы",
   "clearImgCacheAlert": "Кэш изображений успешно очищен",
   "clearImgCacheDes": "Нажмите здесь чтобы очистить кэшированные миниатюры/изображения. (Не рекомендуется, если только вы не хотите обновить кэшированные изображения)",
@@ -276,5 +276,155 @@
   "exportToYouTubeMusicSubtitle": "Ваш плейлист (до 50 песен) будет добавлен в текущую очередь. Не забудьте добавить его в плейлист или сохранить после открытия в YtMusic",
   "linkCopied": "Ссылка скопирована в буфер обмена",
   "keepScreenOnWhilePlaying": "Держать экран включенным во время воспроизведения",
-  "keepScreenOnWhilePlayingDes": "Если включено, экран устройства будет оставаться включенным во время воспроизведения музыки"
+  "keepScreenOnWhilePlayingDes": "Если включено, экран устройства будет оставаться включенным во время воспроизведения музыки",
+  "auth_login_success": "Успешно авторизован",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Облачное резервное копирование",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Миграция с Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Вы хотите выполнить резервное копирование?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Выберите, какие данные для резервного копирования",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Недавние поиски",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Возвращаться",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Я забыл свой пароль",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Авторизоваться",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Зарегистрироваться",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "Электронная почта",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Пароль",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Подтвердите пароль",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Добро пожаловать в Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Добро пожаловать в Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Имя",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Фамилия",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Примите использовать неправильные данные...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Общий",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Выйти",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Загружайте, восстанавливайте и управляйте...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Импортируйте плейлисты, песни...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Перезапустить приложение",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Загрузите резервную копию сейчас",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Резервных копий пока нет...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Вам нужна активная сессия...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Резервная копия загружена правильно.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Резервная копия восстановлена. Перезапустите приложение.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Резервная копия удалена.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Поп",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Камень",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "хип-хоп",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Электроника",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Джаз",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "латинский",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Выбрать файл и импортировать",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

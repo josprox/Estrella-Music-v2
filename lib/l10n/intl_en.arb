@@ -279,7 +279,7 @@
   "podcasts": "Podcasts",
   "episodes": "Episodes",
   "profiles": "Profiles",
-  "back": "Back",
+  "back": "Return",
   "addToLibrary": "Add to Library",
   "removeFromLibrary": "Remove from Library",
   "play": "Play",
@@ -299,5 +299,230 @@
   "sortByName": "Sort by Name",
   "sortByDate": "Sort by Date",
   "sortByDuration": "Sort by Duration",
-  "sortAscendNDescend": "Sort ascending/descending"
+  "sortAscendNDescend": "Sort ascending/descending",
+  "auth_login_success": "Successfully logged in",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Cloud backup",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Migrate from Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Do you want to perform a backup?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Choose which data to backup",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Recent searches",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "I forgot my password",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Login",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Register",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Password",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Confirm Password",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Welcome to Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Welcome to Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "First name",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Last name",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Acepto usar mis datos...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "General",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Log out",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Upload, restore and manage...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Import playlists, songs...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "migration_summary_start": "Migration completed from {source}.",
+  "@migration_summary_start": {
+    "placeholders": {
+      "source": {
+        "type": "String"
+      }
+    }
+  },
+  "migration_summary_playlists": "Playlists: {count}",
+  "@migration_summary_playlists": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "migration_summary_songs": "Songs: {count}",
+  "@migration_summary_songs": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "migration_summary_favorites": "Favorites: {count}",
+  "@migration_summary_favorites": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "migration_summary_albums": "Albums: {count}",
+  "@migration_summary_albums": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "migration_summary_artists": "Artists: {count}",
+  "@migration_summary_artists": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "migration_select_file_dialog": "Select song.db or a .backup file",
+  "migration_success": "Migration completed successfully.",
+  "backup_select_folder_dialog": "Select backup file folder",
+  "restore_select_file_dialog": "Select backup file",
+  "auth_hint_email": "name@email.com",
+  "auth_error_invalid_email": "Enter a valid email.",
+  "settings_cloud_backup_dialog_desc": "Upload a .hmb backup to the server and restore any saved backups if needed.",
+  "delete": "Delete",
+  "in_app_storage": "In App storage directory",
+  "auth_brand_description_1": "We brought the login, registration, and password recovery from the previous project, adapted for this music app.",
+  "auth_brand_description_2": "Your session lives in secure storage and is validated with the same backend you already used.",
+  "auth_brand_not_configured": "The .env file needs to be configured to connect the authentication backend.",
+  "backup_btn_restart": "Restart app",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Upload backup now",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "There are no backups yet...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "You need an active session...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Backup uploaded correctly.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Backup restored. ",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Backup deleted.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Pop",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Rock",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hip hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Electronics",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "Latin",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Select file and import",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  },
+  "auth_forgot_password_subtitle": "We will send instructions to your account email.",
+  "@auth_forgot_password_subtitle": {
+    "description": ""
+  },
+  "auth_btn_send_email": "Send email",
+  "@auth_btn_send_email": {
+    "description": ""
+  },
+  "auth_error_not_configured": "Backend authentication is not configured in the .env file.",
+  "auth_error_invalid_credentials": "Incorrect email or password.",
+  "auth_error_not_verified": "Your account is not yet verified.",
+  "auth_error_unknown": "Could not complete the operation.",
+  "auth_register_success": "Account created successfully.",
+  "auth_register_error": "Could not create account.",
+  "auth_recovery_email_sent": "Email sent.",
+  "auth_recovery_email_error": "Could not send email."
 }

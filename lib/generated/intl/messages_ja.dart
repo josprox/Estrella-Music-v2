@@ -52,6 +52,24 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("アーティスト"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("音声コーデック"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "アセプトのユーザーミスダトス...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("ログイン"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("登録する"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage("パスワードを認証する"),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("ファーストネーム"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "パスワードを忘れてしまいました",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("苗字"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage("正常にログインしました"),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "エストレージャミュージックへようこそ",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "エストレージャミュージックへようこそ",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage("お気に入りの曲を自動ダウンロード"),
     "autoDownFavSongDes": MessageLookupByLibrary.simpleMessage(
       "お気に入りに追加した曲を自動でダウンロード",
@@ -60,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "再生する曲の選択時に、プレーヤーを自動的に全画面で開くかどうか",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("戻る"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage("データベースを発見"),
     "backgroundPlay": MessageLookupByLibrary.simpleMessage("バックグラウンドで音楽再生"),
     "backgroundPlayDes": MessageLookupByLibrary.simpleMessage(
@@ -71,6 +90,31 @@ class MessageLookup extends MessageLookupByLibrary {
     "backupMsg": MessageLookupByLibrary.simpleMessage("バックアップしました！"),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "すべての設定と再生リスト、ログイン情報をバックアップファイルに保存",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "アクティブなセッションが必要です...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage("アプリを再起動する"),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "今すぐバックアップをアップロード",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "バックアップを実行しますか?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "バックアップが削除されました。",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "まだバックアップがありません...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "バックアップが復元されました。アプリを再起動します。",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "バックアップするデータを選択する",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "バックアップが正しくアップロードされました。",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage("最後の操作から決定"),
     "bitrate": MessageLookupByLibrary.simpleMessage("ビットレート"),
@@ -99,7 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "クリックすると、キャッシュしたサムネイルや画像を消去します。(キャッシュした画像を更新したい場合に)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("閉じる"),
+    "close": MessageLookupByLibrary.simpleMessage("近い"),
     "closeApp": MessageLookupByLibrary.simpleMessage("アプリを閉じる"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage("コミュニティの再生リスト"),
     "content": MessageLookupByLibrary.simpleMessage("コンテンツ"),
@@ -142,6 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("ダウンロード"),
     "duration": MessageLookupByLibrary.simpleMessage("長さ"),
     "dynamic": MessageLookupByLibrary.simpleMessage("動的"),
+    "email": MessageLookupByLibrary.simpleMessage("電子メール"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("再生リストが空です！"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage("下部のナビバー"),
     "enableBottomNavDes": MessageLookupByLibrary.simpleMessage(
@@ -200,6 +245,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage("おすすめの再生リスト"),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("ファイルが見つかりません"),
     "for1": MessageLookupByLibrary.simpleMessage("語句"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("エレクトロニクス"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("ヒップホップ"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("ジャズ"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("ラテン"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("ポップ"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("ロック"),
     "gesture": MessageLookupByLibrary.simpleMessage("ジェスチャー"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -275,6 +326,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "low": MessageLookupByLibrary.simpleMessage("低"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage("歌詞が利用できません！"),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "ファイルを選択してインポートする",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("分"),
     "misc": MessageLookupByLibrary.simpleMessage("ほか"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage("音楽と再生"),
@@ -292,6 +346,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("アプリで開く"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("操作に失敗"),
     "password": MessageLookupByLibrary.simpleMessage("パスワード"),
+    "password_text": MessageLookupByLibrary.simpleMessage("パスワード"),
     "personalisation": MessageLookupByLibrary.simpleMessage("カスタマイズ"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Pipedの再生リストを同期しました！",
@@ -395,6 +450,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "search": MessageLookupByLibrary.simpleMessage("検索"),
     "searchDes": MessageLookupByLibrary.simpleMessage("曲、再生リスト、アルバム、アーティスト"),
     "searchRes": MessageLookupByLibrary.simpleMessage("検索結果"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage("最近の検索"),
     "selectAll": MessageLookupByLibrary.simpleMessage("すべて選択"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage("認証用インスタンスを選択"),
     "selectAuthInsMsg": MessageLookupByLibrary.simpleMessage(
@@ -404,6 +460,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectSongs": MessageLookupByLibrary.simpleMessage("曲を選択"),
     "setDiscoverContent": MessageLookupByLibrary.simpleMessage("探索するコンテンツを設定"),
     "settings": MessageLookupByLibrary.simpleMessage("設定"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage("クラウドバックアップ"),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "アップロード、復元、管理...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("一般的な"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("ログアウト"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Importa playlists, canciones...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Joss Music Kotlin からの移行",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("この曲を共有"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("キューをシャッフル"),
     "singles": MessageLookupByLibrary.simpleMessage("シングル"),

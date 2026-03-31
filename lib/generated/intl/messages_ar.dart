@@ -60,12 +60,35 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("فنانين"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("ترميز الصوت"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "قبول استخدام بيانات خاطئة...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("يسجل"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "تأكيد كلمة المرور",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "لقد نسيت كلمة المرور الخاصة بي",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل الدخول بنجاح",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "مرحبا بكم في استريلا الموسيقى",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "مرحبا بكم في استريلا الموسيقى",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "تنزيل الأغاني المفضلة تلقائيًا",
     ),
     "autoDownFavSongDes": MessageLookupByLibrary.simpleMessage(
       "تحميل الأغاني المفضلة تلقائيًا عند إضافتها إلى قائمة الاغاني المفضلة",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("يعود"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "تم العثور على قواعد البيانات",
     ),
@@ -87,6 +110,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "حفظ جميع الإعدادات، وقوائم التشغيل، وبيانات تسجيل الدخول في ملف نسخة احتياطية",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "تحتاج إلى جلسة نشطة..",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "أعد تشغيل التطبيق",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "تحميل النسخة الاحتياطية الآن",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "هل تريد إجراء نسخة احتياطية؟",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "تم حذف النسخة الاحتياطية.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "لا توجد نسخ احتياطية حتى الآن ...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "تمت استعادة النسخة الاحتياطية. أعد تشغيل التطبيق.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "اختر البيانات التي تريد نسخها احتياطيًا",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "تم تحميل النسخة الاحتياطية بشكل صحيح.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "بناء على تفاعلاتك الأخيرة",
@@ -123,7 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "انقر هنا لمسح الصور المصغرة/الصور المخزنة مؤقتًا. (غير مستحسن إلا إذا كنت ترغب في تحديث بيانات الصور المخزنة مؤقتًا)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
+    "close": MessageLookupByLibrary.simpleMessage("يغلق"),
     "closeApp": MessageLookupByLibrary.simpleMessage("إغلاق التطبيق"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "قوائم تشغيل الاخرين",
@@ -174,6 +224,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("التنزيلات"),
     "duration": MessageLookupByLibrary.simpleMessage("مدة"),
     "dynamic": MessageLookupByLibrary.simpleMessage("ديناميكي"),
+    "email": MessageLookupByLibrary.simpleMessage("بريد إلكتروني"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("قائمة فارغة!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "شريط التنقل السفلي",
@@ -215,6 +266,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
     "featuredplaylists": MessageLookupByLibrary.simpleMessage("قوائم مقترحة"),
     "for1": MessageLookupByLibrary.simpleMessage("لأجل"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("إلكترونيات"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("الهيب هوب"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("موسيقى الجاز"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("اللاتينية"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("البوب"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("صخر"),
     "gesture": MessageLookupByLibrary.simpleMessage("إيماءة"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -276,6 +333,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "كلمات غير متوفرة!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "حدد الملف والاستيراد",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("دقائق"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "الموسيقى والتشغيل",
@@ -304,6 +364,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("فتح في"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("فشلت العملية"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "password_text": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "personalisation": MessageLookupByLibrary.simpleMessage("تخصيص"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "تمت مزامنة قائمة التشغيل المنقولة!",
@@ -423,6 +484,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "الأغاني، قائمة التشغيل، الألبوم، أو الفنان",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("نتائج البحث"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "عمليات البحث الأخيرة",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("حدد الكل"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage("اختر نسخة المصادقة"),
     "selectAuthInsMsg": MessageLookupByLibrary.simpleMessage(
@@ -433,6 +497,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "تعيين اكتشاف المحتوى",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("إعدادات"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "النسخ الاحتياطي السحابي",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "تحميل واستعادة وإدارة...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("عام"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "استيراد قوائم التشغيل والأغاني...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "الهجرة من Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("مشاركة هذه الأغنية"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("خلط قائمة الانتظار"),
     "singles": MessageLookupByLibrary.simpleMessage("منفردة"),

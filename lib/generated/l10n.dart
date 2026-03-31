@@ -2379,9 +2379,9 @@ class S {
     return Intl.message('Profiles', name: 'profiles', desc: '', args: []);
   }
 
-  /// `Back`
+  /// `Return`
   String get back {
-    return Intl.message('Back', name: 'back', desc: '', args: []);
+    return Intl.message('Return', name: 'back', desc: '', args: []);
   }
 
   /// `Add to Library`
@@ -2544,6 +2544,591 @@ class S {
     return Intl.message(
       'Sort ascending/descending',
       name: 'sortAscendNDescend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully logged in`
+  String get auth_login_success {
+    return Intl.message(
+      'Successfully logged in',
+      name: 'auth_login_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cloud backup`
+  String get settings_cloud_backup {
+    return Intl.message(
+      'Cloud backup',
+      name: 'settings_cloud_backup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Migrate from Joss Music Kotlin`
+  String get settings_migration_title {
+    return Intl.message(
+      'Migrate from Joss Music Kotlin',
+      name: 'settings_migration_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to perform a backup?`
+  String get backup_confirm_question {
+    return Intl.message(
+      'Do you want to perform a backup?',
+      name: 'backup_confirm_question',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose which data to backup`
+  String get backup_selection_prompt {
+    return Intl.message(
+      'Choose which data to backup',
+      name: 'backup_selection_prompt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent searches`
+  String get search_recent_title {
+    return Intl.message(
+      'Recent searches',
+      name: 'search_recent_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I forgot my password`
+  String get auth_forgot_password {
+    return Intl.message(
+      'I forgot my password',
+      name: 'auth_forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get auth_btn_login {
+    return Intl.message('Login', name: 'auth_btn_login', desc: '', args: []);
+  }
+
+  /// `Register`
+  String get auth_btn_register {
+    return Intl.message(
+      'Register',
+      name: 'auth_btn_register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `E-mail`
+  String get email {
+    return Intl.message('E-mail', name: 'email', desc: '', args: []);
+  }
+
+  /// `Password`
+  String get password_text {
+    return Intl.message(
+      'Password',
+      name: 'password_text',
+      desc: 'Contraseña texto traducido',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get auth_confirm_password {
+    return Intl.message(
+      'Confirm Password',
+      name: 'auth_confirm_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to Estrella Music`
+  String get auth_welcome_title {
+    return Intl.message(
+      'Welcome to Estrella Music',
+      name: 'auth_welcome_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to Estrella Music`
+  String get auth_welcome_subtitle {
+    return Intl.message(
+      'Welcome to Estrella Music',
+      name: 'auth_welcome_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First name`
+  String get auth_first_name {
+    return Intl.message(
+      'First name',
+      name: 'auth_first_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get auth_last_name {
+    return Intl.message(
+      'Last name',
+      name: 'auth_last_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Acepto usar mis datos...`
+  String get auth_agree_personal_data {
+    return Intl.message(
+      'Acepto usar mis datos...',
+      name: 'auth_agree_personal_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get settings_general_section {
+    return Intl.message(
+      'General',
+      name: 'settings_general_section',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get settings_logout {
+    return Intl.message('Log out', name: 'settings_logout', desc: '', args: []);
+  }
+
+  /// `Upload, restore and manage...`
+  String get settings_cloud_backup_desc {
+    return Intl.message(
+      'Upload, restore and manage...',
+      name: 'settings_cloud_backup_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import playlists, songs...`
+  String get settings_migration_desc {
+    return Intl.message(
+      'Import playlists, songs...',
+      name: 'settings_migration_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Migration completed from {source}.`
+  String migration_summary_start(String source) {
+    return Intl.message(
+      'Migration completed from $source.',
+      name: 'migration_summary_start',
+      desc: '',
+      args: [source],
+    );
+  }
+
+  /// `Playlists: {count}`
+  String migration_summary_playlists(num count) {
+    return Intl.message(
+      'Playlists: $count',
+      name: 'migration_summary_playlists',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Songs: {count}`
+  String migration_summary_songs(num count) {
+    return Intl.message(
+      'Songs: $count',
+      name: 'migration_summary_songs',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Favorites: {count}`
+  String migration_summary_favorites(num count) {
+    return Intl.message(
+      'Favorites: $count',
+      name: 'migration_summary_favorites',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Albums: {count}`
+  String migration_summary_albums(num count) {
+    return Intl.message(
+      'Albums: $count',
+      name: 'migration_summary_albums',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Artists: {count}`
+  String migration_summary_artists(num count) {
+    return Intl.message(
+      'Artists: $count',
+      name: 'migration_summary_artists',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Select song.db or a .backup file`
+  String get migration_select_file_dialog {
+    return Intl.message(
+      'Select song.db or a .backup file',
+      name: 'migration_select_file_dialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Migration completed successfully.`
+  String get migration_success {
+    return Intl.message(
+      'Migration completed successfully.',
+      name: 'migration_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select backup file folder`
+  String get backup_select_folder_dialog {
+    return Intl.message(
+      'Select backup file folder',
+      name: 'backup_select_folder_dialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select backup file`
+  String get restore_select_file_dialog {
+    return Intl.message(
+      'Select backup file',
+      name: 'restore_select_file_dialog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `name@email.com`
+  String get auth_hint_email {
+    return Intl.message(
+      'name@email.com',
+      name: 'auth_hint_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid email.`
+  String get auth_error_invalid_email {
+    return Intl.message(
+      'Enter a valid email.',
+      name: 'auth_error_invalid_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload a .hmb backup to the server and restore any saved backups if needed.`
+  String get settings_cloud_backup_dialog_desc {
+    return Intl.message(
+      'Upload a .hmb backup to the server and restore any saved backups if needed.',
+      name: 'settings_cloud_backup_dialog_desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `In App storage directory`
+  String get in_app_storage {
+    return Intl.message(
+      'In App storage directory',
+      name: 'in_app_storage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We brought the login, registration, and password recovery from the previous project, adapted for this music app.`
+  String get auth_brand_description_1 {
+    return Intl.message(
+      'We brought the login, registration, and password recovery from the previous project, adapted for this music app.',
+      name: 'auth_brand_description_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your session lives in secure storage and is validated with the same backend you already used.`
+  String get auth_brand_description_2 {
+    return Intl.message(
+      'Your session lives in secure storage and is validated with the same backend you already used.',
+      name: 'auth_brand_description_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The .env file needs to be configured to connect the authentication backend.`
+  String get auth_brand_not_configured {
+    return Intl.message(
+      'The .env file needs to be configured to connect the authentication backend.',
+      name: 'auth_brand_not_configured',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Restart app`
+  String get backup_btn_restart {
+    return Intl.message(
+      'Restart app',
+      name: 'backup_btn_restart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload backup now`
+  String get backup_btn_upload {
+    return Intl.message(
+      'Upload backup now',
+      name: 'backup_btn_upload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no backups yet...`
+  String get backup_no_backups {
+    return Intl.message(
+      'There are no backups yet...',
+      name: 'backup_no_backups',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You need an active session...`
+  String get backup_auth_required {
+    return Intl.message(
+      'You need an active session...',
+      name: 'backup_auth_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Backup uploaded correctly.`
+  String get backup_upload_success {
+    return Intl.message(
+      'Backup uploaded correctly.',
+      name: 'backup_upload_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Backup restored. `
+  String get backup_restore_success {
+    return Intl.message(
+      'Backup restored. ',
+      name: 'backup_restore_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Backup deleted.`
+  String get backup_delete_success {
+    return Intl.message(
+      'Backup deleted.',
+      name: 'backup_delete_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pop`
+  String get genre_pop {
+    return Intl.message('Pop', name: 'genre_pop', desc: '', args: []);
+  }
+
+  /// `Rock`
+  String get genre_rock {
+    return Intl.message('Rock', name: 'genre_rock', desc: '', args: []);
+  }
+
+  /// `hip hop`
+  String get genre_hiphop {
+    return Intl.message('hip hop', name: 'genre_hiphop', desc: '', args: []);
+  }
+
+  /// `Electronics`
+  String get genre_electronic {
+    return Intl.message(
+      'Electronics',
+      name: 'genre_electronic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jazz`
+  String get genre_jazz {
+    return Intl.message('Jazz', name: 'genre_jazz', desc: '', args: []);
+  }
+
+  /// `Latin`
+  String get genre_latin {
+    return Intl.message('Latin', name: 'genre_latin', desc: '', args: []);
+  }
+
+  /// `Select file and import`
+  String get migration_btn_select {
+    return Intl.message(
+      'Select file and import',
+      name: 'migration_btn_select',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will send instructions to your account email.`
+  String get auth_forgot_password_subtitle {
+    return Intl.message(
+      'We will send instructions to your account email.',
+      name: 'auth_forgot_password_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send email`
+  String get auth_btn_send_email {
+    return Intl.message(
+      'Send email',
+      name: 'auth_btn_send_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Backend authentication is not configured in the .env file.`
+  String get auth_error_not_configured {
+    return Intl.message(
+      'Backend authentication is not configured in the .env file.',
+      name: 'auth_error_not_configured',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incorrect email or password.`
+  String get auth_error_invalid_credentials {
+    return Intl.message(
+      'Incorrect email or password.',
+      name: 'auth_error_invalid_credentials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is not yet verified.`
+  String get auth_error_not_verified {
+    return Intl.message(
+      'Your account is not yet verified.',
+      name: 'auth_error_not_verified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not complete the operation.`
+  String get auth_error_unknown {
+    return Intl.message(
+      'Could not complete the operation.',
+      name: 'auth_error_unknown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account created successfully.`
+  String get auth_register_success {
+    return Intl.message(
+      'Account created successfully.',
+      name: 'auth_register_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not create account.`
+  String get auth_register_error {
+    return Intl.message(
+      'Could not create account.',
+      name: 'auth_register_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email sent.`
+  String get auth_recovery_email_sent {
+    return Intl.message(
+      'Email sent.',
+      name: 'auth_recovery_email_sent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not send email.`
+  String get auth_recovery_email_error {
+    return Intl.message(
+      'Could not send email.',
+      name: 'auth_recovery_email_error',
       desc: '',
       args: [],
     );

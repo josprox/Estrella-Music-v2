@@ -60,6 +60,30 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Исполнители"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("Кодек"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Примите использовать неправильные данные...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Авторизоваться"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage(
+      "Зарегистрироваться",
+    ),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Подтвердите пароль",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Имя"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Я забыл свой пароль",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Фамилия"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Успешно авторизован",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Добро пожаловать в Estrella Music",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Добро пожаловать в Estrella Music",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Автоматическая загрузка любимых песен",
     ),
@@ -72,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "Включить/выключить автоматическое открытие плеера на весь экран при выборе песни для воспроизведения",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Возвращаться"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "база данных найдена",
     ),
@@ -93,6 +118,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Сохраняет все настройки, плейлисты и логин в файл бэкапа",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Вам нужна активная сессия...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Перезапустить приложение",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Загрузите резервную копию сейчас",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Вы хотите выполнить резервное копирование?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Резервная копия удалена.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Резервных копий пока нет...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Резервная копия восстановлена. Перезапустите приложение.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Выберите, какие данные для резервного копирования",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Резервная копия загружена правильно.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "На основе последнего взаимодействия",
@@ -129,7 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "Нажмите здесь чтобы очистить кэшированные миниатюры/изображения. (Не рекомендуется, если только вы не хотите обновить кэшированные изображения)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
+    "close": MessageLookupByLibrary.simpleMessage("Закрывать"),
     "closeApp": MessageLookupByLibrary.simpleMessage("Закрыть приложение"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "Плейлисты сообщества",
@@ -184,6 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("Загрузки"),
     "duration": MessageLookupByLibrary.simpleMessage("Длина"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Динамический"),
+    "email": MessageLookupByLibrary.simpleMessage("Электронная почта"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("Пустой плейлист!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "Панель навигации снизу",
@@ -268,6 +321,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Файл не найден"),
     "for1": MessageLookupByLibrary.simpleMessage("для"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Электроника"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("хип-хоп"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Джаз"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("латинский"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Поп"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Камень"),
     "gesture": MessageLookupByLibrary.simpleMessage("Жест"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -365,6 +424,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Слова песни не доступны!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Выбрать файл и импортировать",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("минуты"),
     "misc": MessageLookupByLibrary.simpleMessage("Разное"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -392,6 +454,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Операция не удалась",
     ),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Пароль"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Персонализация"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Плейлист Piped синхронизирован!",
@@ -529,6 +592,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Песни, плейлист, альбом или исполнитель",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Результаты поиска"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Недавние поиски",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Выбрать всё"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Выберите сервер аутентификации",
@@ -542,6 +608,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "Настроить контент на вкладке открытий",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Облачное резервное копирование",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Загружайте, восстанавливайте и управляйте...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("Общий"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Выйти"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Импортируйте плейлисты, песни...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Миграция с Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Поделиться этой песней"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Перемешать очередь"),
     "singles": MessageLookupByLibrary.simpleMessage("Синглы"),

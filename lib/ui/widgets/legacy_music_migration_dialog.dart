@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../generated/l10n.dart';
 
 import '../../services/legacy_music_migration_service.dart';
 import 'common_dialog_widget.dart';
@@ -22,12 +23,12 @@ class LegacyMusicMigrationDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Migrar desde Joss Music Kotlin',
+              S.of(context).settings_migration_title,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Selecciona el `song.db` de la app anterior o un backup `.backup`. La migración crea una playlist llamada "Biblioteca migrada", conserva favoritos, playlists, álbumes y artistas compatibles con esta app.',
+            Text(
+              S.of(context).settings_migration_desc,
             ),
             const SizedBox(height: 14),
             Obx(
@@ -76,14 +77,13 @@ class LegacyMusicMigrationDialog extends StatelessWidget {
                     onPressed: controller.isImporting.isTrue
                         ? null
                         : () => controller.importLegacyData(context),
-                    icon: const Icon(Icons.import_export),
-                    label: const Text('Seleccionar archivo e importar'),
+                    label: Text(S.of(context).migration_btn_select),
                   ),
                 ),
                 const SizedBox(width: 10),
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Cerrar'),
+                  child: Text(S.of(context).close),
                 ),
               ],
             ),
@@ -105,12 +105,12 @@ class LegacyMusicMigrationDialogController extends GetxController {
   String get summaryText {
     final currentSummary = summary.value;
     if (currentSummary == null) return '';
-    return 'Migración completada desde ${currentSummary.sourceName}.\n'
-        'Playlists: ${currentSummary.playlistCount}\n'
-        'Canciones: ${currentSummary.songCount}\n'
-        'Favoritos: ${currentSummary.favoriteCount}\n'
-        'Álbumes: ${currentSummary.albumCount}\n'
-        'Artistas: ${currentSummary.artistCount}';
+    return '${S.current.migration_summary_start(currentSummary.sourceName)}\n'
+        '${S.current.migration_summary_playlists(currentSummary.playlistCount)}\n'
+        '${S.current.migration_summary_songs(currentSummary.songCount)}\n'
+        '${S.current.migration_summary_favorites(currentSummary.favoriteCount)}\n'
+        '${S.current.migration_summary_albums(currentSummary.albumCount)}\n'
+        '${S.current.migration_summary_artists(currentSummary.artistCount)}';
   }
 
   Future<void> importLegacyData(BuildContext context) async {
@@ -121,7 +121,7 @@ class LegacyMusicMigrationDialogController extends GetxController {
         allowMultiple: false,
         type: FileType.custom,
         allowedExtensions: const ['db', 'backup'],
-        dialogTitle: 'Selecciona song.db o un backup .backup',
+        dialogTitle: S.current.migration_select_file_dialog,
       );
 
       if (result == null || result.files.single.path == null) {
@@ -134,7 +134,7 @@ class LegacyMusicMigrationDialogController extends GetxController {
         ScaffoldMessenger.of(context).showSnackBar(
           snackbar(
             context,
-            'Migración completada correctamente.',
+            S.current.migration_success,
             size: SanckBarSize.MEDIUM,
           ),
         );

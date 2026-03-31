@@ -271,5 +271,155 @@
   "fileNotFound": "Datei nicht gefunden",
   "importLargeFileNote": "Hinweis: Der Import großer Playlisten kann länger dauern",
   "keepScreenOnWhilePlaying": "Bildschirm während der Wiedergabe eingeschaltet lassen",
-  "keepScreenOnWhilePlayingDes": "Wenn aktiviert, bleibt der Bildschirm des Geräts beim Musikhören eingeschaltet"
+  "keepScreenOnWhilePlayingDes": "Wenn aktiviert, bleibt der Bildschirm des Geräts beim Musikhören eingeschaltet",
+  "auth_login_success": "Erfolgreich angemeldet",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Cloud-Backup",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Von Joss Music Kotlin migrieren",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Möchten Sie ein Backup durchführen?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Wählen Sie aus, welche Daten gesichert werden sollen",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Aktuelle Suchanfragen",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Zurückkehren",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Ich habe mein Passwort vergessen",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Login",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Registrieren",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-Mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Passwort",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Passwort bestätigen",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Willkommen bei Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Willkommen bei Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Vorname",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Nachname",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Akzeptieren Sie die Verwendung meiner Daten...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Allgemein",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Abmelden",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Hochladen, Wiederherstellen und Verwalten...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Playlists, Songs importieren...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "App neu starten",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Jetzt Backup hochladen",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Es sind noch keine Backups vorhanden...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Sie benötigen eine aktive Sitzung...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Backup korrekt hochgeladen.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Sicherung wiederhergestellt. Starten Sie die App neu.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Sicherung gelöscht.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Pop",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Felsen",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "Hip Hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Elektronik",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "lateinisch",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Datei auswählen und importieren",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

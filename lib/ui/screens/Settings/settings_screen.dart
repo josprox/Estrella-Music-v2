@@ -509,7 +509,7 @@ class SettingsScreen extends StatelessWidget {
                     title: Text(S.current.downloadLocation),
                     subtitle: Obx(() => Text(
                         settingsController.isCurrentPathsupportDownDir
-                            ? "In App storage directory"
+                            ? S.current.in_app_storage
                             : settingsController.downloadLocationPath.value,
                         style: Theme.of(context).textTheme.bodyMedium)),
                     onTap: () async {
@@ -546,7 +546,7 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
               CustomExpansionTile(
-                title: "General",
+                title: S.current.settings_general_section,
                 icon: Icons.settings,
                 children: [
                    Obx(
@@ -559,15 +559,15 @@ class SettingsScreen extends StatelessWidget {
                       ),
                       trailing: TextButton(
                         onPressed: settingsController.logoutUser,
-                        child: const Text('Cerrar sesion'),
+                        child: Text(S.current.settings_logout),
                       ),
                     ),
                   ),
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: const Text('Backup en la nube'),
+                    title: Text(S.current.settings_cloud_backup),
                     subtitle: Text(
-                      'Sube, restaura y administra respaldos desde el servidor.',
+                      S.current.settings_cloud_backup_desc,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     onTap: () => showDialog(
@@ -579,9 +579,9 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   ListTile(
                     contentPadding: const EdgeInsets.only(left: 5, right: 10),
-                    title: const Text('Migrar desde Joss Music Kotlin'),
+                    title: Text(S.current.settings_migration_title),
                     subtitle: Text(
-                      'Importa playlists, canciones, albumes y artistas desde song.db o un backup legado.',
+                      S.current.settings_migration_desc,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     onTap: () => showDialog(

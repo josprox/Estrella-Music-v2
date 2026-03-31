@@ -36,7 +36,7 @@
   "customInsSelectMsg": "Selecteer Aangepaste Instantie",
   "allFieldsReqMsg": "Alle velden zijn vereist",
   "selectAuthIns": "Selecteer Auth Instantie",
-  "username": "Username",
+  "username": "Gebruikersnaam",
   "resetblacklistedplaylist": "Reset op de zwarte lijst gezette afspeellijsten",
   "library": "Bibliotheek",
   "networkError1": "Oops netwerk error!",
@@ -174,7 +174,7 @@
   "exportDowloadedFilesDes": "Klik hier om gedownloade bestanden van inApp dir naar externe dir te exporteren",
   "scanning": "Scannen...",
   "downFilesFound": "gedownloade bestanden gevonden",
-  "close": "Sluit",
+  "close": "Dichtbij",
   "exportMsg": "Bestanden successvol geëxporteerd",
   "clearImgCacheAlert": "Afbeeldingen cache is successvol verwijderd",
   "selectAuthInsMsg": "Selecteer Authenticatie instantie!",
@@ -187,5 +187,155 @@
   "selectSongs": "Selecteer liedjes",
   "selectAll": "Selecteer alle",
   "keepScreenOnWhilePlaying": "Scherm aanhouden tijdens afspelen",
-  "keepScreenOnWhilePlayingDes": "Indien ingeschakeld blijft het scherm van het apparaat ingeschakeld tijdens het afspelen van muziek"
+  "keepScreenOnWhilePlayingDes": "Indien ingeschakeld blijft het scherm van het apparaat ingeschakeld tijdens het afspelen van muziek",
+  "auth_login_success": "Succesvol ingelogd",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Cloud-back-up",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Migreren van Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Wilt u een back-up uitvoeren?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Kies welke gegevens u wilt back-uppen",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Recente zoekopdrachten",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Opbrengst",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Ik ben mijn wachtwoord vergeten",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Login",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Register",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Wachtwoord",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Bevestig wachtwoord",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Welkom bij Estrella Muziek",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Welkom bij Estrella Muziek",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Voornaam",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Achternaam",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Gebruik verkeerde gegevens...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Algemeen",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Uitloggen",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Uploaden, herstellen en beheren...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Importeer afspeellijsten, nummers...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Start de app opnieuw",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Upload nu een back-up",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Er zijn nog geen back-ups...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Je hebt een actieve sessie nodig...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Back-up correct geüpload.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Back-up hersteld. Start de app opnieuw.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Back-up verwijderd.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Knal",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Steen",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hiphop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Elektronica",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "Latijns",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Bestand selecteren en importeren",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

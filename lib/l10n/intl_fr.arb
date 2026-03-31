@@ -278,5 +278,155 @@
   "exportToYouTubeMusicSubtitle": "Cela poussera votre playlist (titres < 50) vers la file d'attente actuelle. N'oubliez pas de l'ajouter à la playlist/de l'enregistrer après l'ouverture dans YouTube Music",
   "linkCopied": "Lien copié dans le presse-papiers",
   "keepScreenOnWhilePlaying": "Garder l'écran allumé pendant la lecture",
-  "keepScreenOnWhilePlayingDes": "S'il est activé, l'écran restera allumé pendant la lecture de la musique"
+  "keepScreenOnWhilePlayingDes": "S'il est activé, l'écran restera allumé pendant la lecture de la musique",
+  "auth_login_success": "Connecté avec succès",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Sauvegarde dans le cloud",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Migrer depuis Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Voulez-vous effectuer une sauvegarde ?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Choisissez les données à sauvegarder",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Recherches récentes",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Retour",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "J'ai oublié mon mot de passe",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Se connecter",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Registre",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Mot de passe",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Confirmez le mot de passe",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Bienvenue sur Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Bienvenue sur Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Prénom",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Nom de famille",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Accepter d'utiliser mes données...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Général",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Se déconnecter",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Téléchargez, restaurez et gérez...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Importez des playlists, des chansons...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Redémarrer l'application",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Téléchargez la sauvegarde maintenant",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Il n'y a pas encore de sauvegardes...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Vous avez besoin d'une séance active...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Sauvegarde téléchargée correctement.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Sauvegarde restaurée. Redémarrez l'application.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Sauvegarde supprimée.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Populaire",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Rocher",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hip hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Électronique",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "latin",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Sélectionnez le fichier et importez",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

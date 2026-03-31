@@ -62,7 +62,7 @@
   "reArrangePlaylist": "إعادة ترتيب قوائم التشغيل",
   "cancel": "إلغاء",
   "create": "إنشاء",
-  "close": "إغلاق",
+  "close": "يغلق",
   "disableTransitionAnimationDes": "قم بتمكين هذا الخيار لتعطيل الرسوم المتحركة الانتقالية بين الصفحات",
   "openIn": "فتح في",
   "removeFromLib": "إزالة من مكتبة الأغاني",
@@ -240,5 +240,155 @@
   "playingfromPlaylist": "التشغيل من قائمة التشغيل",
   "playingfromSelection": "اللعب من المختارة",
   "keepScreenOnWhilePlaying": "ابقِ الشاشة مضاءة أثناء التشغيل",
-  "keepScreenOnWhilePlayingDes": "إذا تم التفعيل، ستبقى شاشة الجهاز مضاءة أثناء تشغيل الموسيقى"
+  "keepScreenOnWhilePlayingDes": "إذا تم التفعيل، ستبقى شاشة الجهاز مضاءة أثناء تشغيل الموسيقى",
+  "auth_login_success": "تم تسجيل الدخول بنجاح",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "النسخ الاحتياطي السحابي",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "الهجرة من Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "هل تريد إجراء نسخة احتياطية؟",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "اختر البيانات التي تريد نسخها احتياطيًا",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "عمليات البحث الأخيرة",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "يعود",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "لقد نسيت كلمة المرور الخاصة بي",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "تسجيل الدخول",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "يسجل",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "بريد إلكتروني",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "كلمة المرور",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "تأكيد كلمة المرور",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "مرحبا بكم في استريلا الموسيقى",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "مرحبا بكم في استريلا الموسيقى",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "الاسم الأول",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "اسم العائلة",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "قبول استخدام بيانات خاطئة...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "عام",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "تسجيل الخروج",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "تحميل واستعادة وإدارة...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "استيراد قوائم التشغيل والأغاني...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "أعد تشغيل التطبيق",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "تحميل النسخة الاحتياطية الآن",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "لا توجد نسخ احتياطية حتى الآن ...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "تحتاج إلى جلسة نشطة..",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "تم تحميل النسخة الاحتياطية بشكل صحيح.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "تمت استعادة النسخة الاحتياطية. أعد تشغيل التطبيق.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "تم حذف النسخة الاحتياطية.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "البوب",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "صخر",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "الهيب هوب",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "إلكترونيات",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "موسيقى الجاز",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "اللاتينية",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "حدد الملف والاستيراد",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

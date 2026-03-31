@@ -51,6 +51,56 @@ class MessageLookup extends MessageLookupByLibrary {
       "ବର୍ଣ୍ଣନା ଉପଲବ୍ଧ ନାହିଁ!",
     ),
     "artists": MessageLookupByLibrary.simpleMessage("କଳାକାର"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Acepto usar mis datos ...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("ଲଗଇନ୍ କରନ୍ତୁ |"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("ପଞ୍ଜିକରଣ କର |"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "ପାସୱାର୍ଡ ନିଶ୍ଚିତ କରନ୍ତୁ |",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("ପ୍ରଥମ ନାମ"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "ମୁଁ ମୋର ପାସୱାର୍ଡ ଭୁଲିଗଲି",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("ଶେଷ ନାମ"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "ସଫଳତାର ସହିତ ଲଗ୍ ଇନ୍ କଲେ |",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "ଏଷ୍ଟ୍ରେଲା ସଙ୍ଗୀତକୁ ସ୍ୱାଗତ |",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "ଏଷ୍ଟ୍ରେଲା ସଙ୍ଗୀତକୁ ସ୍ୱାଗତ |",
+    ),
+    "back": MessageLookupByLibrary.simpleMessage("ଫେରନ୍ତୁ"),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "ଆପଣଙ୍କୁ ଏକ ସକ୍ରିୟ ଅଧିବେଶନ ଦରକାର ...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "ଆପ୍ ପୁନ Rest ଆରମ୍ଭ କରନ୍ତୁ |",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "ବର୍ତ୍ତମାନ ବ୍ୟାକଅପ୍ ଅପଲୋଡ୍ କରନ୍ତୁ |",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "ଆପଣ ଏକ ନକଲ ସଂରକ୍ଷଣ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "ବ୍ୟାକଅପ୍ ବିଲୋପ ହେଲା |",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "ଏପର୍ଯ୍ୟନ୍ତ କ back ଣସି ବ୍ୟାକଅପ୍ ନାହିଁ ...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "ବ୍ୟାକଅପ୍ ପୁନ restored ସ୍ଥାପିତ ହେଲା | ଆପ୍ ପୁନ Rest ଆରମ୍ଭ କରନ୍ତୁ |",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "କେଉଁ ତଥ୍ୟ ବ୍ୟାକଅପ୍ କରିବାକୁ ବାଛନ୍ତୁ |",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "ବ୍ୟାକଅପ୍ ସଠିକ୍ ଭାବରେ ଅପଲୋଡ୍ ହୋଇଛି |",
+    ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "ଶେଷ ପାରସ୍ପରିକ କ୍ରିୟା ଉପରେ ଆଧାରିତ",
     ),
@@ -64,6 +114,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cachedOrOffline": MessageLookupByLibrary.simpleMessage("କ୍ୟାଚ୍/ଅଫଲାଇନ"),
     "cancel": MessageLookupByLibrary.simpleMessage("ବାତିଲ କରନ୍ତୁ"),
+    "close": MessageLookupByLibrary.simpleMessage("ବନ୍ଦ"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "କମ୍ୟୁନିଟି ପ୍ଲେ ଲିଷ୍ଟ",
     ),
@@ -93,6 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "downloads": MessageLookupByLibrary.simpleMessage("ଡାଉନଲୋଡ୍"),
     "dynamic": MessageLookupByLibrary.simpleMessage("ଗତିଶୀଳ"),
+    "email": MessageLookupByLibrary.simpleMessage("ଇ-ମେଲ୍ |"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("ଖାଲି ପ୍ଲେଲିଷ୍ଟ!"),
     "enabled": MessageLookupByLibrary.simpleMessage("ସକ୍ଷମ"),
     "endOfThisSong": MessageLookupByLibrary.simpleMessage("ଏହି ଗୀତର ଶେଷରେ"),
@@ -114,6 +166,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "ପ୍ରଦର୍ଶିତ ପ୍ଲେଲିଷ୍ଟଗୁଡିକ",
     ),
     "for1": MessageLookupByLibrary.simpleMessage("ପାଇଁ"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("ଇଲେକ୍ଟ୍ରୋନିକ୍ସ"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("ହିପ୍ ହପ୍"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("ଜାଜ୍"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("ଲାଟିନ୍"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("ପପ୍"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("ପଥର"),
     "github": MessageLookupByLibrary.simpleMessage("ଗିଟ୍ ହବ୍"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
       "GitHub ଉତ୍ସ କୋଡ୍ ଦେଖନ୍ତୁ ,\nଯଦି ଆପଣ ଏହି ପ୍ରୋଜେକ୍ଟ ପସନ୍ଦ କରନ୍ତି, 💥 ଦେବାକୁ ଭୁଲନ୍ତୁ ନାହିଁ",
@@ -164,6 +222,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "ଗୀତ ଉପଲବ୍ଧ ନାହିଁ!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "ଫାଇଲ୍ ଏବଂ ଆମଦାନୀ ଚୟନ କରନ୍ତୁ |",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("ମିନିଟ୍"),
     "networkError1": MessageLookupByLibrary.simpleMessage(
       "Oops ନେଟୱର୍କ ତ୍ରୁଟି!",
@@ -189,6 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ଅପରେସନ୍ ବିଫଳ ହେଲା",
     ),
     "password": MessageLookupByLibrary.simpleMessage("ପାସୱାର୍ଡ"),
+    "password_text": MessageLookupByLibrary.simpleMessage("ପାସୱାର୍ଡ"),
     "playNext": MessageLookupByLibrary.simpleMessage("ପରବର୍ତ୍ତୀ ଖେଳାନ୍ତୁ"),
     "playlistBlacklistAlert": MessageLookupByLibrary.simpleMessage(
       "ପ୍ଲେ-ଲିଷ୍ଟ କଳା ତାଲିକାଭୁକ୍ତ!",
@@ -250,6 +312,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "ଗୀତ,ପ୍ଲେଲିଷ୍ଟ,ଆଲବମ କିମ୍ବା କଳାକାର",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("ସନ୍ଧାନ ଫଳାଫଳ"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "ସାମ୍ପ୍ରତିକ ସନ୍ଧାନ |",
+    ),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Auth Instance ଚୟନ କରନ୍ତୁ",
     ),
@@ -260,6 +325,24 @@ class MessageLookup extends MessageLookupByLibrary {
       "ଆବିଷ୍କାର ବିଷୟବସ୍ତୁ ସେଟ କରନ୍ତୁ",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("ବିନ୍ୟାସଗୁଡ଼ିକ"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "କ୍ଲାଉଡ୍ ବ୍ୟାକଅପ୍ |",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "ଅପଲୋଡ୍, ପୁନରୁଦ୍ଧାର ଏବଂ ପରିଚାଳନା ...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage(
+      "ଜେନେରାଲ୍ |",
+    ),
+    "settings_logout": MessageLookupByLibrary.simpleMessage(
+      "ଲଗ୍ ଆଉଟ୍ କରନ୍ତୁ |",
+    ),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "ପ୍ଲେଲିଷ୍ଟ, ଗୀତ ଆମଦାନୀ କରନ୍ତୁ ...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "ଜୋସ୍ ମ୍ୟୁଜିକ୍ କୋଟଲିନ୍ ରୁ ସ୍ଥାନାନ୍ତର |",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("ଏହି ଗୀତକୁ ସହଭାଗ କରନ୍ତୁ"),
     "singles": MessageLookupByLibrary.simpleMessage("ଏକାକୀ"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("ନୀରବତା ଛାଡିଦିଅ"),

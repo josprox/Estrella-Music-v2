@@ -3,5 +3,157 @@
   "helloWorld": "Прывітанне свет",
   "@helloWorld": {
     "description": "Este texto es opcional"
+  },
+  "auth_login_success": "Паспяхова ўвайшлі ў сістэму",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Воблачнае рэзервовае капіраванне",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Пераход з Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Вы хочаце зрабіць рэзервовую копію?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Выберыце даныя для рэзервовага капіравання",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Апошнія пошукі",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Вяртанне",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Я забыў свой пароль",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Увайсці",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Зарэгіструйцеся",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "Электронная пошта",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Пароль",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Пацвердзіце пароль",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Сардэчна запрашаем у Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Сардэчна запрашаем у Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "username": "Імя карыстальніка",
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "імя",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Прозвішча",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Acepto usar mis datos...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Генерал",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Выйсці",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Загружаць, аднаўляць і кіраваць...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Імпартаваць плэйлісты, песні...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Перазапусціць праграму",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Загрузіць рэзервовую копію зараз",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Рэзервовых копій пакуль няма...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Вам патрэбны актыўны сеанс...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Рэзервовая копія запампавана правільна.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Рэзервовая копія адноўлена. Перазапусціце праграму.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Рэзервовая копія выдалена.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Поп",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Рок",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "хіп-хоп",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Электроніка",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Джаз",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "лацінка",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Выберыце файл і імпартуйце",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "close": "Блізка",
+  "@close": {
+    "description": ""
   }
 }

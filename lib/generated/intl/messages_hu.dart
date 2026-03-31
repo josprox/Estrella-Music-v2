@@ -36,12 +36,35 @@ class MessageLookup extends MessageLookupByLibrary {
     "albums": MessageLookupByLibrary.simpleMessage("Albumok"),
     "appInfo": MessageLookupByLibrary.simpleMessage("Alkalmazás információ"),
     "artists": MessageLookupByLibrary.simpleMessage("Előadók"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Acepto usar mis datos...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Bejelentkezés"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("Nyilvántartás"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Jelszó megerősítése",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Keresztnév"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Elfelejtettem a jelszavamat",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Vezetéknév"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Sikeres bejelentkezés",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Üdvözöljük az Estrella Music oldalán",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Üdvözöljük az Estrella Music oldalán",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Kedvelt dalok automatikus letöltése",
     ),
     "autoDownFavSongDes": MessageLookupByLibrary.simpleMessage(
       "A kedvelt dalok automatikus letöltése, ha hozzáadja a kedvencekhez",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Visszatérés"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "adatbázis található",
     ),
@@ -51,6 +74,33 @@ class MessageLookup extends MessageLookupByLibrary {
     "backupMsg": MessageLookupByLibrary.simpleMessage(
       "A mentés sikeresen elkészült!",
     ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Aktív foglalkozásra van szüksége...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Indítsa újra az alkalmazást",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Töltse fel most a biztonsági másolatot",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Szeretnél biztonsági mentést készíteni?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Biztonsági másolat törölve.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Még nincsenek biztonsági mentések...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "A biztonsági mentés visszaállítva. Indítsa újra az alkalmazást.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Válassza ki, hogy mely adatokról szeretne biztonsági másolatot készíteni",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "A biztonsági másolat megfelelően feltöltve.",
+    ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "Az utolsó interakció alapján",
     ),
@@ -59,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("Mégse"),
     "cancelTimer": MessageLookupByLibrary.simpleMessage("Időzítés vége"),
+    "close": MessageLookupByLibrary.simpleMessage("Közeli"),
     "closeApp": MessageLookupByLibrary.simpleMessage("Alkalmazás bezárása"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "Közösségi lejátszólisták",
@@ -82,6 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "downloads": MessageLookupByLibrary.simpleMessage("Letöltések"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Dinamikus"),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage(
       "Üres lejátszólista!",
     ),
@@ -91,6 +143,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "Kiemelt lejátszólisták",
     ),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronika"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Dzsessz"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("latin"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Pop"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Szikla"),
     "goToAlbum": MessageLookupByLibrary.simpleMessage("Irány az album"),
     "home": MessageLookupByLibrary.simpleMessage("Kezdőlap"),
     "items": MessageLookupByLibrary.simpleMessage("Tárgyak"),
@@ -113,6 +171,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "libSongs": MessageLookupByLibrary.simpleMessage("Gyűjtemény dalai"),
     "library": MessageLookupByLibrary.simpleMessage("Gyüjtemény"),
     "light": MessageLookupByLibrary.simpleMessage("Világos"),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Válassza ki a fájlt és importálja",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("perc"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Zene & Lejátszás",
@@ -133,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Nincsenek offline dalok!",
     ),
     "openIn": MessageLookupByLibrary.simpleMessage("Megnyitás itt:"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Jelszó"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Személyreszabás"),
     "playNext": MessageLookupByLibrary.simpleMessage("Következő lejátszása"),
     "playerUi": MessageLookupByLibrary.simpleMessage("Lejátszó Ui"),
@@ -196,12 +258,31 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "restoring": MessageLookupByLibrary.simpleMessage("Visszaállítás..."),
     "retry": MessageLookupByLibrary.simpleMessage("Újrapróbálom!"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Legutóbbi keresések",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Összes kiválasztása"),
     "selectSongs": MessageLookupByLibrary.simpleMessage("Számok kiválástása"),
     "setDiscoverContent": MessageLookupByLibrary.simpleMessage(
       "Állítsa be a felfedezés tartalmát",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Beállítások"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Biztonsági mentés a felhőből",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Feltöltés, visszaállítás és kezelés...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage(
+      "Általános",
+    ),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Jelentkezzen ki"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Lejátszási listák, dalok importálása...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Migráció a Joss Music Kotlin szolgáltatásból",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Dal megosztása"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Várólista keverése"),
     "singles": MessageLookupByLibrary.simpleMessage("Kislemezek"),
@@ -218,6 +299,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "trending": MessageLookupByLibrary.simpleMessage("Felkapott"),
     "upNext": MessageLookupByLibrary.simpleMessage("Következő"),
+    "username": MessageLookupByLibrary.simpleMessage("Felhasználónév"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Irány az előadó"),
   };
 }

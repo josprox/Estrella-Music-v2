@@ -58,7 +58,7 @@
   "songAlreadyExists": "Lagu sudah ada!",
   "libArtists": "Pustaka Artis",
   "downloadingFormat": "Mengunduh Format File",
-  "username": "Nama pengguna",
+  "username": "Nama belakang",
   "light": "Terang",
   "resetblacklistedplaylist": "Setel ulang daftar putar yang masuk daftar hitam",
   "dynamic": "Dinamis",
@@ -156,7 +156,7 @@
   "includeDownloadedFiles": "Sertakan file lagu-lagu yang diunduh",
   "bitrate": "Bitrate",
   "enableBottomNavDes": "Ganti ke bar navigasi bawah",
-  "close": "Tutup",
+  "close": "Menutup",
   "exporting": "Mengekspor...",
   "cancelTimer": "Batalkan pengatur waktu",
   "enableBottomNav": "Bar navigasi bawah",
@@ -266,5 +266,155 @@
   "invalidPlaylistFile": "struktur file daftar putar tidak valid",
   "importLargeFileNote": "Catatan: Daftar putar berukuran besar mungkin akan memakan waktu lama saat mengimpor",
   "keepScreenOnWhilePlaying": "Pertahankan layar tetap hidup saat memutar",
-  "keepScreenOnWhilePlayingDes": "Jika diaktifkan, layar perangkat akan tetap menyala saat musik sedang diputar"
+  "keepScreenOnWhilePlayingDes": "Jika diaktifkan, layar perangkat akan tetap menyala saat musik sedang diputar",
+  "auth_login_success": "Berhasil masuk",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Cadangan awan",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Bermigrasi dari Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Apakah Anda ingin melakukan pencadangan?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Pilih data mana yang akan dicadangkan",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Pencarian terkini",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Kembali",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Saya lupa kata sandi saya",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Login",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Daftar",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Kata sandi",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Konfirmasi Kata Sandi",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Selamat datang di Musik Estrella",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Selamat datang di Musik Estrella",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Nama depan",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Nama belakang",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Terima penggunaan data yang salah...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Umum",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Keluar",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Unggah, pulihkan, dan kelola...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Impor daftar putar, lagu...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Mulai ulang aplikasi",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Unggah cadangan sekarang",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Belum ada cadangan...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Anda memerlukan sesi aktif...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Cadangan diunggah dengan benar.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Cadangan dipulihkan. Mulai ulang aplikasi.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Cadangan dihapus.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Pop",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Batu",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hip hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Elektronik",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "Latin",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Pilih file dan impor",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

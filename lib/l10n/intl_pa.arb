@@ -56,7 +56,7 @@
   "cacheSongs": "ਕੈਸ਼ ਕੀਤੇ ਗੀਤ",
   "songAlreadyExists": "ਗੀਤ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ!",
   "libArtists": "ਲਾਇਬ੍ਰੇਰੀ ਕਲਾਕਾਰ",
-  "username": "ਵਰਤੋਂਕਾਰ ਦਾ ਨਾਂ",
+  "username": "ਯੂਜ਼ਰਨੇਮ",
   "light": "ਸਫ਼ੈਦ",
   "resetblacklistedplaylist": "ਬਲੈਕਲਿਸਟ ਕੀਤੀਆਂ ਪਲੇਲਿਸਟਾਂ ਨੂੰ ਰੀਸੈਟ ਕਰੋ",
   "dynamic": "ਡਾਇਨੈਮਿਕ",
@@ -234,5 +234,155 @@
   "loudnessNormalization": "ਉੱਚੀ ਆਵਾਜ਼ ਦਾ ਸਧਾਰਣਕਰਨ",
   "loudnessNormalizationDes": "ਸਾਰੇ ਗੀਤਾਂ (ਪ੍ਰਯੋਗਾਤਮਕ) ਲਈ ਉੱਚੀ ਆਵਾਜ਼ ਦਾ ਇੱਕੋ ਪੱਧਰ ਸੈੱਟ ਕਰਦਾ ਹੈ (ਪਿਛਲੇ ਸੰਸਕਰਣ (< v1.10.0) 'ਤੇ ਡਾਊਨਲੋਡ ਕੀਤੇ ਗੀਤਾਂ 'ਤੇ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ)",
   "keepScreenOnWhilePlaying": "ਸੰਗੀਤ ਚਲਾਉਣ ਦੌਰਾਨ ਸਕਰੀਨ ਚਾਲੂ ਰੱਖੋ",
-  "keepScreenOnWhilePlayingDes": "ਜੇ ਇਹ ਚਾਲੂ ਕੀਤਾ ਗਿਆ ਹੈ, ਤਾਂ ਡਿਵਾਈਸ ਦੀ ਸਕ੍ਰੀਨ ਸੰਗੀਤ ਚਲਦੇ ਸਮੇਂ ਚਾਲੂ ਰਹੇਗੀ"
+  "keepScreenOnWhilePlayingDes": "ਜੇ ਇਹ ਚਾਲੂ ਕੀਤਾ ਗਿਆ ਹੈ, ਤਾਂ ਡਿਵਾਈਸ ਦੀ ਸਕ੍ਰੀਨ ਸੰਗੀਤ ਚਲਦੇ ਸਮੇਂ ਚਾਲੂ ਰਹੇਗੀ",
+  "auth_login_success": "ਸਫਲਤਾਪੂਰਵਕ ਲੌਗਇਨ ਹੋਇਆ",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "ਕਲਾਊਡ ਬੈਕਅੱਪ",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Joss Music Kotlin ਤੋਂ ਮਾਈਗ੍ਰੇਟ ਕਰੋ",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "ਕੀ ਤੁਸੀਂ ਬੈਕਅੱਪ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "ਚੁਣੋ ਕਿ ਕਿਹੜਾ ਡਾਟਾ ਬੈਕਅੱਪ ਕਰਨਾ ਹੈ",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "ਹਾਲੀਆ ਖੋਜਾਂ",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "ਵਾਪਸੀ",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "ਮੈਂ ਆਪਣਾ ਪਾਸਵਰਡ ਭੁੱਲ ਗਿਆ ਹਾਂ",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "ਲਾਗਿਨ",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "ਰਜਿਸਟਰ ਕਰੋ",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "ਈ-ਮੇਲ",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "ਪਾਸਵਰਡ",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "ਪਾਸਵਰਡ ਪੱਕਾ ਕਰੋ",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Estrella ਸੰਗੀਤ ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Estrella ਸੰਗੀਤ ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "ਪਹਿਲਾ ਨਾਂ",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "ਆਖਰੀ ਨਾਂਮ",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "ਗਲਤ ਡੇਟਾ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "ਜਨਰਲ",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "ਲੌਗ ਆਊਟ ਕਰੋ",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "ਅੱਪਲੋਡ ਕਰੋ, ਰੀਸਟੋਰ ਕਰੋ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "ਪਲੇਲਿਸਟਸ, ਗੀਤ ਆਯਾਤ ਕਰੋ...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "ਐਪ ਨੂੰ ਰੀਸਟਾਰਟ ਕਰੋ",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "ਹੁਣੇ ਬੈਕਅੱਪ ਅੱਪਲੋਡ ਕਰੋ",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "ਅਜੇ ਤੱਕ ਕੋਈ ਬੈਕਅੱਪ ਨਹੀਂ ਹਨ...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "ਤੁਹਾਨੂੰ ਇੱਕ ਸਰਗਰਮ ਸੈਸ਼ਨ ਦੀ ਲੋੜ ਹੈ...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "ਬੈਕਅੱਪ ਸਹੀ ਢੰਗ ਨਾਲ ਅੱਪਲੋਡ ਕੀਤਾ ਗਿਆ।",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕੀਤਾ ਗਿਆ। ਐਪ ਨੂੰ ਰੀਸਟਾਰਟ ਕਰੋ।",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "ਬੈਕਅੱਪ ਮਿਟਾਇਆ ਗਿਆ।",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "ਪੌਪ",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "ਰੌਕ",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "ਹਿੱਪ ਹੌਪ",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "ਇਲੈਕਟ੍ਰਾਨਿਕਸ",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "ਜੈਜ਼",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "ਲਾਤੀਨੀ",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "ਫਾਈਲ ਚੁਣੋ ਅਤੇ ਆਯਾਤ ਕਰੋ",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

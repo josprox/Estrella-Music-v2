@@ -60,6 +60,28 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Nghệ sỹ"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("Mã hoá tiếng"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Chấp nhận sử dụng dữ liệu sai...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Xác nhận mật khẩu",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Tên"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Tôi quên mật khẩu",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Họ"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Đăng nhập thành công",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Chào mừng đến với Estrella Music",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Chào mừng đến với Estrella Music",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Tự động tải xuống những bài hát được thích",
     ),
@@ -72,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "Bật/Tắt chức năng tự động mở màn hình phát nhạc sau khi chọn bài hát",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Trở lại"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "Tìm thấy cơ sở dữ liệu",
     ),
@@ -91,6 +114,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Lưu tất cả cài đặt, đánh sách phát, và dữ liệu đăng nhập vào một tệp sao lưu",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Bạn cần một phiên hoạt động...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Khởi động lại ứng dụng",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Tải lên bản sao lưu ngay bây giờ",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Bạn có muốn thực hiện sao lưu?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Đã xóa bản sao lưu.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Chưa có bản sao lưu nào...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Đã khôi phục bản sao lưu. Khởi động lại ứng dụng.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Chọn dữ liệu để sao lưu",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Bản sao lưu được tải lên chính xác.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "Dựa vào tương tác gần nhất",
@@ -180,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("Tải về"),
     "duration": MessageLookupByLibrary.simpleMessage("Thời gian bài hát"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Động"),
+    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage(
       "Danh sách phát trống!",
     ),
@@ -266,6 +317,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Không tìm thấy tệp"),
     "for1": MessageLookupByLibrary.simpleMessage("cho"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Điện tử"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("nhạc jazz"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("tiếng Latinh"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Nhạc pop"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Đá"),
     "gesture": MessageLookupByLibrary.simpleMessage("Cử chỉ"),
     "github": MessageLookupByLibrary.simpleMessage("Github"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -363,6 +420,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Lời bài hát không có sẵn!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Chọn tệp và nhập",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("phút"),
     "misc": MessageLookupByLibrary.simpleMessage("Khác"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -396,6 +456,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("Mở trong"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("Lỗi hệ thống"),
     "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Cá nhân hoá"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Danh sách phát đã được đồng bộ hóa!",
@@ -537,6 +598,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Bài hát, Danh sách phát, Tập nhạc hoặc Nghệ sỹ",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Kết quả tìm kiếm"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Tìm kiếm gần đây",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Chọn tất cả"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Chọn phiên bản xác thực",
@@ -550,6 +614,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "Cài đặt nội dung khám phá",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Cài đặt"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Sao lưu đám mây",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Tải lên, khôi phục và quản lý...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage(
+      "Tổng quan",
+    ),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Nhập danh sách phát, bài hát...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Di chuyển từ Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Chia sẻ bài hát này"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Xáo trộn hàng đợi"),
     "singles": MessageLookupByLibrary.simpleMessage("Đĩa đơn"),
@@ -620,7 +700,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "urlSearchDes": MessageLookupByLibrary.simpleMessage(
       "Nhấn vào liên kết được phát hiện để mở nội dung",
     ),
-    "username": MessageLookupByLibrary.simpleMessage("Tên đăng nhập"),
+    "username": MessageLookupByLibrary.simpleMessage("Tên người dùng"),
     "videos": MessageLookupByLibrary.simpleMessage("Phim ảnh"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Xem tất cả"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Xem Nghệ sĩ"),

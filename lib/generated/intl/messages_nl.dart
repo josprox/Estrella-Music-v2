@@ -55,6 +55,29 @@ class MessageLookup extends MessageLookupByLibrary {
       "Beschrijving niet beschikbaar!",
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Artiesten"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Gebruik verkeerde gegevens...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Login"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("Register"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Bevestig wachtwoord",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Voornaam"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Ik ben mijn wachtwoord vergeten",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Achternaam"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Succesvol ingelogd",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Welkom bij Estrella Muziek",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Welkom bij Estrella Muziek",
+    ),
+    "back": MessageLookupByLibrary.simpleMessage("Opbrengst"),
     "backgroundPlay": MessageLookupByLibrary.simpleMessage(
       "Achtergrond muziek spelen",
     ),
@@ -63,6 +86,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Bewaart alle instellingen, afspeellijsten en aanmeldgegevens in een back-up bestand",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Je hebt een actieve sessie nodig...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Start de app opnieuw",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Upload nu een back-up",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Wilt u een back-up uitvoeren?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Back-up verwijderd.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Er zijn nog geen back-ups...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Back-up hersteld. Start de app opnieuw.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Kies welke gegevens u wilt back-uppen",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Back-up correct geüpload.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "Gebaseerd op laatste interactie",
@@ -96,7 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "Klik hier om de thumbnail/afbeeldingen cache te verwijderen. (Niet aangeraden tenzij je afbeelding cache wilt verversen)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("Sluit"),
+    "close": MessageLookupByLibrary.simpleMessage("Dichtbij"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "Community Playlists",
     ),
@@ -137,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "downloads": MessageLookupByLibrary.simpleMessage("Downloads"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Dynamisch"),
+    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("Lege Afspeellijst!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "Onderste navigatiebalk",
@@ -178,6 +229,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Aanbevolen Afspeellijsten",
     ),
     "for1": MessageLookupByLibrary.simpleMessage("voor"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronica"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("hiphop"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("Latijns"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Knal"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Steen"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
       "Bekijk GitHub-broncode\nals je dit project leuk vindt, vergeet dan niet een ⭐ te geven",
@@ -230,6 +287,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Tekst niet beschikbaar!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Bestand selecteren en importeren",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("minuten"),
     "networkError1": MessageLookupByLibrary.simpleMessage(
       "Oops netwerk error!",
@@ -256,6 +316,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("Openen in"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("Operatie gefaald"),
     "password": MessageLookupByLibrary.simpleMessage("Wachtwoord"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Wachtwoord"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Piped afspeellijst gesynchroniseerd!",
     ),
@@ -334,6 +395,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Liedjes, Afspeelijst, Album of Artiest",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Zoek resultaten"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Recente zoekopdrachten",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Selecteer alle"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Selecteer Auth Instantie",
@@ -346,6 +410,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "Zet ontdekkingsinhoud",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Instellingen"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Cloud-back-up",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Uploaden, herstellen en beheren...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage(
+      "Algemeen",
+    ),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Uitloggen"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Importeer afspeellijsten, nummers...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Migreren van Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Deel dit liedje"),
     "singles": MessageLookupByLibrary.simpleMessage("Singles"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Stilte overslaan"),
@@ -402,7 +482,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unLink": MessageLookupByLibrary.simpleMessage("Unlink"),
     "unlinkAlert": MessageLookupByLibrary.simpleMessage("Successvol unlink!"),
     "upNext": MessageLookupByLibrary.simpleMessage("Volgende"),
-    "username": MessageLookupByLibrary.simpleMessage("Username"),
+    "username": MessageLookupByLibrary.simpleMessage("Gebruikersnaam"),
     "videos": MessageLookupByLibrary.simpleMessage("Videos"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Bekijk alles"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Bekijk Artiest"),

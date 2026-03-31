@@ -59,12 +59,35 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("ਕਲਾਕਾਰ"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("ਆਡੀਓ ਕੋਡੇਕ"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "ਗਲਤ ਡੇਟਾ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("ਲਾਗਿਨ"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("ਰਜਿਸਟਰ ਕਰੋ"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "ਪਾਸਵਰਡ ਪੱਕਾ ਕਰੋ",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("ਪਹਿਲਾ ਨਾਂ"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "ਮੈਂ ਆਪਣਾ ਪਾਸਵਰਡ ਭੁੱਲ ਗਿਆ ਹਾਂ",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("ਆਖਰੀ ਨਾਂਮ"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "ਸਫਲਤਾਪੂਰਵਕ ਲੌਗਇਨ ਹੋਇਆ",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Estrella ਸੰਗੀਤ ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Estrella ਸੰਗੀਤ ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "ਮਨਪਸੰਦ ਗੀਤਾਂ ਨੂੰ ਆਟੋ ਡਾਊਨਲੋਡ ਕਰੋ",
     ),
     "autoDownFavSongDes": MessageLookupByLibrary.simpleMessage(
       "ਮਨਪਸੰਦ ਗੀਤਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾਣ \'ਤੇ ਮਨਪਸੰਦ ਗੀਤਾਂ ਨੂੰ ਆਟੋਮੈਟਿਕਲੀ ਡਾਊਨਲੋਡ ਕਰੋ",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("ਵਾਪਸੀ"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage("ਡਾਟਾਬੇਸ ਮਿਲੇ ਹਨ"),
     "backgroundPlay": MessageLookupByLibrary.simpleMessage(
       "ਬੈਕਗ੍ਰਾਊਂਡ ਸੰਗੀਤ ਚਲਾਓ",
@@ -82,6 +105,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "ਸਾਰੀਆਂ ਸੈਟਿੰਗਾਂ, ਪਲੇਲਿਸਟਾ ਅਤੇ ਲਾਗ-ਇਨ ਡਾਟਾ ਨੂੰ ਇੱਕ ਬੈਕਅੱਪ ਫਾਈਲ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰਦਾ ਹੈ",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "ਤੁਹਾਨੂੰ ਇੱਕ ਸਰਗਰਮ ਸੈਸ਼ਨ ਦੀ ਲੋੜ ਹੈ...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "ਐਪ ਨੂੰ ਰੀਸਟਾਰਟ ਕਰੋ",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "ਹੁਣੇ ਬੈਕਅੱਪ ਅੱਪਲੋਡ ਕਰੋ",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "ਕੀ ਤੁਸੀਂ ਬੈਕਅੱਪ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "ਬੈਕਅੱਪ ਮਿਟਾਇਆ ਗਿਆ।",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "ਅਜੇ ਤੱਕ ਕੋਈ ਬੈਕਅੱਪ ਨਹੀਂ ਹਨ...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕੀਤਾ ਗਿਆ। ਐਪ ਨੂੰ ਰੀਸਟਾਰਟ ਕਰੋ।",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "ਚੁਣੋ ਕਿ ਕਿਹੜਾ ਡਾਟਾ ਬੈਕਅੱਪ ਕਰਨਾ ਹੈ",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "ਬੈਕਅੱਪ ਸਹੀ ਢੰਗ ਨਾਲ ਅੱਪਲੋਡ ਕੀਤਾ ਗਿਆ।",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "ਆਖਰੀ ਪਰਸਪਰ ਪ੍ਰਭਾਵ ਦੇ ਆਧਾਰ \'ਤੇ",
@@ -169,6 +219,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("ਡਾਊਨਲੋਡਸ"),
     "duration": MessageLookupByLibrary.simpleMessage("ਮਿਆਦ"),
     "dynamic": MessageLookupByLibrary.simpleMessage("ਡਾਇਨੈਮਿਕ"),
+    "email": MessageLookupByLibrary.simpleMessage("ਈ-ਮੇਲ"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("ਖਾਲੀ ਪਲੇਲਿਸਟ!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "ਹੇਠਲੀ ਨੈਵੀਗੇਸ਼ਨ ਪੱਟੀ",
@@ -214,6 +265,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "ਫੀਚਰਡ ਪਲੇਲਿਸਟਾਂ",
     ),
     "for1": MessageLookupByLibrary.simpleMessage("ਦੇ ਲਈ"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("ਇਲੈਕਟ੍ਰਾਨਿਕਸ"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("ਹਿੱਪ ਹੌਪ"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("ਜੈਜ਼"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("ਲਾਤੀਨੀ"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("ਪੌਪ"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("ਰੌਕ"),
     "gesture": MessageLookupByLibrary.simpleMessage("ਇਸ਼ਾਰਾ"),
     "github": MessageLookupByLibrary.simpleMessage("ਗਿਟਹੱਬ"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -279,6 +336,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "ਬੋਲ ਉਪਲੱਬਧ ਨਹੀਂ ਹਨ!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "ਫਾਈਲ ਚੁਣੋ ਅਤੇ ਆਯਾਤ ਕਰੋ",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("ਮਿੰਟ"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "ਸੰਗੀਤ ਅਤੇ ਪਲੇਬੈਕ",
@@ -305,6 +365,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("ਦੇ ਵਿੱਚ ਖੋਲ੍ਹੋ"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("ਕਾਰਵਾਈ ਅਸਫਲ ਰਹੀ"),
     "password": MessageLookupByLibrary.simpleMessage("ਪਾਸਵਰਡ"),
+    "password_text": MessageLookupByLibrary.simpleMessage("ਪਾਸਵਰਡ"),
     "personalisation": MessageLookupByLibrary.simpleMessage("ਵਿਅਕਤੀਗਤਕਰਨ"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "ਪਾਈਪਡ ਪਲੇਲਿਸਟ ਸਿੰਕ ਕੀਤੀ ਗਈ!",
@@ -414,6 +475,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ਗੀਤ, ਪਲੇਲਿਸਟ, ਐਲਬਮ ਜਾਂ ਕਲਾਕਾਰ",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("ਖੋਜ ਦੇ ਨਤੀਜੇ"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage("ਹਾਲੀਆ ਖੋਜਾਂ"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "ਪ੍ਰਮਾਣਿਕਤਾ ਇੰਸਟੈਂਸ ਚੁਣੋ",
     ),
@@ -424,6 +486,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "ਖੋਜ ਸਮੱਗਰੀ ਸੈੱਟ ਕਰੋ",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("ਸੈਟਿੰਗਾਂ"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "ਕਲਾਊਡ ਬੈਕਅੱਪ",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "ਅੱਪਲੋਡ ਕਰੋ, ਰੀਸਟੋਰ ਕਰੋ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("ਜਨਰਲ"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("ਲੌਗ ਆਊਟ ਕਰੋ"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "ਪਲੇਲਿਸਟਸ, ਗੀਤ ਆਯਾਤ ਕਰੋ...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Joss Music Kotlin ਤੋਂ ਮਾਈਗ੍ਰੇਟ ਕਰੋ",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("ਇਸ ਗੀਤ ਨੂੰ ਸ਼ੇਅਰ ਕਰੋ"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("ਸ਼ਫਲ ਕਤਾਰ"),
     "singles": MessageLookupByLibrary.simpleMessage("ਸਿੰਗਲਜ਼"),
@@ -494,7 +570,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "urlSearchDes": MessageLookupByLibrary.simpleMessage(
       "url ਖੋਜਿਆ ਗਿਆ ਸੰਬੰਧਿਤ ਸਮੱਗਰੀ ਨੂੰ ਖੋਲ੍ਹਣ/ਪਲੇ ਕਰਨ ਲਈ ਇਸ \'ਤੇ ਕਲਿੱਕ ਕਰੋ",
     ),
-    "username": MessageLookupByLibrary.simpleMessage("ਵਰਤੋਂਕਾਰ ਦਾ ਨਾਂ"),
+    "username": MessageLookupByLibrary.simpleMessage("ਯੂਜ਼ਰਨੇਮ"),
     "videos": MessageLookupByLibrary.simpleMessage("ਵੀਡੀਓ"),
     "viewAll": MessageLookupByLibrary.simpleMessage("ਸਾਰੇ ਦੇਖੋ"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("ਕਲਾਕਾਰ ਵੇਖੋ"),

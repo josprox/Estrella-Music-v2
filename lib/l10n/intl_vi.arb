@@ -130,7 +130,7 @@
   "artistBookmarkRemoveAlert": "Đã xóa đánh dấu nghệ sỹ!",
   "albumBookmarkRemoveAlert": "Đã xóa đánh dấu tập nhạc!",
   "goToDownloadPage": "Bấm vào đây để đến trang tải về",
-  "username": "Tên đăng nhập",
+  "username": "Tên người dùng",
   "password": "Mật khẩu",
   "playlistBlacklistAlert": "Danh sách phát bị liệt vào danh sách đen!",
   "reset": "Cài lại",
@@ -275,5 +275,155 @@
   "exportToYouTubeMusicSubtitle": "Nó sẽ đẩy danh sách phát của bạn (bài hát < 50) vào hàng đợi hiện tại, đừng quên thêm vào danh sách phát/lưu sau khi mở trong YtMusic",
   "linkCopied": "Liên kết đã được sao chép vào bảng tạm",
   "keepScreenOnWhilePlaying": "Giữ màn hình sáng khi phát nhạc",
-  "keepScreenOnWhilePlayingDes": "Nếu được bật, màn hình thiết bị sẽ giữ sáng trong khi nhạc đang phát"
+  "keepScreenOnWhilePlayingDes": "Nếu được bật, màn hình thiết bị sẽ giữ sáng trong khi nhạc đang phát",
+  "auth_login_success": "Đăng nhập thành công",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Sao lưu đám mây",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Di chuyển từ Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Bạn có muốn thực hiện sao lưu?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Chọn dữ liệu để sao lưu",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Tìm kiếm gần đây",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Trở lại",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Tôi quên mật khẩu",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Đăng nhập",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Đăng ký",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Mật khẩu",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Xác nhận mật khẩu",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Chào mừng đến với Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Chào mừng đến với Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Tên",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Họ",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Chấp nhận sử dụng dữ liệu sai...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Tổng quan",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Đăng xuất",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Tải lên, khôi phục và quản lý...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Nhập danh sách phát, bài hát...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Khởi động lại ứng dụng",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Tải lên bản sao lưu ngay bây giờ",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Chưa có bản sao lưu nào...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Bạn cần một phiên hoạt động...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Bản sao lưu được tải lên chính xác.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Đã khôi phục bản sao lưu. Khởi động lại ứng dụng.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Đã xóa bản sao lưu.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Nhạc pop",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Đá",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hip hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Điện tử",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "nhạc jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "tiếng Latinh",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Chọn tệp và nhập",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

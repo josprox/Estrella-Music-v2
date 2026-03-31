@@ -3,5 +3,157 @@
   "helloWorld": "Γεια σου κόσμο",
   "@helloWorld": {
     "description": "Este texto es opcional"
+  },
+  "auth_login_success": "Έγινε επιτυχής σύνδεση",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Δημιουργία αντιγράφων ασφαλείας στο cloud",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Μετανάστευση από την Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Θέλετε να δημιουργήσετε αντίγραφο ασφαλείας;",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Επιλέξτε ποια δεδομένα θέλετε να δημιουργήσετε αντίγραφα ασφαλείας",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Πρόσφατες αναζητήσεις",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Απόδοση",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Ξέχασα τον κωδικό πρόσβασής μου",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Σύνδεση",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Μητρώο",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Σύνθημα",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Επιβεβαίωση κωδικού πρόσβασης",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Καλώς ήρθατε στο Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Καλώς ήρθατε στο Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "username": "Όνομα χρήστη",
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Ονομα",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Επώνυμο",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Acepto usar mis datas...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Γενικός",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Αποσυνδεθείτε",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Μεταφόρτωση, επαναφορά και διαχείριση...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Εισαγωγή λιστών αναπαραγωγής, τραγουδιών...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Επανεκκινήστε την εφαρμογή",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Μεταφόρτωση αντιγράφων ασφαλείας τώρα",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Δεν υπάρχουν ακόμα αντίγραφα ασφαλείας...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Χρειάζεστε μια ενεργή συνεδρία...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Το αντίγραφο ασφαλείας ανέβηκε σωστά.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Έγινε επαναφορά του αντιγράφου ασφαλείας. Επανεκκινήστε την εφαρμογή.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Το αντίγραφο ασφαλείας διαγράφηκε.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Κρότος",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Βράχος",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "χιπ χοπ",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Ηλεκτρονική",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Τζαζ",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "λατινικά",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Επιλέξτε αρχείο και εισαγωγή",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "close": "Κοντά",
+  "@close": {
+    "description": ""
   }
 }

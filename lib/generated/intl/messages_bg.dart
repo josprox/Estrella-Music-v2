@@ -62,6 +62,30 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Изпълнители"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("Аудио кодек"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Acepto usar mis datos...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Вход"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage(
+      "Регистрирайте се",
+    ),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Потвърдете паролата",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Първо име"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Забравих паролата си",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Фамилия"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Успешно влизане",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Добре дошли в Estrella Music",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Добре дошли в Estrella Music",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Автоматично изтегляне на любими песни",
     ),
@@ -74,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "Активиране/деактивиране на автоматичното отваряне на плейъра на цял екран при избор на песен за изпълнение",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Връщане"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "открита бази данни",
     ),
@@ -95,6 +120,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Запазва всички настройки, плейлисти и данни за вход в архивен файл",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Имате нужда от активна сесия...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Рестартирайте приложението",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Качете резервно копие сега",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Искате ли да направите резервно копие?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Резервното копие е изтрито.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Все още няма резервни копия...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Резервното копие е възстановено. Рестартирайте приложението.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Изберете кои данни да архивирате",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Резервното копие е качено правилно.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "Въз основа на последното взаимодействие",
@@ -129,7 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "Натиснете тук, за да изчистите кеширани миниатюри/изображения. (Не се препоръчва, освен ако не искате да обновите данните от кеширани изображения)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("Затвори"),
+    "close": MessageLookupByLibrary.simpleMessage("затвори"),
     "closeApp": MessageLookupByLibrary.simpleMessage("Затвори приложението"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "Плейлисти на Общността",
@@ -184,6 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("Изтеглени"),
     "duration": MessageLookupByLibrary.simpleMessage("Продължителност"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Динамична"),
+    "email": MessageLookupByLibrary.simpleMessage("Имейл"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("Празен плейлист!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "Долна навигационна лента",
@@ -266,6 +319,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Файлът не е намерен"),
     "for1": MessageLookupByLibrary.simpleMessage("за"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("електроника"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("хип хоп"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Джаз"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("латински"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Поп"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Рок"),
     "gesture": MessageLookupByLibrary.simpleMessage("Жестове"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -365,6 +424,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Текстовете не са налични!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Изберете файл и импортирайте",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("минути"),
     "misc": MessageLookupByLibrary.simpleMessage("Разни"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -396,6 +458,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Операцията се провали",
     ),
     "password": MessageLookupByLibrary.simpleMessage("Парола"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Парола"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Персонализиране"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Piped плейлист е синхронизиран!",
@@ -537,6 +600,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Песни, Плейлист, Албум или Изпълнител",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Резултати от търсенето"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Последни търсения",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Избери всички"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Изберете инстанция за удостоверяване",
@@ -550,6 +616,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "Задай съдържание за откриване",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Облачно архивиране",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Качете, възстановете и управлявайте...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("генерал"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Излезте"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Импортиране на плейлисти, песни...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Мигрирайте от Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Сподели тази песен"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Разбъркай опашката"),
     "singles": MessageLookupByLibrary.simpleMessage("Сингли"),

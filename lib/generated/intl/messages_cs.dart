@@ -60,6 +60,28 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Interpreti"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("Audio kodek"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Přijímáme nesprávné údaje...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Přihlášení"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("Rejstřík"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Potvrďte heslo",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Křestní jméno"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Zapomněl jsem heslo",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Příjmení"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Úspěšně přihlášeni",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Vítejte v Estrella Music",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Vítejte v Estrella Music",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Automaticky stáhnout oblíbené skladby",
     ),
@@ -72,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "Povolí/zakáže automatické otevření přehrávače na celou obrazovku při výběru skladby pro přehrávání",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("Návrat"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage("databáze nalezené"),
     "backgroundPlay": MessageLookupByLibrary.simpleMessage(
       "Přehrávání na pozadí",
@@ -91,6 +114,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Uloží všechna nastavení, playlisty a přihlašovací údaje do záložního souboru",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Potřebujete aktivní relaci...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Restartujte aplikaci",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Nahrajte zálohu nyní",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Chcete provést zálohu?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Záloha byla smazána.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Zatím nejsou žádné zálohy...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Záloha obnovena. Restartujte aplikaci.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Vyberte, která data chcete zálohovat",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Záloha byla nahrána správně.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage("Podle poslední akce"),
     "bitrate": MessageLookupByLibrary.simpleMessage("Bitrate"),
@@ -125,7 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "Klikni sem aby si vyčistil cache obrázků (Není doporučeno ale může se hodit při obnově zachovaného data z obrázků)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("Zavřít"),
+    "close": MessageLookupByLibrary.simpleMessage("Blízko"),
     "closeApp": MessageLookupByLibrary.simpleMessage("Zavřít aplikaci"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "Komunitní playlisty",
@@ -178,6 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("Stažené"),
     "duration": MessageLookupByLibrary.simpleMessage("Délka"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Dynamický"),
+    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("Prázdný playlist!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "Dolní navigační lišta",
@@ -262,6 +313,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Soubor nebyl nalezen",
     ),
     "for1": MessageLookupByLibrary.simpleMessage("pro"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronika"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("latinský"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Pop"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Rock"),
     "gesture": MessageLookupByLibrary.simpleMessage("Gesta"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -357,6 +414,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Text není k dispozici!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Vyberte soubor a importujte",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("minut"),
     "misc": MessageLookupByLibrary.simpleMessage("Různé"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -386,6 +446,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("Otevřít v"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("Operace selhala"),
     "password": MessageLookupByLibrary.simpleMessage("Heslo"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Heslo"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Přizpůsobení"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Piped playlist synchronizován!",
@@ -525,6 +586,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Skladby, playlisty, alba, interprety",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Výsledky vyhledávání"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Nedávná vyhledávání",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Vybrat všechno"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Vyberte Instanci ověření",
@@ -538,6 +602,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "Nastav si domovskou stránku",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Nastavení"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Cloudové zálohování",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Nahrát, obnovit a spravovat...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("Generál"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Odhlaste se"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Importujte seznamy skladeb, skladby...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Migrujte z Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Sdílet tuto skladbu"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Promíchat"),
     "singles": MessageLookupByLibrary.simpleMessage("Singly"),

@@ -127,7 +127,7 @@
   "customInsSelectMsg": "Valitse 'Muu instanssi'",
   "allFieldsReqMsg": "Kaikki tiedot vaaditaan",
   "linkPipedDes": "Yhdistä Piped soittolistojen synkronointiin",
-  "username": "Käyttäjänimi",
+  "username": "Käyttäjätunnus",
   "selectAuthIns": "Valitse instanssi",
   "selectAuthInsMsg": "Valitse instanssi!",
   "password": "Salasana",
@@ -152,5 +152,156 @@
   "dark": "Tumma",
   "systemDefault": "Järjestelmän oletus",
   "keepScreenOnWhilePlaying": "Pidä näyttö päällä toiston aikana",
-  "keepScreenOnWhilePlayingDes": "Jos käytössä, laitteen näyttö pysyy päällä musiikin toiston aikana"
+  "keepScreenOnWhilePlayingDes": "Jos käytössä, laitteen näyttö pysyy päällä musiikin toiston aikana",
+  "auth_login_success": "Sisäänkirjautuminen onnistui",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Pilvivarmuuskopio",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Siirrä Joss Music Kotlinista",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Haluatko tehdä varmuuskopion?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Valitse varmuuskopioitavat tiedot",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Viimeaikaiset haut",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Palata",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Unohdin salasanani",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Kirjaudu sisään",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Rekisteröidy",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "Sähköposti",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Salasana",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Vahvista salasana",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Tervetuloa Estrella Musiciin",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Tervetuloa Estrella Musiciin",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Etunimi",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Sukunimi",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Acepto usar mis datos...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Kenraali",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Kirjaudu ulos",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Lataa, palauta ja hallinnoi...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Tuo soittolistoja, kappaleita...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Käynnistä sovellus uudelleen",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Lataa varmuuskopio nyt",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Varmuuskopioita ei ole vielä...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Tarvitset aktiivisen istunnon...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Varmuuskopio ladattu oikein.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Varmuuskopio palautettu. Käynnistä sovellus uudelleen.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Varmuuskopio poistettu.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Pop",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Rock",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hip hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Elektroniikka",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "latina",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Valitse tiedosto ja tuo",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "close": "Lähellä",
+  "@close": {
+    "description": ""
+  }
 }

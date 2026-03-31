@@ -67,7 +67,7 @@
   "goToDownloadPage": "ডাউনলোড পৃষ্ঠায় যেতে এখানে ক্লিক করুন",
   "link": "লিংক",
   "selectAuthIns": "প্রমাণীকরণের দৃষ্টান্ত নির্বাচন করুন",
-  "username": "আপনার নাম",
+  "username": "ব্যবহারকারীর নাম",
   "linkAlert": "সফলভাবে লিঙ্ক করা হয়েছে!",
   "reset": "রিসেট",
   "resetblacklistedplaylist": "কালো তালিকাভুক্ত প্লেলিস্টগুলি পুনরায় সেট",
@@ -266,5 +266,155 @@
   "playlistExportedMsg": "প্লেলিস্ট সফলভাবে রপ্তানি করা হয়েছে",
   "importPlaylistDesc": "আমদানি করার জন্য পূর্বে রপ্তানি করা একটি প্লেলিস্ট JSON ফাইল নির্বাচন করুন",
   "keepScreenOnWhilePlaying": "প্লে থাকাকালীন স্ক্রীন জ্বলন্ত রাখুন",
-  "keepScreenOnWhilePlayingDes": "সক্রিয় করলে, গান চলাকালীন ডিভাইসের স্ক্রীন জ্বলে থাকবে"
+  "keepScreenOnWhilePlayingDes": "সক্রিয় করলে, গান চলাকালীন ডিভাইসের স্ক্রীন জ্বলে থাকবে",
+  "auth_login_success": "সফলভাবে লগ ইন",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "ক্লাউড ব্যাকআপ",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "জস মিউজিক কোটলিন থেকে মাইগ্রেট করুন",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "আপনি একটি ব্যাকআপ সঞ্চালন করতে চান?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "ব্যাকআপ কোন ডেটা চয়ন করুন",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "সাম্প্রতিক অনুসন্ধান",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "প্রত্যাবর্তন",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "আমি আমার পাসওয়ার্ড ভুলে গেছি",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "লগইন করুন",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "নিবন্ধন করুন",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "ই-মেইল",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "পাসওয়ার্ড",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "পাসওয়ার্ড নিশ্চিত করুন",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "এস্ট্রেলা সঙ্গীতে স্বাগতম",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "এস্ট্রেলা সঙ্গীতে স্বাগতম",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "প্রথম নাম",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "পদবি",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "আমাদের ভুল তথ্য গ্রহণ করুন...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "সাধারণ",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "লগ আউট করুন",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "আপলোড, পুনরুদ্ধার এবং পরিচালনা...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "প্লেলিস্ট, গান আমদানি করুন...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "অ্যাপ রিস্টার্ট করুন",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "এখন ব্যাকআপ আপলোড করুন",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "এখনও কোন ব্যাকআপ নেই...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "আপনার একটি সক্রিয় অধিবেশন প্রয়োজন...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "সঠিকভাবে ব্যাকআপ আপলোড করা হয়েছে।",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "ব্যাকআপ পুনরুদ্ধার করা হয়েছে। অ্যাপটি রিস্টার্ট করুন।",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "ব্যাকআপ মুছে ফেলা হয়েছে।",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "পপ",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "শিলা",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "হিপ হপ",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "ইলেকট্রনিক্স",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "জ্যাজ",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "ল্যাটিন",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "ফাইল নির্বাচন করুন এবং আমদানি করুন",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

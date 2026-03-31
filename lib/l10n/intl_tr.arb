@@ -76,7 +76,7 @@
   "discover": "Keşfet",
   "cacheSongs": "Şarkıları önbelleğe al",
   "songAlreadyExists": "Bu şarkı zaten var!",
-  "username": "Kullanıcı Adı",
+  "username": "Kullanıcı adı",
   "light": "Aydınlık",
   "resetblacklistedplaylist": "Çalma listeleri için kara listeyi sıfırla",
   "dynamic": "Albüm kapağına göre",
@@ -171,7 +171,7 @@
   "export": "Dışarı aktar",
   "scanning": "Taranıyor...",
   "downFilesFound": "indirilen dosyalar bulundu",
-  "close": "Kapat",
+  "close": "Kapalı",
   "exportMsg": "Dosyalar başarıyla dışa aktarıldı",
   "clearImgCacheAlert": "Resim önbelleği başarıyla temizlendi",
   "exportDowloadedFiles": "İndirilen dosyaları dışa aktar",
@@ -276,5 +276,155 @@
   "exportPlaylistCsvSubtitle": "Buraya aktarılamaz",
   "exportToYouTubeMusicSubtitle": "Çalma listenizdeki 50 şarkıdan kısa olanları mevcut kuyruğa ekleyecek, YtMusic'te açtıktan sonra çalma listesine eklemeyi/kaydetmeyi unutmayın",
   "keepScreenOnWhilePlaying": "Müzik çalarken ekranı açık tut",
-  "keepScreenOnWhilePlayingDes": "Etkinleştirildiğinde, müzik çalarken cihazın ekranı açık kalır"
+  "keepScreenOnWhilePlayingDes": "Etkinleştirildiğinde, müzik çalarken cihazın ekranı açık kalır",
+  "auth_login_success": "Başarıyla giriş yapıldı",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Bulut yedekleme",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Joss Music Kotlin'den geçiş",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Yedekleme yapmak istiyor musunuz?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Hangi verilerin yedekleneceğini seçin",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Son aramalar",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Geri dönmek",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Şifremi unuttum",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Giriş yapmak",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Kayıt olmak",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-posta",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Şifre",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Şifreyi Onayla",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Estrella Music'e hoş geldiniz",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Estrella Music'e hoş geldiniz",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "İlk adı",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Soy isim",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Yanlış verileri kabul ediyoruz...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Genel",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Oturumu kapat",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Yükleyin, geri yükleyin ve yönetin...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Çalma listelerini, şarkıları içe aktarın...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Uygulamayı yeniden başlat",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Yedeği şimdi yükle",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Henüz yedek yok...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Aktif bir oturuma ihtiyacınız var...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Yedekleme doğru şekilde yüklendi.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Yedekleme geri yüklendi. Uygulamayı yeniden başlatın.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Yedekleme silindi.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Pop",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Kaynak",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hip hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Elektronik",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Caz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "Latince",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Dosyayı seçin ve içe aktarın",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

@@ -34,6 +34,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "albums": MessageLookupByLibrary.simpleMessage("آلبوم ها"),
     "appInfo": MessageLookupByLibrary.simpleMessage("داده های برنامه"),
     "artists": MessageLookupByLibrary.simpleMessage("خواننده ها"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Acepto usar mis datos...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("وارد شوید"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("ثبت نام کنید"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "رمز عبور را تایید کنید",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("نام کوچک"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "رمز عبورم را فراموش کردم",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("نام خانوادگی"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "با موفقیت وارد سیستم شد",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "به Estrella Music خوش آمدید",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "به Estrella Music خوش آمدید",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "دانلود خودکار موسیقی های مورد علاقه",
     ),
@@ -46,11 +68,39 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "فعال/غیرفعال کردن باز شدن خودکار به صورت تمام صفحه با انتخاب آهنگ برای پخش",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("بازگشت"),
     "backgroundPlay": MessageLookupByLibrary.simpleMessage(
       "موزیک پخش شده در پس زمینه",
     ),
     "backgroundPlayDes": MessageLookupByLibrary.simpleMessage(
       "فعال/غیرفعال کردن پخش موسیقی در پس‌زمینه (هنگامی که برنامه در پس‌زمینه اجرا می‌شود، می‌توان به برنامه از طریق سینی سیستم دسترسی داشت)",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "شما نیاز به یک جلسه فعال دارید...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "برنامه را مجددا راه اندازی کنید",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "اکنون نسخه پشتیبان را آپلود کنید",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "آیا می خواهید یک نسخه پشتیبان تهیه کنید؟",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "بکاپ حذف شد",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "هنوز هیچ نسخه پشتیبان وجود ندارد ...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "نسخه پشتیبان بازیابی شد. برنامه را مجددا راه اندازی کنید.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "انتخاب کنید از کدام داده ها نسخه پشتیبان تهیه شود",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "بک آپ به درستی آپلود شد.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage("بر اساس آخرین تعامل"),
     "cacheHomeScreenData": MessageLookupByLibrary.simpleMessage(
@@ -68,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "cancel": MessageLookupByLibrary.simpleMessage("لغو"),
     "cancelTimer": MessageLookupByLibrary.simpleMessage("لغو زمان‌سنج"),
+    "close": MessageLookupByLibrary.simpleMessage("بستن"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "لیست پخش های عمومی",
     ),
@@ -95,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloadLocation": MessageLookupByLibrary.simpleMessage("دانلود محل فایل"),
     "downloads": MessageLookupByLibrary.simpleMessage("دانلود ها"),
     "dynamic": MessageLookupByLibrary.simpleMessage("پویا"),
+    "email": MessageLookupByLibrary.simpleMessage("ایمیل"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("لیست پخش خالی !"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "نوار ناوبری پایین",
@@ -117,6 +169,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "لیست پخش های برگزیده",
     ),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("الکترونیک"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("هیپ هاپ"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("جاز"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("لاتین"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("پاپ"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("سنگ"),
     "gesture": MessageLookupByLibrary.simpleMessage("علامت"),
     "goToAlbum": MessageLookupByLibrary.simpleMessage("رفتن به آلبوم"),
     "high": MessageLookupByLibrary.simpleMessage("بالا"),
@@ -151,6 +209,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "سطح صدای یکسانی را برای همه آهنگ ها تنظیم می کند (تجربی) (روی آهنگ های دانلود شده در نسخه های قبلی کار نمی کند (قبل از v1.10.0))",
     ),
     "low": MessageLookupByLibrary.simpleMessage("کم"),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "فایل را انتخاب کرده و وارد کنید",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("دقیقه"),
     "misc": MessageLookupByLibrary.simpleMessage("قیره"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage("موسیقی و پخش"),
@@ -166,6 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "آهنگ آفلاینی وجود ندارد!",
     ),
     "openIn": MessageLookupByLibrary.simpleMessage("باز کردن در"),
+    "password_text": MessageLookupByLibrary.simpleMessage("رمز عبور"),
     "personalisation": MessageLookupByLibrary.simpleMessage("شخصی سازی"),
     "playNext": MessageLookupByLibrary.simpleMessage("پخش بعدی"),
     "playerUi": MessageLookupByLibrary.simpleMessage("رابط کاربری پخش کننده"),
@@ -225,12 +287,31 @@ class MessageLookup extends MessageLookupByLibrary {
       "به طور خودکار آخرین نشست پخش در آغاز برنامه بازیابی شود",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("دوباره امتحان کنید!"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "جستجوهای اخیر",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("انتخاب همه"),
     "selectSongs": MessageLookupByLibrary.simpleMessage("انتخاب اهنگ ها"),
     "setDiscoverContent": MessageLookupByLibrary.simpleMessage(
       "تنظیم محتوای کشف",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("تنظیمات"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "پشتیبان گیری ابری",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "آپلود، بازیابی و مدیریت...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("ژنرال"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage(
+      "از سیستم خارج شوید",
+    ),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "وارد کردن لیست های پخش، آهنگ ها...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "مهاجرت از Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage(
       "به اشتراک گذاری این موسیقی",
     ),
@@ -256,6 +337,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "topmusicvideos": MessageLookupByLibrary.simpleMessage("نماهنگ های برتر"),
     "trending": MessageLookupByLibrary.simpleMessage("ترند"),
     "upNext": MessageLookupByLibrary.simpleMessage("بعد از این"),
+    "username": MessageLookupByLibrary.simpleMessage("نام کاربری"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("دیدن هنرمند"),
   };
 }

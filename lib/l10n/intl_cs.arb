@@ -164,7 +164,7 @@
   "restoreLastPlaybackSessionDes": "Automaticky obnoví poslední relaci přehrávání při spuštění aplikace",
   "cacheHomeScreenData": "Data obsahu domovské obrazovky v mezipaměti",
   "downFilesFound": "stažené soubory nalezeny",
-  "close": "Zavřít",
+  "close": "Blízko",
   "exportMsg": "Soubory byly úspěšně exportovány",
   "clearImgCacheAlert": "Vymazání mezipaměti obrázků proběhlo úspěšně",
   "removeMultiple": "Odstranit více skladeb",
@@ -276,5 +276,155 @@
   "exportToYouTubeMusicSubtitle": "Vaše playlisty (s méně než 50 skladbami) se přesunou do aktuální fronty. Nezapomeňte je po otevření v YtMusic přidat do playlistu/uložit",
   "linkCopied": "Odkaz zkopírován do schránky",
   "keepScreenOnWhilePlaying": "Nechat obrazovku zapnutou během přehrávání",
-  "keepScreenOnWhilePlayingDes": "Pokud je povoleno, obrazovka zařízení zůstane během přehrávání hudby zapnutá"
+  "keepScreenOnWhilePlayingDes": "Pokud je povoleno, obrazovka zařízení zůstane během přehrávání hudby zapnutá",
+  "auth_login_success": "Úspěšně přihlášeni",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Cloudové zálohování",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Migrujte z Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Chcete provést zálohu?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Vyberte, která data chcete zálohovat",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Nedávná vyhledávání",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Návrat",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Zapomněl jsem heslo",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Přihlášení",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Rejstřík",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Heslo",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Potvrďte heslo",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Vítejte v Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Vítejte v Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Křestní jméno",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Příjmení",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Přijímáme nesprávné údaje...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Generál",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Odhlaste se",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Nahrát, obnovit a spravovat...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Importujte seznamy skladeb, skladby...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Restartujte aplikaci",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Nahrajte zálohu nyní",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Zatím nejsou žádné zálohy...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Potřebujete aktivní relaci...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Záloha byla nahrána správně.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Záloha obnovena. Restartujte aplikaci.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Záloha byla smazána.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Pop",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Rock",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hip hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Elektronika",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "latinský",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Vyberte soubor a importujte",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

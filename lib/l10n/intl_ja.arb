@@ -171,7 +171,7 @@
   "cacheHomeScreenData": "ホームのコンテンツデータをキャッシュ",
   "exportDowloadedFiles": "ダウンロード済みファイルをエクスポート",
   "exportedFileLocation": "ダウンロード済みファイルのエクスポート先",
-  "close": "閉じる",
+  "close": "近い",
   "scanning": "スキャン中...",
   "downFilesFound": "ダウンロード済みファイルが存在します",
   "exportMsg": "ファイルのエクスポートに成功しました",
@@ -275,5 +275,155 @@
   "exportToYouTubeMusicSubtitle": "再生リスト (曲数50未満) を現在のキューに追加する。YtMusicで開いたら、再生リストへの追加/保存を忘れないよう",
   "linkCopied": "リンクをクリップボードにコピー",
   "keepScreenOnWhilePlaying": "再生中は画面を点灯したままにする",
-  "keepScreenOnWhilePlayingDes": "有効にすると、音楽再生中はデバイスの画面が点灯したままになります"
+  "keepScreenOnWhilePlayingDes": "有効にすると、音楽再生中はデバイスの画面が点灯したままになります",
+  "auth_login_success": "正常にログインしました",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "クラウドバックアップ",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Joss Music Kotlin からの移行",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "バックアップを実行しますか?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "バックアップするデータを選択する",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "最近の検索",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "戻る",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "パスワードを忘れてしまいました",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "ログイン",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "登録する",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "電子メール",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "パスワード",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "パスワードを認証する",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "エストレージャミュージックへようこそ",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "エストレージャミュージックへようこそ",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "ファーストネーム",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "苗字",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "アセプトのユーザーミスダトス...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "一般的な",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "ログアウト",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "アップロード、復元、管理...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Importa playlists, canciones...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "アプリを再起動する",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "今すぐバックアップをアップロード",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "まだバックアップがありません...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "アクティブなセッションが必要です...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "バックアップが正しくアップロードされました。",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "バックアップが復元されました。アプリを再起動します。",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "バックアップが削除されました。",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "ポップ",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "ロック",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "ヒップホップ",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "エレクトロニクス",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "ジャズ",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "ラテン",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "ファイルを選択してインポートする",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

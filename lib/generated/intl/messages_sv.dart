@@ -52,11 +52,61 @@ class MessageLookup extends MessageLookupByLibrary {
       "Beskrivning ej tillgänglig!",
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Artister"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Acceptera att använda miss data...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Inloggning"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("Register"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Bekräfta lösenord",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("Förnamn"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Jag har glömt mitt lösenord",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Efternamn"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Inloggad framgångsrikt",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Välkommen till Estrella Music",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Välkommen till Estrella Music",
+    ),
+    "back": MessageLookupByLibrary.simpleMessage("Återvända"),
     "backgroundPlay": MessageLookupByLibrary.simpleMessage(
       "Uppspelning i bakgrunden",
     ),
     "backgroundPlayDes": MessageLookupByLibrary.simpleMessage(
       "Aktivera/inaktivera bakgrundsuppspelning (Appen kan nås från statusfältet när appen körs i bakgrunden)",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "Du behöver en aktiv session...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "Starta om appen",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Ladda upp säkerhetskopia nu",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Vill du göra en säkerhetskopiering?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Säkerhetskopiering raderad.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "Det finns inga säkerhetskopior ännu...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Säkerhetskopieringen återställd. Starta om appen.",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Välj vilken data som ska säkerhetskopieras",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Säkerhetskopieringen har laddats upp korrekt.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "Baserat på senaste sessionen",
@@ -78,7 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearImgCacheDes": MessageLookupByLibrary.simpleMessage(
       "Klicka här för att rensa cachade miniatyrer/bilder. (Rekommenderas inte om du inte vill uppdatera cachad bilddata)",
     ),
-    "close": MessageLookupByLibrary.simpleMessage("Stäng"),
+    "close": MessageLookupByLibrary.simpleMessage("Nära"),
     "communityplaylists": MessageLookupByLibrary.simpleMessage(
       "Communityspellistor",
     ),
@@ -118,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "downloads": MessageLookupByLibrary.simpleMessage("Nedladdat"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Dynamiskt"),
+    "email": MessageLookupByLibrary.simpleMessage("E-post"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("Tom Spellista!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "Flytta navigeringsfältet till botten",
@@ -152,6 +203,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Utvalda Spellistor",
     ),
     "for1": MessageLookupByLibrary.simpleMessage("för"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronik"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("latin"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Pop"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Sten"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
       "Visa GitHub källkod\nom du gillar det här projektet, glöm inte att ge en ⭐",
@@ -205,6 +262,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Låttexten är inte tillgänglig!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Välj fil och importera",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("minuter"),
     "networkError1": MessageLookupByLibrary.simpleMessage("Nätverksfel!"),
     "newVersionAvailable": MessageLookupByLibrary.simpleMessage(
@@ -226,6 +286,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Operationen misslyckades",
     ),
     "password": MessageLookupByLibrary.simpleMessage("Lösenord"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Lösenord"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "Piped spellista synkroniserad!",
     ),
@@ -296,6 +357,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Låtar, Spellista, Album eller Artist",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Sökresultat"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Senaste sökningar",
+    ),
     "selectAuthInsMsg": MessageLookupByLibrary.simpleMessage(
       "Vänligen välj autentiseringsinstans!",
     ),
@@ -303,6 +367,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "Innehåll som ska visas på Hem",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Inställningar"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Cloud backup",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Ladda upp, återställ och hantera...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("Allmän"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Logga ut"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Importera spellistor, låtar...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Migrera från Joss Music Kotlin",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Dela låt"),
     "singles": MessageLookupByLibrary.simpleMessage("Singlar"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Hoppa över tystnad"),

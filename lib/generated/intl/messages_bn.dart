@@ -60,6 +60,26 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("শিল্পী"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("অডিও কোডেক"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "আমাদের ভুল তথ্য গ্রহণ করুন...",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("লগইন করুন"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("নিবন্ধন করুন"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "পাসওয়ার্ড নিশ্চিত করুন",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("প্রথম নাম"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "আমি আমার পাসওয়ার্ড ভুলে গেছি",
+    ),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("পদবি"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage("সফলভাবে লগ ইন"),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "এস্ট্রেলা সঙ্গীতে স্বাগতম",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "এস্ট্রেলা সঙ্গীতে স্বাগতম",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "পছন্দের গান অটো ডাউনলোড করুন",
     ),
@@ -72,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "বাজানোর জন্য গান নির্বাচনের সময় প্লেয়ারের পূর্ণ স্ক্রিন স্বয়ংক্রিয়ভাবে খোলা সক্ষম/অক্ষম করুন",
     ),
+    "back": MessageLookupByLibrary.simpleMessage("প্রত্যাবর্তন"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage(
       "ডাটাবেস পাওয়া গেছে",
     ),
@@ -93,6 +114,33 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "একটি ব্যাকআপ ফাইলে সমস্ত সেটিংস, প্লেলিস্ট এবং লগইন ডেটা সংরক্ষণ করে",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "আপনার একটি সক্রিয় অধিবেশন প্রয়োজন...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage(
+      "অ্যাপ রিস্টার্ট করুন",
+    ),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "এখন ব্যাকআপ আপলোড করুন",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "আপনি একটি ব্যাকআপ সঞ্চালন করতে চান?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "ব্যাকআপ মুছে ফেলা হয়েছে।",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "এখনও কোন ব্যাকআপ নেই...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "ব্যাকআপ পুনরুদ্ধার করা হয়েছে। অ্যাপটি রিস্টার্ট করুন।",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "ব্যাকআপ কোন ডেটা চয়ন করুন",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "সঠিকভাবে ব্যাকআপ আপলোড করা হয়েছে।",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "শেষ ইন্টারঅ্যাকশনের উপর",
@@ -180,6 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("ডাউনলোড সমূহ"),
     "duration": MessageLookupByLibrary.simpleMessage("সময়কাল"),
     "dynamic": MessageLookupByLibrary.simpleMessage("পরিবর্তনশীল"),
+    "email": MessageLookupByLibrary.simpleMessage("ই-মেইল"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("খালি প্লেলিস্ট!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "নিচের নেভিগেশন বার",
@@ -246,6 +295,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "ফাইলটি পাওয়া যায়নি",
     ),
     "for1": MessageLookupByLibrary.simpleMessage("জন্য"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("ইলেকট্রনিক্স"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("হিপ হপ"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("জ্যাজ"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("ল্যাটিন"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("পপ"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("শিলা"),
     "gesture": MessageLookupByLibrary.simpleMessage("জেসচার"),
     "github": MessageLookupByLibrary.simpleMessage("গিটহাব"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -340,6 +395,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "লিরিক্স পাওয়া যাচ্ছে না!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "ফাইল নির্বাচন করুন এবং আমদানি করুন",
+    ),
     "minutes": MessageLookupByLibrary.simpleMessage("মিনিট"),
     "misc": MessageLookupByLibrary.simpleMessage("বিবিধ"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -371,6 +429,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "অপারেশন ব্যর্থ হয়েছে",
     ),
     "password": MessageLookupByLibrary.simpleMessage("পাসওয়ার্ড"),
+    "password_text": MessageLookupByLibrary.simpleMessage("পাসওয়ার্ড"),
     "personalisation": MessageLookupByLibrary.simpleMessage("ব্যক্তিগতকরণ"),
     "pipedplstSyncAlert": MessageLookupByLibrary.simpleMessage(
       "পাইপড প্লেলিস্ট সিঙ্ক হয়েছে!",
@@ -506,6 +565,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "গান, প্লেলিস্ট, অ্যালবাম অথবা শিল্পী",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("অনুসন্ধানের ফলাফল"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "সাম্প্রতিক অনুসন্ধান",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("সব নির্বাচন করুন"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "প্রমাণীকরণের দৃষ্টান্ত নির্বাচন করুন",
@@ -519,6 +581,20 @@ class MessageLookup extends MessageLookupByLibrary {
       "আবিষ্কারের বিষয়বস্তু নির্ধারণ করুন",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("সেটিংস"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "ক্লাউড ব্যাকআপ",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "আপলোড, পুনরুদ্ধার এবং পরিচালনা...",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("সাধারণ"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("লগ আউট করুন"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "প্লেলিস্ট, গান আমদানি করুন...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "জস মিউজিক কোটলিন থেকে মাইগ্রেট করুন",
+    ),
     "shareSong": MessageLookupByLibrary.simpleMessage("এই গানটি শেয়ার করুন"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("সারি মেশান"),
     "singles": MessageLookupByLibrary.simpleMessage("সিঙ্গেল সমূহ"),
@@ -585,7 +661,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "urlSearchDes": MessageLookupByLibrary.simpleMessage(
       "ইউআরএল সনাক্ত করেছে যে সংশ্লিষ্ট কন্টেন্ট খুলতে/চালাতে এটিতে ক্লিক করুন",
     ),
-    "username": MessageLookupByLibrary.simpleMessage("আপনার নাম"),
+    "username": MessageLookupByLibrary.simpleMessage("ব্যবহারকারীর নাম"),
     "videos": MessageLookupByLibrary.simpleMessage("ভিডিও"),
     "viewAll": MessageLookupByLibrary.simpleMessage("সবগুলো দেখুন"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("শিল্পী দেখুন"),

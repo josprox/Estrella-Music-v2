@@ -128,5 +128,157 @@
   "cacheHomeScreenData": "داده‌های محتوای صفحه اصلی را ذخیره کنید",
   "cacheHomeScreenDataDes": "ذخیره سازی داده‌های محتوای صفحه اصلی را فعال کنید، اگر این گزینه فعال باشد، صفحه اصلی فوراً بارگیری می‌شود",
   "keepScreenOnWhilePlaying": "روشن نگه داشتن صفحه هنگام پخش",
-  "keepScreenOnWhilePlayingDes": "در صورت فعال بودن، صفحه دستگاه هنگام پخش موسیقی روشن خواهد ماند"
+  "keepScreenOnWhilePlayingDes": "در صورت فعال بودن، صفحه دستگاه هنگام پخش موسیقی روشن خواهد ماند",
+  "auth_login_success": "با موفقیت وارد سیستم شد",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "پشتیبان گیری ابری",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "مهاجرت از Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "آیا می خواهید یک نسخه پشتیبان تهیه کنید؟",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "انتخاب کنید از کدام داده ها نسخه پشتیبان تهیه شود",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "جستجوهای اخیر",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "بازگشت",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "رمز عبورم را فراموش کردم",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "وارد شوید",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "ثبت نام کنید",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "ایمیل",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "رمز عبور",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "رمز عبور را تایید کنید",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "به Estrella Music خوش آمدید",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "به Estrella Music خوش آمدید",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "username": "نام کاربری",
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "نام کوچک",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "نام خانوادگی",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Acepto usar mis datos...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "ژنرال",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "از سیستم خارج شوید",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "آپلود، بازیابی و مدیریت...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "وارد کردن لیست های پخش، آهنگ ها...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "برنامه را مجددا راه اندازی کنید",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "اکنون نسخه پشتیبان را آپلود کنید",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "هنوز هیچ نسخه پشتیبان وجود ندارد ...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "شما نیاز به یک جلسه فعال دارید...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "بک آپ به درستی آپلود شد.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "نسخه پشتیبان بازیابی شد. برنامه را مجددا راه اندازی کنید.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "بکاپ حذف شد",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "پاپ",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "سنگ",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "هیپ هاپ",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "الکترونیک",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "جاز",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "لاتین",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "فایل را انتخاب کرده و وارد کنید",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "close": "بستن",
+  "@close": {
+    "description": ""
+  }
 }

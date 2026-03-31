@@ -173,7 +173,7 @@
   "exportDowloadedFilesDes": "Kliknij tutaj, aby wyeksportować pobrany plik z katalogu inApp do zewnętrznego katalogu",
   "exportedFileLocation": "Lokalizacja eksportu pobranego pliku",
   "export": "Eksportuj",
-  "close": "Zamknij",
+  "close": "Zamknąć",
   "exportMsg": "Pliki zostały pomyślnie wyeksportowane",
   "clearImgCacheAlert": "Pomyślnie wyczyszczono pamięć podręczną obrazów",
   "disableTransitionAnimation": "Wyłącz animację przejścia",
@@ -271,5 +271,155 @@
   "playlistExportedMsg": "Lista odtwarzania została pomyślnie wyeksportowana do",
   "importError": "Błąd podczas importowania listy odtwarzania",
   "keepScreenOnWhilePlaying": "Utrzymuj ekran włączony podczas odtwarzania",
-  "keepScreenOnWhilePlayingDes": "Jeśli włączone, ekran urządzenia pozostanie włączony podczas odtwarzania muzyki"
+  "keepScreenOnWhilePlayingDes": "Jeśli włączone, ekran urządzenia pozostanie włączony podczas odtwarzania muzyki",
+  "auth_login_success": "Zalogowano się pomyślnie",
+  "@auth_login_success": {
+    "description": ""
+  },
+  "settings_cloud_backup": "Kopia zapasowa w chmurze",
+  "@settings_cloud_backup": {
+    "description": ""
+  },
+  "settings_migration_title": "Przeprowadź migrację z Joss Music Kotlin",
+  "@settings_migration_title": {
+    "description": ""
+  },
+  "backup_confirm_question": "Czy chcesz wykonać kopię zapasową?",
+  "@backup_confirm_question": {
+    "description": ""
+  },
+  "backup_selection_prompt": "Wybierz, które dane chcesz wykonać w kopii zapasowej",
+  "@backup_selection_prompt": {
+    "description": ""
+  },
+  "search_recent_title": "Ostatnie wyszukiwania",
+  "@search_recent_title": {
+    "description": ""
+  },
+  "back": "Powrót",
+  "@back": {
+    "description": ""
+  },
+  "auth_forgot_password": "Zapomniałem hasła",
+  "@auth_forgot_password": {
+    "description": ""
+  },
+  "auth_btn_login": "Login",
+  "@auth_btn_login": {
+    "description": ""
+  },
+  "auth_btn_register": "Rejestr",
+  "@auth_btn_register": {
+    "description": ""
+  },
+  "email": "E-mail",
+  "@email": {
+    "description": ""
+  },
+  "password_text": "Hasło",
+  "@password_text": {
+    "description": "Contraseña texto traducido"
+  },
+  "auth_confirm_password": "Potwierdź hasło",
+  "@auth_confirm_password": {
+    "description": ""
+  },
+  "auth_welcome_title": "Witamy w Estrella Music",
+  "@auth_welcome_title": {
+    "description": ""
+  },
+  "auth_welcome_subtitle": "Witamy w Estrella Music",
+  "@auth_welcome_subtitle": {
+    "description": ""
+  },
+  "@username": {
+    "description": ""
+  },
+  "auth_first_name": "Imię",
+  "@auth_first_name": {
+    "description": ""
+  },
+  "auth_last_name": "Nazwisko",
+  "@auth_last_name": {
+    "description": ""
+  },
+  "auth_agree_personal_data": "Akceptuj moje dane...",
+  "@auth_agree_personal_data": {
+    "description": ""
+  },
+  "settings_general_section": "Ogólny",
+  "@settings_general_section": {
+    "description": ""
+  },
+  "settings_logout": "Wyloguj się",
+  "@settings_logout": {
+    "description": ""
+  },
+  "settings_cloud_backup_desc": "Przesyłaj, przywracaj i zarządzaj...",
+  "@settings_cloud_backup_desc": {
+    "description": ""
+  },
+  "settings_migration_desc": "Importuj playlisty, utwory...",
+  "@settings_migration_desc": {
+    "description": ""
+  },
+  "backup_btn_restart": "Uruchom ponownie aplikację",
+  "@backup_btn_restart": {
+    "description": ""
+  },
+  "backup_btn_upload": "Prześlij teraz kopię zapasową",
+  "@backup_btn_upload": {
+    "description": ""
+  },
+  "backup_no_backups": "Nie ma jeszcze żadnych kopii zapasowych...",
+  "@backup_no_backups": {
+    "description": ""
+  },
+  "backup_auth_required": "Potrzebujesz aktywnej sesji...",
+  "@backup_auth_required": {
+    "description": ""
+  },
+  "backup_upload_success": "Kopia zapasowa przesłana poprawnie.",
+  "@backup_upload_success": {
+    "description": ""
+  },
+  "backup_restore_success": "Kopia zapasowa przywrócona. Uruchom ponownie aplikację.",
+  "@backup_restore_success": {
+    "description": ""
+  },
+  "backup_delete_success": "Kopia zapasowa została usunięta.",
+  "@backup_delete_success": {
+    "description": ""
+  },
+  "genre_pop": "Muzyka pop",
+  "@genre_pop": {
+    "description": ""
+  },
+  "genre_rock": "Głaz",
+  "@genre_rock": {
+    "description": ""
+  },
+  "genre_hiphop": "hip-hop",
+  "@genre_hiphop": {
+    "description": ""
+  },
+  "genre_electronic": "Elektronika",
+  "@genre_electronic": {
+    "description": ""
+  },
+  "genre_jazz": "Jazz",
+  "@genre_jazz": {
+    "description": ""
+  },
+  "genre_latin": "łacina",
+  "@genre_latin": {
+    "description": ""
+  },
+  "migration_btn_select": "Wybierz plik i zaimportuj",
+  "@migration_btn_select": {
+    "description": ""
+  },
+  "@close": {
+    "description": ""
+  }
 }

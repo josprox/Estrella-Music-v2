@@ -20,6 +20,18 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(count) => "Albums: ${count}";
+
+  static String m1(count) => "Artists: ${count}";
+
+  static String m2(count) => "Favorites: ${count}";
+
+  static String m3(count) => "Playlists: ${count}";
+
+  static String m4(count) => "Songs: ${count}";
+
+  static String m5(source) => "Migration completed from ${source}.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
@@ -59,6 +71,69 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "artists": MessageLookupByLibrary.simpleMessage("Artists"),
     "audioCodec": MessageLookupByLibrary.simpleMessage("Audio Codec"),
+    "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
+      "Acepto usar mis datos...",
+    ),
+    "auth_brand_description_1": MessageLookupByLibrary.simpleMessage(
+      "We brought the login, registration, and password recovery from the previous project, adapted for this music app.",
+    ),
+    "auth_brand_description_2": MessageLookupByLibrary.simpleMessage(
+      "Your session lives in secure storage and is validated with the same backend you already used.",
+    ),
+    "auth_brand_not_configured": MessageLookupByLibrary.simpleMessage(
+      "The .env file needs to be configured to connect the authentication backend.",
+    ),
+    "auth_btn_login": MessageLookupByLibrary.simpleMessage("Login"),
+    "auth_btn_register": MessageLookupByLibrary.simpleMessage("Register"),
+    "auth_btn_send_email": MessageLookupByLibrary.simpleMessage("Send email"),
+    "auth_confirm_password": MessageLookupByLibrary.simpleMessage(
+      "Confirm Password",
+    ),
+    "auth_error_invalid_credentials": MessageLookupByLibrary.simpleMessage(
+      "Incorrect email or password.",
+    ),
+    "auth_error_invalid_email": MessageLookupByLibrary.simpleMessage(
+      "Enter a valid email.",
+    ),
+    "auth_error_not_configured": MessageLookupByLibrary.simpleMessage(
+      "Backend authentication is not configured in the .env file.",
+    ),
+    "auth_error_not_verified": MessageLookupByLibrary.simpleMessage(
+      "Your account is not yet verified.",
+    ),
+    "auth_error_unknown": MessageLookupByLibrary.simpleMessage(
+      "Could not complete the operation.",
+    ),
+    "auth_first_name": MessageLookupByLibrary.simpleMessage("First name"),
+    "auth_forgot_password": MessageLookupByLibrary.simpleMessage(
+      "I forgot my password",
+    ),
+    "auth_forgot_password_subtitle": MessageLookupByLibrary.simpleMessage(
+      "We will send instructions to your account email.",
+    ),
+    "auth_hint_email": MessageLookupByLibrary.simpleMessage("name@email.com"),
+    "auth_last_name": MessageLookupByLibrary.simpleMessage("Last name"),
+    "auth_login_success": MessageLookupByLibrary.simpleMessage(
+      "Successfully logged in",
+    ),
+    "auth_recovery_email_error": MessageLookupByLibrary.simpleMessage(
+      "Could not send email.",
+    ),
+    "auth_recovery_email_sent": MessageLookupByLibrary.simpleMessage(
+      "Email sent.",
+    ),
+    "auth_register_error": MessageLookupByLibrary.simpleMessage(
+      "Could not create account.",
+    ),
+    "auth_register_success": MessageLookupByLibrary.simpleMessage(
+      "Account created successfully.",
+    ),
+    "auth_welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Welcome to Estrella Music",
+    ),
+    "auth_welcome_title": MessageLookupByLibrary.simpleMessage(
+      "Welcome to Estrella Music",
+    ),
     "autoDownFavSong": MessageLookupByLibrary.simpleMessage(
       "Auto download favorite songs",
     ),
@@ -71,7 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoOpenPlayerDes": MessageLookupByLibrary.simpleMessage(
       "Enable/disable auto opening of player full screen on selection of song for play",
     ),
-    "back": MessageLookupByLibrary.simpleMessage("Back"),
+    "back": MessageLookupByLibrary.simpleMessage("Return"),
     "backFilesFound": MessageLookupByLibrary.simpleMessage("databases found"),
     "backgroundPlay": MessageLookupByLibrary.simpleMessage(
       "Background music play",
@@ -89,6 +164,34 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "backupSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Saves all settings, playlists and login data in a backup file",
+    ),
+    "backup_auth_required": MessageLookupByLibrary.simpleMessage(
+      "You need an active session...",
+    ),
+    "backup_btn_restart": MessageLookupByLibrary.simpleMessage("Restart app"),
+    "backup_btn_upload": MessageLookupByLibrary.simpleMessage(
+      "Upload backup now",
+    ),
+    "backup_confirm_question": MessageLookupByLibrary.simpleMessage(
+      "Do you want to perform a backup?",
+    ),
+    "backup_delete_success": MessageLookupByLibrary.simpleMessage(
+      "Backup deleted.",
+    ),
+    "backup_no_backups": MessageLookupByLibrary.simpleMessage(
+      "There are no backups yet...",
+    ),
+    "backup_restore_success": MessageLookupByLibrary.simpleMessage(
+      "Backup restored. ",
+    ),
+    "backup_select_folder_dialog": MessageLookupByLibrary.simpleMessage(
+      "Select backup file folder",
+    ),
+    "backup_selection_prompt": MessageLookupByLibrary.simpleMessage(
+      "Choose which data to backup",
+    ),
+    "backup_upload_success": MessageLookupByLibrary.simpleMessage(
+      "Backup uploaded correctly.",
     ),
     "basedOnLast": MessageLookupByLibrary.simpleMessage(
       "Based on last interaction",
@@ -137,6 +240,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please select Custom Instance",
     ),
     "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteDownloadData": MessageLookupByLibrary.simpleMessage(
       "Remove from downloads",
     ),
@@ -183,6 +287,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "downloads": MessageLookupByLibrary.simpleMessage("Downloads"),
     "duration": MessageLookupByLibrary.simpleMessage("Duration"),
     "dynamic": MessageLookupByLibrary.simpleMessage("Dynamic"),
+    "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "emptyPlaylist": MessageLookupByLibrary.simpleMessage("Empty playlist!"),
     "enableBottomNav": MessageLookupByLibrary.simpleMessage(
       "Bottom navigation bar",
@@ -266,6 +371,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("File not found"),
     "for1": MessageLookupByLibrary.simpleMessage("for"),
+    "genre_electronic": MessageLookupByLibrary.simpleMessage("Electronics"),
+    "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
+    "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
+    "genre_latin": MessageLookupByLibrary.simpleMessage("Latin"),
+    "genre_pop": MessageLookupByLibrary.simpleMessage("Pop"),
+    "genre_rock": MessageLookupByLibrary.simpleMessage("Rock"),
     "gesture": MessageLookupByLibrary.simpleMessage("Gesture"),
     "github": MessageLookupByLibrary.simpleMessage("GitHub"),
     "githubDes": MessageLookupByLibrary.simpleMessage(
@@ -319,6 +430,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "importingPlaylist": MessageLookupByLibrary.simpleMessage(
       "Importing playlist...",
     ),
+    "in_app_storage": MessageLookupByLibrary.simpleMessage(
+      "In App storage directory",
+    ),
     "includeDownloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Include downloded songs files",
     ),
@@ -362,6 +476,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Lyrics not available!",
     ),
+    "migration_btn_select": MessageLookupByLibrary.simpleMessage(
+      "Select file and import",
+    ),
+    "migration_select_file_dialog": MessageLookupByLibrary.simpleMessage(
+      "Select song.db or a .backup file",
+    ),
+    "migration_success": MessageLookupByLibrary.simpleMessage(
+      "Migration completed successfully.",
+    ),
+    "migration_summary_albums": m0,
+    "migration_summary_artists": m1,
+    "migration_summary_favorites": m2,
+    "migration_summary_playlists": m3,
+    "migration_summary_songs": m4,
+    "migration_summary_start": m5,
     "minutes": MessageLookupByLibrary.simpleMessage("minutes"),
     "misc": MessageLookupByLibrary.simpleMessage("Misc"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
@@ -390,6 +519,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "openIn": MessageLookupByLibrary.simpleMessage("Open in"),
     "operationFailed": MessageLookupByLibrary.simpleMessage("Operation failed"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "password_text": MessageLookupByLibrary.simpleMessage("Password"),
     "permissionDenied": MessageLookupByLibrary.simpleMessage(
       "Permission denied",
     ),
@@ -522,6 +652,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "restoreSettingsAndPlaylistsDes": MessageLookupByLibrary.simpleMessage(
       "Restores all settings, login data and playlists from a backup file. Overwrites all current data",
     ),
+    "restore_select_file_dialog": MessageLookupByLibrary.simpleMessage(
+      "Select backup file",
+    ),
     "restoring": MessageLookupByLibrary.simpleMessage("Restoring..."),
     "results": MessageLookupByLibrary.simpleMessage("Results"),
     "retry": MessageLookupByLibrary.simpleMessage("Retry!"),
@@ -531,6 +664,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Songs, Playlist, Album or Artist",
     ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Search results"),
+    "search_recent_title": MessageLookupByLibrary.simpleMessage(
+      "Recent searches",
+    ),
     "selectAll": MessageLookupByLibrary.simpleMessage("Select All"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
       "Select Auth Instance",
@@ -544,6 +680,23 @@ class MessageLookup extends MessageLookupByLibrary {
       "Set discover content",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
+      "Cloud backup",
+    ),
+    "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
+      "Upload, restore and manage...",
+    ),
+    "settings_cloud_backup_dialog_desc": MessageLookupByLibrary.simpleMessage(
+      "Upload a .hmb backup to the server and restore any saved backups if needed.",
+    ),
+    "settings_general_section": MessageLookupByLibrary.simpleMessage("General"),
+    "settings_logout": MessageLookupByLibrary.simpleMessage("Log out"),
+    "settings_migration_desc": MessageLookupByLibrary.simpleMessage(
+      "Import playlists, songs...",
+    ),
+    "settings_migration_title": MessageLookupByLibrary.simpleMessage(
+      "Migrate from Joss Music Kotlin",
+    ),
     "shareAlbum": MessageLookupByLibrary.simpleMessage("Share album"),
     "sharePlaylist": MessageLookupByLibrary.simpleMessage("Share playlist"),
     "shareSong": MessageLookupByLibrary.simpleMessage("Share this song"),
