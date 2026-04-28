@@ -44,20 +44,19 @@ Future<void> main() async {
   await initHive();
   final appPrefs = await Hive.openBox('AppPrefs');
   
-  // Initialize Background Backup
-  Workmanager().initialize(
-    callbackDispatcher,
-    isInDebugMode: false,
-  );
-  
+  // Initialize Background Backup (Android/iOS only — workmanager has no desktop implementation)
   if (GetPlatform.isAndroid || GetPlatform.isIOS) {
+    Workmanager().initialize(
+      callbackDispatcher,
+      isInDebugMode: false,
+    );
     Workmanager().registerPeriodicTask(
       "periodic-backup-task",
       "backupTask",
       frequency: const Duration(hours: 12),
       existingWorkPolicy: ExistingPeriodicWorkPolicy.keep,
       constraints: Constraints(
-        networkType: NetworkType.connected, // Allows any network as requested
+        networkType: NetworkType.connected,
       ),
     );
   }

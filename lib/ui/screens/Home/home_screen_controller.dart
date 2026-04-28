@@ -160,10 +160,31 @@ class HomeScreenController extends GetxController {
           quickPicks.value = QuickPicks(List<MediaItem>.from(con["contents"]),
               title: "Quick picks");
         } else {
-          // Fallback to first content if "Quick picks" not found
-          final con = homeContentListMap.removeAt(0);
-          quickPicks.value = QuickPicks(List<MediaItem>.from(con["contents"]),
-              title: con["title"] ?? "Quick picks");
+          // Fallback: find the first content block that contains songs (MediaItem),
+          // not playlists. Some home blocks (e.g. "Moods & moments") contain
+          // Playlist objects, which would crash List<MediaItem>.from().
+          bool fallbackFound = false;
+          for (int i = 0; i < homeContentListMap.length; i++) {
+            final candidate = homeContentListMap[i];
+            final contents = candidate["contents"];
+            if (contents == null || (contents as List).isEmpty) continue;
+            // Check if the first item looks like a song (has 'videoId')
+            // rather than a playlist (has 'playlistId' / 'browseId').
+            final first = contents.first;
+            if (first is Map &&
+                (first.containsKey('videoId') || first.containsKey('id'))) {
+              final con = homeContentListMap.removeAt(i);
+              quickPicks.value = QuickPicks(
+                  List<MediaItem>.from(con["contents"]),
+                  title: con["title"] ?? "Quick picks");
+              fallbackFound = true;
+              break;
+            }
+          }
+          if (!fallbackFound) {
+            // All blocks are playlists — leave quickPicks with its default empty state
+            printERROR("No song-type content found for QuickPicks fallback.");
+          }
         }
       }
 

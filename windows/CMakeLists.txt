@@ -32,6 +32,25 @@ set(CMAKE_CXX_FLAGS_PROFILE "${CMAKE_CXX_FLAGS_RELEASE}")
 # Use Unicode for all projects.
 add_definitions(-DUNICODE -D_UNICODE)
 
+# Workaround: Dynamically find ATL headers/libs for flutter_secure_storage_windows.
+# ATL (Active Template Library) may only be present in certain MSVC toolset versions.
+# We scan all installed MSVC versions (newest first) and use the first one with ATL.
+if(MSVC)
+  set(_VS_MSVC_BASE "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC")
+  file(GLOB _MSVC_VERSIONS RELATIVE "${_VS_MSVC_BASE}" "${_VS_MSVC_BASE}/*")
+  list(SORT _MSVC_VERSIONS ORDER DESCENDING)
+  foreach(_VER ${_MSVC_VERSIONS})
+    set(_ATL_INC "${_VS_MSVC_BASE}/${_VER}/atlmfc/include")
+    set(_ATL_LIB "${_VS_MSVC_BASE}/${_VER}/atlmfc/lib/x64")
+    if(EXISTS "${_ATL_INC}/atlstr.h")
+      message(STATUS "[ATL] Found in MSVC ${_VER} — adding include/lib paths.")
+      include_directories(BEFORE "${_ATL_INC}")
+      link_directories("${_ATL_LIB}")
+      break()
+    endif()
+  endforeach()
+endif()
+
 # Compilation settings that should be applied to most targets.
 #
 # Be cautious about adding new options here, as plugins use this function by
