@@ -70,8 +70,10 @@ class AddToPlaylist extends StatelessWidget {
                         children: [
                           Radio(
                               value: "piped",
+                              // ignore: deprecated_member_use
                               groupValue:
                                   addToPlaylistController.playlistType.value,
+                              // ignore: deprecated_member_use
                               onChanged:
                                   addToPlaylistController.changePlaylistType),
                           Text(S.current.Piped),
@@ -84,8 +86,10 @@ class AddToPlaylist extends StatelessWidget {
                         children: [
                           Radio(
                               value: "local",
+                              // ignore: deprecated_member_use
                               groupValue:
                                   addToPlaylistController.playlistType.value,
+                              // ignore: deprecated_member_use
                               onChanged:
                                   addToPlaylistController.changePlaylistType),
                           Text(S.current.local),

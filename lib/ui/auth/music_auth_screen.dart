@@ -402,7 +402,7 @@ class _WelcomeCard extends StatelessWidget {
       children: [
         Text(
           S.of(context).auth_welcome_title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 34,
             fontWeight: FontWeight.w800,
             color: Colors.white,
@@ -412,7 +412,7 @@ class _WelcomeCard extends StatelessWidget {
         const SizedBox(height: 14),
         Text(
           S.of(context).auth_welcome_subtitle,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             color: Colors.white70,
             height: 1.5,
@@ -450,7 +450,7 @@ class _WelcomeCard extends StatelessWidget {
                 ),
                 child: Text(
                   S.of(context).auth_btn_login,
-                  style: TextStyle(fontWeight: FontWeight.w800),
+                  style: const TextStyle(fontWeight: FontWeight.w800),
                 ),
               ),
             ),
@@ -468,7 +468,7 @@ class _WelcomeCard extends StatelessWidget {
                 ),
                 child: Text(
                   S.of(context).auth_btn_register,
-                  style: TextStyle(fontWeight: FontWeight.w800),
+                  style: const TextStyle(fontWeight: FontWeight.w800),
                 ),
               ),
             ),
@@ -510,7 +510,7 @@ class _LoginCard extends StatelessWidget {
         children: [
           Text(
             S.of(context).auth_btn_login,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w800,
               color: Colors.white,
@@ -621,7 +621,7 @@ class _RegisterCard extends StatelessWidget {
         children: [
           Text(
             S.of(context).auth_btn_register,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w800,
               color: Colors.white,

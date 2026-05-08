@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'dart:io';
 
 void main() {
@@ -11,7 +12,7 @@ void main() {
   int modifiedCount = 0;
 
   // Simple regex with one capturing group
-  final trRegExp = RegExp(r"['""]([^'""\n\r]+)['""]\s*\.tr");
+  final trRegExp = RegExp(r"['""]([^'""\n\r]+)['""]s*.tr");
 
   for (var file in files) {
     final filePath = file.path.replaceAll('\\', '/');

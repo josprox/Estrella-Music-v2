@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
 import 'package:hive/hive.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../models/playling_from.dart';
 import '../../services/catalog_recovery_service.dart';
@@ -16,6 +18,7 @@ import '/ui/screens/Settings/settings_screen_controller.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import '../../services/windows_audio_service.dart';
 import '../../utils/helper.dart';
+import '../utils/theme_controller.dart';
 import '/models/media_Item_builder.dart';
 import '../screens/Home/home_screen_controller.dart';
 import '../widgets/sliding_up_panel.dart';
@@ -336,6 +339,14 @@ class PlayerController extends GetxController
             showLyrics();
           }
         });
+
+        // Update dynamic theme based on album art
+        if (mediaItem.artUri != null) {
+          final imageProvider = mediaItem.artUri!.isScheme('file')
+              ? FileImage(File(mediaItem.artUri!.toFilePath()))
+              : CachedNetworkImageProvider(mediaItem.artUri.toString()) as ImageProvider;
+          Get.find<ThemeController>().setTheme(imageProvider, mediaItem.id);
+        }
 
         _saveSession();
       }

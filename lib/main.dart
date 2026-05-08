@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:liquid_tabbar_minimize/liquid_tabbar_minimize.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -48,7 +49,6 @@ Future<void> main() async {
   if (GetPlatform.isAndroid || GetPlatform.isIOS) {
     Workmanager().initialize(
       callbackDispatcher,
-      isInDebugMode: false,
     );
     Workmanager().registerPeriodicTask(
       "periodic-backup-task",
@@ -97,31 +97,53 @@ class MyApp extends StatelessWidget {
             : Locale(Hive.box("AppPrefs").get('currentAppLanguageCode')),
         navigatorObservers: [LiquidRouteObserver.instance],
         builder: (context, child) {
-          final mQuery = MediaQuery.of(context);
-          final scale =
-              mQuery.textScaler.clamp(minScaleFactor: 1.0, maxScaleFactor: 1.1);
-          return Stack(
-            children: [
-              GetX<ThemeController>(
-                builder: (controller) => MediaQuery(
-                  data: mQuery.copyWith(textScaler: scale),
-                  child: AnimatedTheme(
-                      duration: const Duration(milliseconds: 700),
-                      data: controller.themedata.value!,
-                      child: child!),
-                ),
-              ),
-              GestureDetector(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    color: Colors.transparent,
-                    height: mQuery.padding.bottom,
-                    width: mQuery.size.width,
+          return DynamicColorBuilder(
+            builder: (lightDynamic, darkDynamic) {
+              final controller = Get.find<ThemeController>();
+              
+              // Determine which dynamic scheme to use
+              final dynamicScheme = (MediaQuery.of(context).platformBrightness == Brightness.dark)
+                  ? darkDynamic
+                  : lightDynamic;
+
+              // Update the controller with dynamic colors if available
+              // This ensures the initial theme is correct
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                 if (dynamicScheme != null) {
+                   controller.changeThemeModeType(
+                     Hive.box("AppPrefs").get("themeModeType"), 
+                     dynamicColors: dynamicScheme
+                   );
+                 }
+              });
+
+              final mQuery = MediaQuery.of(context);
+              final scale = mQuery.textScaler.clamp(minScaleFactor: 1.0, maxScaleFactor: 1.1);
+              
+              return Stack(
+                children: [
+                  GetX<ThemeController>(
+                    builder: (controller) => MediaQuery(
+                      data: mQuery.copyWith(textScaler: scale),
+                      child: AnimatedTheme(
+                          duration: const Duration(milliseconds: 700),
+                          data: controller.themedata.value!,
+                          child: child!),
+                    ),
                   ),
-                ),
-              )
-            ],
+                  GestureDetector(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        color: Colors.transparent,
+                        height: mQuery.padding.bottom,
+                        width: mQuery.size.width,
+                      ),
+                    ),
+                  )
+                ],
+              );
+            },
           );
         });
   }

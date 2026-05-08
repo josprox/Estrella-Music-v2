@@ -6,7 +6,6 @@ import 'package:sidebar_with_animation/animated_side_bar.dart';
 import '/ui/theme/app_colors.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 
-
 class SideNavBar extends StatelessWidget {
   const SideNavBar({super.key});
 
@@ -24,10 +23,10 @@ class SideNavBar extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: (isDark ? AppColors.darkSurface : AppColors.lightSurface)
-                .withOpacity(0.7),
+                .withValues(alpha: 0.7),
             border: Border(
               right: BorderSide(
-                color: Colors.white.withOpacity(isDark ? 0.08 : 0.25),
+                color: Colors.white.withValues(alpha: isDark ? 0.08 : 0.25),
                 width: 0.5,
               ),
             ),
@@ -43,14 +42,14 @@ class SideNavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildCompactRail(HomeScreenController ctrl, Size size,
-      ColorScheme cs, bool isDark) {
+  Widget _buildCompactRail(
+      HomeScreenController ctrl, Size size, ColorScheme cs, bool isDark) {
     return SingleChildScrollView(
       padding: const EdgeInsets.only(bottom: 80),
       child: IntrinsicHeight(
         child: Obx(
           () => NavigationRail(
-            useIndicator: false,
+            useIndicator: true,
             selectedIndex: ctrl.tabIndex.value,
             onDestinationSelected: ctrl.onSideBarTabSelected,
             backgroundColor: Colors.transparent,
@@ -58,12 +57,12 @@ class SideNavBar extends StatelessWidget {
             leading: SizedBox(height: size.height < 750 ? 24 : 48),
             labelType: NavigationRailLabelType.all,
             destinations: [
-              _compactRailDest(S.current.home, Icons.home_rounded),
-              _compactRailDest(S.current.songs, Icons.audiotrack_rounded),
-              _compactRailDest(S.current.playlists, Icons.library_music_rounded),
-              _compactRailDest(S.current.albums, Icons.album_rounded),
-              _compactRailDest(S.current.artists, Icons.people_rounded),
-              _compactRailDest(S.current.settings, Icons.settings_rounded),
+              _compactRailDest(S.current.home, Icons.home_outlined, Icons.home_rounded),
+              _compactRailDest(S.current.songs, Icons.audiotrack, Icons.audiotrack_rounded),
+              _compactRailDest(S.current.playlists, Icons.library_music_outlined, Icons.library_music_rounded),
+              _compactRailDest(S.current.albums, Icons.album_outlined, Icons.album_rounded),
+              _compactRailDest(S.current.artists, Icons.people_outline, Icons.people_rounded),
+              _compactRailDest(S.current.settings, Icons.settings_outlined, Icons.settings_rounded),
             ],
           ),
         ),
@@ -71,32 +70,34 @@ class SideNavBar extends StatelessWidget {
     );
   }
 
-  NavigationRailDestination _compactRailDest(String label, IconData icon) {
+  NavigationRailDestination _compactRailDest(
+      String label, IconData icon, IconData iconSelected) {
     return NavigationRailDestination(
-      icon: const SizedBox.shrink(),
+      icon: Icon(icon),
+      selectedIcon: Icon(iconSelected),
       label: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: RotatedBox(
           quarterTurns: -1,
           child: Text(label,
-              style: const TextStyle(
-                  fontSize: 12, fontWeight: FontWeight.w600)),
+              style:
+                  const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
         ),
       ),
     );
   }
 
-  Widget _buildAnimatedSidebar(HomeScreenController ctrl,
-      ColorScheme cs, bool isDark) {
+  Widget _buildAnimatedSidebar(
+      HomeScreenController ctrl, ColorScheme cs, bool isDark) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 100.0),
       child: SideBarAnimated(
         onTap: ctrl.onSideBarTabSelected,
         sideBarColor: Colors.transparent,
-        animatedContainerColor: cs.primary.withOpacity(0.22),
-        hoverColor: cs.primary.withOpacity(0.12),
-        splashColor: cs.primary.withOpacity(0.18),
-        highlightColor: cs.primary.withOpacity(0.12),
+        animatedContainerColor: cs.primary.withValues(alpha: 0.22),
+        hoverColor: cs.primary.withValues(alpha: 0.12),
+        splashColor: cs.primary.withValues(alpha: 0.18),
+        highlightColor: cs.primary.withValues(alpha: 0.12),
         widthSwitch: 800,
         mainLogoImage: 'assets/icons/icon.png',
         sidebarItems: [

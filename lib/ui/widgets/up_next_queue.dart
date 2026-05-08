@@ -100,8 +100,10 @@ class UpNextQueue extends StatelessWidget {
                                 if (playerController.currentSongIndex.value ==
                                     index) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                      snackbar(context,
-                                          S.current.songRemovedfromQueueCurrSong,
+                                      snackbar(
+                                          context,
+                                          S.current
+                                              .songRemovedfromQueueCurrSong,
                                           size: SanckBarSize.BIG));
                                 } else {
                                   playerController.removeFromQueue(
@@ -138,7 +140,7 @@ class UpNextQueue extends StatelessWidget {
                                       .textTheme
                                       .titleMedium!
                                       .color!
-                                      .withOpacity(0.35))
+                                      .withValues(alpha: 0.35))
                           : Theme.of(homeScaffoldContext).textTheme.titleSmall,
                     ),
                     trailing: ReorderableDragStartListener(

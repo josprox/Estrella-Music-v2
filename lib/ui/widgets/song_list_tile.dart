@@ -46,8 +46,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
       child: Slidable(
         enabled:
             Get.find<SettingsScreenController>().slidableActionEnabled.isTrue,
-        startActionPane:
-            ActionPane(motion: const DrawerMotion(), children: [
+        startActionPane: ActionPane(motion: const DrawerMotion(), children: [
           SlidableAction(
             onPressed: (_) => showDialog(
               context: context,
@@ -97,15 +96,14 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
         ]),
         child: Obx(
           () {
-            final isPlaying =
-                playerController.currentSong.value?.id == song.id;
+            final isPlaying = playerController.currentSong.value?.id == song.id;
             return AnimatedContainer(
               duration: const Duration(milliseconds: 250),
               curve: Curves.easeInOut,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
                 color: isPlaying
-                    ? cs.primary.withOpacity(0.10)
+                    ? cs.primary.withValues(alpha: 0.10)
                     : Colors.transparent,
               ),
               child: ListTile(
@@ -113,8 +111,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                 onLongPress: () =>
                     _openInfoSheet(context, playerController, playlist),
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(AppSpacing.radiusMd),
+                  borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
                 ),
                 contentPadding: const EdgeInsets.only(
                     top: 0, left: AppSpacing.md, right: AppSpacing.xl),
@@ -132,12 +129,12 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                       )
                     : Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                              AppSpacing.radiusSm),
+                          borderRadius:
+                              BorderRadius.circular(AppSpacing.radiusSm),
                           boxShadow: isPlaying
                               ? [
                                   BoxShadow(
-                                    color: cs.primary.withOpacity(0.3),
+                                    color: cs.primary.withValues(alpha: 0.3),
                                     blurRadius: 8,
                                     offset: const Offset(0, 2),
                                   )
@@ -145,8 +142,8 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                               : null,
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                              AppSpacing.radiusSm),
+                          borderRadius:
+                              BorderRadius.circular(AppSpacing.radiusSm),
                           child: ImageWidget(size: 52, song: song),
                         ),
                       ),
@@ -161,8 +158,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                     maxLines: 1,
                     style: tt.titleMedium?.copyWith(
                       color: isPlaying ? cs.primary : null,
-                      fontWeight:
-                          isPlaying ? FontWeight.w700 : FontWeight.w500,
+                      fontWeight: isPlaying ? FontWeight.w700 : FontWeight.w500,
                     ),
                   ),
                 ),
@@ -214,8 +210,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
     showModalBottomSheet(
       constraints: const BoxConstraints(maxWidth: 500),
       shape: const RoundedRectangleBorder(
-        borderRadius:
-            BorderRadius.vertical(top: Radius.circular(28)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
       isScrollControlled: true,
       context: playerController.homeScaffoldkey.currentState!.context,

@@ -51,10 +51,10 @@ class GlassMorphism extends StatelessWidget {
           child: Container(
             padding: padding,
             decoration: BoxDecoration(
-              color: base.withOpacity(surfaceOpacity),
+              color: base.withValues(alpha: surfaceOpacity),
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(
-                color: base.withOpacity(borderOpacity),
+                color: base.withValues(alpha: borderOpacity),
                 width: 1.0,
               ),
             ),
@@ -105,7 +105,7 @@ class GlassCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
         boxShadow: [
           BoxShadow(
-            color: shadowColor ?? Colors.black.withOpacity(0.25),
+            color: shadowColor ?? Colors.black.withValues(alpha: 0.25),
             blurRadius: 24,
             offset: const Offset(0, 8),
           ),
@@ -117,8 +117,8 @@ class GlassCard extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(borderRadius),
-          splashColor: Colors.white.withOpacity(0.08),
-          highlightColor: Colors.white.withOpacity(0.04),
+          splashColor: Colors.white.withValues(alpha: 0.08),
+          highlightColor: Colors.white.withValues(alpha: 0.04),
           child: GlassMorphism(
             blurX: blurSigma,
             blurY: blurSigma,
@@ -144,8 +144,7 @@ class GlassButton extends StatelessWidget {
     this.icon,
     required this.onPressed,
     this.borderRadius = 100.0,
-    this.padding = const EdgeInsets.symmetric(
-        horizontal: 24.0, vertical: 12.0),
+    this.padding = const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
     this.gradient,
     this.textStyle,
     this.iconColor,
@@ -175,7 +174,7 @@ class GlassButton extends StatelessWidget {
         gradient: effectiveGradient,
         boxShadow: [
           BoxShadow(
-            color: AppColors.accentGradientStart.withOpacity(0.4),
+            color: AppColors.accentGradientStart.withValues(alpha: 0.4),
             blurRadius: 20,
             offset: const Offset(0, 6),
           ),
@@ -187,8 +186,8 @@ class GlassButton extends StatelessWidget {
         child: InkWell(
           onTap: onPressed,
           borderRadius: BorderRadius.circular(borderRadius),
-          splashColor: Colors.white.withOpacity(0.15),
-          highlightColor: Colors.white.withOpacity(0.08),
+          splashColor: Colors.white.withValues(alpha: 0.15),
+          highlightColor: Colors.white.withValues(alpha: 0.08),
           child: Padding(
             padding: padding,
             child: Row(
@@ -254,12 +253,12 @@ class GlassIconButton extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blurSigma, sigmaY: blurSigma),
         child: Material(
-          color: (isDark ? Colors.white : Colors.black).withOpacity(0.1),
+          color: (isDark ? Colors.white : Colors.black).withValues(alpha: 0.1),
           shape: const CircleBorder(),
           child: InkWell(
             onTap: onPressed,
             customBorder: const CircleBorder(),
-            splashColor: Colors.white.withOpacity(0.12),
+            splashColor: Colors.white.withValues(alpha: 0.12),
             child: SizedBox(
               width: size,
               height: size,
@@ -303,12 +302,12 @@ class GlassPlayButton extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.accentGradientStart.withOpacity(0.55),
+            color: AppColors.accentGradientStart.withValues(alpha: 0.55),
             blurRadius: 32,
             spreadRadius: 4,
           ),
           BoxShadow(
-            color: AppColors.accentGradientEnd.withOpacity(0.3),
+            color: AppColors.accentGradientEnd.withValues(alpha: 0.3),
             blurRadius: 20,
             spreadRadius: 2,
           ),
@@ -335,9 +334,9 @@ class GlassDivider extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white.withOpacity(0),
-            Colors.white.withOpacity(0.15),
-            Colors.white.withOpacity(0),
+            Colors.white.withValues(alpha: 0),
+            Colors.white.withValues(alpha: 0.15),
+            Colors.white.withValues(alpha: 0),
           ],
         ),
       ),

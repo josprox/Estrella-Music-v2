@@ -20,8 +20,7 @@ class ContentListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isAlbumContent =
-        content.runtimeType.toString() == 'AlbumContent';
+    final isAlbumContent = content.runtimeType.toString() == 'AlbumContent';
     final tt = Theme.of(context).textTheme;
     final cs = Theme.of(context).colorScheme;
 
@@ -56,19 +55,17 @@ class ContentListWidget extends StatelessWidget {
                 if (!isHomeContent)
                   TextButton(
                     onPressed: () {
-                      final ctrl =
-                          Get.find<SearchResultScreenController>();
+                      final ctrl = Get.find<SearchResultScreenController>();
                       ctrl.viewAllCallback(content.title);
                     },
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.md,
-                          vertical: AppSpacing.xs),
+                          horizontal: AppSpacing.md, vertical: AppSpacing.xs),
                       shape: RoundedRectangleBorder(
                         borderRadius:
                             BorderRadius.circular(AppSpacing.radiusPill),
                         side: BorderSide(
-                          color: cs.primary.withOpacity(0.4),
+                          color: cs.primary.withValues(alpha: 0.4),
                           width: 1,
                         ),
                       ),
@@ -99,17 +96,14 @@ class ContentListWidget extends StatelessWidget {
                 separatorBuilder: (_, __) =>
                     const SizedBox(width: AppSpacing.md),
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.sm),
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
                 itemCount: isAlbumContent
                     ? content.albumList.length
                     : content.playlistList.length,
                 itemBuilder: (_, index) {
                   return isAlbumContent
-                      ? ContentListItem(
-                          content: content.albumList[index])
-                      : ContentListItem(
-                          content: content.playlistList[index]);
+                      ? ContentListItem(content: content.albumList[index])
+                      : ContentListItem(content: content.playlistList[index]);
                 },
               ),
             ),

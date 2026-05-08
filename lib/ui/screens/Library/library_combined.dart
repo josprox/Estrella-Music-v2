@@ -14,71 +14,122 @@ class CombinedLibrary extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabCon = Get.put(CombinedLibraryController());
     final settingscrnController = Get.find<SettingsScreenController>();
+    final cs = Theme.of(context).colorScheme;
+    final tt = Theme.of(context).textTheme;
+    final topPadding = MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 85,
-        backgroundColor: Theme.of(context).canvasColor,
-        elevation: 0,
-        actions: [
-          Obx(() => (settingscrnController.isLinkedWithPiped.isTrue)
-              ? const PipedSyncWidget(
-                  padding: EdgeInsets.only(right: 10, top: 50))
-              : const SizedBox.shrink()),
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0, right: 25),
-            child: SizedBox(
-              height: 40,
-              width: 50,
-              child: FittedBox(
-                child: FloatingActionButton.extended(
-                    elevation: 0,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) =>
-                              const CreateNRenamePlaylistPopup());
-                    },
-                    label: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.add,
-                        ),
-                      ],
-                    )),
+      backgroundColor: cs.surface,
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          SliverAppBar(
+            pinned: true,
+            floating: true,
+            backgroundColor: cs.surface,
+            surfaceTintColor: Colors.transparent,
+            elevation: 0,
+            // toolbarHeight cero — toda la UI va en flexibleSpace
+            toolbarHeight: 0,
+            expandedHeight: topPadding + 112,
+            flexibleSpace: FlexibleSpaceBar(
+              background: SafeArea(
+                bottom: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 12, 16, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // ── Fila título + acciones ──────────────────────────
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: cs.primaryContainer,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Icon(Icons.library_music_rounded,
+                                color: cs.onPrimaryContainer, size: 22),
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            S.current.library,
+                            style: tt.headlineSmall
+                                ?.copyWith(fontWeight: FontWeight.w800),
+                          ),
+                          const Spacer(),
+                          // Piped sync
+                          Obx(() => settingscrnController
+                                  .isLinkedWithPiped.isTrue
+                              ? const PipedSyncWidget(
+                                  padding: EdgeInsets.only(right: 8))
+                              : const SizedBox.shrink()),
+                          // Botón crear playlist
+                          FilledButton.tonalIcon(
+                            onPressed: () => showDialog(
+                              context: context,
+                              builder: (_) =>
+                                  const CreateNRenamePlaylistPopup(),
+                            ),
+                            icon: const Icon(Icons.add_rounded, size: 18),
+                            label: Text(S.current.playlists),
+                            style: FilledButton.styleFrom(
+                              visualDensity: VisualDensity.compact,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12)),
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(48),
+              child: Container(
+                color: cs.surface,
+                child: TabBar(
+                  controller: tabCon.tabController,
+                  isScrollable: true,
+                  tabAlignment: TabAlignment.start,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  dividerColor: Colors.transparent,
+                  splashFactory: NoSplash.splashFactory,
+                  indicator: BoxDecoration(
+                    color: cs.secondaryContainer,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  labelColor: cs.onSecondaryContainer,
+                  unselectedLabelColor: cs.onSurfaceVariant,
+                  labelStyle:
+                      tt.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  tabs: [
+                    Tab(text: S.current.songs),
+                    Tab(text: S.current.playlists),
+                    Tab(text: S.current.albums),
+                    Tab(text: S.current.artists),
+                  ],
+                ),
               ),
             ),
           ),
         ],
-        bottom: TabBar(
-          isScrollable: true,
-          splashFactory: NoSplash.splashFactory,
+        body: TabBarView(
           controller: tabCon.tabController,
-          tabs: [
-            Tab(text: S.current.songs),
-            Tab(text: S.current.playlists),
-            Tab(text: S.current.albums),
-            Tab(text: S.current.artists),
+          children: const [
+            SongsLibraryWidget(isBottomNavActive: true),
+            PlaylistNAlbumLibraryWidget(
+                isAlbumContent: false, isBottomNavActive: true),
+            PlaylistNAlbumLibraryWidget(isBottomNavActive: true),
+            LibraryArtistWidget(isBottomNavActive: true),
           ],
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(top: 60.0, left: 5),
-          child:
-              Text(S.current.library, style: Theme.of(context).textTheme.titleLarge),
-        ),
-      ),
-      body: TabBarView(
-        controller: tabCon.tabController,
-        children: const [
-          SongsLibraryWidget(
-            isBottomNavActive: true,
-          ),
-          PlaylistNAlbumLibraryWidget(
-              isAlbumContent: false, isBottomNavActive: true),
-          PlaylistNAlbumLibraryWidget(isBottomNavActive: true),
-          LibraryArtistWidget(isBottomNavActive: true),
-        ],
       ),
     );
   }

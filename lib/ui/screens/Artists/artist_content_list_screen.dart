@@ -79,18 +79,30 @@ class ArtistContentListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ArtistContentListController());
+    // Use the section title as a unique tag so each "Show all" push
+    // gets its own controller instead of reusing (and wiping) a stale one.
+    final args = Get.arguments as Map<String, dynamic>;
+    final tag = args['title'] as String;
+
+    final controller = Get.isRegistered<ArtistContentListController>(tag: tag)
+        ? Get.find<ArtistContentListController>(tag: tag)
+        : Get.put(ArtistContentListController(), tag: tag);
 
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D14),
       appBar: AppBar(
-        title: Text(controller.categoryTitle, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+        title: Text(controller.categoryTitle,
+            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
-          onPressed: () => Get.nestedKey(ScreenNavigationSetup.id)!.currentState!.pop(),
+          onPressed: () {
+            // Delete the tagged controller on pop so a new push re-fetches
+            Get.delete<ArtistContentListController>(tag: tag);
+            Get.nestedKey(ScreenNavigationSetup.id)!.currentState!.pop();
+          },
         ),
       ),
       body: Obx(() {

@@ -27,8 +27,9 @@ class CustSwitch extends StatelessWidget {
         activeThumbColor: Colors.white,
         activeTrackColor: isLightMode ? Colors.grey : null,
         inactiveTrackColor: isLightMode ? Colors.grey : null,
-        inactiveThumbColor:
-            isLightMode ? Colors.grey[300] : Colors.white.withOpacity(0.5),
+        inactiveThumbColor: isLightMode
+            ? Colors.grey[300]
+            : Colors.white.withValues(alpha: 0.5),
         value: value,
         onChanged: onChanged);
   }

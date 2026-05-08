@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
-
 import '/ui/theme/app_spacing.dart';
 import '/ui/widgets/glass_morphism.dart';
 import '/ui/player/components/animated_play_button.dart';
@@ -31,14 +30,11 @@ class PlayerControlWidget extends StatelessWidget {
               child: ShaderMask(
                 shaderCallback: (rect) {
                   return const LinearGradient(
-                    colors: [
-                      Colors.white, Colors.white, Colors.transparent
-                    ],
+                    colors: [Colors.white, Colors.white, Colors.transparent],
                     stops: [0, 0.80, 1],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                  ).createShader(
-                      Rect.fromLTWH(0, 0, rect.width, rect.height));
+                  ).createShader(Rect.fromLTWH(0, 0, rect.width, rect.height));
                 },
                 blendMode: BlendMode.dstIn,
                 child: Obx(() => Column(
@@ -47,8 +43,7 @@ class PlayerControlWidget extends StatelessWidget {
                         Marquee(
                           delay: const Duration(milliseconds: 300),
                           duration: const Duration(seconds: 10),
-                          id:
-                              '${ctrl.currentSong.value}_title',
+                          id: '${ctrl.currentSong.value}_title',
                           child: Text(
                             ctrl.currentSong.value?.title ?? 'NA',
                             style: tt.headlineSmall?.copyWith(
@@ -62,8 +57,7 @@ class PlayerControlWidget extends StatelessWidget {
                         Marquee(
                           delay: const Duration(milliseconds: 300),
                           duration: const Duration(seconds: 10),
-                          id:
-                              '${ctrl.currentSong.value}_subtitle',
+                          id: '${ctrl.currentSong.value}_subtitle',
                           child: Text(
                             ctrl.currentSong.value?.artist ?? 'NA',
                             style: tt.titleSmall?.copyWith(
@@ -100,8 +94,8 @@ class PlayerControlWidget extends StatelessWidget {
             thumbRadius: 7,
             barHeight: 4,
             thumbGlowRadius: 18,
-            baseBarColor: Colors.white.withOpacity(0.15),
-            bufferedBarColor: cs.primary.withOpacity(0.3),
+            baseBarColor: Colors.white.withValues(alpha: 0.15),
+            bufferedBarColor: cs.primary.withValues(alpha: 0.3),
             progressBarColor: cs.primary,
             thumbColor: Colors.white,
             timeLabelTextStyle: tt.bodySmall?.copyWith(
@@ -153,8 +147,7 @@ class PlayerControlWidget extends StatelessWidget {
               final isLast = ctrl.currentQueue.isEmpty ||
                   (!(ctrl.isShuffleModeEnabled.isTrue ||
                           ctrl.isQueueLoopModeEnabled.isTrue) &&
-                      ctrl.currentQueue.last.id ==
-                          ctrl.currentSong.value?.id);
+                      ctrl.currentQueue.last.id == ctrl.currentSong.value?.id);
               return _iconBtn(
                 icon: Icons.skip_next_rounded,
                 color: isLast ? Colors.white24 : Colors.white,
@@ -186,7 +179,7 @@ class PlayerControlWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(24),
-      splashColor: Colors.white.withOpacity(0.1),
+      splashColor: Colors.white.withValues(alpha: 0.1),
       child: Padding(
         padding: const EdgeInsets.all(AppSpacing.sm),
         child: Icon(icon, color: color, size: size),

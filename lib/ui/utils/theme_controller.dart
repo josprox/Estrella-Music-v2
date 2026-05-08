@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:palette_generator/palette_generator.dart';
 import '/utils/helper.dart';
-import '/ui/theme/app_colors.dart';
-import '/ui/theme/app_typography.dart';
 
 class ThemeController extends GetxController {
   final primaryColor = const Color(0xFF6C63FF).obs;
@@ -44,11 +42,22 @@ class ThemeController extends GetxController {
     };
   }
 
-  void changeThemeModeType(dynamic value, {bool sysCall = false}) {
-    // Always use dark theme or dynamic dark theme
+  void changeThemeModeType(dynamic value, {bool sysCall = false, ColorScheme? dynamicColors}) {
+    final themeType = value is ThemeType ? value : ThemeType.values[value ?? 0];
+    
+    // Determine brightness
+    Brightness brightness;
+    if (themeType == ThemeType.system || themeType == ThemeType.dynamic) {
+      brightness = systemBrightness;
+    } else {
+      brightness = themeType == ThemeType.light ? Brightness.light : Brightness.dark;
+    }
+
     themedata.value = _buildThemeData(
-        primaryColor.value,
-        value == ThemeType.dynamic ? ThemeType.dynamic : ThemeType.dark);
+      primaryColor.value, 
+      brightness, 
+      dynamicColors: dynamicColors
+    );
     setWindowsTitleBarColor(themedata.value!.scaffoldBackgroundColor);
   }
 
@@ -70,16 +79,24 @@ class ThemeController extends GetxController {
     Color seed = paletteColor.color;
     textColor.value = paletteColor.bodyTextColor;
 
-    // Keep seed dark enough for the dark glass aesthetic
-    if (seed.computeLuminance() > 0.12) {
-      seed = HSLColor.fromColor(seed).withLightness(0.12).toColor();
+    // Adjust seed for visibility if necessary, but keep it mostly true to the art
+    primaryColor.value = seed;
+    
+    final type = ThemeType.values[Hive.box('appPrefs').get("themeModeType") ?? 0];
+    Brightness brightness;
+    if (type == ThemeType.light) {
+      brightness = Brightness.light;
+    } else if (type == ThemeType.dark) {
+      brightness = Brightness.dark;
+    } else {
+      // dynamic or system → follow the actual system brightness
+      brightness = systemBrightness;
     }
 
-    primaryColor.value = seed;
-    themedata.value = _buildThemeData(seed, ThemeType.dynamic);
+    themedata.value = _buildThemeData(seed, brightness);
     currentSongId = songId;
 
-    Hive.box('appPrefs').put("themePrimaryColor", primaryColor.value.value);
+    Hive.box('appPrefs').put("themePrimaryColor", primaryColor.value.toARGB32());
     setWindowsTitleBarColor(themedata.value!.scaffoldBackgroundColor);
   }
 
@@ -87,146 +104,161 @@ class ThemeController extends GetxController {
   // Theme builder — Material 3 enabled for all modes
   // ─────────────────────────────────────────────────────────────────────────
 
-  ThemeData _buildThemeData(Color seedColor, ThemeType type) {
-    const isDark = true;
-    const brightness = Brightness.dark;
-
+  ThemeData _buildThemeData(Color seedColor, Brightness brightness, {ColorScheme? dynamicColors}) {
+    final isDark = brightness == Brightness.dark;
     _applySystemUiOverlay(isDark);
 
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: seedColor,
-      brightness: brightness,
-      dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
-    ).copyWith(
-      surface: AppColors.darkScaffold,
-      onSurface: AppColors.textPrimaryDark,
-      surfaceContainer: AppColors.darkSurface,
-      surfaceContainerHigh: AppColors.darkCard,
-      surfaceContainerHighest: AppColors.darkElevated,
-    );
+    ColorScheme colorScheme;
+    if (dynamicColors != null) {
+      colorScheme = dynamicColors;
+    } else {
+      colorScheme = ColorScheme.fromSeed(
+        seedColor: seedColor,
+        brightness: brightness,
+        dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
+      );
+    }
 
-    final textTheme = AppTypography.darkTextTheme;
+    // Material 3 typography
+    final textTheme = Typography.material2021(platform: defaultTargetPlatform)
+        .black
+        .apply(displayColor: colorScheme.onSurface, bodyColor: colorScheme.onSurface);
 
     return ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme,
       textTheme: textTheme,
-      scaffoldBackgroundColor: AppColors.darkScaffold,
-      canvasColor: AppColors.darkSurface,
-      cardColor: AppColors.darkCard,
+      scaffoldBackgroundColor: colorScheme.surface,
+      canvasColor: colorScheme.surface,
+      cardColor: colorScheme.surfaceContainerHigh,
+      
       // ── Bottom Sheet ──────────────────────────────────────────────────────
       bottomSheetTheme: BottomSheetThemeData(
-        backgroundColor: AppColors.darkSurface,
-        surfaceTintColor: Colors.transparent,
+        backgroundColor: colorScheme.surface,
+        surfaceTintColor: colorScheme.surfaceTint,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
         ),
-        modalBarrierColor: Colors.black.withOpacity(0.45),
+        modalBarrierColor: Colors.black.withValues(alpha: 0.45),
       ),
+
       // ── Navigation Bar ────────────────────────────────────────────────────
       navigationBarTheme: NavigationBarThemeData(
-        backgroundColor: Colors.transparent,
-        surfaceTintColor: Colors.transparent,
+        backgroundColor: colorScheme.surface,
+        surfaceTintColor: colorScheme.surfaceTint,
         elevation: 0,
-        indicatorColor: colorScheme.primary.withOpacity(0.25),
-        labelTextStyle: WidgetStateProperty.all(
-          textTheme.labelMedium?.copyWith(
-            color: AppColors.textPrimaryDark,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        indicatorColor: colorScheme.secondaryContainer,
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return TextStyle(
+              color: colorScheme.onSurface,
+              fontWeight: FontWeight.w700,
+              fontSize: 12,
+            );
+          }
+          return TextStyle(
+            color: colorScheme.onSurfaceVariant,
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+          );
+        }),
         iconTheme: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return const IconThemeData(
-              color: Colors.white,
+            return IconThemeData(
+              color: colorScheme.onSecondaryContainer,
               size: 24,
             );
           }
-          return const IconThemeData(
-            color: AppColors.textTertiaryDark,
+          return IconThemeData(
+            color: colorScheme.onSurfaceVariant,
             size: 24,
           );
         }),
       ),
+
       // ── Navigation Rail ───────────────────────────────────────────────────
       navigationRailTheme: NavigationRailThemeData(
-        backgroundColor: Colors.transparent,
+        backgroundColor: colorScheme.surface,
         elevation: 0,
-        indicatorColor: colorScheme.primary.withOpacity(0.2),
-        selectedIconTheme: const IconThemeData(color: Colors.white, size: 24),
-        unselectedIconTheme: const IconThemeData(
-            color: AppColors.textTertiaryDark,
-            size: 22),
-        selectedLabelTextStyle: const TextStyle(
-          color: Colors.white,
+        indicatorColor: colorScheme.secondaryContainer,
+        selectedIconTheme: IconThemeData(color: colorScheme.onSecondaryContainer, size: 24),
+        unselectedIconTheme: IconThemeData(color: colorScheme.onSurfaceVariant, size: 22),
+        selectedLabelTextStyle: TextStyle(
+          color: colorScheme.onSurface,
           fontWeight: FontWeight.w700,
           fontSize: 13,
         ),
-        unselectedLabelTextStyle: const TextStyle(
-          color: AppColors.textTertiaryDark,
+        unselectedLabelTextStyle: TextStyle(
+          color: colorScheme.onSurfaceVariant,
           fontWeight: FontWeight.w500,
           fontSize: 13,
         ),
       ),
+
       // ── Slider ────────────────────────────────────────────────────────────
       sliderTheme: SliderThemeData(
-        inactiveTrackColor: Colors.white.withOpacity(0.15),
+        inactiveTrackColor: colorScheme.onSurface.withValues(alpha: 0.15),
         activeTrackColor: colorScheme.primary,
-        secondaryActiveTrackColor: colorScheme.primary.withOpacity(0.3),
-        thumbColor: Colors.white,
-        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 7),
-        overlayShape: const RoundSliderOverlayShape(overlayRadius: 16),
+        secondaryActiveTrackColor: colorScheme.primary.withValues(alpha: 0.3),
+        thumbColor: colorScheme.primary,
+        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8),
+        overlayShape: const RoundSliderOverlayShape(overlayRadius: 18),
         valueIndicatorColor: colorScheme.primary,
-        trackHeight: 3.5,
+        trackHeight: 4,
       ),
+
       // ── Progress Indicator ────────────────────────────────────────────────
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: colorScheme.primary,
-        linearTrackColor: Colors.white.withOpacity(0.12),
+        linearTrackColor: colorScheme.onSurface.withValues(alpha: 0.12),
       ),
+
       // ── Input / Text Field ────────────────────────────────────────────────
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.white.withOpacity(0.08),
+        fillColor: colorScheme.surfaceContainerHighest,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide(color: colorScheme.primary, width: 1.5),
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(color: colorScheme.primary, width: 2),
         ),
-        hintStyle: const TextStyle(
-            color: AppColors.textTertiaryDark),
+        hintStyle: TextStyle(color: colorScheme.onSurfaceVariant),
       ),
+
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: colorScheme.primary,
-        selectionColor: colorScheme.primary.withOpacity(0.3),
+        selectionColor: colorScheme.primary.withValues(alpha: 0.3),
         selectionHandleColor: colorScheme.primary,
       ),
+
       // ── Dialog ───────────────────────────────────────────────────────────
       dialogTheme: DialogThemeData(
-        backgroundColor: AppColors.darkCard,
-        surfaceTintColor: Colors.transparent,
+        backgroundColor: colorScheme.surfaceContainerHigh,
+        surfaceTintColor: colorScheme.surfaceTint,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(28),
         ),
       ),
+
       // ── Icon ─────────────────────────────────────────────────────────────
-      iconTheme: const IconThemeData(
-          color: AppColors.textPrimaryDark),
+      iconTheme: IconThemeData(color: colorScheme.onSurface),
+
       // ── FAB ──────────────────────────────────────────────────────────────
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: colorScheme.primary,
-        foregroundColor: Colors.white,
+        backgroundColor: colorScheme.primaryContainer,
+        foregroundColor: colorScheme.onPrimaryContainer,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
       ),
+
       // ── Divider ───────────────────────────────────────────────────────────
       dividerTheme: DividerThemeData(
-        color: Colors.white.withOpacity(0.08),
+        color: colorScheme.outlineVariant,
         thickness: 1,
         space: 1,
       ),
@@ -236,8 +268,7 @@ class ThemeController extends GetxController {
   void _applySystemUiOverlay(bool isDark) {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
-        statusBarIconBrightness:
-            isDark ? Brightness.light : Brightness.dark,
+        statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
         systemNavigationBarDividerColor: Colors.transparent,
@@ -255,9 +286,9 @@ class ThemeController extends GetxController {
       Future.delayed(
           const Duration(milliseconds: 350),
           () async => await platform.invokeMethod('setTitleBarColor', {
-                'r': color.red,
-                'g': color.green,
-                'b': color.blue,
+                'r': (color.r * 255).round().clamp(0, 255),
+                'g': (color.g * 255).round().clamp(0, 255),
+                'b': (color.b * 255).round().clamp(0, 255),
               }));
     } on PlatformException catch (e) {
       printERROR("Failed to set title bar color: ${e.message}");
@@ -285,8 +316,11 @@ extension ColorWithHSL on Color {
 extension ComplementaryColor on Color {
   Color get complementaryColor => getComplementaryColor(this);
   Color getComplementaryColor(Color color) {
-    return Color.fromARGB(
-        color.alpha, 255 - color.red, 255 - color.green, 255 - color.blue);
+    return Color.from(
+        alpha: color.a,
+        red: 1.0 - color.r,
+        green: 1.0 - color.g,
+        blue: 1.0 - color.b);
   }
 }
 
@@ -298,12 +332,11 @@ extension HexColor on Color {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
-  String toHex({bool leadingHashSign = true}) =>
-      '${leadingHashSign ? '#' : ''}'
-      '${alpha.toRadixString(16).padLeft(2, '0')}'
-      '${red.toRadixString(16).padLeft(2, '0')}'
-      '${green.toRadixString(16).padLeft(2, '0')}'
-      '${blue.toRadixString(16).padLeft(2, '0')}';
+  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
+      '${(a * 255).round().toRadixString(16).padLeft(2, '0')}'
+      '${(r * 255).round().toRadixString(16).padLeft(2, '0')}'
+      '${(g * 255).round().toRadixString(16).padLeft(2, '0')}'
+      '${(b * 255).round().toRadixString(16).padLeft(2, '0')}';
 }
 
 enum ThemeType {

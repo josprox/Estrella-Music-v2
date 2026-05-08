@@ -93,7 +93,7 @@ class Player extends StatelessWidget {
                           ],
                           color: Theme.of(context)
                               .primaryColor
-                              .withOpacity(0.5)),
+                              .withValues(alpha: 0.5)),
                       height: 60 + Get.mediaQuery.padding.bottom,
                       child: Align(
                         alignment: Alignment.topCenter,
@@ -129,10 +129,11 @@ class Player extends StatelessWidget {
                                     color: playerController
                                             .isQueueLoopModeEnabled.isFalse
                                         ? Colors.white24
-                                        : Colors.white.withOpacity(0.8),
+                                        : Colors.white.withValues(alpha: 0.8),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  child: Center(child: Text(S.current.queueLoop)),
+                                  child:
+                                      Center(child: Text(S.current.queueLoop)),
                                 ),
                               ),
                             ),
@@ -152,10 +153,10 @@ class Player extends StatelessWidget {
                               },
                               child: Container(
                                 height: 30,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 15),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.8),
+                                  color: Colors.white.withValues(alpha: 0.8),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: const Center(
@@ -171,10 +172,10 @@ class Player extends StatelessWidget {
                               },
                               child: Container(
                                 height: 30,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 15),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.8),
+                                  color: Colors.white.withValues(alpha: 0.8),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: const Center(

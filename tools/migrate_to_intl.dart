@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'dart:convert';
 import 'dart:io';
 
@@ -9,7 +10,10 @@ void main() {
     outputDir.createSync(recursive: true);
   }
 
-  final files = inputDir.listSync().whereType<File>().where((f) => f.path.endsWith('.json'));
+  final files = inputDir
+      .listSync()
+      .whereType<File>()
+      .where((f) => f.path.endsWith('.json'));
 
   for (var file in files) {
     if (file.path.contains('generator.dart')) continue;
@@ -34,7 +38,8 @@ void main() {
 
     json.forEach((key, value) {
       // Clean up keys to be valid Dart identifiers
-      String newKey = key.replaceAll('&', 'And').replaceAll(' ', '_').replaceAll('-', '_');
+      String newKey =
+          key.replaceAll('&', 'And').replaceAll(' ', '_').replaceAll('-', '_');
       // Ensure it doesn't start with a number
       if (RegExp(r'^\d').hasMatch(newKey)) {
         newKey = 'v$newKey';

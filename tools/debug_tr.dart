@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'dart:io';
 
 void main() {
@@ -10,7 +11,7 @@ void main() {
   print('Content length: ${content.length}');
   print('Contains .tr: ${content.contains('.tr')}');
   
-  final regExp = RegExp(r"['""]([^'""\n\r]+)['""]\s*\.tr");
+  final regExp = RegExp(r"['""]([^'""\n\r]+)['""]s*.tr");
   final matches = regExp.allMatches(content);
   print('Matches found: ${matches.length}');
   for (var m in matches) {

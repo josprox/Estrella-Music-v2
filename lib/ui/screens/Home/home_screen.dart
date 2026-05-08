@@ -57,8 +57,7 @@ class HomeScreen extends StatelessWidget {
                       if (homeScreenController.tabIndex.value == 1) {
                         showDialog(
                             context: context,
-                            builder: (_) =>
-                                const CreateNRenamePlaylistPopup());
+                            builder: (_) => const CreateNRenamePlaylistPopup());
                       } else {
                         Get.toNamed(ScreenNavigationSetup.searchScreen,
                             id: ScreenNavigationSetup.id);
@@ -79,13 +78,11 @@ class HomeScreen extends StatelessWidget {
               child: Obx(() => AnimatedScreenTransition(
                     enabled: settingsScreenController
                         .isTransitionAnimationDisabled.isFalse,
-                    resverse:
-                        homeScreenController.reverseAnimationtransiton,
-                    horizontalTransition: settingsScreenController
-                        .isBottomNavBarEnabled.isTrue,
+                    resverse: homeScreenController.reverseAnimationtransiton,
+                    horizontalTransition:
+                        settingsScreenController.isBottomNavBarEnabled.isTrue,
                     child: Center(
-                      key: ValueKey<int>(
-                          homeScreenController.tabIndex.value),
+                      key: ValueKey<int>(homeScreenController.tabIndex.value),
                       child: const Body(),
                     ),
                   )),
@@ -120,7 +117,7 @@ class _GlassFab extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: cs.primary.withOpacity(0.45),
+              color: cs.primary.withValues(alpha: 0.45),
               blurRadius: 20,
               offset: const Offset(0, 6),
             ),
@@ -160,8 +157,7 @@ class Body extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 if (GetPlatform.isDesktop) {
-                  final sscontroller =
-                      Get.find<SearchScreenController>();
+                  final sscontroller = Get.find<SearchScreenController>();
                   if (sscontroller.focusNode.hasFocus) {
                     sscontroller.focusNode.unfocus();
                   }
@@ -170,13 +166,12 @@ class Body extends StatelessWidget {
               child: Obx(
                 () => homeScreenController.networkError.isTrue
                     ? _NetworkError(
-                        onRetry: homeScreenController
-                            .loadContentFromNetwork)
+                        onRetry: homeScreenController.loadContentFromNetwork)
                     : Obx(() {
-                        homeScreenController
-                            .disposeDetachedScrollControllers();
+                        homeScreenController.disposeDetachedScrollControllers();
 
-                        final items = homeScreenController.isContentFetched.value
+                        final items = homeScreenController
+                                .isContentFetched.value
                             ? [
                                 Obx(() {
                                   final sc = ScrollController();
@@ -240,11 +235,9 @@ class Body extends StatelessWidget {
     } else if (homeScreenController.tabIndex.value == 5) {
       return const SettingsScreen();
     } else {
-      return Center(
-          child: Text('${homeScreenController.tabIndex.value}'));
+      return Center(child: Text('${homeScreenController.tabIndex.value}'));
     }
   }
-
 
   List<Widget> getWidgetList(
       dynamic list, HomeScreenController homeScreenController) {
@@ -279,45 +272,41 @@ class _NetworkError extends StatelessWidget {
         ),
         Expanded(
           child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.wifi_off_rounded,
-                      size: 64, color: cs.onSurface.withOpacity(0.3)),
-                  const SizedBox(height: AppSpacing.lg),
-                  Text(S.current.networkError1,
-                      style: tt.titleMedium?.copyWith(
-                          color: cs.onSurface.withOpacity(0.6))),
-                  const SizedBox(height: AppSpacing.xl),
-                  GestureDetector(
-                    onTap: onRetry,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.xl,
-                          vertical: AppSpacing.md),
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(AppSpacing.radiusPill),
-                        gradient: LinearGradient(
-                          colors: [cs.primary, cs.tertiary],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: cs.primary.withOpacity(0.4),
-                            blurRadius: 16,
-                            offset: const Offset(0, 6),
-                          ),
-                        ],
-                      ),
-                      child: Text(S.current.retry,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700)),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Icon(Icons.wifi_off_rounded,
+                  size: 64, color: cs.onSurface.withValues(alpha: 0.3)),
+              const SizedBox(height: AppSpacing.lg),
+              Text(S.current.networkError1,
+                  style: tt.titleMedium
+                      ?.copyWith(color: cs.onSurface.withValues(alpha: 0.6))),
+              const SizedBox(height: AppSpacing.xl),
+              GestureDetector(
+                onTap: onRetry,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.xl, vertical: AppSpacing.md),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppSpacing.radiusPill),
+                    gradient: LinearGradient(
+                      colors: [cs.primary, cs.tertiary],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
-                  )
-                ]),
+                    boxShadow: [
+                      BoxShadow(
+                        color: cs.primary.withValues(alpha: 0.4),
+                        blurRadius: 16,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
+                  ),
+                  child: Text(S.current.retry,
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.w700)),
+                ),
+              )
+            ]),
           ),
         )
       ]),

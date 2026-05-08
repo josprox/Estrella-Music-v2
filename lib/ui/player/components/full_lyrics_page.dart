@@ -11,10 +11,10 @@ class FullLyricsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ctrl = Get.find<PlayerController>();
     final themeCtrl = Get.find<ThemeController>();
-    
+
     return Obx(() {
       final bgColor = themeCtrl.primaryColor.value;
-      
+
       return Scaffold(
         backgroundColor: bgColor,
         body: Stack(
@@ -26,21 +26,22 @@ class FullLyricsPage extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withOpacity(0.3),
+                    Colors.black.withValues(alpha: 0.3),
                     Colors.transparent,
-                    Colors.black.withOpacity(0.5),
+                    Colors.black.withValues(alpha: 0.5),
                   ],
                 ),
               ),
             ),
-            
+
             SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Top bar
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -74,12 +75,13 @@ class FullLyricsPage extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () => Get.back(),
-                          icon: const Icon(Icons.close_rounded, color: Colors.white, size: 28),
+                          icon: const Icon(Icons.close_rounded,
+                              color: Colors.white, size: 28),
                         ),
                       ],
                     ),
                   ),
-                  
+
                   // Lyrics content
                   const Expanded(
                     child: Padding(

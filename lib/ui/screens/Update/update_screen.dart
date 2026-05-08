@@ -22,7 +22,8 @@ class UpdateScreen extends StatelessWidget {
       backgroundColor: backgroundColor,
       body: Obx(() {
         if (controller.isLoading.isTrue) {
-          return const Center(child: CircularProgressIndicator(color: accentColor));
+          return const Center(
+              child: CircularProgressIndicator(color: accentColor));
         }
 
         if (controller.error.isNotEmpty) {
@@ -31,7 +32,9 @@ class UpdateScreen extends StatelessWidget {
 
         final data = controller.updateInfo.value;
         if (data == null) {
-          return Center(child: Text(S.of(context).infoNotAvailable, style: const TextStyle(color: Colors.white)));
+          return Center(
+              child: Text(S.of(context).infoNotAvailable,
+                  style: const TextStyle(color: Colors.white)));
         }
 
         return SafeArea(
@@ -39,7 +42,8 @@ class UpdateScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 60.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0, vertical: 60.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -52,7 +56,7 @@ class UpdateScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(28),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
+                              color: Colors.black.withValues(alpha: 0.3),
                               blurRadius: 20,
                               spreadRadius: 5,
                             ),
@@ -80,12 +84,13 @@ class UpdateScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 12),
-                      
+
                       // 3. Version Pill
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 6),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.05),
+                          color: Colors.white.withValues(alpha: 0.05),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(color: Colors.white12),
                         ),
@@ -110,7 +115,8 @@ class UpdateScreen extends StatelessWidget {
                         ),
                         child: MarkdownBody(
                           data: data['Descripcion'] ?? '',
-                          styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
+                          styleSheet:
+                              MarkdownStyleSheet.fromTheme(theme).copyWith(
                             p: GoogleFonts.manrope(
                               fontSize: 15,
                               color: Colors.white70,
@@ -196,7 +202,8 @@ class UpdateScreen extends StatelessWidget {
         children: [
           const Icon(Icons.error_outline, size: 60, color: Colors.redAccent),
           const SizedBox(height: 24),
-          Text(S.of(context).loadInfoUpdate, style: const TextStyle(color: Colors.white)),
+          Text(S.of(context).loadInfoUpdate,
+              style: const TextStyle(color: Colors.white)),
           const SizedBox(height: 8),
           Text(
             controller.error.value,
@@ -207,7 +214,8 @@ class UpdateScreen extends StatelessWidget {
           ElevatedButton(
             onPressed: controller.fetchUpdateInfo,
             style: ElevatedButton.styleFrom(backgroundColor: accentColor),
-            child: Text(S.of(context).retry, style: const TextStyle(color: Colors.black)),
+            child: Text(S.of(context).retry,
+                style: const TextStyle(color: Colors.black)),
           ),
         ],
       ),
