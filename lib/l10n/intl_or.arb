@@ -295,5 +295,45 @@
   "close": "ବନ୍ଦ",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "ଭୁଲିଯାଇଥିବା ପସନ୍ଦଗୁଡିକ |",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "ଗୀତ ସବୁଠୁ ଅଧିକ ଶୁଣୁଥିଲା |",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "ଦ୍ୱାରା ପୁନ oduc ପ୍ରକାଶିତ |",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "ସାମ୍ପ୍ରତିକ ସନ୍ଧାନ |",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "ଲୋକପ୍ରିୟ ଟ୍ରାକ୍ |",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "ସର୍ବଶେଷ ପ୍ରକାଶନ |",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "ଜାରି ରଖ |",
+  "@follow": {
+    "description": ""
+  },
+  "following": "ନିମ୍ନଲିଖିତ",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "ବର୍ତ୍ତମାନ ଶୁଣ |",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "ଭିଡିଓ",
+  "@video": {
+    "description": ""
   }
 }

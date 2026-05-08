@@ -51,6 +51,13 @@ class SearchScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      S.current.search, // Or "Buscar"
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    const SizedBox(height: 16),
                     // Styled Search Bar
                     _SearchBar(controller: searchScreenController),
                     const SizedBox(height: 24),
@@ -92,7 +99,7 @@ class _SearchBar extends StatelessWidget {
     return Container(
       height: 56,
       decoration: BoxDecoration(
-        color: const Color(0xFF2B2930),
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(28),
       ),
       child: TextField(
@@ -111,15 +118,15 @@ class _SearchBar extends StatelessWidget {
               id: ScreenNavigationSetup.id, arguments: val);
           controller.addToHistryQueryList(val);
         },
-        style: const TextStyle(color: Colors.white, fontSize: 16),
+        style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 16),
         decoration: InputDecoration(
           hintText: S.current.searchDes,
-          hintStyle: TextStyle(color: Colors.white.withValues(alpha: 0.6)),
-          prefixIcon: const Icon(Icons.search, color: Colors.white70),
+          hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.6)),
+          prefixIcon: Icon(Icons.search, color: Theme.of(context).colorScheme.onSurfaceVariant),
           suffixIcon: Obx(() => controller.searchText.value.isNotEmpty
               ? IconButton(
                   onPressed: controller.reset,
-                  icon: const Icon(Icons.close, color: Colors.white70),
+                  icon: Icon(Icons.close, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 )
               : const SizedBox.shrink()),
           border: InputBorder.none,
@@ -147,7 +154,7 @@ class _DefaultSearchView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Búsquedas recientes',
+                S.current.recentSearches,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -161,14 +168,7 @@ class _DefaultSearchView extends StatelessWidget {
                   itemCount: controller.historyQuerylist.length,
                   itemBuilder: (context, index) {
                     final query = controller.historyQuerylist[index];
-                    final colors = [
-                      const Color(0xFFE91E63),
-                      const Color(0xFF2196F3),
-                      const Color(0xFFFFC107),
-                      const Color(0xFF009688),
-                    ];
-                    final chipColor = colors[index % colors.length];
-
+                    
                     return Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
@@ -178,25 +178,25 @@ class _DefaultSearchView extends StatelessWidget {
                         },
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                           decoration: BoxDecoration(
-                            color: chipColor.withValues(alpha: 0.8),
+                            color: Theme.of(context).colorScheme.secondaryContainer,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(
                             children: [
                               Text(
                                 query,
-                                style: const TextStyle(
-                                    color: Colors.white,
+                                style: TextStyle(
+                                    color: Theme.of(context).colorScheme.onSecondaryContainer,
                                     fontWeight: FontWeight.w600),
                               ),
-                              const SizedBox(width: 4),
+                              const SizedBox(width: 8),
                               GestureDetector(
                                 onTap: () =>
                                     controller.removeQueryFromHistory(query),
-                                child: const Icon(Icons.close,
-                                    size: 16, color: Colors.white70),
+                                child: Icon(Icons.close,
+                                    size: 16, color: Theme.of(context).colorScheme.onSecondaryContainer.withValues(alpha: 0.7)),
                               ),
                             ],
                           ),

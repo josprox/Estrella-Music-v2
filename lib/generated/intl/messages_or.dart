@@ -165,7 +165,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "ପ୍ରଦର୍ଶିତ ପ୍ଲେଲିଷ୍ଟଗୁଡିକ",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("ଜାରି ରଖ |"),
+    "following": MessageLookupByLibrary.simpleMessage("ନିମ୍ନଲିଖିତ"),
     "for1": MessageLookupByLibrary.simpleMessage("ପାଇଁ"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "ଭୁଲିଯାଇଥିବା ପସନ୍ଦଗୁଡିକ |",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("ଇଲେକ୍ଟ୍ରୋନିକ୍ସ"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("ହିପ୍ ହପ୍"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("ଜାଜ୍"),
@@ -202,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "ଆପ୍ ଭାଷା ବିନ୍ଯାସ କରନ୍ତୁ",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("ସର୍ବଶେଷ ପ୍ରକାଶନ |"),
     "libAlbums": MessageLookupByLibrary.simpleMessage("ଲାଇବ୍ରେରୀ ଆଲବମଗୁଡ଼ିକ"),
     "libArtists": MessageLookupByLibrary.simpleMessage("ଲାଇବ୍ରେରୀ କଳାକାର"),
     "libPlaylists": MessageLookupByLibrary.simpleMessage(
@@ -217,6 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "ପ୍ଲେଲିଷ୍ଟ ପାଇଁ ପାଇପ୍ ସହିତ ଲିଙ୍କ୍ କରନ୍ତୁ",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("ବର୍ତ୍ତମାନ ଶୁଣ |"),
     "local": MessageLookupByLibrary.simpleMessage("ସ୍ଥାନୀୟ"),
     "low": MessageLookupByLibrary.simpleMessage("ନିମ୍ନ"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
@@ -226,6 +233,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "ଫାଇଲ୍ ଏବଂ ଆମଦାନୀ ଚୟନ କରନ୍ତୁ |",
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("ମିନିଟ୍"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "ଗୀତ ସବୁଠୁ ଅଧିକ ଶୁଣୁଥିଲା |",
+    ),
     "networkError1": MessageLookupByLibrary.simpleMessage(
       "Oops ନେଟୱର୍କ ତ୍ରୁଟି!",
     ),
@@ -274,9 +284,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "ସଫଳତାର ସହିତ ନାମକରଣ ହୋଇଛି !",
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("ପ୍ଲେ-ଲିଷ୍ଟଗୁଡ଼ିକ"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("ଲୋକପ୍ରିୟ ଟ୍ରାକ୍ |"),
     "quickpicks": MessageLookupByLibrary.simpleMessage("ଶୀଘ୍ର ଚୟନ"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "ଏହି କଳାକାରଙ୍କ ପାଇଁ ରେଡିଓ ଉପଲବ୍ଧ ନାହିଁ!",
+    ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "ସାମ୍ପ୍ରତିକ ସନ୍ଧାନ |",
     ),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "ନିକଟରେ ଖେଳାଯାଇଥିବା",
@@ -297,6 +311,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "rename": MessageLookupByLibrary.simpleMessage("ପୁନଃନାମକରଣ କରନ୍ତୁ"),
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "ପ୍ଲେଲିଷ୍ଟକୁ ପୁନଃନାମକରଣ କରନ୍ତୁ",
+    ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage(
+      "ଦ୍ୱାରା ପୁନ oduc ପ୍ରକାଶିତ |",
     ),
     "reset": MessageLookupByLibrary.simpleMessage("ପୁନଃ ସେଟ କରନ୍ତୁ"),
     "resetblacklistedplaylist": MessageLookupByLibrary.simpleMessage(
@@ -398,6 +415,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ସଫଳତାର ସହ ସଂଯୋଗ ହୋଇ ନାହିଁ!",
     ),
     "username": MessageLookupByLibrary.simpleMessage("ଉପଯୋଗକର୍ତ୍ତା ନାମ"),
+    "video": MessageLookupByLibrary.simpleMessage("ଭିଡିଓ"),
     "videos": MessageLookupByLibrary.simpleMessage("ଭିଡ଼ିଓ"),
     "viewAll": MessageLookupByLibrary.simpleMessage("ସମସ୍ତ ଦେଖନ୍ତୁ"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("ଚିତ୍ରଶିଳ୍ପୀ ଦେଖନ୍ତୁ"),

@@ -318,7 +318,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Öne Çıkan Listeler",
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Dosya bulunamadı"),
+    "follow": MessageLookupByLibrary.simpleMessage("Devam etmek"),
+    "following": MessageLookupByLibrary.simpleMessage("Takip etme"),
     "for1": MessageLookupByLibrary.simpleMessage("şunun için"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "unutulmuş favoriler",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronik"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Caz"),
@@ -391,6 +396,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("Dil seçimi"),
     "languageDes": MessageLookupByLibrary.simpleMessage("Uygulama dilini seç"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("En son sürüm"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Başlayalım..."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Kitaplık Albümleri"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Kitaplık Sanatçıları"),
@@ -408,6 +414,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Çalma listeleri için piped\'a bağla",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Şimdi dinle"),
     "local": MessageLookupByLibrary.simpleMessage("Yerel"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Ses Yüksekliği (Db)"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -425,6 +432,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("dakika"),
     "misc": MessageLookupByLibrary.simpleMessage("Diğer"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "En çok dinlenen şarkı",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage("Müzik & Oynatma"),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Ağ hatası! Ağ bağlantınızı kontrol edin.",
@@ -502,6 +512,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Çalma Listeleri"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Sırada"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Popüler parçalar"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Dosyalar işleniyor...",
     ),
@@ -530,6 +541,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "Şarkıları yeniden düzenle",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Son aramalar"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Son Çalınan"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
       "Kitaplık şarkılarından kaldır",
@@ -547,6 +559,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "rename": MessageLookupByLibrary.simpleMessage("Yeniden adlandır"),
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Çalma Listesini Yeniden Adlandır",
+    ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage(
+      "Tarafından çoğaltılmıştır",
     ),
     "reset": MessageLookupByLibrary.simpleMessage("Sıfırla"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
@@ -691,6 +706,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "URL algılandı, ilgili içeriği açmak/oynatmak için üzerine tıklayın",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Kullanıcı adı"),
+    "video": MessageLookupByLibrary.simpleMessage("Video"),
     "videos": MessageLookupByLibrary.simpleMessage("Videolar"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Hepsine bak"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Sanatçıya bak"),

@@ -337,5 +337,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "vergeten favorieten",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Het meest beluisterde nummer",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Gereproduceerd door",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Recente zoekopdrachten",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Populaire nummers",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Nieuwste uitgave",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Doorgaan",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Volgende",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Luister nu",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Video",
+  "@video": {
+    "description": ""
   }
 }

@@ -264,7 +264,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "ਫੀਚਰਡ ਪਲੇਲਿਸਟਾਂ",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("ਜਾਰੀ ਰੱਖੋ"),
+    "following": MessageLookupByLibrary.simpleMessage("ਅਨੁਸਰਣ ਕਰ ਰਹੇ ਹਨ"),
     "for1": MessageLookupByLibrary.simpleMessage("ਦੇ ਲਈ"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "ਭੁੱਲ ਗਏ ਮਨਪਸੰਦ",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("ਇਲੈਕਟ੍ਰਾਨਿਕਸ"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("ਹਿੱਪ ਹੌਪ"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("ਜੈਜ਼"),
@@ -310,6 +315,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("ਭਾਸ਼ਾ"),
     "languageDes": MessageLookupByLibrary.simpleMessage("ਐਪ ਭਾਸ਼ਾ ਸੈੱਟ ਕਰੋ"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("ਤਾਜ਼ਾ ਰਿਲੀਜ਼"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("ਚਲੋ ਸ਼ੁਰੂ ਕਰੀਏ.."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("ਲਾਇਬ੍ਰੇਰੀ ਐਲਬਮਾਂ"),
     "libArtists": MessageLookupByLibrary.simpleMessage("ਲਾਇਬ੍ਰੇਰੀ ਕਲਾਕਾਰ"),
@@ -324,6 +330,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "ਪਲੇਲਿਸਟਸ ਲਈ ਪਾਈਪਡ ਦੇ ਨਾਲ ਲਿੰਕ ਕਰੋ",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("ਹੁਣ ਸੁਣੋ"),
     "local": MessageLookupByLibrary.simpleMessage("ਸਥਾਨਕ"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("ਉੱਚੀ ਆਵਾਜ਼ ਡੀ.ਬੀ"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -340,6 +347,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "ਫਾਈਲ ਚੁਣੋ ਅਤੇ ਆਯਾਤ ਕਰੋ",
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("ਮਿੰਟ"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "ਸਭ ਤੋਂ ਵੱਧ ਸੁਣਿਆ ਗਿਆ ਗੀਤ",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "ਸੰਗੀਤ ਅਤੇ ਪਲੇਬੈਕ",
     ),
@@ -399,6 +409,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("ਪਲੇਲਿਸਟ"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("ਆਗਾਮੀ"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("ਪ੍ਰਸਿੱਧ ਟਰੈਕ"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "ਫ਼ਾਈਲਾਂ ਦੀ ਪ੍ਰੋਸੈਸਿੰਗ ਹੋ ਰਹੀ ਹੈ...",
     ),
@@ -422,6 +433,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangePlaylist": MessageLookupByLibrary.simpleMessage(
       "ਪਲੇਲਿਸਟ ਨੂੰ ਰੀ-ਅਰੇਂਜ ਕਰੋ",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("ਹਾਲੀਆ ਖੋਜਾਂ"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "ਹਾਲ ਹੀ ਵਿੱਚ ਚਲਾਏ ਗਏ",
     ),
@@ -439,6 +451,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "rename": MessageLookupByLibrary.simpleMessage("ਨਾਮ ਬਦਲੋ"),
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "ਪਲੇਲਿਸਟ ਦਾ ਨਾਮ ਬਦਲੋ",
+    ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage(
+      "ਦੁਆਰਾ ਦੁਬਾਰਾ ਤਿਆਰ ਕੀਤਾ ਗਿਆ",
     ),
     "reset": MessageLookupByLibrary.simpleMessage("ਰੀਸੈਟ ਕਰੋ"),
     "resetblacklistedplaylist": MessageLookupByLibrary.simpleMessage(
@@ -571,6 +586,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "url ਖੋਜਿਆ ਗਿਆ ਸੰਬੰਧਿਤ ਸਮੱਗਰੀ ਨੂੰ ਖੋਲ੍ਹਣ/ਪਲੇ ਕਰਨ ਲਈ ਇਸ \'ਤੇ ਕਲਿੱਕ ਕਰੋ",
     ),
     "username": MessageLookupByLibrary.simpleMessage("ਯੂਜ਼ਰਨੇਮ"),
+    "video": MessageLookupByLibrary.simpleMessage("ਵੀਡੀਓ"),
     "videos": MessageLookupByLibrary.simpleMessage("ਵੀਡੀਓ"),
     "viewAll": MessageLookupByLibrary.simpleMessage("ਸਾਰੇ ਦੇਖੋ"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("ਕਲਾਕਾਰ ਵੇਖੋ"),

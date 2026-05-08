@@ -155,5 +155,45 @@
   "close": "Блізка",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "забытыя фаварыты",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Самая слухаемая песня",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Узноўлена",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Апошнія пошукі",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Папулярныя трэкі",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Апошні выпуск",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Працягнуць",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Пасля",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Слухай цяпер",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Відэа",
+  "@video": {
+    "description": ""
   }
 }

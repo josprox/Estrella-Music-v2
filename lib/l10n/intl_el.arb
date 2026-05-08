@@ -155,5 +155,45 @@
   "close": "Κοντά",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "ξεχασμένα αγαπημένα",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Το πιο πολυακουσμένο τραγούδι",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Αναπαράγεται από",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Πρόσφατες αναζητήσεις",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Δημοφιλή κομμάτια",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Τελευταία έκδοση",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Συνεχίζω",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Εξής",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Άκου τώρα",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Βίντεο",
+  "@video": {
+    "description": ""
   }
 }

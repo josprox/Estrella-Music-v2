@@ -76,16 +76,29 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "close": MessageLookupByLibrary.simpleMessage("Блізка"),
     "email": MessageLookupByLibrary.simpleMessage("Электронная пошта"),
+    "follow": MessageLookupByLibrary.simpleMessage("Працягнуць"),
+    "following": MessageLookupByLibrary.simpleMessage("Пасля"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "забытыя фаварыты",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Электроніка"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("хіп-хоп"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Джаз"),
     "genre_latin": MessageLookupByLibrary.simpleMessage("лацінка"),
     "genre_pop": MessageLookupByLibrary.simpleMessage("Поп"),
     "genre_rock": MessageLookupByLibrary.simpleMessage("Рок"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Апошні выпуск"),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Слухай цяпер"),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Выберыце файл і імпартуйце",
     ),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Самая слухаемая песня",
+    ),
     "password_text": MessageLookupByLibrary.simpleMessage("Пароль"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Папулярныя трэкі"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Апошнія пошукі"),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Узноўлена"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Апошнія пошукі",
     ),
@@ -104,5 +117,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Пераход з Joss Music Kotlin",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Імя карыстальніка"),
+    "video": MessageLookupByLibrary.simpleMessage("Відэа"),
   };
 }

@@ -303,5 +303,45 @@
   "close": "Lähellä",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "unohdetut suosikit",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Eniten kuunneltu kappale",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Toistettu",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Viimeaikaiset haut",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Suosittuja kappaleita",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Viimeisin julkaisu",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Jatkaa",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Jälkeen",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Kuuntele nyt",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Video",
+  "@video": {
+    "description": ""
   }
 }

@@ -294,7 +294,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "fileNotFound": MessageLookupByLibrary.simpleMessage(
       "ফাইলটি পাওয়া যায়নি",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("চালিয়ে যান"),
+    "following": MessageLookupByLibrary.simpleMessage("অনুসরণ করছে"),
     "for1": MessageLookupByLibrary.simpleMessage("জন্য"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "ভুলে যাওয়া প্রিয়",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("ইলেকট্রনিক্স"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("হিপ হপ"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("জ্যাজ"),
@@ -369,6 +374,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "অ্যাপের ভাষা নির্ধারণ করুন",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("সর্বশেষ প্রকাশ"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("শুরু করা যাক.।"),
     "libAlbums": MessageLookupByLibrary.simpleMessage("লাইব্রেরি অ্যালবাম"),
     "libArtists": MessageLookupByLibrary.simpleMessage("লাইব্রেরি শিল্পী"),
@@ -383,6 +389,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "প্লেলিস্টের জন্য পাইপডের সাথে লিঙ্ক করুন",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("এখন শুনুন"),
     "local": MessageLookupByLibrary.simpleMessage("স্থানীয়"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("জোরে"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -400,6 +407,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("মিনিট"),
     "misc": MessageLookupByLibrary.simpleMessage("বিবিধ"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "সবচেয়ে বেশি শোনা গান",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "সঙ্গীত ও প্লেব্যাক",
     ),
@@ -481,6 +491,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("প্লেলিস্ট"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("আসছে"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("জনপ্রিয় ট্র্যাক"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "ফাইলগুলি প্রক্রিয়া করা হচ্ছে..।",
     ),
@@ -509,6 +520,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "গানগুলি পুনরায় সাজান",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "সাম্প্রতিক অনুসন্ধান",
+    ),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("সম্প্রতি চালানো"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
       "লাইব্রেরির গান থেকে সরান",
@@ -523,6 +537,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "প্লেলিস্টের নাম পরিবর্তন",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("দ্বারা পুনরুত্পাদিত"),
     "reset": MessageLookupByLibrary.simpleMessage("রিসেট"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
       "ডিফল্ট সেটিংস পুনরুদ্ধার করুন",
@@ -662,6 +677,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ইউআরএল সনাক্ত করেছে যে সংশ্লিষ্ট কন্টেন্ট খুলতে/চালাতে এটিতে ক্লিক করুন",
     ),
     "username": MessageLookupByLibrary.simpleMessage("ব্যবহারকারীর নাম"),
+    "video": MessageLookupByLibrary.simpleMessage("ভিডিও"),
     "videos": MessageLookupByLibrary.simpleMessage("ভিডিও"),
     "viewAll": MessageLookupByLibrary.simpleMessage("সবগুলো দেখুন"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("শিল্পী দেখুন"),

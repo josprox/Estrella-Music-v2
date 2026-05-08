@@ -175,7 +175,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "Suositellut soittolistat",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("Jatkaa"),
+    "following": MessageLookupByLibrary.simpleMessage("Jälkeen"),
     "for1": MessageLookupByLibrary.simpleMessage("haulla"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "unohdetut suosikit",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektroniikka"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
@@ -218,6 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Valitse sovelluksen kieli",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Viimeisin julkaisu"),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Kirjaston albumit"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Kirjaston artistit"),
     "libPlaylists": MessageLookupByLibrary.simpleMessage(
@@ -231,6 +237,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Yhdistä Piped soittolistojen synkronointiin",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Kuuntele nyt"),
     "local": MessageLookupByLibrary.simpleMessage("Paikallinen"),
     "low": MessageLookupByLibrary.simpleMessage("Matala"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
@@ -240,6 +247,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Valitse tiedosto ja tuo",
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("minuuttia"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Eniten kuunneltu kappale",
+    ),
     "networkError1": MessageLookupByLibrary.simpleMessage("Oho, verkkovirhe!"),
     "newVersionAvailable": MessageLookupByLibrary.simpleMessage(
       "Uusi versio saatavilla!",
@@ -287,9 +297,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "Nimi muutettu!",
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Soittolistat"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage(
+      "Suosittuja kappaleita",
+    ),
     "quickpicks": MessageLookupByLibrary.simpleMessage("Pikavalinnat"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Tälle artistille ei ole saatavilla radiota!",
+    ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "Viimeaikaiset haut",
     ),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Viimeksi soitetut"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage("Poista kirjastosta"),
@@ -304,6 +320,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Uudelleennimeä soittolista",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Toistettu"),
     "reset": MessageLookupByLibrary.simpleMessage("Nollaa"),
     "resetblacklistedplaylist": MessageLookupByLibrary.simpleMessage(
       "Nollaa soittolistojen musta lista",
@@ -407,6 +424,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unLink": MessageLookupByLibrary.simpleMessage("Poista yhteys"),
     "unlinkAlert": MessageLookupByLibrary.simpleMessage("Yhteys poistettu!"),
     "username": MessageLookupByLibrary.simpleMessage("Käyttäjätunnus"),
+    "video": MessageLookupByLibrary.simpleMessage("Video"),
     "videos": MessageLookupByLibrary.simpleMessage("Videot"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Näytä kaikki"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Näytä artisti"),

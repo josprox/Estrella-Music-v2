@@ -426,5 +426,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "zapomenuté oblíbené",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Nejposlouchanější písnička",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Reprodukováno uživatelem",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Nedávná vyhledávání",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Populární skladby",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Nejnovější vydání",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Pokračovat",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Následující",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Poslouchej teď",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Video",
+  "@video": {
+    "description": ""
   }
 }

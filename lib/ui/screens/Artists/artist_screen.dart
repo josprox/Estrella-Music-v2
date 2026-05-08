@@ -1,9 +1,8 @@
-
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
+import '/utils/youtube_share_manager.dart';
 
 import '/ui/screens/Artists/artist_screen_controller.dart';
 import '/models/album.dart';
@@ -56,7 +55,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
     final heroHeight = size.height * 0.45;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D14),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Obx(() {
         if (ctrl.isArtistContentFetced.isFalse) {
           return const Center(child: LoadingIndicator());
@@ -87,35 +86,52 @@ class _SpotifyArtistScreen extends StatelessWidget {
                             imageUrl: heroUrl,
                             fit: BoxFit.cover,
                             placeholder: (_, __) => Container(
-                              color: Colors.white10,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withAlpha(26),
                               child: const Center(child: LoadingIndicator()),
                             ),
                             errorWidget: (_, __, ___) => Container(
-                              color: Colors.white10,
-                              child: const Icon(Icons.person_rounded,
-                                  size: 80, color: Colors.white38),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withAlpha(26),
+                              child: Icon(Icons.person_rounded,
+                                  size: 80,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withAlpha(97)),
                             ),
                           )
                         : Container(
-                            color: Colors.white10,
-                            child: const Icon(Icons.person_rounded,
-                                size: 80, color: Colors.white38),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withAlpha(26),
+                            child: Icon(Icons.person_rounded,
+                                size: 80,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withAlpha(97)),
                           ),
                   ),
 
                   // Gradient fade to dark
                   Container(
                     height: heroHeight,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        stops: [0.0, 0.4, 0.75, 1.0],
+                        stops: const [0.0, 0.4, 0.75, 1.0],
                         colors: [
                           Colors.transparent,
                           Colors.transparent,
-                          Color(0x990D0D14),
-                          Color(0xFF0D0D14),
+                          Theme.of(context).colorScheme.surface.withAlpha(150),
+                          Theme.of(context).colorScheme.surface,
                         ],
                       ),
                     ),
@@ -132,10 +148,14 @@ class _SpotifyArtistScreen extends StatelessWidget {
                         height: 38,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.black.withAlpha(120),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surface
+                              .withAlpha(120),
                         ),
-                        child: const Icon(Icons.arrow_back_ios_new_rounded,
-                            color: Colors.white, size: 18),
+                        child: Icon(Icons.arrow_back_ios_new_rounded,
+                            color: Theme.of(context).colorScheme.onSurface,
+                            size: 18),
                       ),
                     ),
                   ),
@@ -159,8 +179,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
                               color: Colors.blue.withAlpha(50),
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                  color: Colors.blue.withAlpha(100),
-                                  width: 1),
+                                  color: Colors.blue.withAlpha(100), width: 1),
                             ),
                             child: const Row(
                               mainAxisSize: MainAxisSize.min,
@@ -184,8 +203,8 @@ class _SpotifyArtistScreen extends StatelessWidget {
                           // Artist name (large bold)
                           Text(
                             artist.name,
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
                               fontSize: 36,
                               fontWeight: FontWeight.w900,
                               letterSpacing: -1,
@@ -195,8 +214,11 @@ class _SpotifyArtistScreen extends StatelessWidget {
                           if (subscribers.isNotEmpty)
                             Text(
                               subscribers,
-                              style: const TextStyle(
-                                color: Colors.white60,
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withAlpha(153),
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -212,8 +234,8 @@ class _SpotifyArtistScreen extends StatelessWidget {
             // ── Action buttons: PLAY + FOLLOW + Share ─────────────────────
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 child: Row(
                   children: [
                     // PLAY button
@@ -227,25 +249,25 @@ class _SpotifyArtistScreen extends StatelessWidget {
                           );
                           return;
                         }
-                        playerController.startRadio(null,
-                            playlistid: radioId);
+                        playerController.startRadio(null, playlistid: radioId);
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 28, vertical: 12),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onSurface,
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        child: const Row(
+                        child: Row(
                           children: [
                             Icon(Icons.play_arrow_rounded,
-                                color: Colors.black, size: 20),
-                            SizedBox(width: 6),
+                                color: Theme.of(context).colorScheme.surface,
+                                size: 20),
+                            const SizedBox(width: 6),
                             Text(
-                              'PLAY',
+                              S.current.play.toUpperCase(),
                               style: TextStyle(
-                                color: Colors.black,
+                                color: Theme.of(context).colorScheme.surface,
                                 fontWeight: FontWeight.w800,
                                 fontSize: 13,
                                 letterSpacing: 0.5,
@@ -268,7 +290,8 @@ class _SpotifyArtistScreen extends StatelessWidget {
                                     ok
                                         ? add
                                             ? S.current.artistBookmarkAddAlert
-                                            : S.current.artistBookmarkRemoveAlert
+                                            : S.current
+                                                .artistBookmarkRemoveAlert
                                         : S.current.operationFailed,
                                     size: SanckBarSize.MEDIUM,
                                   ),
@@ -283,16 +306,23 @@ class _SpotifyArtistScreen extends StatelessWidget {
                               color: Colors.transparent,
                               borderRadius: BorderRadius.circular(30),
                               border: Border.all(
-                                  color: Colors.white54, width: 1.5),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withAlpha(138),
+                                  width: 1.5),
                             ),
                             child: Text(
                               ctrl.isAddedToLibrary.isTrue
-                                  ? 'FOLLOWING'
-                                  : 'FOLLOW',
+                                  ? S.current.following.toUpperCase()
+                                  : S.current.follow.toUpperCase(),
                               style: TextStyle(
                                 color: ctrl.isAddedToLibrary.isTrue
-                                    ? Colors.white
-                                    : Colors.white70,
+                                    ? Theme.of(context).colorScheme.onSurface
+                                    : Theme.of(context)
+                                        .colorScheme
+                                        .onSurface
+                                        .withAlpha(180),
                                 fontWeight: FontWeight.w700,
                                 fontSize: 13,
                                 letterSpacing: 0.5,
@@ -303,17 +333,25 @@ class _SpotifyArtistScreen extends StatelessWidget {
                     const Spacer(),
                     // Share
                     GestureDetector(
-                      onTap: () => Share.share(
-                          'https://music.youtube.com/channel/${ctrl.artist_.browseId}'),
+                      onTap: () => YoutubeShareManager.shareArtist(
+                          ctrl.artist_.browseId,
+                          artistName: ctrl.artist_.name),
                       child: Container(
                         width: 44,
                         height: 44,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.white.withAlpha(20),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(20),
                         ),
-                        child: const Icon(Icons.share_rounded,
-                            color: Colors.white60, size: 20),
+                        child: Icon(Icons.share_rounded,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withAlpha(153),
+                            size: 20),
                       ),
                     ),
                   ],
@@ -329,10 +367,10 @@ class _SpotifyArtistScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'About',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 22,
                           fontWeight: FontWeight.w800,
                         ),
@@ -341,15 +379,24 @@ class _SpotifyArtistScreen extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.white.withAlpha(12),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(12),
                           borderRadius: BorderRadius.circular(16),
                           border: Border.all(
-                              color: Colors.white.withAlpha(18)),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withAlpha(18)),
                         ),
                         child: Text(
                           description,
-                          style: const TextStyle(
-                            color: Colors.white70,
+                          style: TextStyle(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withAlpha(180),
                             fontSize: 14,
                             height: 1.5,
                           ),
@@ -370,10 +417,10 @@ class _SpotifyArtistScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Popular Tracks',
+                    Text(
+                      S.current.popularTracks,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 22,
                         fontWeight: FontWeight.w800,
                       ),
@@ -384,15 +431,20 @@ class _SpotifyArtistScreen extends StatelessWidget {
                           ScreenNavigationSetup.artistContentListScreen,
                           id: ScreenNavigationSetup.id,
                           arguments: {
-                            'browseEndpoint': ctrl.artistData['Songs'],
-                            'title': 'Songs',
+                            'browseEndpoint': Map<String, dynamic>.from(
+                                ctrl.artistData['Songs'] as Map),
+                            'title': S.current.popularTracks,
+                            'category': 'Songs',
                           },
                         );
                       },
-                      child: const Text(
-                        'Show all',
+                      child: Text(
+                        S.current.viewAll,
                         style: TextStyle(
-                          color: Colors.white54,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(138),
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                         ),
@@ -436,10 +488,10 @@ class _SpotifyArtistScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Latest Release',
+                      Text(
+                        S.current.latestRelease,
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontSize: 22,
                           fontWeight: FontWeight.w800,
                         ),
@@ -473,9 +525,12 @@ class _SpotifyArtistScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Albums',
+                              S.current.albums,
                               style: TextStyle(
-                                color: Colors.white.withAlpha(240),
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withAlpha(240),
                                 fontSize: 22,
                                 fontWeight: FontWeight.w800,
                               ),
@@ -486,15 +541,20 @@ class _SpotifyArtistScreen extends StatelessWidget {
                                   ScreenNavigationSetup.artistContentListScreen,
                                   id: ScreenNavigationSetup.id,
                                   arguments: {
-                                    'browseEndpoint': albums,
-                                    'title': 'Albums',
+                                    'browseEndpoint': Map<String, dynamic>.from(
+                                        albums as Map),
+                                    'title': S.current.albums,
+                                    'category': 'Albums',
                                   },
                                 );
                               },
-                              child: const Text(
-                                'Show all',
+                              child: Text(
+                                S.current.viewAll,
                                 style: TextStyle(
-                                  color: Colors.white54,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withAlpha(138),
                                   fontSize: 13,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -513,7 +573,8 @@ class _SpotifyArtistScreen extends StatelessWidget {
                           itemCount: items.length,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
                               child: _AlbumCard(item: items[index]),
                             );
                           },
@@ -526,13 +587,14 @@ class _SpotifyArtistScreen extends StatelessWidget {
             }),
 
             // ── Singles ────────────────────────────────────────────
-            _buildHorizontalSection(ctrl, 'Singles'),
-            
+            _buildHorizontalSection(context, ctrl, 'Singles'),
+
             // ── Videos ────────────────────────────────────────────
-            _buildHorizontalSection(ctrl, 'Videos', isVideo: true),
-            
+            _buildHorizontalSection(context, ctrl, 'Videos', isVideo: true),
+
             // ── Playlists ─────────────────────────────────────────
-            _buildHorizontalSection(ctrl, 'Playlists', isPlaylist: true),
+            _buildHorizontalSection(context, ctrl, 'Playlists',
+                isPlaylist: true),
 
             const SliverToBoxAdapter(child: SizedBox(height: 200)),
           ],
@@ -540,7 +602,10 @@ class _SpotifyArtistScreen extends StatelessWidget {
       }),
     );
   }
-  Widget _buildHorizontalSection(ArtistScreenController ctrl, String sectionKey, {bool isVideo = false, bool isPlaylist = false}) {
+
+  Widget _buildHorizontalSection(
+      BuildContext context, ArtistScreenController ctrl, String sectionKey,
+      {bool isVideo = false, bool isPlaylist = false}) {
     return Obx(() {
       final section = ctrl.artistData[sectionKey];
       if (section == null) return const SliverToBoxAdapter();
@@ -561,9 +626,20 @@ class _SpotifyArtistScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      sectionKey,
+                      sectionKey == 'Singles'
+                          ? S.current.singles
+                          : sectionKey == 'Videos'
+                              ? S.current.videos
+                              : sectionKey == 'Playlists'
+                                  ? S.current.playlists
+                                  : sectionKey == 'Albums'
+                                      ? S.current.albums
+                                      : sectionKey,
                       style: TextStyle(
-                        color: Colors.white.withAlpha(240),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withAlpha(240),
                         fontSize: 22,
                         fontWeight: FontWeight.w800,
                       ),
@@ -574,15 +650,27 @@ class _SpotifyArtistScreen extends StatelessWidget {
                           ScreenNavigationSetup.artistContentListScreen,
                           id: ScreenNavigationSetup.id,
                           arguments: {
-                            'browseEndpoint': section,
-                            'title': sectionKey,
+                            'browseEndpoint':
+                                Map<String, dynamic>.from(section as Map),
+                            'title': (sectionKey == 'Singles'
+                                ? S.current.singles
+                                : sectionKey == 'Videos'
+                                    ? S.current.videos
+                                    : sectionKey == 'Playlists'
+                                        ? S.current.playlists
+                                        : sectionKey == 'Albums'
+                                            ? S.current.albums
+                                            : sectionKey),
                           },
                         );
                       },
-                      child: const Text(
-                        'Show all',
+                      child: Text(
+                        S.current.viewAll,
                         style: TextStyle(
-                          color: Colors.white54,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(138),
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
                         ),
@@ -593,7 +681,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               SizedBox(
-                height: 220, 
+                height: 220,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   physics: const BouncingScrollPhysics(),
@@ -602,7 +690,10 @@ class _SpotifyArtistScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: _AlbumCard(item: items[index], isVideo: isVideo, isPlaylist: isPlaylist),
+                      child: _AlbumCard(
+                          item: items[index],
+                          isVideo: isVideo,
+                          isPlaylist: isPlaylist),
                     );
                   },
                 ),
@@ -668,8 +759,8 @@ class _TrackRow extends StatelessWidget {
               width: 24,
               child: Text(
                 '$index',
-                style: const TextStyle(
-                  color: Colors.white38,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface.withAlpha(97),
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                 ),
@@ -690,9 +781,14 @@ class _TrackRow extends StatelessWidget {
                   : Container(
                       width: 48,
                       height: 48,
-                      color: Colors.white12,
-                      child: const Icon(Icons.music_note_rounded,
-                          color: Colors.white38, size: 22),
+                      color:
+                          Theme.of(context).colorScheme.onSurface.withAlpha(31),
+                      child: Icon(Icons.music_note_rounded,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(97),
+                          size: 22),
                     ),
             ),
             const SizedBox(width: 12),
@@ -705,8 +801,8 @@ class _TrackRow extends StatelessWidget {
                     title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                     ),
@@ -715,8 +811,11 @@ class _TrackRow extends StatelessWidget {
                     artist,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white54,
+                    style: TextStyle(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onSurface
+                          .withAlpha(138),
                       fontSize: 12,
                     ),
                   ),
@@ -727,8 +826,8 @@ class _TrackRow extends StatelessWidget {
             if (plays.isNotEmpty)
               Text(
                 plays,
-                style: const TextStyle(
-                  color: Colors.white38,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface.withAlpha(97),
                   fontSize: 12,
                 ),
               ),
@@ -750,7 +849,7 @@ class _LatestReleaseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = item?.title ?? '';
     final year = item?.year ?? '';
-    final type = item?.description ?? 'Album';
+    final type = item?.description ?? S.current.album;
     final thumbUrl = (item?.thumbnailUrl as String?) ?? '';
 
     return InkWell(
@@ -762,9 +861,10 @@ class _LatestReleaseCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white.withAlpha(12),
+          color: Theme.of(context).colorScheme.onSurface.withAlpha(12),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withAlpha(18)),
+          border: Border.all(
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(18)),
         ),
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -781,9 +881,14 @@ class _LatestReleaseCard extends StatelessWidget {
                   : Container(
                       width: 80,
                       height: 80,
-                      color: Colors.white12,
-                      child: const Icon(Icons.album_rounded,
-                          color: Colors.white38, size: 36),
+                      color:
+                          Theme.of(context).colorScheme.onSurface.withAlpha(31),
+                      child: Icon(Icons.album_rounded,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(97),
+                          size: 36),
                     ),
             ),
             const SizedBox(width: 16),
@@ -793,8 +898,8 @@ class _LatestReleaseCard extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
@@ -804,25 +909,32 @@ class _LatestReleaseCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     '$type · $year',
-                    style: const TextStyle(
-                      color: Colors.white54,
+                    style: TextStyle(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onSurface
+                          .withAlpha(138),
                       fontSize: 13,
                     ),
                   ),
                   const SizedBox(height: 12),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.white.withAlpha(20),
+                      color:
+                          Theme.of(context).colorScheme.onSurface.withAlpha(20),
                       borderRadius: BorderRadius.circular(20),
-                      border:
-                          Border.all(color: Colors.white.withAlpha(30)),
+                      border: Border.all(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(30)),
                     ),
-                    child: const Text(
-                      'Listen Now',
+                    child: Text(
+                      S.current.listenNow,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
                       ),
@@ -845,16 +957,30 @@ class _AlbumCard extends StatelessWidget {
   final dynamic item;
   final bool isVideo;
   final bool isPlaylist;
-  const _AlbumCard({required this.item, this.isVideo = false, this.isPlaylist = false});
+  const _AlbumCard(
+      {required this.item, this.isVideo = false, this.isPlaylist = false});
 
   @override
   Widget build(BuildContext context) {
     final title = item?.title ?? '';
-    final year = (item is MediaItem) ? (item.extras?['year'] ?? '') : (item?.year ?? '');
+    final year =
+        (item is MediaItem) ? (item.extras?['year'] ?? '') : (item?.year ?? '');
     final type = (item is MediaItem)
-        ? (item.extras?['description'] ?? (isVideo ? 'Video' : isPlaylist ? 'Playlist' : 'Album'))
-        : (item?.description ?? (isVideo ? 'Video' : isPlaylist ? 'Playlist' : 'Album'));
-    final thumbUrl = isVideo ? (item?.artUri ?? '').toString() : (item?.thumbnailUrl as String?) ?? '';
+        ? (item.extras?['description'] ??
+            (isVideo
+                ? S.current.video
+                : isPlaylist
+                    ? S.current.playlist
+                    : S.current.album))
+        : (item?.description ??
+            (isVideo
+                ? S.current.video
+                : isPlaylist
+                    ? S.current.playlist
+                    : S.current.album));
+    final thumbUrl = isVideo
+        ? (item?.artUri ?? '').toString()
+        : (item?.thumbnailUrl as String?) ?? '';
 
     return InkWell(
       onTap: () {
@@ -879,9 +1005,10 @@ class _AlbumCard extends StatelessWidget {
       child: Container(
         width: 140, // Fixed width for horizontal list items
         decoration: BoxDecoration(
-          color: Colors.white.withAlpha(5),
+          color: Theme.of(context).colorScheme.onSurface.withAlpha(5),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: Colors.white.withAlpha(15)),
+          border: Border.all(
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(15)),
         ),
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -897,17 +1024,24 @@ class _AlbumCard extends StatelessWidget {
                         fit: BoxFit.cover,
                       )
                     : Container(
-                        color: Colors.white12,
-                        child: const Icon(Icons.album_rounded,
-                            color: Colors.white38, size: 48),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withAlpha(31),
+                        child: Icon(Icons.album_rounded,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withAlpha(97),
+                            size: 48),
                       ),
               ),
             ),
             const SizedBox(height: 12),
             Text(
               title,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
               ),
@@ -917,8 +1051,8 @@ class _AlbumCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               '$type${year.isNotEmpty ? ' · $year' : ''}',
-              style: const TextStyle(
-                color: Colors.white54,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface.withAlpha(138),
                 fontSize: 12,
               ),
               maxLines: 1,
@@ -930,7 +1064,6 @@ class _AlbumCard extends StatelessWidget {
     );
   }
 }
-
 
 // ─────────────────────────────────────────────────────────────────────────────
 // AboutArtist — kept for backward compatibility (used in ArtistScreenBN)

@@ -416,5 +416,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "favorit yang terlupakan",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Lagu yang paling banyak didengarkan",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Direproduksi oleh",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Pencarian terkini",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Lagu populer",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Rilis terbaru",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Melanjutkan",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Mengikuti",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Dengarkan sekarang",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Video",
+  "@video": {
+    "description": ""
   }
 }

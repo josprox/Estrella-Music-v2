@@ -2,8 +2,8 @@ import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:widget_marquee/widget_marquee.dart';
+import '/utils/youtube_share_manager.dart';
 
 import '/models/playling_from.dart';
 import '/models/thumbnail.dart';
@@ -499,22 +499,16 @@ class PlaylistScreen extends StatelessWidget {
                                                 final content = playlistController
                                                     .playlist.value;
                                                 if (content.isPipedPlaylist) {
-                                                  Share.share(
-                                                      "https://piped.video/playlist?list=${content.playlistId}");
+                                                  YoutubeShareManager.sharePlaylist(content.playlistId);
                                                 } else {
                                                   final isPlaylistIdPrefixAvlbl =
                                                       content.playlistId
                                                               .substring(0, 2) ==
                                                           "VL";
-                                                  String url =
-                                                      "https://youtube.com/playlist?list=";
-                                      
-                                                  url = isPlaylistIdPrefixAvlbl
-                                                      ? url +
-                                                          content.playlistId
-                                                              .substring(2)
-                                                      : url + content.playlistId;
-                                                  Share.share(url);
+                                                  final id = isPlaylistIdPrefixAvlbl
+                                                      ? content.playlistId.substring(2)
+                                                      : content.playlistId;
+                                                  YoutubeShareManager.sharePlaylist(id);
                                                 }
                                               },
                                               icon: const Icon(

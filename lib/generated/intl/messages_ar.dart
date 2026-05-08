@@ -265,7 +265,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "exporting": MessageLookupByLibrary.simpleMessage("جار التصدير..."),
     "favorites": MessageLookupByLibrary.simpleMessage("المفضلة"),
     "featuredplaylists": MessageLookupByLibrary.simpleMessage("قوائم مقترحة"),
+    "follow": MessageLookupByLibrary.simpleMessage("يكمل"),
+    "following": MessageLookupByLibrary.simpleMessage("التالي"),
     "for1": MessageLookupByLibrary.simpleMessage("لأجل"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "المفضلة المنسية",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("إلكترونيات"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("الهيب هوب"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("موسيقى الجاز"),
@@ -309,6 +314,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "languageDes": MessageLookupByLibrary.simpleMessage("ضبط لغة التطبيق"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("أحدث إصدار"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("لنبدأ.."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("البومات المكتبة"),
     "libArtists": MessageLookupByLibrary.simpleMessage("فنانين المكتبة"),
@@ -321,6 +327,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "رابط مع Piped للقوائم التشغيل",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("استمع الآن"),
     "local": MessageLookupByLibrary.simpleMessage("محلي"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("شدة الصوت بالديسيبل"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -337,6 +344,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "حدد الملف والاستيراد",
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("دقائق"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "الأكثر استماعا للأغنية",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "الموسيقى والتشغيل",
     ),
@@ -405,6 +415,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("قوائم التشغيل"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("ألتالي"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("المسارات الشعبية"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "جاري معالجة الملفات...",
     ),
@@ -431,6 +442,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "إعادة ترتيب الأغاني",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "عمليات البحث الأخيرة",
+    ),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("استمعت مؤخرا"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
       "إزالة من مكتبة الأغاني",
@@ -451,6 +465,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "إعادة تسمية قائمة التشغيل",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("مستنسخة بواسطة"),
     "reset": MessageLookupByLibrary.simpleMessage("إعادة ضبط"),
     "resetblacklistedplaylist": MessageLookupByLibrary.simpleMessage(
       "إعادة تعيين قوائم التشغيل المدرجة في القائمة السوداء",
@@ -580,6 +595,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم العثور على رابط، انقر عليه لفتح/تشغيل المحتوى المرتبط",
     ),
     "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+    "video": MessageLookupByLibrary.simpleMessage("فيديو"),
     "videos": MessageLookupByLibrary.simpleMessage("فيديو"),
     "viewAll": MessageLookupByLibrary.simpleMessage("رؤية الكل"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("عرض الفنان"),

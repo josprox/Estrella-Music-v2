@@ -74,16 +74,31 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "close": MessageLookupByLibrary.simpleMessage("Κοντά"),
     "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+    "follow": MessageLookupByLibrary.simpleMessage("Συνεχίζω"),
+    "following": MessageLookupByLibrary.simpleMessage("Εξής"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "ξεχασμένα αγαπημένα",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Ηλεκτρονική"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("χιπ χοπ"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Τζαζ"),
     "genre_latin": MessageLookupByLibrary.simpleMessage("λατινικά"),
     "genre_pop": MessageLookupByLibrary.simpleMessage("Κρότος"),
     "genre_rock": MessageLookupByLibrary.simpleMessage("Βράχος"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Τελευταία έκδοση"),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Άκου τώρα"),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Επιλέξτε αρχείο και εισαγωγή",
     ),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Το πιο πολυακουσμένο τραγούδι",
+    ),
     "password_text": MessageLookupByLibrary.simpleMessage("Σύνθημα"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Δημοφιλή κομμάτια"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "Πρόσφατες αναζητήσεις",
+    ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Αναπαράγεται από"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Πρόσφατες αναζητήσεις",
     ),
@@ -102,5 +117,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Μετανάστευση από την Joss Music Kotlin",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Όνομα χρήστη"),
+    "video": MessageLookupByLibrary.simpleMessage("Βίντεο"),
   };
 }

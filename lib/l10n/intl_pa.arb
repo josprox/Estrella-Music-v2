@@ -384,5 +384,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "ਭੁੱਲ ਗਏ ਮਨਪਸੰਦ",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "ਸਭ ਤੋਂ ਵੱਧ ਸੁਣਿਆ ਗਿਆ ਗੀਤ",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "ਦੁਆਰਾ ਦੁਬਾਰਾ ਤਿਆਰ ਕੀਤਾ ਗਿਆ",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "ਹਾਲੀਆ ਖੋਜਾਂ",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "ਪ੍ਰਸਿੱਧ ਟਰੈਕ",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "ਤਾਜ਼ਾ ਰਿਲੀਜ਼",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "ਜਾਰੀ ਰੱਖੋ",
+  "@follow": {
+    "description": ""
+  },
+  "following": "ਅਨੁਸਰਣ ਕਰ ਰਹੇ ਹਨ",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "ਹੁਣ ਸੁਣੋ",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "ਵੀਡੀਓ",
+  "@video": {
+    "description": ""
   }
 }

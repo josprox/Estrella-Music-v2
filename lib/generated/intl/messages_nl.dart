@@ -228,7 +228,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "Aanbevolen Afspeellijsten",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("Doorgaan"),
+    "following": MessageLookupByLibrary.simpleMessage("Volgende"),
     "for1": MessageLookupByLibrary.simpleMessage("voor"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "vergeten favorieten",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronica"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hiphop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
@@ -269,6 +274,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("Taal"),
     "languageDes": MessageLookupByLibrary.simpleMessage("Zet App taal"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Nieuwste uitgave"),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Bibliotheek Albums"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Bibliotheek Artiesten"),
     "libPlaylists": MessageLookupByLibrary.simpleMessage(
@@ -282,6 +288,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Link met piped voor afspeellijsten",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Luister nu"),
     "local": MessageLookupByLibrary.simpleMessage("Lokaal"),
     "low": MessageLookupByLibrary.simpleMessage("Laag"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
@@ -291,6 +298,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Bestand selecteren en importeren",
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("minuten"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Het meest beluisterde nummer",
+    ),
     "networkError1": MessageLookupByLibrary.simpleMessage(
       "Oops netwerk error!",
     ),
@@ -344,12 +354,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "Successvol hernoemd!",
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Afspeellijsten"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Populaire nummers"),
     "quickpicks": MessageLookupByLibrary.simpleMessage("Snelle keuzes"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Radio is niet beschikbaar voor deze artiest!",
     ),
     "reArrangePlaylist": MessageLookupByLibrary.simpleMessage(
       "Afspeellijst herschikken",
+    ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "Recente zoekopdrachten",
     ),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Onlangs Gespeeld"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
@@ -371,6 +385,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Hernoem Afspeellijst",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Gereproduceerd door"),
     "reset": MessageLookupByLibrary.simpleMessage("Reset"),
     "resetblacklistedplaylist": MessageLookupByLibrary.simpleMessage(
       "Reset op de zwarte lijst gezette afspeellijsten",
@@ -483,6 +498,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unlinkAlert": MessageLookupByLibrary.simpleMessage("Successvol unlink!"),
     "upNext": MessageLookupByLibrary.simpleMessage("Volgende"),
     "username": MessageLookupByLibrary.simpleMessage("Gebruikersnaam"),
+    "video": MessageLookupByLibrary.simpleMessage("Video"),
     "videos": MessageLookupByLibrary.simpleMessage("Videos"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Bekijk alles"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Bekijk Artiest"),

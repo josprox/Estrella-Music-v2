@@ -155,5 +155,45 @@
   "close": "关闭",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "忘记收藏夹",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "听次数最多的歌曲",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "转载者",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "最近的搜索",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "热门曲目",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "最新发布",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "继续",
+  "@follow": {
+    "description": ""
+  },
+  "following": "下列的",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "现在听",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "视频",
+  "@video": {
+    "description": ""
   }
 }

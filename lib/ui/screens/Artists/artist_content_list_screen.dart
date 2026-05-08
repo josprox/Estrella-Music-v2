@@ -7,6 +7,7 @@ import '/ui/widgets/loader.dart';
 import '/ui/widgets/image_widget.dart';
 import '/ui/player/player_controller.dart';
 import '/ui/navigator.dart';
+import '/generated/l10n.dart';
 
 class ArtistContentListController extends GetxController {
   final musicServices = Get.find<MusicServices>();
@@ -16,15 +17,24 @@ class ArtistContentListController extends GetxController {
   String? additionalParams;
   late Map<String, dynamic> browseEndpoint;
   late String categoryTitle;
+  late String categoryRaw;
 
   final ScrollController scrollController = ScrollController();
 
   @override
   void onInit() {
-    final args = Get.arguments as Map<String, dynamic>;
-    browseEndpoint = args['browseEndpoint'];
-    categoryTitle = args['title'];
-    
+    final dynamic args = Get.arguments;
+    if (args is Map<String, dynamic>) {
+      browseEndpoint = args['browseEndpoint'] ?? {};
+      categoryTitle = args['title'] ?? '';
+      categoryRaw = args['category'] ?? categoryTitle;
+    } else {
+      // Fallback or error handling if needed
+      browseEndpoint = {};
+      categoryTitle = '';
+      categoryRaw = '';
+    }
+
     _fetchInitialContent();
     
     scrollController.addListener(() {
@@ -38,7 +48,7 @@ class ArtistContentListController extends GetxController {
   Future<void> _fetchInitialContent() async {
     isLoading.value = true;
     try {
-      final result = await musicServices.getArtistRealtedContent(browseEndpoint, categoryTitle);
+      final result = await musicServices.getArtistRealtedContent(browseEndpoint, categoryRaw);
       items.assignAll(result['results'] ?? []);
       additionalParams = result['additionalParams'];
     } catch (e) {
@@ -55,7 +65,7 @@ class ArtistContentListController extends GetxController {
     try {
       final result = await musicServices.getArtistRealtedContent(
         browseEndpoint, 
-        categoryTitle,
+        categoryRaw,
         additionalParams: additionalParams ?? ""
       );
       items.addAll(result['results'] ?? []);
@@ -79,23 +89,27 @@ class ArtistContentListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Use the section title as a unique tag so each "Show all" push
-    // gets its own controller instead of reusing (and wiping) a stale one.
-    final args = Get.arguments as Map<String, dynamic>;
-    final tag = args['title'] as String;
+    final dynamic args = ModalRoute.of(context)?.settings.arguments;
+    if (args == null || args is! Map<String, dynamic>) {
+      return const Scaffold(body: Center(child: Text("Error: Missing arguments")));
+    }
+    final tag = (args['category'] ?? args['title']) as String;
 
     final controller = Get.isRegistered<ArtistContentListController>(tag: tag)
         ? Get.find<ArtistContentListController>(tag: tag)
         : Get.put(ArtistContentListController(), tag: tag);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D14),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: Text(controller.categoryTitle,
-            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onSurface)),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).colorScheme.onSurface),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded),
           onPressed: () {
@@ -123,14 +137,14 @@ class ArtistContentListScreen extends StatelessWidget {
             }
 
             final item = controller.items[index];
-            return _getContentTile(item, index, controller.items);
+            return _getContentTile(context, item, index, controller.items);
           },
         );
       }),
     );
   }
 
-  Widget _getContentTile(dynamic item, int index, List<dynamic> allItems) {
+  Widget _getContentTile(BuildContext context, dynamic item, int index, List<dynamic> allItems) {
     if (item is MediaItem) {
       return ListTile(
         leading: ImageWidget(
@@ -138,9 +152,15 @@ class ArtistContentListScreen extends StatelessWidget {
           size: 50,
         ),
         title: Text(item.title, maxLines: 1, overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-        subtitle: Text(item.artist ?? '', maxLines: 1, overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.white60, fontSize: 12)),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontWeight: FontWeight.w500)),
+        subtitle: Text(item.artist ?? '',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface.withAlpha(153),
+                fontSize: 12)),
         onTap: () {
           final pCtrl = Get.find<PlayerController>();
           // Convert all currently loaded MediaItems to play as a list
@@ -158,9 +178,15 @@ class ArtistContentListScreen extends StatelessWidget {
           size: 50,
         ),
         title: Text(item.title, maxLines: 1, overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-        subtitle: Text("${item.year ?? ''} • ${item.description ?? 'Album'}", maxLines: 1, overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.white60, fontSize: 12)),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontWeight: FontWeight.w500)),
+        subtitle: Text("${item.year ?? ''} • ${item.description ?? S.current.album}",
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface.withAlpha(153),
+                fontSize: 12)),
         onTap: () {
           Get.toNamed(
             ScreenNavigationSetup.albumScreen,

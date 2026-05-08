@@ -316,7 +316,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Danh sách phát nổi bật",
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Không tìm thấy tệp"),
+    "follow": MessageLookupByLibrary.simpleMessage("Tiếp tục"),
+    "following": MessageLookupByLibrary.simpleMessage("Tiếp theo"),
     "for1": MessageLookupByLibrary.simpleMessage("cho"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "lãng quên yêu thích",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Điện tử"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("nhạc jazz"),
@@ -391,6 +396,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Cài đặt ngôn ngữ ứng dụng",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage(
+      "Bản phát hành mới nhất",
+    ),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Bắt đầu.."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Thư viện tập nhạc"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Thư viện nghệ sỹ"),
@@ -408,6 +416,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Liên kết với đường ống cho danh sách phát",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Nghe bây giờ"),
     "local": MessageLookupByLibrary.simpleMessage("Địa phương"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Độ ồn Db"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -425,6 +434,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("phút"),
     "misc": MessageLookupByLibrary.simpleMessage("Khác"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Bài hát được nghe nhiều nhất",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Âm nhạc & Phát nhạc",
     ),
@@ -508,6 +520,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Danh sách phát"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Tiếp theo"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Bài hát phổ biến"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Đang xử lý tập tin...",
     ),
@@ -536,6 +549,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "Sắp xếp lại bài hát",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Tìm kiếm gần đây"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Đã phát gần đây"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
       "Xóa khỏi thư viện bài hát",
@@ -554,6 +568,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Đổi tên danh sách phát",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Được sao chép bởi"),
     "reset": MessageLookupByLibrary.simpleMessage("Cài lại"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
       "Khôi phục cài đặt mặc định",
@@ -701,6 +716,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Nhấn vào liên kết được phát hiện để mở nội dung",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Tên người dùng"),
+    "video": MessageLookupByLibrary.simpleMessage("Băng hình"),
     "videos": MessageLookupByLibrary.simpleMessage("Phim ảnh"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Xem tất cả"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Xem Nghệ sĩ"),

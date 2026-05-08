@@ -425,5 +425,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "忘れられたお気に入り",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "最もよく聞かれた曲",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "複製者",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "最近の検索",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "人気の曲",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "最新リリース",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "続く",
+  "@follow": {
+    "description": ""
+  },
+  "following": "続く",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "今すぐ聞いてください",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "ビデオ",
+  "@video": {
+    "description": ""
   }
 }

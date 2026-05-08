@@ -418,5 +418,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "favoritos esquecidos",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "A música mais ouvida",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Reproduzido por",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Pesquisas recentes",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Faixas populares",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Último lançamento",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Continuar",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Seguindo",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Ouça agora",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Vídeo",
+  "@video": {
+    "description": ""
   }
 }

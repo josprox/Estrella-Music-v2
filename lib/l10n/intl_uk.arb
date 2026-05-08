@@ -425,5 +425,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "забуті улюблені",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Пісня, яку найбільше слухають",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Відтворено",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Останні пошуки",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Популярні треки",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Останній випуск",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Продовжити",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Слідую",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Слухай зараз",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "відео",
+  "@video": {
+    "description": ""
   }
 }

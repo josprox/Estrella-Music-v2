@@ -524,12 +524,48 @@
   "auth_register_success": "Cuenta creada correctamente.",
   "auth_register_error": "No fue posible crear la cuenta.",
   "auth_recovery_email_sent": "Correo enviado.",
-  "auth_recovery_email_error": "No fue posible enviar el correo."
-,
+  "auth_recovery_email_error": "No fue posible enviar el correo.",
   "latestVersion": "Última Versión Disponible",
   "updateApp": "Actualizar Aplicación",
   "loadInfoUpdate": "No se pudo cargar la información de la actualización",
   "infoNotAvailable": "Información no disponible",
   "developedBy": "Desarrollado y Mantenido por Joss Estrada (JOSPROX)",
-  "copyrightNotice": "© 2026 JOSPROX. Licencia GPL v3.0"
-}
+  "copyrightNotice": "© 2026 JOSPROX. Licencia GPL v3.0",
+  "forgottenFavorites": "Favoritos olvidados",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "La canción más escuchada",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Reproducida por",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Búsquedas recientes",
+  "popularTracks": "Pistas populares",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Último lanzamiento",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Seguir",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Siguiendo",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Escuchar ahora",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Video",
+  "@video": {
+    "description": ""
+  }
+}

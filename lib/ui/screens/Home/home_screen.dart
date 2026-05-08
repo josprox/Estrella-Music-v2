@@ -20,6 +20,7 @@ import '../Settings/settings_screen.dart';
 import '/models/quick_picks.dart';
 
 import '/ui/theme/app_spacing.dart';
+import '../../widgets/home_custom_sections.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -182,6 +183,15 @@ class Body extends StatelessWidget {
                                           homeScreenController.quickPicks.value,
                                       scrollController: sc);
                                 }),
+                                Obx(() => MostListenedWidget(
+                                    content: homeScreenController
+                                        .mostListened.value)),
+                                Obx(() => homeScreenController.randomMusic.value != null ? QuickPicksWidget(
+                                    content: homeScreenController
+                                        .randomMusic.value!) : const SizedBox.shrink()),
+                                Obx(() => homeScreenController.forgottenFavorites.value != null ? QuickPicksWidget(
+                                    content: homeScreenController
+                                        .forgottenFavorites.value!) : const SizedBox.shrink()),
                                 ...getWidgetList(
                                     homeScreenController.middleContent,
                                     homeScreenController),

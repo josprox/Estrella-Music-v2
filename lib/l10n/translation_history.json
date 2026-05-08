@@ -5717,5 +5717,1335 @@
     },
     "timestamp": "2026-03-30T20:30:35.282148",
     "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Favoritos olvidados",
+      "key": "forgottenFavorites",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T21:37:17.990002",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "La canción más escuchada",
+      "key": "mostListenedSong",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T21:41:02.540815",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Reproducida por",
+      "key": "reproducedBy",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T21:41:43.663186",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Búsquedas recientes",
+      "key": "recentSearches",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T21:42:23.084201",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Pistas populares",
+      "key": "popularTracks",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": "Popular Tracks",
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": "Pistas populares",
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T22:45:24.645815",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Último lanzamiento",
+      "key": "latestRelease",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": "Latest Release",
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T22:47:14.705265",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Seguir",
+      "key": "follow",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": "Follow",
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T22:47:34.350882",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Siguiendo",
+      "key": "following",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": "Following",
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T22:47:52.299731",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "es",
+      "original_text": "Escuchar ahora",
+      "key": "listenNow",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": "Listen Now",
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T22:48:05.961399",
+    "platform": "flutter"
+  },
+  {
+    "type": "add_key",
+    "data": {
+      "base_lang": "en",
+      "original_text": "Video",
+      "key": "video",
+      "desc": "",
+      "affected_files": {
+        "intl_en.arb": {
+          "old_value": "Video",
+          "old_desc": null
+        },
+        "intl_ar.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_be.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bg.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_bn.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_cs.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_de.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_el.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_es.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_fr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_hu.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_id.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_it.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ja.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ko.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ml.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nb.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_nl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_or.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pa.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pl.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_pt.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_ru.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_sv.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_tr.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_uk.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_vi.arb": {
+          "old_value": null,
+          "old_desc": null
+        },
+        "intl_zh.arb": {
+          "old_value": null,
+          "old_desc": null
+        }
+      }
+    },
+    "timestamp": "2026-05-07T22:48:22.714868",
+    "platform": "flutter"
   }
 ]

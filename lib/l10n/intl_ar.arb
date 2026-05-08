@@ -390,5 +390,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "المفضلة المنسية",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "الأكثر استماعا للأغنية",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "مستنسخة بواسطة",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "عمليات البحث الأخيرة",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "المسارات الشعبية",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "أحدث إصدار",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "يكمل",
+  "@follow": {
+    "description": ""
+  },
+  "following": "التالي",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "استمع الآن",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "فيديو",
+  "@video": {
+    "description": ""
   }
 }

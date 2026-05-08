@@ -214,5 +214,45 @@
   "close": "അടയ്ക്കുക",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "മറന്നുപോയ പ്രിയപ്പെട്ടവ",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "ഏറ്റവും കൂടുതൽ കേട്ട പാട്ട്",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "പുനർനിർമ്മിച്ചത്",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "സമീപകാല തിരയലുകൾ",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "ജനപ്രിയ ട്രാക്കുകൾ",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "ഏറ്റവും പുതിയ റിലീസ്",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "തുടരുക",
+  "@follow": {
+    "description": ""
+  },
+  "following": "പിന്തുടരുന്നു",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "ഇപ്പോൾ കേൾക്കൂ",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "വീഡിയോ",
+  "@video": {
+    "description": ""
   }
 }

@@ -280,5 +280,45 @@
   "close": "بستن",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "مورد علاقه های فراموش شده",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "پر شنیده ترین آهنگ",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "تکثیر شده توسط",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "جستجوهای اخیر",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "آهنگ های محبوب",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "آخرین نسخه",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "ادامه دهید",
+  "@follow": {
+    "description": ""
+  },
+  "following": "دنبال کردن",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "حالا گوش کن",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "ویدئو",
+  "@video": {
+    "description": ""
   }
 }

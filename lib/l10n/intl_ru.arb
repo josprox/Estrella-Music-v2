@@ -426,5 +426,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "забытое избранное",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Самая прослушиваемая песня",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Воспроизведено",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Недавние поиски",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Популярные треки",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Последний выпуск",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Продолжать",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Следующий",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Слушай сейчас",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Видео",
+  "@video": {
+    "description": ""
   }
 }

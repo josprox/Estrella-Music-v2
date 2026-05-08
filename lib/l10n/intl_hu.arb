@@ -254,5 +254,45 @@
   "close": "Közeli",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "elfelejtett kedvencek",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "A leghallgatottabb dal",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Reprodukálta",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Legutóbbi keresések",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Népszerű számok",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Legújabb kiadás",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Folytatás",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Következő",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Figyelj most",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Videó",
+  "@video": {
+    "description": ""
   }
 }

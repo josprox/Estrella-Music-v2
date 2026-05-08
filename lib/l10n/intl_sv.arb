@@ -317,5 +317,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "glömda favoriter",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Den mest lyssnade låten",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Återges av",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Senaste sökningar",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Populära låtar",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Senaste utgåvan",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Fortsätta",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Följande",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Lyssna nu",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Video",
+  "@video": {
+    "description": ""
   }
 }

@@ -425,5 +425,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "lãng quên yêu thích",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Bài hát được nghe nhiều nhất",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Được sao chép bởi",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Tìm kiếm gần đây",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Bài hát phổ biến",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Bản phát hành mới nhất",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Tiếp tục",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Tiếp theo",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Nghe bây giờ",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Băng hình",
+  "@video": {
+    "description": ""
   }
 }

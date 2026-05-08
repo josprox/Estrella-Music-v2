@@ -304,7 +304,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "fileNotFound": MessageLookupByLibrary.simpleMessage(
       "Plik nie został znaleziony",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("Kontynuować"),
+    "following": MessageLookupByLibrary.simpleMessage("Następny"),
     "for1": MessageLookupByLibrary.simpleMessage("dla"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "zapomniane ulubione",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronika"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip-hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
@@ -379,6 +384,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Ustaw język aplikacji",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Najnowsze wydanie"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Zaczynajmy..."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Biblioteka Albumów"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Biblioteka Wykonawców"),
@@ -391,6 +397,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Link z potokiem dla list odtwarzania",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Posłuchaj teraz"),
     "local": MessageLookupByLibrary.simpleMessage("Lokalny"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("GłośnośćDb"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -408,6 +415,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("minut"),
     "misc": MessageLookupByLibrary.simpleMessage("Różne"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Najczęściej słuchana piosenka",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Muzyka i Odtwarzanie",
     ),
@@ -493,6 +503,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Playlisty"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Nadchodzące"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Popularne utwory"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Przetwarzanie plików...",
     ),
@@ -521,6 +532,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "Zmień kolejność utworów",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "Ostatnie wyszukiwania",
+    ),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "Ostatnio odtwarzane",
     ),
@@ -539,6 +553,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Zmień nazwę playlisty",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Reprodukowane przez"),
     "reset": MessageLookupByLibrary.simpleMessage("Resetuj"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
       "Przywracanie ustawień domyślnych",
@@ -682,6 +697,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Wykryty adres URL - kliknij go, aby otworzyć/odtworzyć powiązaną zawartość",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Nazwa użytkownika"),
+    "video": MessageLookupByLibrary.simpleMessage("Wideo"),
     "videos": MessageLookupByLibrary.simpleMessage("Teledyski"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Pokaż wszystko"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Zobacz wykonawcę"),

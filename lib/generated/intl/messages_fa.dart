@@ -169,6 +169,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "لیست پخش های برگزیده",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("ادامه دهید"),
+    "following": MessageLookupByLibrary.simpleMessage("دنبال کردن"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "مورد علاقه های فراموش شده",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("الکترونیک"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("هیپ هاپ"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("جاز"),
@@ -194,6 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("زبان"),
     "languageDes": MessageLookupByLibrary.simpleMessage("تنظیم زبان نرم افزار"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("آخرین نسخه"),
     "libAlbums": MessageLookupByLibrary.simpleMessage("آلبوم های کتابخانه"),
     "libArtists": MessageLookupByLibrary.simpleMessage("هنرمندان کتابخانه"),
     "libPlaylists": MessageLookupByLibrary.simpleMessage(
@@ -202,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "libSongs": MessageLookupByLibrary.simpleMessage("آهنگ های کتابخانه"),
     "library": MessageLookupByLibrary.simpleMessage("کتابخانه"),
     "light": MessageLookupByLibrary.simpleMessage("روشن"),
+    "listenNow": MessageLookupByLibrary.simpleMessage("حالا گوش کن"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
       "عادی سازی بلندی صدا",
     ),
@@ -214,6 +221,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("دقیقه"),
     "misc": MessageLookupByLibrary.simpleMessage("قیره"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "پر شنیده ترین آهنگ",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage("موسیقی و پخش"),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "خطای شبکه! اتصال شبکه خود را بررسی کنید.",
@@ -244,6 +254,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("لیست پخش"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("پس از این"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("آهنگ های محبوب"),
     "queueLoop": MessageLookupByLibrary.simpleMessage("حلقه زنی صف"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "حالت حلقه زنی صف نمی‌تواند زمانی که حالت بُر زدن فعال است غیرفعال شود.",
@@ -266,6 +277,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "تنظیم مجدد آهنگ‌ ها",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("جستجوهای اخیر"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("اخیرا پخش شده"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
       "حذف از موسیقی های کتابخانه",
@@ -280,6 +292,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "تغییر نام لیست پخش",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("تکثیر شده توسط"),
     "restoreLastPlaybackSession": MessageLookupByLibrary.simpleMessage(
       "بازگرداندن آخرین نشست پخش",
     ),
@@ -338,6 +351,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "trending": MessageLookupByLibrary.simpleMessage("ترند"),
     "upNext": MessageLookupByLibrary.simpleMessage("بعد از این"),
     "username": MessageLookupByLibrary.simpleMessage("نام کاربری"),
+    "video": MessageLookupByLibrary.simpleMessage("ویدئو"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("دیدن هنرمند"),
   };
 }

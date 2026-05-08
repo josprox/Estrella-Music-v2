@@ -74,16 +74,29 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "close": MessageLookupByLibrary.simpleMessage("Lukke"),
     "email": MessageLookupByLibrary.simpleMessage("E-post"),
+    "follow": MessageLookupByLibrary.simpleMessage("Fortsette"),
+    "following": MessageLookupByLibrary.simpleMessage("Følgende"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "glemte favoritter",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronikk"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
     "genre_latin": MessageLookupByLibrary.simpleMessage("latin"),
     "genre_pop": MessageLookupByLibrary.simpleMessage("Pop"),
     "genre_rock": MessageLookupByLibrary.simpleMessage("Stein"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Siste utgivelse"),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Hør nå"),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Velg fil og importer",
     ),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Den mest lyttede sangen",
+    ),
     "password_text": MessageLookupByLibrary.simpleMessage("Passord"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Populære låter"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Nylige søk"),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Gjengitt av"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage("Nylige søk"),
     "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
       "Cloud backup",
@@ -100,5 +113,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Migrer fra Joss Music Kotlin",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Brukernavn"),
+    "video": MessageLookupByLibrary.simpleMessage("Video"),
   };
 }

@@ -320,7 +320,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Обрані списки відтворення",
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Файл не знайдено"),
+    "follow": MessageLookupByLibrary.simpleMessage("Продовжити"),
+    "following": MessageLookupByLibrary.simpleMessage("Слідую"),
     "for1": MessageLookupByLibrary.simpleMessage("для"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "забуті улюблені",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("електроніка"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("хіп-хоп"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Джаз"),
@@ -395,6 +400,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Встановити мову застосунку",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Останній випуск"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Почнемо..."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Бібліотека альбомів"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Бібліотека виконавців"),
@@ -412,6 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Посилання з piped для списків відтворення",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Слухай зараз"),
     "local": MessageLookupByLibrary.simpleMessage("На пристрої"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Гучність (Дб)"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -429,6 +436,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("хв."),
     "misc": MessageLookupByLibrary.simpleMessage("Інше"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Пісня, яку найбільше слухають",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Музика та відтворення",
     ),
@@ -510,6 +520,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Списки відтворення"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Найближчим часом"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Популярні треки"),
     "processFiles": MessageLookupByLibrary.simpleMessage("Обробка файлів..."),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Повторювати чергу"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
@@ -534,6 +545,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Перегрупувати список відтворення",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Переставити пісні"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Останні пошуки"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "Нещодавно відтворено",
     ),
@@ -554,6 +566,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Перейменувати список відтворення",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Відтворено"),
     "reset": MessageLookupByLibrary.simpleMessage("Скинути"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
       "Відновити типові налаштування",
@@ -693,6 +706,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Виявлено URL-адресу, натисніть на неї, щоб відкрити/відтворити пов\'язаний вміст",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Ім\'я користувача"),
+    "video": MessageLookupByLibrary.simpleMessage("відео"),
     "videos": MessageLookupByLibrary.simpleMessage("Відео"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Подивитись все"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Переглянути виконавця"),

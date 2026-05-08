@@ -426,5 +426,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "забравени любими",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Най-слушаната песен",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Възпроизведено от",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Последни търсения",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Популярни песни",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Последна версия",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Продължи",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Следване",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Слушай сега",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "видео",
+  "@video": {
+    "description": ""
   }
 }

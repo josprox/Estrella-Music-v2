@@ -416,5 +416,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "ভুলে যাওয়া প্রিয়",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "সবচেয়ে বেশি শোনা গান",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "দ্বারা পুনরুত্পাদিত",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "সাম্প্রতিক অনুসন্ধান",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "জনপ্রিয় ট্র্যাক",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "সর্বশেষ প্রকাশ",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "চালিয়ে যান",
+  "@follow": {
+    "description": ""
+  },
+  "following": "অনুসরণ করছে",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "এখন শুনুন",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "ভিডিও",
+  "@video": {
+    "description": ""
   }
 }

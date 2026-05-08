@@ -3193,6 +3193,86 @@ class S {
       args: [],
     );
   }
+
+  /// `forgotten favorites`
+  String get forgottenFavorites {
+    return Intl.message(
+      'forgotten favorites',
+      name: 'forgottenFavorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The most listened to song`
+  String get mostListenedSong {
+    return Intl.message(
+      'The most listened to song',
+      name: 'mostListenedSong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reproduced by`
+  String get reproducedBy {
+    return Intl.message(
+      'Reproduced by',
+      name: 'reproducedBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent searches`
+  String get recentSearches {
+    return Intl.message(
+      'Recent searches',
+      name: 'recentSearches',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular tracks`
+  String get popularTracks {
+    return Intl.message(
+      'Popular tracks',
+      name: 'popularTracks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Latest release`
+  String get latestRelease {
+    return Intl.message(
+      'Latest release',
+      name: 'latestRelease',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get follow {
+    return Intl.message('Continue', name: 'follow', desc: '', args: []);
+  }
+
+  /// `Following`
+  String get following {
+    return Intl.message('Following', name: 'following', desc: '', args: []);
+  }
+
+  /// `Listen now`
+  String get listenNow {
+    return Intl.message('Listen now', name: 'listenNow', desc: '', args: []);
+  }
+
+  /// `Video`
+  String get video {
+    return Intl.message('Video', name: 'video', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

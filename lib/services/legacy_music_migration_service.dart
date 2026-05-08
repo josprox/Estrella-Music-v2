@@ -92,12 +92,14 @@ class LegacyMusicMigrationService extends GetxService {
         importedSongIds: importedSongIds,
         bookmarkedArtistIds: bookmarkedArtistIds,
       );
+      final searchHistory = _loadSearchHistory(database);
 
       await _writeMigrationToHive(
         songs: songs,
         playlists: playlists,
         albums: albums,
         artists: artists,
+        searchHistory: searchHistory,
         importedSongIds: importedSongIds,
       );
 
@@ -268,8 +270,10 @@ class LegacyMusicMigrationService extends GetxService {
   ) {
     final songs = <String, _LegacySong>{};
     final rows = database.select('''
-      SELECT id, title, duration, thumbnailUrl, albumId, albumName, liked, inLibrary
-      FROM song
+      SELECT s.id, s.title, s.duration, s.thumbnailUrl, s.albumId, s.albumName, s.liked, s.inLibrary, s.totalPlayTime, MAX(e.timestamp) as lastPlayed
+      FROM song s
+      LEFT JOIN event e ON s.id = e.songId
+      GROUP BY s.id
     ''');
 
     for (final row in rows) {
@@ -287,6 +291,8 @@ class LegacyMusicMigrationService extends GetxService {
         liked: _asBool(row['liked']),
         inLibrary: row['inLibrary'] != null,
         artists: songArtists[id] ?? const [],
+        totalPlayTime: _asInt(row['totalPlayTime']) ?? 0,
+        lastPlayed: _parseTimestamp(row['lastPlayed']?.toString()),
       );
     }
 
@@ -516,12 +522,22 @@ class LegacyMusicMigrationService extends GetxService {
     required List<_LegacyPlaylist> playlists,
     required Map<String, _LegacyAlbum> albums,
     required Map<String, _LegacyArtist> artists,
+    required List<String> searchHistory,
     required Set<String> importedSongIds,
   }) async {
     final libraryPlaylistsBox = await Hive.openBox('LibraryPlaylists');
     final favoritesBox = await Hive.openBox('LIBFAV');
     final albumsBox = await Hive.openBox('LibraryAlbums');
     final artistsBox = await Hive.openBox('LibraryArtists');
+    final queryBox = await Hive.openBox("searchQuery");
+
+    if (searchHistory.isNotEmpty) {
+      for (var query in searchHistory) {
+        if (!queryBox.values.contains(query)) {
+          await queryBox.add(query);
+        }
+      }
+    }
 
     if (importedSongIds.isNotEmpty) {
       const legacyLibraryPlaylistId = 'LEGACY_LIBRARY';
@@ -646,6 +662,31 @@ class LegacyMusicMigrationService extends GetxService {
     if (value is int) return value;
     return int.tryParse(value.toString());
   }
+
+  int? _parseTimestamp(String? value) {
+    if (value == null || value.isEmpty) return null;
+    try {
+      return DateTime.parse(value).millisecondsSinceEpoch;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  List<String> _loadSearchHistory(Database database) {
+    final history = <String>[];
+    try {
+      final rows = database.select('SELECT query FROM search_history ORDER BY id DESC');
+      for (final row in rows) {
+        final query = row['query']?.toString();
+        if (query != null && query.isNotEmpty) {
+          history.add(query);
+        }
+      }
+    } catch (e) {
+      printERROR("Fallo al cargar search_history: $e");
+    }
+    return history;
+  }
 }
 
 class _ResolvedLegacySource {
@@ -725,6 +766,8 @@ class _LegacySong {
     required this.liked,
     required this.inLibrary,
     required this.artists,
+    required this.totalPlayTime,
+    required this.lastPlayed,
   });
 
   final String id;
@@ -736,6 +779,8 @@ class _LegacySong {
   final bool liked;
   final bool inLibrary;
   final List<Map<String, String>> artists;
+  final int totalPlayTime;
+  final int? lastPlayed;
 
   String get thumbnailOrFallback {
     if (thumbnailUrl != null && thumbnailUrl!.trim().isNotEmpty) {
@@ -771,6 +816,8 @@ class _LegacySong {
       'url': null,
       'trackDetails': null,
       'year': null,
+      'totalPlayTime': totalPlayTime,
+      'lastPlayed': lastPlayed,
     };
   }
 }

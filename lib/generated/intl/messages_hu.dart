@@ -143,6 +143,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "Kiemelt lejátszólisták",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("Folytatás"),
+    "following": MessageLookupByLibrary.simpleMessage("Következő"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "elfelejtett kedvencek",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronika"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Dzsessz"),
@@ -162,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Állítsa be az alkalmazás nyelvét",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Legújabb kiadás"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Kezdjük!"),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Gyűjtemény albumai"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Gyűjtemény előadói"),
@@ -171,10 +177,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "libSongs": MessageLookupByLibrary.simpleMessage("Gyűjtemény dalai"),
     "library": MessageLookupByLibrary.simpleMessage("Gyüjtemény"),
     "light": MessageLookupByLibrary.simpleMessage("Világos"),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Figyelj most"),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Válassza ki a fájlt és importálja",
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("perc"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "A leghallgatottabb dal",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Zene & Lejátszás",
     ),
@@ -200,6 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "playerUi": MessageLookupByLibrary.simpleMessage("Lejátszó Ui"),
     "playlists": MessageLookupByLibrary.simpleMessage("Lejátszólisták"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Következő"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Népszerű számok"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Fájlok előkészítése...",
     ),
@@ -221,6 +232,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Lejátszólista rendezése",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Zenék átrendezése"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "Legutóbbi keresések",
+    ),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "Mostanában játszott",
     ),
@@ -243,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Lejátszólista átnevezése",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Reprodukálta"),
     "restartApp": MessageLookupByLibrary.simpleMessage(
       "Alkalmazás újraindítása",
     ),
@@ -300,6 +315,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "trending": MessageLookupByLibrary.simpleMessage("Felkapott"),
     "upNext": MessageLookupByLibrary.simpleMessage("Következő"),
     "username": MessageLookupByLibrary.simpleMessage("Felhasználónév"),
+    "video": MessageLookupByLibrary.simpleMessage("Videó"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Irány az előadó"),
   };
 }

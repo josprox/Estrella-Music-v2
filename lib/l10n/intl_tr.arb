@@ -426,5 +426,45 @@
   },
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "unutulmuş favoriler",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "En çok dinlenen şarkı",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Tarafından çoğaltılmıştır",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Son aramalar",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Popüler parçalar",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "En son sürüm",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Devam etmek",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Takip etme",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Şimdi dinle",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Video",
+  "@video": {
+    "description": ""
   }
 }

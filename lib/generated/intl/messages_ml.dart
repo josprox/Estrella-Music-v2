@@ -113,6 +113,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "തിരഞ്ഞെടുത്ത പ്ലേലിസ്റ്റുകൾ",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("തുടരുക"),
+    "following": MessageLookupByLibrary.simpleMessage("പിന്തുടരുന്നു"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "മറന്നുപോയ പ്രിയപ്പെട്ടവ",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("ഇലക്ട്രോണിക്സ്"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("ഹിപ് ഹോപ്പ്"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("ജാസ്"),
@@ -128,6 +133,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "keepScreenOnWhilePlayingDes": MessageLookupByLibrary.simpleMessage(
       "സജ്ജമാക്കിയാൽ, സംഗീതം പ്ലേ ചെയ്യുമ്പോൾ ഡിവൈസിന്റെ സ്‌ക്രീൻ ഓണായിരിക്കുമെന്ന് ഉറപ്പ ചെയ്യും",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage(
+      "ഏറ്റവും പുതിയ റിലീസ്",
+    ),
     "libAlbums": MessageLookupByLibrary.simpleMessage("ലൈബ്രറി ആൽബങ്ങൾ"),
     "libArtists": MessageLookupByLibrary.simpleMessage(
       "ലൈബ്രറി ആർട്ടിസ്റ്റുകൾ",
@@ -137,8 +145,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "libSongs": MessageLookupByLibrary.simpleMessage("ലൈബ്രറി ഗാനങ്ങൾ"),
     "library": MessageLookupByLibrary.simpleMessage("ലൈബ്രറി"),
+    "listenNow": MessageLookupByLibrary.simpleMessage("ഇപ്പോൾ കേൾക്കൂ"),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "ഫയൽ തിരഞ്ഞെടുത്ത് ഇറക്കുമതി ചെയ്യുക",
+    ),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "ഏറ്റവും കൂടുതൽ കേട്ട പാട്ട്",
     ),
     "networkError1": MessageLookupByLibrary.simpleMessage(
       "അയ്യോ നെറ്റ്‌വർക്ക് പിശക്!",
@@ -169,6 +181,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("പ്ലേലിസ്റ്റുകൾ"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("വെരാൻ പോകുന്നത്"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("ജനപ്രിയ ട്രാക്കുകൾ"),
     "queueShufflingDeniedMsg": MessageLookupByLibrary.simpleMessage(
       "ഷഫിൾ മോഡ് പ്രവർത്തനക്ഷമമാക്കിയിരിക്കുമ്പോൾ ക്യൂ ഷഫിൾ ചെയ്യാൻ കഴിയില്ല",
     ),
@@ -185,6 +198,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "പാട്ടുകൾ പുനഃക്രമീകരിക്കുക",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("സമീപകാല തിരയലുകൾ"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "അടുത്തിടെ കളിച്ചത്",
     ),
@@ -204,6 +218,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "പ്ലേലിസ്റ്റ് പേരുമാറ്റുക",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("പുനർനിർമ്മിച്ചത്"),
     "retry": MessageLookupByLibrary.simpleMessage("വീണ്ടും ശ്രമിക്കുക!"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "സമീപകാല തിരയലുകൾ",
@@ -236,6 +251,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "startRadio": MessageLookupByLibrary.simpleMessage("റേഡിയോ ആരംഭിക്കുക"),
     "upNext": MessageLookupByLibrary.simpleMessage("അടുത്തത്"),
     "username": MessageLookupByLibrary.simpleMessage("ഉപയോക്തൃനാമം"),
+    "video": MessageLookupByLibrary.simpleMessage("വീഡിയോ"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("ആർട്ടിസ്റ്റ്"),
   };
 }

@@ -9,6 +9,7 @@ import '../../../utils/update_check_flag_file.dart';
 import '../../../utils/helper.dart';
 import '/models/album.dart';
 import '/models/playlist.dart';
+import 'package:harmonymusic/generated/l10n.dart';
 import '/models/quick_picks.dart';
 import '/services/music_service.dart';
 import '../Settings/settings_screen_controller.dart';
@@ -22,6 +23,11 @@ class HomeScreenController extends GetxController {
   final quickPicks = QuickPicks([]).obs;
   final middleContent = [].obs;
   final fixedContent = [].obs;
+
+  final randomMusic = Rx<QuickPicks?>(null);
+  final mostListened = <MediaItem>[].obs;
+  final forgottenFavorites = Rx<QuickPicks?>(null);
+
   final showVersionDialog = true.obs;
   //isHomeScreenOnTop var only useful if bottom nav enabled
   final isHomeSreenOnTop = true.obs;
@@ -34,7 +40,48 @@ class HomeScreenController extends GetxController {
   onInit() {
     super.onInit();
     loadContent();
+    loadLocalCustomSections();
     if (updateCheckFlag) _checkNewVersion();
+  }
+
+  Future<void> loadLocalCustomSections() async {
+    try {
+      final songsCacheBox = await Hive.openBox('SongsCache');
+      final favBox = await Hive.openBox('LIBFAV');
+
+      final allCachedSongs = songsCacheBox.values
+          .map((e) => MediaItemBuilder.fromJson(e))
+          .toList();
+
+      // Random Music (limit 15)
+      if (allCachedSongs.isNotEmpty) {
+        final randomList = List<MediaItem>.from(allCachedSongs)..shuffle();
+        randomMusic.value = QuickPicks(randomList.take(15).toList(), title: S.current.randomSelection);
+      }
+
+      // Most Listened (sort by totalPlayTime descending)
+      final mostListenedList = List<MediaItem>.from(allCachedSongs)
+        ..sort((a, b) {
+          final playA = a.extras?['totalPlayTime'] as int? ?? 0;
+          final playB = b.extras?['totalPlayTime'] as int? ?? 0;
+          return playB.compareTo(playA); // descending
+        });
+      mostListened.value = mostListenedList.where((e) => (e.extras?['totalPlayTime'] ?? 0) > 0).take(15).toList();
+
+      // Forgotten Favorites (favoritos ordenados por lastPlayed ascendente, es decir, los más antiguos primero)
+      if (favBox.isNotEmpty) {
+        final allFavs = favBox.values.map((e) => MediaItemBuilder.fromJson(e)).toList();
+        final forgottenList = List<MediaItem>.from(allFavs)
+          ..sort((a, b) {
+            final lastA = a.extras?['lastPlayed'] as int? ?? 0;
+            final lastB = b.extras?['lastPlayed'] as int? ?? 0;
+            return lastA.compareTo(lastB); // ascending (oldest first)
+          });
+        forgottenFavorites.value = QuickPicks(forgottenList.take(15).toList(), title: S.current.forgottenFavorites);
+      }
+    } catch (e) {
+      printERROR("Fallo al cargar secciones locales en Home: $e");
+    }
   }
 
   Future<void> loadContent() async {

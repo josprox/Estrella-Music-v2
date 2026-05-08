@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 import 'package:audio_service/audio_service.dart';
+import '/utils/youtube_share_manager.dart';
+
 
 import '/ui/player/components/animated_play_button.dart';
 import '/ui/player/components/backgroud_image.dart';
@@ -133,15 +135,7 @@ class _StandardPlayerContent extends StatelessWidget {
     );
   }
 
-  void _openMoreSheet(BuildContext context) {
-    if (ctrl.currentSong.value == null) return;
-    showModalBottomSheet(
-      constraints: const BoxConstraints(maxWidth: 500),
-      isScrollControlled: true,
-      context: context,
-      builder: (_) => SongInfoBottomSheet(ctrl.currentSong.value!, calledFromPlayer: true),
-    ).whenComplete(() => Get.delete<SongInfoController>());
-  }
+
 }
 
 // ── Sub-widgets ──────────────────────────────────────────────────────────────
@@ -323,11 +317,14 @@ class _SongInfo extends StatelessWidget {
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: albumId != null && albumId.isNotEmpty
-                    ? () => Get.toNamed(
+                    ? () {
+                        ctrl.playerPanelController.close();
+                        Get.toNamed(
                           ScreenNavigationSetup.albumScreen,
                           id: ScreenNavigationSetup.id,
                           arguments: (null, albumId),
-                        )
+                        );
+                      }
                     : null,
                 child: Marquee(
                   id: 'player_title_${song.id}',
@@ -352,17 +349,23 @@ class _SongInfo extends StatelessWidget {
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: artistId != null && artistId.isNotEmpty
-                    ? () => Get.toNamed(
+                    ? () {
+                        ctrl.playerPanelController.close();
+                        Get.toNamed(
                           ScreenNavigationSetup.artistScreen,
                           id: ScreenNavigationSetup.id,
                           arguments: [true, artistId],
-                        )
+                        );
+                      }
                     : artistName.isNotEmpty
-                        ? () => Get.toNamed(
+                        ? () {
+                            ctrl.playerPanelController.close();
+                            Get.toNamed(
                               ScreenNavigationSetup.artistScreen,
                               id: ScreenNavigationSetup.id,
                               arguments: [false, artistName],
-                            )
+                            );
+                          }
                         : null,
                 child: Text(
                   artistName.isEmpty ? 'Unknown Artist' : artistName,
@@ -560,19 +563,30 @@ class _SecondaryActions extends StatelessWidget {
           colorScheme: colorScheme,
           onTap: () => ctrl.queuePanelController.open(),
         ),
-        // Cast / Share (placeholder)
+        // Cast / Share
         _SecondaryButton(
           icon: Icons.share_rounded,
-          label: 'Compartir',
+          label: S.current.shareSong,
           colorScheme: colorScheme,
-          onTap: () {},
+          onTap: () {
+            final currentSong = ctrl.currentSong.value;
+            if (currentSong != null) {
+              YoutubeShareManager.shareSong(
+                currentSong.id,
+                title: currentSong.title,
+                artist: currentSong.artist,
+              );
+            }
+          },
         ),
-        // Equalizer (placeholder)
+        // Equalizer
         _SecondaryButton(
-          icon: Icons.speed_rounded,
-          label: 'Velocidad',
+          icon: Icons.equalizer_rounded,
+          label: S.current.equalizer,
           colorScheme: colorScheme,
-          onTap: () {},
+          onTap: () {
+            ctrl.openEqualizer();
+          },
         ),
       ],
     );

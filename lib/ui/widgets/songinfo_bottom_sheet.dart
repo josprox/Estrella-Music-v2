@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:share_plus/share_plus.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../services/downloader.dart';
@@ -23,6 +23,7 @@ import 'song_download_btn.dart';
 import 'image_widget.dart';
 import 'song_info_dialog.dart';
 import 'package:harmonymusic/generated/l10n.dart';
+import '/utils/youtube_share_manager.dart';
 
 class SongInfoBottomSheet extends StatelessWidget {
   const SongInfoBottomSheet(this.song,
@@ -258,7 +259,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                       splashRadius: 10,
                       onPressed: () {
                         launchUrl(Uri.parse(
-                            "https://youtube.com/watch?v=${song.id}"));
+                            YoutubeShareManager.getSongUrl(song.id)));
                       },
                       icon: const Icon(Ionicons.logo_youtube),
                     ),
@@ -266,7 +267,7 @@ class SongInfoBottomSheet extends StatelessWidget {
                       splashRadius: 10,
                       onPressed: () {
                         launchUrl(Uri.parse(
-                            "https://music.youtube.com/watch?v=${song.id}"));
+                            YoutubeShareManager.getMusicSongUrl(song.id)));
                       },
                       icon: const Icon(Ionicons.play_circle),
                     )
@@ -302,7 +303,7 @@ class SongInfoBottomSheet extends StatelessWidget {
               leading: const Icon(Icons.share),
               title: Text(S.current.shareSong),
               onTap: () =>
-                  Share.share("https://youtube.com/watch?v=${song.id}"),
+                  YoutubeShareManager.shareSong(song.id, title: song.title, artist: song.artist),
             ),
           ],
         ),

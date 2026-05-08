@@ -320,7 +320,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Избранные плейлисты",
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Файл не найден"),
+    "follow": MessageLookupByLibrary.simpleMessage("Продолжать"),
+    "following": MessageLookupByLibrary.simpleMessage("Следующий"),
     "for1": MessageLookupByLibrary.simpleMessage("для"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "забытое избранное",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Электроника"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("хип-хоп"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Джаз"),
@@ -393,6 +398,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("Язык"),
     "languageDes": MessageLookupByLibrary.simpleMessage("Язык приложения"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Последний выпуск"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Давайте начнём..."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Библиотека альбомов"),
     "libArtists": MessageLookupByLibrary.simpleMessage(
@@ -412,6 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Связать с Piped для плейлистов",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Слушай сейчас"),
     "local": MessageLookupByLibrary.simpleMessage("На устройстве"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Громкость (Db)"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -429,6 +436,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("минуты"),
     "misc": MessageLookupByLibrary.simpleMessage("Разное"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Самая прослушиваемая песня",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Музыка и Воспроизведение",
     ),
@@ -506,6 +516,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Плейлисты"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Предстоящие"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Популярные треки"),
     "processFiles": MessageLookupByLibrary.simpleMessage("Обработка файлов..."),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Цикл очереди"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
@@ -530,6 +541,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Упорядочить плейлист",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Переставить песни"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Недавние поиски"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "Недавно проигранные",
     ),
@@ -550,6 +562,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Переименовать плейлист",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Воспроизведено"),
     "reset": MessageLookupByLibrary.simpleMessage("Сбросить"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
       "Восстановить настройки по умолчанию",
@@ -693,6 +706,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Клик по Url открывает\\проигрывает контент",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Имя пользователя"),
+    "video": MessageLookupByLibrary.simpleMessage("Видео"),
     "videos": MessageLookupByLibrary.simpleMessage("Видео"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Показать все"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Показать исполнителя"),

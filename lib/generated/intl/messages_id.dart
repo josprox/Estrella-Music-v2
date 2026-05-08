@@ -300,7 +300,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "fileNotFound": MessageLookupByLibrary.simpleMessage(
       "File tidak ditemukan",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("Melanjutkan"),
+    "following": MessageLookupByLibrary.simpleMessage("Mengikuti"),
     "for1": MessageLookupByLibrary.simpleMessage("Untuk"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "favorit yang terlupakan",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronik"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
@@ -375,6 +380,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Setel bahasa Aplikasi",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Rilis terbaru"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Mari mulai.."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Pustaka Album"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Pustaka Artis"),
@@ -389,6 +395,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Tautan dengan saluran untuk daftar putar",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Dengarkan sekarang"),
     "local": MessageLookupByLibrary.simpleMessage("Lokal"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Kekerasan Suara dB"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -406,6 +413,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("menit"),
     "misc": MessageLookupByLibrary.simpleMessage("Lain-lain"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Lagu yang paling banyak didengarkan",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Musik & Pemutaran",
     ),
@@ -489,6 +499,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Daftar Putar"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Selanjutnya"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Lagu populer"),
     "processFiles": MessageLookupByLibrary.simpleMessage("Memproses file..."),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Ulangi Antrean"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
@@ -513,6 +524,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Menyusun ulang daftar putar",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Atur ulang lagu"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Pencarian terkini"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Baru Dimainkan"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
       "Hapus dari Pustaka Lagu",
@@ -533,6 +545,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Ganti Nama Daftar Putar",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Direproduksi oleh"),
     "reset": MessageLookupByLibrary.simpleMessage("Setel ulang"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
       "Kembalikan pengaturan ke semula",
@@ -674,6 +687,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Url terdeteksi, klik untuk membuka/memutar konten terkait",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Nama belakang"),
+    "video": MessageLookupByLibrary.simpleMessage("Video"),
     "videos": MessageLookupByLibrary.simpleMessage("Video"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Lihat semua"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Lihat Artis"),

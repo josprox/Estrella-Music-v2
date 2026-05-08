@@ -155,5 +155,45 @@
   "close": "Lukke",
   "@close": {
     "description": ""
+  },
+  "forgottenFavorites": "glemte favoritter",
+  "@forgottenFavorites": {
+    "description": ""
+  },
+  "mostListenedSong": "Den mest lyttede sangen",
+  "@mostListenedSong": {
+    "description": ""
+  },
+  "reproducedBy": "Gjengitt av",
+  "@reproducedBy": {
+    "description": ""
+  },
+  "recentSearches": "Nylige søk",
+  "@recentSearches": {
+    "description": ""
+  },
+  "popularTracks": "Populære låter",
+  "@popularTracks": {
+    "description": ""
+  },
+  "latestRelease": "Siste utgivelse",
+  "@latestRelease": {
+    "description": ""
+  },
+  "follow": "Fortsette",
+  "@follow": {
+    "description": ""
+  },
+  "following": "Følgende",
+  "@following": {
+    "description": ""
+  },
+  "listenNow": "Hør nå",
+  "@listenNow": {
+    "description": ""
+  },
+  "video": "Video",
+  "@video": {
+    "description": ""
   }
 }

@@ -318,7 +318,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Представени Плейлисти",
     ),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Файлът не е намерен"),
+    "follow": MessageLookupByLibrary.simpleMessage("Продължи"),
+    "following": MessageLookupByLibrary.simpleMessage("Следване"),
     "for1": MessageLookupByLibrary.simpleMessage("за"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "забравени любими",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("електроника"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("хип хоп"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Джаз"),
@@ -393,6 +398,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Задай език на приложението",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Последна версия"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Да започваме.."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Библиотека Албуми"),
     "libArtists": MessageLookupByLibrary.simpleMessage(
@@ -412,6 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Връзка с Piped за плейлисти",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Слушай сега"),
     "local": MessageLookupByLibrary.simpleMessage("Локално"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Сила на звука dB"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -429,6 +436,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("минути"),
     "misc": MessageLookupByLibrary.simpleMessage("Разни"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Най-слушаната песен",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Музика и Възпроизвеждане",
     ),
@@ -510,6 +520,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Плейлисти"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Следваща"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Популярни песни"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Файловете се обработват...",
     ),
@@ -536,6 +547,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Пренареди плейлист",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Пренареди песните"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Последни търсения"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "Последно изпълнявани",
     ),
@@ -556,6 +568,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Преименувай плейлист",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Възпроизведено от"),
     "reset": MessageLookupByLibrary.simpleMessage("Нулирай"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
       "Възстанови настройките по подразбиране",
@@ -703,6 +716,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Открит URL адрес натиснете върху него, за да отворите/изпълните свързано съдържание",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Потребителско име"),
+    "video": MessageLookupByLibrary.simpleMessage("видео"),
     "videos": MessageLookupByLibrary.simpleMessage("Видеоклипове"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Виж всички"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Преглед на изпълнител"),

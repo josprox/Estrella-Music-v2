@@ -202,7 +202,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "Utvalda Spellistor",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("Fortsätta"),
+    "following": MessageLookupByLibrary.simpleMessage("Följande"),
     "for1": MessageLookupByLibrary.simpleMessage("för"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "glömda favoriter",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronik"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
@@ -243,6 +248,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "language": MessageLookupByLibrary.simpleMessage("Språk"),
     "languageDes": MessageLookupByLibrary.simpleMessage("Byt språk"),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Senaste utgåvan"),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Album i Bibliotek"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Artister i Bibliotek"),
     "libPlaylists": MessageLookupByLibrary.simpleMessage(
@@ -258,6 +264,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Länka med piped för spellistor",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Lyssna nu"),
     "low": MessageLookupByLibrary.simpleMessage("Låg"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Låttexten är inte tillgänglig!",
@@ -266,6 +273,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Välj fil och importera",
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("minuter"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Den mest lyssnade låten",
+    ),
     "networkError1": MessageLookupByLibrary.simpleMessage("Nätverksfel!"),
     "newVersionAvailable": MessageLookupByLibrary.simpleMessage(
       "Ny version tillgänglig!",
@@ -313,6 +323,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Namnbyte lyckades!",
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Spellistor"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Populära låtar"),
     "quickpicks": MessageLookupByLibrary.simpleMessage("Snabbval"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Radio inte tillgänglig för denna artist!",
@@ -320,6 +331,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangePlaylist": MessageLookupByLibrary.simpleMessage(
       "Ordna om i Spellistan",
     ),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Senaste sökningar"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Senast Spelat"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
       "Ta bort låt från bibliotek",
@@ -336,6 +348,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Byt namn på Spellista",
     ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage("Återges av"),
     "reset": MessageLookupByLibrary.simpleMessage("Återställ"),
     "resetblacklistedplaylist": MessageLookupByLibrary.simpleMessage(
       "Återställ svartlistade spellistor",
@@ -431,6 +444,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "unLink": MessageLookupByLibrary.simpleMessage("Avlänka"),
     "upNext": MessageLookupByLibrary.simpleMessage("Nästa"),
     "username": MessageLookupByLibrary.simpleMessage("Användarnamn"),
+    "video": MessageLookupByLibrary.simpleMessage("Video"),
     "videos": MessageLookupByLibrary.simpleMessage("Videoklipp"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Visa allt"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Visa Artist"),

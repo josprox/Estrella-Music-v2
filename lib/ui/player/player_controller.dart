@@ -858,7 +858,21 @@ class PlayerController extends GetxController
           box.deleteAt(i);
         }
       }
-      box.add(MediaItemBuilder.toJson(mediaItem));
+
+      // Update Playtime and LastPlayed
+      int currentPlayTime = mediaItem.extras?['totalPlayTime'] ?? 0;
+      int songDuration = mediaItem.duration?.inSeconds ?? 0;
+      mediaItem.extras?['totalPlayTime'] = currentPlayTime + songDuration;
+      mediaItem.extras?['lastPlayed'] = DateTime.now().millisecondsSinceEpoch;
+
+      final songJson = MediaItemBuilder.toJson(mediaItem);
+      box.add(songJson);
+
+      // Save to SongsCache if it exists to keep play history available globally
+      final songsCacheBox = await Hive.openBox("SongsCache");
+      if (songsCacheBox.containsKey(mediaItem.id)) {
+        songsCacheBox.put(mediaItem.id, songJson);
+      }
       try {
         final playlistController = Get.find<PlaylistScreenController>(
             tag: const Key("LIBRP").hashCode.toString());

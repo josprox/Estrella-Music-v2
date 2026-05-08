@@ -312,7 +312,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "fileNotFound": MessageLookupByLibrary.simpleMessage(
       "Soubor nebyl nalezen",
     ),
+    "follow": MessageLookupByLibrary.simpleMessage("Pokračovat"),
+    "following": MessageLookupByLibrary.simpleMessage("Následující"),
     "for1": MessageLookupByLibrary.simpleMessage("pro"),
+    "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
+      "zapomenuté oblíbené",
+    ),
     "genre_electronic": MessageLookupByLibrary.simpleMessage("Elektronika"),
     "genre_hiphop": MessageLookupByLibrary.simpleMessage("hip hop"),
     "genre_jazz": MessageLookupByLibrary.simpleMessage("Jazz"),
@@ -387,6 +392,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "languageDes": MessageLookupByLibrary.simpleMessage(
       "Nastavení jazyka aplikace",
     ),
+    "latestRelease": MessageLookupByLibrary.simpleMessage("Nejnovější vydání"),
     "letsStrart": MessageLookupByLibrary.simpleMessage("Začínáme..."),
     "libAlbums": MessageLookupByLibrary.simpleMessage("Knihovna alb"),
     "libArtists": MessageLookupByLibrary.simpleMessage("Knihovna interpretů"),
@@ -402,6 +408,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkPipedDes": MessageLookupByLibrary.simpleMessage(
       "Odkaz s Piped pro playlisty",
     ),
+    "listenNow": MessageLookupByLibrary.simpleMessage("Poslouchej teď"),
     "local": MessageLookupByLibrary.simpleMessage("Místní"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Hlasitost (Db)"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -419,6 +426,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("minut"),
     "misc": MessageLookupByLibrary.simpleMessage("Různé"),
+    "mostListenedSong": MessageLookupByLibrary.simpleMessage(
+      "Nejposlouchanější písnička",
+    ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Hudba a přehrávání",
     ),
@@ -498,6 +508,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Playlisty"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Následuje"),
+    "popularTracks": MessageLookupByLibrary.simpleMessage("Populární skladby"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Zpracování souborů...",
     ),
@@ -524,6 +535,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Přeskupit playlist",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Přeskupit skladby"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage(
+      "Nedávná vyhledávání",
+    ),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Nedávno přehrané"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
       "Odebrat z knihovny skladeb",
@@ -543,6 +557,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "rename": MessageLookupByLibrary.simpleMessage("Přejmenovat"),
     "renamePlaylist": MessageLookupByLibrary.simpleMessage(
       "Přejmenovat playlist",
+    ),
+    "reproducedBy": MessageLookupByLibrary.simpleMessage(
+      "Reprodukováno uživatelem",
     ),
     "reset": MessageLookupByLibrary.simpleMessage("Resetovat"),
     "resetToDefault": MessageLookupByLibrary.simpleMessage(
@@ -683,6 +700,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Zjištěná URL Kliknutím na ni otevřete/přehrajete související obsah",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Uživatelské jméno"),
+    "video": MessageLookupByLibrary.simpleMessage("Video"),
     "videos": MessageLookupByLibrary.simpleMessage("Videa"),
     "viewAll": MessageLookupByLibrary.simpleMessage("Zobrazit vše"),
     "viewArtist": MessageLookupByLibrary.simpleMessage("Zobrazit interpreta"),
