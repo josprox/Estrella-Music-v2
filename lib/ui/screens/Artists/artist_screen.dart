@@ -1,6 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:audio_service/audio_service.dart';
 import '/ui/screens/Artists/artist_screen_controller.dart';
@@ -202,7 +202,8 @@ class _SpotifyArtistScreen extends StatelessWidget {
             // ── Floating Action Row ───────────────────────────────────────
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Row(
                   children: [
                     // Play Button
@@ -472,7 +473,8 @@ class _SpotifyArtistScreen extends StatelessWidget {
             Obx(() {
               final albums = ctrl.artistData['Albums'];
               if (albums == null) return const SliverToBoxAdapter();
-              final items = (albums['content'] as List?)?.take(10).toList() ?? [];
+              final items =
+                  (albums['content'] as List?)?.take(10).toList() ?? [];
               if (items.isEmpty) return const SliverToBoxAdapter();
 
               return SliverToBoxAdapter(
@@ -778,7 +780,6 @@ class _TrackRow extends StatelessWidget {
     final song = (item is MediaItem) ? item : MediaItemBuilder.fromJson(item);
     final title = song.title;
     final artist = song.artist ?? ctrl.artist_.name;
-    final thumbUrl = song.artUri.toString();
     final songId = song.id;
 
     return InkWell(
@@ -817,7 +818,10 @@ class _TrackRow extends StatelessWidget {
                     : Text(
                         '$index',
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface.withAlpha(97),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(97),
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
                         ),
@@ -825,27 +829,9 @@ class _TrackRow extends StatelessWidget {
                       ),
               ),
               const SizedBox(width: 12),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: thumbUrl.isNotEmpty
-                    ? CachedNetworkImage(
-                        imageUrl: thumbUrl,
-                        width: 48,
-                        height: 48,
-                        fit: BoxFit.cover,
-                      )
-                    : Container(
-                        width: 48,
-                        height: 48,
-                        color:
-                            Theme.of(context).colorScheme.onSurface.withAlpha(31),
-                        child: Icon(Icons.music_note_rounded,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withAlpha(97),
-                            size: 22),
-                      ),
+              ImageWidget(
+                song: song,
+                size: 48,
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -885,8 +871,15 @@ class _TrackRow extends StatelessWidget {
                   return IconButton(
                     onPressed: () => toggleLike(item),
                     icon: Icon(
-                      isLiked ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-                      color: isLiked ? Colors.red : Theme.of(context).colorScheme.onSurface.withAlpha(97),
+                      isLiked
+                          ? Icons.favorite_rounded
+                          : Icons.favorite_border_rounded,
+                      color: isLiked
+                          ? Colors.red
+                          : Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(97),
                       size: 20,
                     ),
                   );
@@ -911,7 +904,9 @@ class _TrackRow extends StatelessWidget {
               // More icon
               IconButton(
                 onPressed: () {
-                  final song = (item is MediaItem) ? item : MediaItemBuilder.fromJson(item);
+                  final song = (item is MediaItem)
+                      ? item
+                      : MediaItemBuilder.fromJson(item);
                   Get.bottomSheet(
                     SongInfoBottomSheet(song),
                     isScrollControlled: true,
@@ -966,7 +961,7 @@ class _ContentModalState extends State<_ContentModal> {
     super.initState();
     _allItems = widget.initialItems;
     _filteredItems = widget.initialItems;
-    
+
     // If not from favs and we have a category, try to fetch full content
     if (!widget.isFromFavs && widget.category != null) {
       _fetchFullContent();
@@ -996,10 +991,10 @@ class _ContentModalState extends State<_ContentModal> {
         _filteredItems = _allItems;
       } else {
         _filteredItems = _allItems.where((item) {
-          final title = (item is MediaItem) 
-              ? item.title 
-              : (item is Album) 
-                  ? item.title 
+          final title = (item is MediaItem)
+              ? item.title
+              : (item is Album)
+                  ? item.title
                   : (item['title'] as String? ?? '');
           return title.toLowerCase().contains(query.toLowerCase());
         }).toList();
@@ -1070,7 +1065,8 @@ class _ContentModalState extends State<_ContentModal> {
                 hintText: S.current.search,
                 prefixIcon: const Icon(Icons.search_rounded),
                 filled: true,
-                fillColor: Theme.of(context).colorScheme.onSurface.withAlpha(12),
+                fillColor:
+                    Theme.of(context).colorScheme.onSurface.withAlpha(12),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none,
@@ -1089,7 +1085,8 @@ class _ContentModalState extends State<_ContentModal> {
                     itemCount: _filteredItems.length,
                     itemBuilder: (context, index) {
                       final item = _filteredItems[index];
-                      if (item is MediaItem || (item is Map && item.containsKey('videoId'))) {
+                      if (item is MediaItem ||
+                          (item is Map && item.containsKey('videoId'))) {
                         return _TrackRow(
                           index: index + 1,
                           item: item,
@@ -1100,37 +1097,52 @@ class _ContentModalState extends State<_ContentModal> {
                       } else {
                         // For Albums/Videos in the modal
                         return ListTile(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 4),
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
-                            child: CachedNetworkImage(
-                              imageUrl: (item is Album) ? item.thumbnailUrl : (item['thumbnails']?[0]?['url'] ?? ''),
-                              width: 50,
-                              height: 50,
-                              fit: BoxFit.cover,
+                            child: ImageWidget(
+                              song: (item is MediaItem) ? item : null,
+                              album: (item is Album) ? item : null,
+                              size: 50,
                             ),
                           ),
                           title: Text(
-                            (item is Album) ? item.title : (item['title'] as String? ?? ''),
+                            (item is Album)
+                                ? item.title
+                                : (item['title'] as String? ?? ''),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                           subtitle: Text(
-                            (item is Album) ? (item.year ?? '') : (item['year'] as String? ?? ''),
-                            style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha(138), fontSize: 12),
+                            (item is Album)
+                                ? (item.year ?? '')
+                                : (item['year'] as String? ?? ''),
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withAlpha(138),
+                                fontSize: 12),
                           ),
                           onTap: () {
                             Navigator.pop(context);
                             if (item is Map && item.containsKey('videoId')) {
                               // It's a video
-                              widget.playerController.startRadio(null, playlistid: 'RDAMVM${item['videoId']}');
+                              widget.playerController.startRadio(null,
+                                  playlistid: 'RDAMVM${item['videoId']}');
                             } else {
-                              final browseId = (item is Album) ? item.browseId : (item['browseId'] as String? ?? '');
+                              final browseId = (item is Album)
+                                  ? item.browseId
+                                  : (item['browseId'] as String? ?? '');
                               Get.toNamed(
                                 ScreenNavigationSetup.albumScreen,
                                 id: ScreenNavigationSetup.id,
-                                arguments: (item is Album ? item : null, browseId),
+                                arguments: (
+                                  item is Album ? item : null,
+                                  browseId
+                                ),
                               );
                             }
                           },
@@ -1173,9 +1185,6 @@ class _AlbumCard extends StatelessWidget {
                 : isPlaylist
                     ? S.current.playlist
                     : S.current.album));
-    final thumbUrl = isVideo
-        ? (item?.artUri ?? '').toString()
-        : (item?.thumbnailUrl as String?) ?? '';
 
     return InkWell(
       onTap: () {
@@ -1211,25 +1220,30 @@ class _AlbumCard extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 1,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: thumbUrl.isNotEmpty
-                    ? CachedNetworkImage(
-                        imageUrl: thumbUrl,
-                        fit: BoxFit.cover,
-                      )
-                    : Container(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurface
-                            .withAlpha(31),
-                        child: Icon(Icons.album_rounded,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withAlpha(97),
-                            size: 48),
-                      ),
+              child: ImageWidget(
+                song: (item is MediaItem)
+                    ? item
+                    : (isVideo ? MediaItemBuilder.fromJson(item) : null),
+                album: (item is Album)
+                    ? item
+                    : (!isVideo && !isPlaylist && item is! MediaItem
+                        ? (item is Map
+                            ? Album.fromJson(item)
+                            : Album(
+                                title: item.title ?? '',
+                                browseId: item.browseId ?? '',
+                                artists: item.artists ?? const [],
+                                thumbnailUrl: item.thumbnailUrl ?? ''))
+                        : null),
+                playlist: (isPlaylist && item is! MediaItem)
+                    ? (item is Map
+                        ? Playlist.fromJson(item)
+                        : Playlist(
+                            title: item.title ?? '',
+                            playlistId: item.playlistId ?? item.browseId ?? '',
+                            thumbnailUrl: item.thumbnailUrl ?? ''))
+                    : null,
+                size: 140,
               ),
             ),
             const SizedBox(height: 12),

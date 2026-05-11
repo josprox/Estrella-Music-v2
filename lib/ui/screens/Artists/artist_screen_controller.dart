@@ -198,14 +198,29 @@ class ArtistScreenController extends GetxController
   Future<void> _loadLikedSongsOfArtist() async {
     try {
       final box = Hive.box("LIBFAV");
-      final allFavs = box.values.toList();
       final artistName = artist_.name.toLowerCase();
 
-      final filtered = allFavs.where((e) {
-        final item = MediaItemBuilder.fromJson(e);
-        final itemArtist = item.artist?.toLowerCase() ?? '';
-        return itemArtist.contains(artistName);
-      }).map((e) => MediaItemBuilder.fromJson(e)).toList();
+      // Optimize: filter and map in a single pass without constructing full MediaItem for every item
+      final List<MediaItem> filtered = [];
+      for (final e in box.values) {
+        if (e is! Map) continue;
+        
+        bool matches = false;
+        final artistsList = e['artists'] as List?;
+        if (artistsList != null) {
+          for (final a in artistsList) {
+            final name = (a['name'] as String?)?.toLowerCase() ?? '';
+            if (name.contains(artistName)) {
+              matches = true;
+              break;
+            }
+          }
+        }
+
+        if (matches) {
+          filtered.add(MediaItemBuilder.fromJson(e));
+        }
+      }
 
       likedSongsOfArtist.assignAll(filtered);
     } catch (e) {

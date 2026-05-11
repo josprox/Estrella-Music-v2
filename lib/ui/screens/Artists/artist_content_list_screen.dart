@@ -280,7 +280,7 @@ class ArtistContentListScreen extends StatelessWidget {
             ),
           ),
           title: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
-          subtitle: Text(year ?? '', style: TextStyle(fontSize: 12)),
+          subtitle: Text(year ?? '', style: const TextStyle(fontSize: 12)),
           onTap: () {
             Get.toNamed(
               ScreenNavigationSetup.albumScreen,

@@ -39,19 +39,14 @@ class ImageWidget extends StatelessWidget {
                 : artist != null
                     ? artist!.thumbnailUrl
                     : "";
-    // String cacheKey = song != null
-    //     ? "${song!.id}_song"
-    //     : playlist != null
-    //         ? "${playlist!.playlistId}_playlist"
-    //         : album != null
-    //             ? "${album!.browseId}_album"
-    //             : artist != null
-    //                 ? "${artist!.browseId}_artist"
-    //                 : "";
 
     /// only valid for offline songs
     final bool offlineAvailable =
         song != null && (song?.extras?["url"] ?? "").contains("file");
+
+    final String localThumbnailPath = song != null 
+        ? "${Get.find<SettingsScreenController>().supportDirPath}/thumbnails/${song!.id}.png"
+        : "";
 
     return Container(
       height: size,
@@ -61,50 +56,58 @@ class ImageWidget extends StatelessWidget {
         shape: artist != null ? BoxShape.circle : BoxShape.rectangle,
         borderRadius: artist != null ? null : BorderRadius.circular(5),
       ),
-      child: offlineAvailable
+      child: (offlineAvailable && localThumbnailPath.isNotEmpty && File(localThumbnailPath).existsSync())
           ? Image.file(
-              File(
-                  "${Get.find<SettingsScreenController>().supportDirPath}/thumbnails/${song!.id}.png"),
+              File(localThumbnailPath),
               height: size,
               width: size,
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => CachedNetworkImage(
+                height: size,
+                width: size,
+                memCacheHeight: (song != null && !isPlayerArtImage) ? 140 : null,
+                imageUrl: imageUrl,
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error) => _buildErrorWidget(context),
+                progressIndicatorBuilder: (context, url, progress) => _buildLoader(context),
+              ),
             )
           : CachedNetworkImage(
               height: size,
               width: size,
               memCacheHeight: (song != null && !isPlayerArtImage) ? 140 : null,
-              //memCacheWidth: (song != null && !isPlayerArtImage)? 140 : null,
-              //cacheKey: cacheKey,
               imageUrl: imageUrl,
               fit: BoxFit.cover,
-              errorWidget: (context, url, error) {
-                return Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      shape:
-                          artist != null ? BoxShape.circle : BoxShape.rectangle,
-                      borderRadius:
-                          artist != null ? null : BorderRadius.circular(10),
-                    ),
-                    child: Image.asset(
-                        "assets/icons/${song != null ? "song" : artist != null ? "artist" : "album"}.png"));
-              },
-              progressIndicatorBuilder: ((_, __, ___) => Shimmer.fromColors(
-                  baseColor: Colors.grey[500]!,
-                  highlightColor: Colors.grey[300]!,
-                  enabled: true,
-                  direction: ShimmerDirection.ltr,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape:
-                          artist != null ? BoxShape.circle : BoxShape.rectangle,
-                      borderRadius:
-                          artist != null ? null : BorderRadius.circular(10),
-                      color: Colors.white54,
-                    ),
-                  ))),
+              errorWidget: (context, url, error) => _buildErrorWidget(context),
+              progressIndicatorBuilder: (context, url, progress) => _buildLoader(context),
             ),
     );
+  }
+
+  Widget _buildErrorWidget(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondary,
+          shape: artist != null ? BoxShape.circle : BoxShape.rectangle,
+          borderRadius: artist != null ? null : BorderRadius.circular(10),
+        ),
+        child: Image.asset(
+            "assets/icons/${song != null ? "song" : artist != null ? "artist" : "album"}.png"));
+  }
+
+  Widget _buildLoader(BuildContext context) {
+    return Shimmer.fromColors(
+        baseColor: Colors.grey[500]!,
+        highlightColor: Colors.grey[300]!,
+        enabled: true,
+        direction: ShimmerDirection.ltr,
+        child: Container(
+          decoration: BoxDecoration(
+            shape: artist != null ? BoxShape.circle : BoxShape.rectangle,
+            borderRadius: artist != null ? null : BorderRadius.circular(10),
+            color: Colors.white54,
+          ),
+        ));
   }
 }

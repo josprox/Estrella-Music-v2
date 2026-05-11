@@ -1,7 +1,7 @@
 [Setup]
 AppId=B9F6E402-0CAE-4045-BDE6-14BD6C39C4EA
 AppVersion=1.12.2+27
-AppName=Harmony Music
+AppName=Estrella Music
 AppPublisher=anandnet
 AppPublisherURL=https://github.com/anandnet/Harmony-Music
 AppSupportURL=https://github.com/anandnet/Harmony-Music
@@ -31,8 +31,8 @@ Source: "..\..\build\windows\x64\runner\Release\*"; DestDir: "{app}"; Flags: ign
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{autoprograms}\Harmony Music"; Filename: "{app}\harmonymusic.exe"
-Name: "{autodesktop}\Harmony Music"; Filename: "{app}\harmonymusic.exe"; Tasks: desktopicon
+Name: "{autoprograms}\Estrella Music"; Filename: "{app}\harmonymusic.exe"
+Name: "{autodesktop}\Estrella Music"; Filename: "{app}\harmonymusic.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\harmonymusic.exe"; Description: "{cm:LaunchProgram,{#StringChange('Harmony Music', '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\harmonymusic.exe"; Description: "{cm:LaunchProgram,{#StringChange('Estrella Music', '&', '&&')}}"; Flags: nowait postinstall skipifsilent
