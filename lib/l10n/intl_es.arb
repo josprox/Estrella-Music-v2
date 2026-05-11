@@ -164,7 +164,6 @@
   "results": "Resultados",
   "nomatch": "No se encontraron coincidencias para",
   "subscribers": "suscriptores",
-  "about": "Acerca de",
   "synced": "Sincronizado",
   "plain": "Simple",
   "songInfo": "Información de la canción",
@@ -566,6 +565,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "Acerca de",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Leer más",
+  "@readMore": {
     "description": ""
   }
 }

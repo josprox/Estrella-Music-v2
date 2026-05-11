@@ -46,7 +46,6 @@
   "search": "Sök",
   "for1": "för",
   "videos": "Videoklipp",
-  "about": "Om",
   "synced": "Synkad",
   "deleteDownloadedDataAlert": "Borttagen från nedladdningar!",
   "cancelTimerAlert": "Sovtimer avbruten",
@@ -356,6 +355,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "Om",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Läs mer",
+  "@readMore": {
     "description": ""
   }
 }

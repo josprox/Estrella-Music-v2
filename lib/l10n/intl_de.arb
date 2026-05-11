@@ -64,7 +64,6 @@
   "searchRes": "Suchergebnisse",
   "for1": "für",
   "viewAll": "Alle anzeigen",
-  "about": "Über",
   "radioNotAvailable": "Radio für diesen Künstler nicht verfügbar!",
   "songRemovedfromQueue": "Aus der Warteschlange entfernt!",
   "songRemovedfromQueueCurrSong": "Du kannst das aktuell gespielte Lied nicht entfernen",
@@ -460,6 +459,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "Um",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Mehr lesen",
+  "@readMore": {
     "description": ""
   }
 }

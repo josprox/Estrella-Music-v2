@@ -77,7 +77,6 @@
   "viewArtist": "ਕਲਾਕਾਰ ਵੇਖੋ",
   "createnAdd": "ਬਣਾਓ ਅਤੇ ਜੋੜੋ",
   "topmusicvideos": "ਚੋਟੀ ਦੇ ਸੰਗੀਤ ਵੀਡੀਓ",
-  "about": "ਦੇ ਬਾਰੇ",
   "playlistBookmarkRemoveAlert": "ਪਲੇਲਿਸਟ ਬੁੱਕਮਾਰਕ ਹਟਾਇਆ ਗਿਆ!",
   "systemDefault": "ਸਿਸਟਮ ਡੀਫ਼ਾਲਟ",
   "local": "ਸਥਾਨਕ",
@@ -423,6 +422,14 @@
   },
   "video": "ਵੀਡੀਓ",
   "@video": {
+    "description": ""
+  },
+  "about": "ਬਾਰੇ",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "ਹੋਰ ਪੜ੍ਹੋ",
+  "@readMore": {
     "description": ""
   }
 }

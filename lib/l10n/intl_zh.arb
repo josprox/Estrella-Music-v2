@@ -195,5 +195,13 @@
   "video": "视频",
   "@video": {
     "description": ""
+  },
+  "about": "关于",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "阅读更多",
+  "@readMore": {
+    "description": ""
   }
 }

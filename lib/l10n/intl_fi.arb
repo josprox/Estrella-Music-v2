@@ -81,7 +81,6 @@
   "disabled": "Poissa käytöstä",
   "github": "GitHub",
   "subscribers": "tilaajat",
-  "about": "Tietoa",
   "nomatch": "Ei hakutuloksia kohteelle",
   "cancelTimerAlert": "Uniajastin peruutettu",
   "radioNotAvailable": "Tälle artistille ei ole saatavilla radiota!",
@@ -342,6 +341,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "Noin",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Lue lisää",
+  "@readMore": {
     "description": ""
   }
 }

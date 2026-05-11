@@ -77,7 +77,6 @@
   "viewArtist": "ଚିତ୍ରଶିଳ୍ପୀ ଦେଖନ୍ତୁ",
   "createnAdd": "ନିର୍ମାଣ କରନ୍ତୁ ଏବଂ ଯୋଗ କରନ୍ତୁ",
   "topmusicvideos": "ଶୀର୍ଷ ସଂଗୀତ ଭିଡିଓଗୁଡିକ",
-  "about": "ବିଷୟରେ",
   "playlistBookmarkRemoveAlert": "ପ୍ଲେଲିଷ୍ଟ ବୁକମାର୍କ ଅପସାରିତ ହୋଇଛି!",
   "systemDefault": "ତନ୍ତ୍ର ପୂର୍ବନିର୍ଦ୍ଧାରିତ",
   "local": "ସ୍ଥାନୀୟ",
@@ -334,6 +333,14 @@
   },
   "video": "ଭିଡିଓ",
   "@video": {
+    "description": ""
+  },
+  "about": "ବିଷୟରେ",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "ଅଧିକ ପ Read ନ୍ତୁ |",
+  "@readMore": {
     "description": ""
   }
 }

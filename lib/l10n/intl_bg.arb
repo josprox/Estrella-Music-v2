@@ -77,7 +77,6 @@
   "viewArtist": "Преглед на изпълнител",
   "createnAdd": "Създай и добави",
   "topmusicvideos": "Водещи музикални видеоклипове",
-  "about": "Относно",
   "playlistBookmarkRemoveAlert": "Отметката за плейлиста е премахната!",
   "systemDefault": "Система по подразбиране",
   "local": "Локално",
@@ -465,6 +464,14 @@
   },
   "video": "видео",
   "@video": {
+    "description": ""
+  },
+  "about": "За",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Прочетете повече",
+  "@readMore": {
     "description": ""
   }
 }

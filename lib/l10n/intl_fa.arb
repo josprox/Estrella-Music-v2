@@ -320,5 +320,13 @@
   "video": "ویدئو",
   "@video": {
     "description": ""
+  },
+  "about": "درباره",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "ادامه مطلب",
+  "@readMore": {
+    "description": ""
   }
 }

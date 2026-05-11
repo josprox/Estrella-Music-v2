@@ -89,7 +89,6 @@
   "radioNotAvailable": "Bu sanatçı için radyo mevcut değil!",
   "viewArtist": "Sanatçıya bak",
   "topmusicvideos": "En Üst Sıradaki Videolar",
-  "about": "Hakkında",
   "playlistBookmarkRemoveAlert": "Çalma listesi kitaplıktan kaldırıldı!",
   "systemDefault": "Sistem varsayılanı",
   "local": "Yerel",
@@ -465,6 +464,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "Hakkında",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Devamını oku",
+  "@readMore": {
     "description": ""
   }
 }

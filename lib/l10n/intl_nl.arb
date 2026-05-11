@@ -100,7 +100,6 @@
   "trending": "Trending",
   "basedOnLast": "Gebaseerd op laatste interactie",
   "cacheSongs": "Cache Liedjes",
-  "about": "Over",
   "subscribers": "abonnees",
   "unlinkAlert": "Successvol unlink!",
   "reset": "Reset",
@@ -376,6 +375,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "Over",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Lees meer",
+  "@readMore": {
     "description": ""
   }
 }

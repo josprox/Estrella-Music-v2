@@ -92,7 +92,6 @@
   "status": "Статус",
   "disabled": "Вимкнено",
   "by": "від",
-  "about": "Про",
   "synced": "Синхронізовано",
   "cancelTimerAlert": "Таймер сну скасовано",
   "artistBookmarkRemoveAlert": "Вилучено закладку виконавця!",
@@ -464,6 +463,14 @@
   },
   "video": "відео",
   "@video": {
+    "description": ""
+  },
+  "about": "про",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Читати далі",
+  "@readMore": {
     "description": ""
   }
 }

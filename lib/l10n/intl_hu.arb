@@ -294,5 +294,13 @@
   "video": "Videó",
   "@video": {
     "description": ""
+  },
+  "about": "Körülbelül",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Olvass tovább",
+  "@readMore": {
+    "description": ""
   }
 }

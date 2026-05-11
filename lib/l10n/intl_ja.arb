@@ -79,7 +79,6 @@
   "viewArtist": "アーティストを開く",
   "createnAdd": "作成し追加",
   "topmusicvideos": "人気のミュージックビデオ",
-  "about": "説明",
   "playlistBookmarkRemoveAlert": "再生リストのブックマークを解除しました！",
   "systemDefault": "システムに従う",
   "local": "端末内",
@@ -464,6 +463,14 @@
   },
   "video": "ビデオ",
   "@video": {
+    "description": ""
+  },
+  "about": "について",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "続きを読む",
+  "@readMore": {
     "description": ""
   }
 }

@@ -195,5 +195,13 @@
   "video": "Βίντεο",
   "@video": {
     "description": ""
+  },
+  "about": "Για",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Διαβάστε περισσότερα",
+  "@readMore": {
+    "description": ""
   }
 }

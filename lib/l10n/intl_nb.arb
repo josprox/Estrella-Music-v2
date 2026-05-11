@@ -195,5 +195,13 @@
   "video": "Video",
   "@video": {
     "description": ""
+  },
+  "about": "Om",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Les mer",
+  "@readMore": {
+    "description": ""
   }
 }

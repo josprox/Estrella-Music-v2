@@ -164,7 +164,6 @@
   "results": "Results",
   "nomatch": "No Match found for",
   "subscribers": "subscribers",
-  "about": "About",
   "synced": "Synced",
   "plain": "Plain",
   "songInfo": "Song Info",
@@ -566,6 +565,14 @@
     "description": ""
   },
   "@video": {
+    "description": ""
+  },
+  "about": "About",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Read more",
+  "@readMore": {
     "description": ""
   }
 }

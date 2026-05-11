@@ -151,7 +151,6 @@
   "export": "تصدير",
   "backgroundPlayDes": "تمكين/تعطيل تشغيل الموسيقى في الخلفية (يمكن الوصول إلى التطبيق من واجهة النظام عندما يكون التطبيق قيد التشغيل في الخلفية)",
   "search": "بحث",
-  "about": "عن",
   "songAddedToPlaylistAlert": "تمت إضافة الأغنية إلى قائمة التشغيل!",
   "songAlreadyExists": "الأغنية موجودة بالفعل!",
   "topmusicvideos": "اشهر مقاطع الفيديو الموسيقية",
@@ -429,6 +428,14 @@
   },
   "video": "فيديو",
   "@video": {
+    "description": ""
+  },
+  "about": "عن",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "اقرأ المزيد",
+  "@readMore": {
     "description": ""
   }
 }

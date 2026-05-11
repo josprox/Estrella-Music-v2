@@ -189,7 +189,6 @@
   "restore": "Ripristina",
   "featuredplaylists": "Playlist in evidenza",
   "playlistBookmarkAddAlert": "Playlist salvata nei segnalibri!",
-  "about": "Informazioni su",
   "noBookmarks": "Nessun segnalibro!",
   "download": "Download",
   "appInfo": "Informazioni App",
@@ -462,6 +461,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "Di",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Per saperne di più",
+  "@readMore": {
     "description": ""
   }
 }

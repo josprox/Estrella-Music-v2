@@ -87,7 +87,6 @@
   "reArrangePlaylist": "প্লেলিস্ট পুনরায় সাজান",
   "restoreLastPlaybackSession": "শেষ প্লেব্যাক সেশন পুনরুদ্ধার করুন",
   "topmusicvideos": "সেরা সঙ্গীত ভিডিও",
-  "about": "সম্পর্কে",
   "openIn": "খুলুন",
   "themeMode": "থিম মোড",
   "homeContentCount": "হোম কন্টেন্টের সংখ্যা",
@@ -455,6 +454,14 @@
   },
   "video": "ভিডিও",
   "@video": {
+    "description": ""
+  },
+  "about": "সম্পর্কে",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "আরও পড়ুন",
+  "@readMore": {
     "description": ""
   }
 }

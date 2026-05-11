@@ -195,5 +195,13 @@
   "video": "Відэа",
   "@video": {
     "description": ""
+  },
+  "about": "Аб",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Больш падрабязна",
+  "@readMore": {
+    "description": ""
   }
 }

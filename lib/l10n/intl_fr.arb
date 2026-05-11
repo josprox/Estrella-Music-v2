@@ -90,7 +90,6 @@
   "by": "par",
   "searchDes": "Titres, Playlist, Album ou Artiste",
   "for1": "pour",
-  "about": "À propos",
   "errorOccuredAlert": "Une erreur s'est produite !",
   "playlistCreatedAlert": "Playlist créée !",
   "playlistRemovedAlert": "Playlist supprimée !",
@@ -467,6 +466,14 @@
   },
   "video": "Vidéo",
   "@video": {
+    "description": ""
+  },
+  "about": "À propos",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "En savoir plus",
+  "@readMore": {
     "description": ""
   }
 }

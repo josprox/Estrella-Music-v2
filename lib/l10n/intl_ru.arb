@@ -71,7 +71,6 @@
   "results": "Результаты",
   "nomatch": "Совпадений не найдено",
   "subscribers": "подписчики",
-  "about": "О",
   "radioNotAvailable": "Радио недоступно для этого исполнителя!",
   "songRemovedfromQueue": "Удалено из очереди!",
   "songRemovedfromQueueCurrSong": "Вы не можете удалить проигрываемую песню",
@@ -465,6 +464,14 @@
   },
   "video": "Видео",
   "@video": {
+    "description": ""
+  },
+  "about": "О",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Читать далее",
+  "@readMore": {
     "description": ""
   }
 }

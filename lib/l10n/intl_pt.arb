@@ -95,7 +95,6 @@
   "playlistBookmarkAddAlert": "Playlist salva!",
   "radioNotAvailable": "Rádio não disponível para esse artista!",
   "topmusicvideos": "Principais clipes",
-  "about": "Sobre",
   "playlistBookmarkRemoveAlert": "Playlist não mais salva!",
   "systemDefault": "Padrão do sistema",
   "local": "Local",
@@ -457,6 +456,14 @@
   },
   "video": "Vídeo",
   "@video": {
+    "description": ""
+  },
+  "about": "Sobre",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Leia mais",
+  "@readMore": {
     "description": ""
   }
 }

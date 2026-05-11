@@ -78,7 +78,6 @@
   "viewArtist": "Zobrazit interpreta",
   "createnAdd": "Vytvořit a přidat",
   "topmusicvideos": "Topovky",
-  "about": "O aplikaci",
   "playlistBookmarkRemoveAlert": "Playlist odstraněn ze záložek!",
   "systemDefault": "Výchozí nastavení systému",
   "local": "Místní",
@@ -465,6 +464,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "O",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Přečtěte si více",
+  "@readMore": {
     "description": ""
   }
 }

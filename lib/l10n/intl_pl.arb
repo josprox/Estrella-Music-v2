@@ -69,7 +69,6 @@
   "videos": "Teledyski",
   "viewAll": "Pokaż wszystko",
   "results": "Wyniki",
-  "about": "O Estrella Music",
   "songRemovedfromQueue": "Usunięto z kolejki!",
   "radioNotAvailable": "Radio niedostępne dla tego wykonawcy!",
   "songRemovedfromQueueCurrSong": "Nie można usunąć aktualnie odtwarzanego utworu",
@@ -460,6 +459,14 @@
   },
   "video": "Wideo",
   "@video": {
+    "description": ""
+  },
+  "about": "O",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Przeczytaj więcej",
+  "@readMore": {
     "description": ""
   }
 }

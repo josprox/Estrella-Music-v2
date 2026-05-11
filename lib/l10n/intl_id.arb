@@ -79,7 +79,6 @@
   "viewArtist": "Lihat Artis",
   "createnAdd": "Buat & Tambah",
   "topmusicvideos": "Video Musik Teratas",
-  "about": "Tentang",
   "playlistBookmarkRemoveAlert": "Bookmark daftar putar dihapus!",
   "systemDefault": "Bawaan sistem",
   "local": "Lokal",
@@ -455,6 +454,14 @@
   },
   "video": "Video",
   "@video": {
+    "description": ""
+  },
+  "about": "Tentang",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Baca selengkapnya",
+  "@readMore": {
     "description": ""
   }
 }

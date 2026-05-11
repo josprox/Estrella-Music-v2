@@ -85,7 +85,6 @@
   "githubDes": "Xem mã nguồn GitHub.\nNếu bạn thích dự án này, đừng quên cho một ⭐",
   "viewAll": "Xem tất cả",
   "results": "Kết quả",
-  "about": "Thông tin",
   "subscribers": "người đăng ký",
   "selectAuthInsMsg": "Vui lòng chọn phiên bản xác thực!",
   "allFieldsReqMsg": "Tất cả các trường bắt buộc",
@@ -464,6 +463,14 @@
   },
   "video": "Băng hình",
   "@video": {
+    "description": ""
+  },
+  "about": "Về",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "Đọc thêm",
+  "@readMore": {
     "description": ""
   }
 }

@@ -254,5 +254,13 @@
   "video": "വീഡിയോ",
   "@video": {
     "description": ""
+  },
+  "about": "കുറിച്ച്",
+  "@about": {
+    "description": ""
+  },
+  "readMore": "കൂടുതൽ വായിക്കുക",
+  "@readMore": {
+    "description": ""
   }
 }
