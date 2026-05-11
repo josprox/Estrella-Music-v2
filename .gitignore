@@ -72,3 +72,5 @@ android/app/.cxx/Debug/*
 /android/app/.cxx
 
 *.exe
+
+/EMusicGo/

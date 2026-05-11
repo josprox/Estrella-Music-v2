@@ -37,24 +37,22 @@ class UpdateService {
   }
 
   static bool _isVersionGreater(String latestVersion, String currentVersion) {
-    // Clean strings (remove 'v' or 'V' prefix)
-    String cleanLatest = latestVersion.toLowerCase().replaceAll('v', '').trim();
-    String cleanCurrent = currentVersion.toLowerCase().replaceAll('v', '').trim();
+    // Limpiar strings: quitar 'v', espacios y separar por '.'
+    List<String> latestParts = latestVersion.toLowerCase().replaceAll('v', '').split('.');
+    List<String> currentParts = currentVersion.toLowerCase().replaceAll('v', '').split('.');
 
-    // Remove build numbers for comparison if present (e.g. 1.0.0+1)
-    cleanLatest = cleanLatest.split('+')[0];
-    cleanCurrent = cleanCurrent.split('+')[0];
+    // Normalizar longitudes (ej: 1.0 vs 1.0.1 -> 1.0.0 vs 1.0.1)
+    while (latestParts.length < currentParts.length) {
+      latestParts.add('0');
+    }
+    while (currentParts.length < latestParts.length) {
+      currentParts.add('0');
+    }
 
-    List<String> latestParts = cleanLatest.split('.');
-    List<String> currentParts = cleanCurrent.split('.');
-
-    int maxLength = latestParts.length > currentParts.length 
-        ? latestParts.length 
-        : currentParts.length;
-
-    for (int i = 0; i < maxLength; i++) {
-      int latestPart = i < latestParts.length ? (int.tryParse(latestParts[i]) ?? 0) : 0;
-      int currentPart = i < currentParts.length ? (int.tryParse(currentParts[i]) ?? 0) : 0;
+    for (int i = 0; i < latestParts.length; i++) {
+      // Extraer solo números de cada parte (por si hay +63 o texto adicional)
+      int latestPart = int.tryParse(latestParts[i].replaceAll(RegExp(r'[^0-9]'), '')) ?? 0;
+      int currentPart = int.tryParse(currentParts[i].replaceAll(RegExp(r'[^0-9]'), '')) ?? 0;
 
       if (latestPart > currentPart) return true;
       if (latestPart < currentPart) return false;

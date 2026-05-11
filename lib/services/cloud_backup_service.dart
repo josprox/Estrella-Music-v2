@@ -6,6 +6,7 @@ import 'package:get/get.dart' hide FormData, MultipartFile;
 
 import '../utils/helper.dart';
 import 'auth_service.dart';
+import 'package:hive/hive.dart';
 
 class CloudBackupFile {
   CloudBackupFile({
@@ -35,8 +36,51 @@ class CloudBackupFile {
     );
   }
 
-  DateTime? get createdAtDate =>
-      createdAt == null ? null : DateTime.tryParse(createdAt!);
+  DateTime? get createdAtDate {
+    // 1. Intentar parsear el campo created_at del servidor
+    if (createdAt != null) {
+      final parsed = DateTime.tryParse(createdAt!);
+      if (parsed != null) return parsed;
+    }
+
+    // 2. Fallback: extraer la fecha del nombre del archivo
+    // Soporta el formato propio: estrellamusic_2024-05-08T143022123456.hmb
+    // y patrones genéricos como: backup_20240508_143022.dat
+    final name = fileIdFileName.isNotEmpty ? fileIdFileName : fileName;
+
+    // Patrón ISO reducido: YYYY-MM-DDTHH (ej: 2024-05-08T143022)
+    final isoPattern = RegExp(
+        r'(\d{4})-(\d{2})-(\d{2})T(\d{2})(\d{2})(\d{2})');
+    final isoMatch = isoPattern.firstMatch(name);
+    if (isoMatch != null) {
+      return DateTime.tryParse(
+        '${isoMatch.group(1)}-${isoMatch.group(2)}-${isoMatch.group(3)}'
+        'T${isoMatch.group(4)}:${isoMatch.group(5)}:${isoMatch.group(6)}',
+      );
+    }
+
+    // Patrón compacto: YYYYMMDD_HHmmss o YYYYMMDD-HHmmss
+    final compactPattern = RegExp(
+        r'(\d{4})(\d{2})(\d{2})[_\-T](\d{2})(\d{2})(\d{2})');
+    final compactMatch = compactPattern.firstMatch(name);
+    if (compactMatch != null) {
+      return DateTime.tryParse(
+        '${compactMatch.group(1)}-${compactMatch.group(2)}-${compactMatch.group(3)}'
+        'T${compactMatch.group(4)}:${compactMatch.group(5)}:${compactMatch.group(6)}',
+      );
+    }
+
+    // Patrón solo fecha: YYYYMMDD
+    final dateOnlyPattern = RegExp(r'(\d{4})(\d{2})(\d{2})');
+    final dateOnlyMatch = dateOnlyPattern.firstMatch(name);
+    if (dateOnlyMatch != null) {
+      return DateTime.tryParse(
+        '${dateOnlyMatch.group(1)}-${dateOnlyMatch.group(2)}-${dateOnlyMatch.group(3)}',
+      );
+    }
+
+    return null;
+  }
 
   List<String> get _fileIdParts => fileId
       .split('/')
@@ -145,7 +189,11 @@ class CloudBackupService extends GetxService {
       options: Options(headers: await _headers()),
     );
 
-    if (response.statusCode != 200) {
+    if (response.statusCode == 200) {
+      // Actualizar el timestamp para el control de frecuencia (4h/12h)
+      final appPrefs = Hive.box('AppPrefs');
+      await appPrefs.put('last_cloud_backup_timestamp', DateTime.now().toIso8601String());
+    } else {
       throw StateError('No fue posible subir el backup a la nube.');
     }
   }

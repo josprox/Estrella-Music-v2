@@ -53,7 +53,7 @@ Future<void> main() async {
     Workmanager().registerPeriodicTask(
       "periodic-backup-task",
       "backupTask",
-      frequency: const Duration(hours: 12),
+      frequency: const Duration(hours: 4),
       existingWorkPolicy: ExistingPeriodicWorkPolicy.keep,
       constraints: Constraints(
         networkType: NetworkType.connected,
@@ -203,6 +203,7 @@ void _setAppInitPrefs() {
       "cacheHomeScreenData": true,
       "restrorePlaybackSession": true,
       "autoLanguage": true,
+      "app_first_run_timestamp": DateTime.now().toIso8601String(),
     });
   }
 }

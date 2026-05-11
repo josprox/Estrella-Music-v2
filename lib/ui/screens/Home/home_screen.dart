@@ -185,7 +185,7 @@ class Body extends StatelessWidget {
                                 }),
                                 Obx(() => MostListenedWidget(
                                     content: homeScreenController
-                                        .mostListened.value)),
+                                        .mostListened)),
                                 Obx(() => homeScreenController.randomMusic.value != null ? QuickPicksWidget(
                                     content: homeScreenController
                                         .randomMusic.value!) : const SizedBox.shrink()),

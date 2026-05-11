@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -28,13 +29,25 @@ void callbackDispatcher() {
       await Hive.initFlutter(applicationDataDirectoryPath);
       final appPrefs = await Hive.openBox('AppPrefs');
       
-      // 2. Check if we should backup (24h rule)
+      // 2. Check if we should backup
       final lastBackupStr = appPrefs.get('last_cloud_backup_timestamp');
+      final firstRunStr = appPrefs.get('app_first_run_timestamp');
+      
       if (lastBackupStr != null) {
+        // Lógica normal: Cada 4 horas
         final lastBackup = DateTime.tryParse(lastBackupStr.toString());
         if (lastBackup != null && 
-            DateTime.now().difference(lastBackup).inHours < 12) {
-          return true; // Already backed up recently
+            DateTime.now().difference(lastBackup).inHours < 4) {
+          if (kDebugMode) print("Background Backup: Skipping, last backup was less than 4h ago.");
+          return true; 
+        }
+      } else if (firstRunStr != null) {
+        // Lógica de "Primera Vez": Esperar 12 horas desde la instalación
+        final firstRun = DateTime.tryParse(firstRunStr.toString());
+        if (firstRun != null && 
+            DateTime.now().difference(firstRun).inHours < 12) {
+          if (kDebugMode) print("Background Backup: Skipping, first-time delay of 12h not met yet.");
+          return true;
         }
       }
 
