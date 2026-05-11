@@ -187,6 +187,13 @@ initHive() async {
   await Hive.openBox("SongDownloads");
   await Hive.openBox('SongsUrlCache');
   await Hive.openBox("AppPrefs");
+
+  // Open common library boxes at startup to prevent "Box not found" errors
+  await Hive.openBox("LIBFAV");
+  await Hive.openBox("LibraryArtists");
+  await Hive.openBox("LibraryAlbums");
+  await Hive.openBox("LibraryPlaylists");
+  await Hive.openBox("homeScreenData");
 }
 
 void _setAppInitPrefs() {
