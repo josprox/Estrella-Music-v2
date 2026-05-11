@@ -54,10 +54,13 @@ class CombinedLibrary extends StatelessWidget {
                                 color: cs.onPrimaryContainer, size: 22),
                           ),
                           const SizedBox(width: 12),
-                          Text(
-                            S.current.library,
-                            style: tt.headlineSmall
-                                ?.copyWith(fontWeight: FontWeight.w800),
+                          Flexible(
+                            child: Text(
+                              S.current.library,
+                              style: tt.headlineSmall
+                                  ?.copyWith(fontWeight: FontWeight.w800),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           const Spacer(),
                           // Piped sync

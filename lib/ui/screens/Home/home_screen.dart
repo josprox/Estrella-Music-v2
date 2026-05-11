@@ -183,9 +183,11 @@ class Body extends StatelessWidget {
                                           homeScreenController.quickPicks.value,
                                       scrollController: sc);
                                 }),
-                                Obx(() => MostListenedWidget(
-                                    content: homeScreenController
-                                        .mostListened)),
+                                Obx(() => homeScreenController.mostListened.isEmpty
+                                    ? const SizedBox.shrink()
+                                    : MostListenedWidget(
+                                        content: homeScreenController
+                                            .mostListened)),
                                 Obx(() => homeScreenController.randomMusic.value != null ? QuickPicksWidget(
                                     content: homeScreenController
                                         .randomMusic.value!) : const SizedBox.shrink()),

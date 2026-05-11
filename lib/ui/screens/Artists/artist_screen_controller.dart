@@ -1,7 +1,7 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../widgets/add_to_playlist.dart';
 import '/ui/widgets/sort_widget.dart';
@@ -12,6 +12,7 @@ import '../Library/library_controller.dart';
 import '/services/music_service.dart';
 import '/ui/screens/Home/home_screen_controller.dart';
 import '/ui/screens/Settings/settings_screen_controller.dart';
+import '../../../models/media_Item_builder.dart';
 
 class ArtistScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -33,13 +34,28 @@ class ArtistScreenController extends GetxController
   late Artist artist_;
   bool hasArtistSeed = false;
   Map<String, List> tempListContainer = {};
+  final likedSongsOfArtist = <MediaItem>[].obs;
   TabController? tabController;
   bool isTabTransitionReversed = false;
 
   @override
   void onInit() {
     final args = Get.arguments;
-    _init(args[0], args[1]);
+    if (args != null) {
+      if (args is List && args.length >= 2) {
+        _init(args[0] as bool, args[1]);
+      } else if (args is String) {
+        _init(true, args);
+      } else {
+        // Assume Artist object or other dynamic
+        try {
+          _init(false, args);
+        } catch (e) {
+          printERROR("Error initializing artist screen with args: $args. Error: $e");
+        }
+      }
+    }
+
     if (GetPlatform.isDesktop ||
         Get.find<SettingsScreenController>().isBottomNavBarEnabled.isTrue) {
       tabController = TabController(vsync: this, length: 5);
@@ -53,6 +69,10 @@ class ArtistScreenController extends GetxController
         }
       });
     }
+
+    // Listen to changes in LIBFAV for reactivity
+    Hive.box("LIBFAV").listenable().addListener(_loadLikedSongsOfArtist);
+
     super.onInit();
   }
 
@@ -121,8 +141,12 @@ class ArtistScreenController extends GetxController
     String? previousBrowseId,
   }) {
     artistData.value = content;
-    artistData["Singles"] = artistData["Singles & EPs"];
-    artistData["Songs"] = artistData["Top songs"];
+    // Map various possible names to standard keys
+    artistData["Singles"] = artistData["Singles"] ?? artistData["Singles & EPs"] ?? artistData["Sencillos y EPs"];
+    artistData["Songs"] = artistData["Songs"] ?? artistData["Top songs"] ?? artistData["Canciones populares"];
+    artistData["Albums"] = artistData["Albums"] ?? artistData["Álbumes"];
+    artistData["Videos"] = artistData["Videos"] ?? artistData["Popular music videos"] ?? artistData["Vídeos"];
+    artistData["Playlists"] = artistData["Playlists"] ?? artistData["Listas de reproducción"];
 
     final subscribers = artistData['subscribers']?.toString().trim();
     artist_ = Artist(
@@ -143,6 +167,49 @@ class ArtistScreenController extends GetxController
         oldBrowseId: previousBrowseId,
         artist: artist_,
       );
+    }
+
+    // Load liked songs of this artist
+    _loadLikedSongsOfArtist();
+  }
+
+  /// Fetches the full list of items for a category using its browseEndpoint
+  Future<List<dynamic>> fetchCategoryContent(String category) async {
+    final section = artistData[category];
+    if (section == null) return [];
+    
+    // If we have params, it means there's more to fetch
+    if (section is Map && (section.containsKey('browseId') || section.containsKey('params'))) {
+      try {
+        final result = await musicServices.getArtistRealtedContent(
+          Map<String, dynamic>.from(section),
+          category,
+        );
+        return result['results'] ?? [];
+      } catch (e) {
+        printERROR("Error fetching full category $category: $e");
+      }
+    }
+    
+    // Fallback to what we already have
+    return (section['content'] as List?) ?? [];
+  }
+
+  Future<void> _loadLikedSongsOfArtist() async {
+    try {
+      final box = Hive.box("LIBFAV");
+      final allFavs = box.values.toList();
+      final artistName = artist_.name.toLowerCase();
+
+      final filtered = allFavs.where((e) {
+        final item = MediaItemBuilder.fromJson(e);
+        final itemArtist = item.artist?.toLowerCase() ?? '';
+        return itemArtist.contains(artistName);
+      }).map((e) => MediaItemBuilder.fromJson(e)).toList();
+
+      likedSongsOfArtist.assignAll(filtered);
+    } catch (e) {
+      printERROR("Error loading liked songs of artist: $e");
     }
   }
 

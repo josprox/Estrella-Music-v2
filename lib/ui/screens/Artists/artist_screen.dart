@@ -1,17 +1,18 @@
-import 'package:audio_service/audio_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '/utils/youtube_share_manager.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:audio_service/audio_service.dart';
 import '/ui/screens/Artists/artist_screen_controller.dart';
-import '/models/album.dart';
-import '/ui/widgets/image_widget.dart';
 import '/ui/widgets/loader.dart';
-import '/ui/widgets/snackbar.dart';
 import '/ui/player/player_controller.dart';
 import '/ui/navigator.dart';
+import '/models/media_Item_builder.dart';
+import '/ui/widgets/songinfo_bottom_sheet.dart';
+import '/models/album.dart';
 import '/models/playlist.dart';
+import '/ui/widgets/image_widget.dart';
+import '/utils/youtube_share_manager.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 
 class ArtistScreen extends StatelessWidget {
@@ -160,148 +161,92 @@ class _SpotifyArtistScreen extends StatelessWidget {
                     ),
                   ),
 
-                  // Artist name + sub count at the bottom of hero
+                  // Artist Name and Meta
                   Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Verified badge
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 3),
-                            decoration: BoxDecoration(
-                              color: Colors.blue.withAlpha(50),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color: Colors.blue.withAlpha(100), width: 1),
-                            ),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.verified_rounded,
-                                    color: Colors.blue, size: 13),
-                                SizedBox(width: 4),
-                                Text(
-                                  'VERIFIED ARTIST',
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w800,
-                                    letterSpacing: 0.8,
-                                  ),
-                                ),
-                              ],
-                            ),
+                    bottom: 24,
+                    left: 20,
+                    right: 20,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          artist.name,
+                          style: const TextStyle(
+                            fontSize: 48,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: -1.5,
+                            height: 1.1,
                           ),
+                        ),
+                        if (subscribers.isNotEmpty) ...[
                           const SizedBox(height: 8),
-                          // Artist name (large bold)
                           Text(
-                            artist.name,
+                            '$subscribers ${S.current.subscribers}',
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSurface,
-                              fontSize: 36,
-                              fontWeight: FontWeight.w900,
-                              letterSpacing: -1,
-                              height: 1.05,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withAlpha(180),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                          if (subscribers.isNotEmpty)
-                            Text(
-                              subscribers,
-                              style: TextStyle(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurface
-                                    .withAlpha(153),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
                         ],
-                      ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
 
-            // ── Action buttons: PLAY + FOLLOW + Share ─────────────────────
+            // ── Floating Action Row ───────────────────────────────────────
             SliverToBoxAdapter(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Row(
                   children: [
-                    // PLAY button
+                    // Play Button
                     GestureDetector(
-                      onTap: () async {
-                        final radioId = ctrl.artist_.radioId;
-                        if (radioId == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            snackbar(context, S.current.radioNotAvailable,
-                                size: SanckBarSize.BIG),
-                          );
-                          return;
+                      onTap: () {
+                        final songs = ctrl.artistData['Songs'];
+                        if (songs != null) {
+                          final allItems = (songs['content'] as List?) ?? [];
+                          if (allItems.isNotEmpty) {
+                            playerController.playPlayListSong(
+                                List.from(allItems), 0);
+                          }
                         }
-                        playerController.startRadio(null, playlistid: radioId);
                       },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 28, vertical: 12),
+                        width: 56,
+                        height: 56,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.play_arrow_rounded,
-                                color: Theme.of(context).colorScheme.surface,
-                                size: 20),
-                            const SizedBox(width: 6),
-                            Text(
-                              S.current.play.toUpperCase(),
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.surface,
-                                fontWeight: FontWeight.w800,
-                                fontSize: 13,
-                                letterSpacing: 0.5,
-                              ),
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).colorScheme.primary,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withAlpha(100),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
                             ),
                           ],
                         ),
+                        child: const Icon(Icons.play_arrow_rounded,
+                            size: 32, color: Colors.white),
                       ),
                     ),
-                    const SizedBox(width: 12),
-                    // FOLLOW button
+                    const SizedBox(width: 20),
+                    // Follow Button
                     Obx(() => GestureDetector(
-                          onTap: () {
-                            final add = ctrl.isAddedToLibrary.isFalse;
-                            ctrl.addNremoveFromLibrary(add: add).then((ok) {
-                              if (context.mounted) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  snackbar(
-                                    context,
-                                    ok
-                                        ? add
-                                            ? S.current.artistBookmarkAddAlert
-                                            : S.current
-                                                .artistBookmarkRemoveAlert
-                                        : S.current.operationFailed,
-                                    size: SanckBarSize.MEDIUM,
-                                  ),
-                                );
-                              }
-                            });
-                          },
-                          child: Container(
+                          onTap: () => ctrl.addNremoveFromLibrary(
+                              add: !ctrl.isAddedToLibrary.value),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 28, vertical: 12),
+                                horizontal: 20, vertical: 10),
                             decoration: BoxDecoration(
                               color: Colors.transparent,
                               borderRadius: BorderRadius.circular(30),
@@ -327,6 +272,8 @@ class _SpotifyArtistScreen extends StatelessWidget {
                                 fontSize: 13,
                                 letterSpacing: 0.5,
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         )),
@@ -410,6 +357,64 @@ class _SpotifyArtistScreen extends StatelessWidget {
                 ),
               ),
 
+            // ── Liked Songs section ───────────────────────────────────
+            Obx(() {
+              if (ctrl.likedSongsOfArtist.isEmpty) {
+                return const SliverToBoxAdapter();
+              }
+              final items = ctrl.likedSongsOfArtist.take(5).toList();
+              return SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              S.current.favorites,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface,
+                                fontSize: 22,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => _showAllLikedSongs(context),
+                              child: Text(
+                                S.current.viewAll,
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withAlpha(138),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      ...items.asMap().entries.map((entry) {
+                        return _TrackRow(
+                          index: entry.key + 1,
+                          item: entry.value,
+                          ctrl: ctrl,
+                          playerController: playerController,
+                          isFromFavs: true,
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              );
+            }),
+
             // ── Popular Tracks header ─────────────────────────────────────
             SliverToBoxAdapter(
               child: Padding(
@@ -426,18 +431,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        Get.toNamed(
-                          ScreenNavigationSetup.artistContentListScreen,
-                          id: ScreenNavigationSetup.id,
-                          arguments: {
-                            'browseEndpoint': Map<String, dynamic>.from(
-                                ctrl.artistData['Songs'] as Map),
-                            'title': S.current.popularTracks,
-                            'category': 'Songs',
-                          },
-                        );
-                      },
+                      onTap: () => _showAllPopularTracks(context),
                       child: Text(
                         S.current.viewAll,
                         style: TextStyle(
@@ -455,67 +449,35 @@ class _SpotifyArtistScreen extends StatelessWidget {
               ),
             ),
 
-            // ── Popular Tracks list ───────────────────────────────────────
+            // ── Popular Tracks List ───────────────────────────────────────
             Obx(() {
               final songs = ctrl.artistData['Songs'];
               if (songs == null) return const SliverToBoxAdapter();
               final items = (songs['content'] as List?)?.take(5).toList() ?? [];
               return SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  (context, i) => _TrackRow(
-                    index: i + 1,
-                    item: items[i],
+                  (context, index) => _TrackRow(
+                    index: index + 1,
+                    item: items[index],
                     ctrl: ctrl,
                     playerController: playerController,
+                    isFromFavs: false,
                   ),
                   childCount: items.length,
                 ),
               );
             }),
 
-            // ── Latest Release ────────────────────────────────────────────
+            // ── Albums ─────────────────────────────────────────────
             Obx(() {
               final albums = ctrl.artistData['Albums'];
               if (albums == null) return const SliverToBoxAdapter();
-              final content = albums['content'] as List?;
-              if (content == null || content.isEmpty) {
-                return const SliverToBoxAdapter();
-              }
-              final latest = content.first;
-              return SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        S.current.latestRelease,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      _LatestReleaseCard(item: latest),
-                    ],
-                  ),
-                ),
-              );
-            }),
+              final items = (albums['content'] as List?)?.take(10).toList() ?? [];
+              if (items.isEmpty) return const SliverToBoxAdapter();
 
-            // ── Albums ────────────────────────────────────────────
-            Obx(() {
-              final albums = ctrl.artistData['Albums'];
-              if (albums == null) return const SliverToBoxAdapter();
-              final content = albums['content'] as List?;
-              if (content == null || content.isEmpty) {
-                return const SliverToBoxAdapter();
-              }
-              final items = content.take(10).toList();
               return SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 24, bottom: 8),
+                  padding: const EdgeInsets.only(top: 32, bottom: 8),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -536,18 +498,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
                               ),
                             ),
                             GestureDetector(
-                              onTap: () {
-                                Get.toNamed(
-                                  ScreenNavigationSetup.artistContentListScreen,
-                                  id: ScreenNavigationSetup.id,
-                                  arguments: {
-                                    'browseEndpoint': Map<String, dynamic>.from(
-                                        albums as Map),
-                                    'title': S.current.albums,
-                                    'category': 'Albums',
-                                  },
-                                );
-                              },
+                              onTap: () => _showAllAlbums(context),
                               child: Text(
                                 S.current.viewAll,
                                 style: TextStyle(
@@ -565,7 +516,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       SizedBox(
-                        height: 220, // Fixed height for album cards
+                        height: 220,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           physics: const BouncingScrollPhysics(),
@@ -646,23 +597,30 @@ class _SpotifyArtistScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.toNamed(
-                          ScreenNavigationSetup.artistContentListScreen,
-                          id: ScreenNavigationSetup.id,
-                          arguments: {
-                            'browseEndpoint':
-                                Map<String, dynamic>.from(section as Map),
-                            'title': (sectionKey == 'Singles'
-                                ? S.current.singles
-                                : sectionKey == 'Videos'
-                                    ? S.current.videos
-                                    : sectionKey == 'Playlists'
-                                        ? S.current.playlists
-                                        : sectionKey == 'Albums'
-                                            ? S.current.albums
-                                            : sectionKey),
-                          },
-                        );
+                        if (sectionKey == 'Singles') {
+                          _showAllSingles(context);
+                        } else if (sectionKey == 'Videos') {
+                          _showAllVideos(context);
+                        } else {
+                          // Fallback to list screen for other unknown sections
+                          Get.toNamed(
+                            ScreenNavigationSetup.artistContentListScreen,
+                            id: ScreenNavigationSetup.id,
+                            arguments: {
+                              'browseEndpoint':
+                                  Map<String, dynamic>.from(section as Map),
+                              'title': (sectionKey == 'Singles'
+                                  ? S.current.singles
+                                  : sectionKey == 'Videos'
+                                      ? S.current.videos
+                                      : sectionKey == 'Playlists'
+                                          ? S.current.playlists
+                                          : sectionKey == 'Albums'
+                                              ? S.current.albums
+                                              : sectionKey),
+                            },
+                          );
+                        }
                       },
                       child: Text(
                         S.current.viewAll,
@@ -704,6 +662,87 @@ class _SpotifyArtistScreen extends StatelessWidget {
       );
     });
   }
+
+  void _showAllLikedSongs(BuildContext context) {
+    _showAllContent(
+      context,
+      title: S.current.favorites,
+      initialItems: List.from(ctrl.likedSongsOfArtist),
+      isFromFavs: true,
+    );
+  }
+
+  void _showAllPopularTracks(BuildContext context) {
+    final songs = ctrl.artistData['Songs'];
+    if (songs == null) return;
+    final items = (songs['content'] as List?) ?? [];
+    _showAllContent(
+      context,
+      title: S.current.popularTracks,
+      initialItems: items,
+      isFromFavs: false,
+      category: 'Songs',
+    );
+  }
+
+  void _showAllAlbums(BuildContext context) {
+    final albums = ctrl.artistData['Albums'];
+    if (albums == null) return;
+    final items = (albums['content'] as List?) ?? [];
+    _showAllContent(
+      context,
+      title: S.current.albums,
+      initialItems: items,
+      isFromFavs: false,
+      category: 'Albums',
+    );
+  }
+
+  void _showAllSingles(BuildContext context) {
+    final singles = ctrl.artistData['Singles'];
+    if (singles == null) return;
+    final items = (singles['content'] as List?) ?? [];
+    _showAllContent(
+      context,
+      title: S.current.singles,
+      initialItems: items,
+      isFromFavs: false,
+      category: 'Singles',
+    );
+  }
+
+  void _showAllVideos(BuildContext context) {
+    final videos = ctrl.artistData['Videos'];
+    if (videos == null) return;
+    final items = (videos['content'] as List?) ?? [];
+    _showAllContent(
+      context,
+      title: S.current.videos,
+      initialItems: items,
+      isFromFavs: false,
+      category: 'Videos',
+    );
+  }
+
+  void _showAllContent(BuildContext context,
+      {required String title,
+      required List initialItems,
+      required bool isFromFavs,
+      String? category}) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _ContentModal(
+        title: title,
+        initialItems: initialItems,
+        ctrl: ctrl,
+        playerController: playerController,
+        isFromFavs: isFromFavs,
+        category: category,
+      ),
+    );
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -714,237 +753,393 @@ class _TrackRow extends StatelessWidget {
   final dynamic item;
   final ArtistScreenController ctrl;
   final PlayerController playerController;
+  final bool isFromFavs;
 
   const _TrackRow({
     required this.index,
     required this.item,
     required this.ctrl,
     required this.playerController,
+    this.isFromFavs = false,
   });
+
+  void toggleLike(dynamic item) async {
+    final song = (item is MediaItem) ? item : MediaItemBuilder.fromJson(item);
+    final box = await Hive.openBox("LIBFAV");
+    if (box.containsKey(song.id)) {
+      await box.delete(song.id);
+    } else {
+      await box.put(song.id, MediaItemBuilder.toJson(song));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    // MediaItem stores artist info in .artist (joined String) and
-    // the raw list in .extras['artists']. There is NO .artists getter.
-    final title = item?.title ?? '';
-    final artist = (() {
-      // Prefer the pre-joined string from MediaItem.artist
-      if (item?.artist != null && (item!.artist as String).isNotEmpty) {
-        return item!.artist as String;
-      }
-      // Fallback: build from extras['artists'] list
-      final list = item?.extras?['artists'];
-      if (list is List && list.isNotEmpty) {
-        return list.map((a) => a['name'] ?? '').join(', ');
-      }
-      return ctrl.artist_.name;
-    })();
-    final plays = (item?.extras?['views'] ?? '') as String;
-    final thumbUrl = (item?.artUri ?? '').toString();
+    final song = (item is MediaItem) ? item : MediaItemBuilder.fromJson(item);
+    final title = song.title;
+    final artist = song.artist ?? ctrl.artist_.name;
+    final thumbUrl = song.artUri.toString();
+    final songId = song.id;
 
     return InkWell(
       onTap: () {
-        final songs = ctrl.artistData['Songs'];
-        if (songs == null) return;
-        final allItems = (songs['content'] as List?) ?? [];
-        playerController.playPlayListSong(List.from(allItems), index - 1);
+        if (isFromFavs) {
+          playerController.playPlayListSong(
+              List.from(ctrl.likedSongsOfArtist), index - 1);
+        } else {
+          final songs = ctrl.artistData['Songs'];
+          if (songs == null) return;
+          final allItems = (songs['content'] as List?) ?? [];
+          playerController.playPlayListSong(List.from(allItems), index - 1);
+        }
       },
       borderRadius: BorderRadius.circular(8),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        child: Row(
-          children: [
-            // Index number
-            SizedBox(
-              width: 24,
-              child: Text(
-                '$index',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface.withAlpha(97),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
+      child: Obx(() {
+        final isPlaying = playerController.currentSong.value?.id == songId;
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          decoration: BoxDecoration(
+            color: isPlaying
+                ? Theme.of(context).colorScheme.primary.withAlpha(25)
+                : Colors.transparent,
+          ),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 24,
+                child: isPlaying
+                    ? Icon(
+                        Icons.equalizer_rounded,
+                        color: Theme.of(context).colorScheme.primary,
+                        size: 18,
+                      )
+                    : Text(
+                        '$index',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface.withAlpha(97),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+              ),
+              const SizedBox(width: 12),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: thumbUrl.isNotEmpty
+                    ? CachedNetworkImage(
+                        imageUrl: thumbUrl,
+                        width: 48,
+                        height: 48,
+                        fit: BoxFit.cover,
+                      )
+                    : Container(
+                        width: 48,
+                        height: 48,
+                        color:
+                            Theme.of(context).colorScheme.onSurface.withAlpha(31),
+                        child: Icon(Icons.music_note_rounded,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withAlpha(97),
+                            size: 22),
+                      ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      artist,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withAlpha(138),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
                 ),
-                textAlign: TextAlign.center,
               ),
-            ),
-            const SizedBox(width: 12),
-            // Album art
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: thumbUrl.isNotEmpty
-                  ? CachedNetworkImage(
-                      imageUrl: thumbUrl,
-                      width: 48,
-                      height: 48,
-                      fit: BoxFit.cover,
-                    )
-                  : Container(
-                      width: 48,
-                      height: 48,
-                      color:
-                          Theme.of(context).colorScheme.onSurface.withAlpha(31),
-                      child: Icon(Icons.music_note_rounded,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onSurface
-                              .withAlpha(97),
-                          size: 22),
+              // Like icon
+              ValueListenableBuilder(
+                valueListenable: Hive.box("LIBFAV").listenable(),
+                builder: (context, Box box, _) {
+                  final isLiked = box.containsKey(songId);
+                  return IconButton(
+                    onPressed: () => toggleLike(item),
+                    icon: Icon(
+                      isLiked ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                      color: isLiked ? Colors.red : Theme.of(context).colorScheme.onSurface.withAlpha(97),
+                      size: 20,
                     ),
-            ),
-            const SizedBox(width: 12),
-            // Title + artist
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    artist,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onSurface
-                          .withAlpha(138),
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
+                  );
+                },
               ),
-            ),
-            // Play count
-            if (plays.isNotEmpty)
-              Text(
-                plays,
-                style: TextStyle(
+              // Download icon
+              ValueListenableBuilder(
+                valueListenable: Hive.box("SongDownloads").listenable(),
+                builder: (context, Box box, _) {
+                  final isDownloaded = box.containsKey(songId);
+                  if (!isDownloaded) return const SizedBox.shrink();
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Icon(
+                      Icons.check_circle_rounded,
+                      color: Theme.of(context).colorScheme.primary,
+                      size: 16,
+                    ),
+                  );
+                },
+              ),
+              // More icon
+              IconButton(
+                onPressed: () {
+                  final song = (item is MediaItem) ? item : MediaItemBuilder.fromJson(item);
+                  Get.bottomSheet(
+                    SongInfoBottomSheet(song),
+                    isScrollControlled: true,
+                  );
+                },
+                icon: Icon(
+                  Icons.more_vert_rounded,
                   color: Theme.of(context).colorScheme.onSurface.withAlpha(97),
-                  fontSize: 12,
+                  size: 20,
                 ),
               ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Latest release card — restored for detailed single highlight
+// Content Modal for "Show All"
 // ─────────────────────────────────────────────────────────────────────────────
-class _LatestReleaseCard extends StatelessWidget {
-  final dynamic item;
-  const _LatestReleaseCard({required this.item});
+class _ContentModal extends StatefulWidget {
+  final String title;
+  final List initialItems;
+  final ArtistScreenController ctrl;
+  final PlayerController playerController;
+  final bool isFromFavs;
+  final String? category;
+
+  const _ContentModal({
+    required this.title,
+    required this.initialItems,
+    required this.ctrl,
+    required this.playerController,
+    required this.isFromFavs,
+    this.category,
+  });
+
+  @override
+  State<_ContentModal> createState() => _ContentModalState();
+}
+
+class _ContentModalState extends State<_ContentModal> {
+  final TextEditingController _searchController = TextEditingController();
+  List _allItems = [];
+  List _filteredItems = [];
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _allItems = widget.initialItems;
+    _filteredItems = widget.initialItems;
+    
+    // If not from favs and we have a category, try to fetch full content
+    if (!widget.isFromFavs && widget.category != null) {
+      _fetchFullContent();
+    }
+  }
+
+  Future<void> _fetchFullContent() async {
+    setState(() => _isLoading = true);
+    try {
+      final fullList = await widget.ctrl.fetchCategoryContent(widget.category!);
+      if (fullList.isNotEmpty) {
+        setState(() {
+          _allItems = fullList;
+          _filter(_searchController.text);
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
+  }
+
+  void _filter(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        _filteredItems = _allItems;
+      } else {
+        _filteredItems = _allItems.where((item) {
+          final title = (item is MediaItem) 
+              ? item.title 
+              : (item is Album) 
+                  ? item.title 
+                  : (item['title'] as String? ?? '');
+          return title.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final title = item?.title ?? '';
-    final year = item?.year ?? '';
-    final type = item?.description ?? S.current.album;
-    final thumbUrl = (item?.thumbnailUrl as String?) ?? '';
-
-    return InkWell(
-      onTap: () => Get.toNamed(
-        ScreenNavigationSetup.albumScreen,
-        id: ScreenNavigationSetup.id,
-        arguments: (null as Album?, item.browseId as String),
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.85,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
       ),
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onSurface.withAlpha(12),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-              color: Theme.of(context).colorScheme.onSurface.withAlpha(18)),
-        ),
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: thumbUrl.isNotEmpty
-                  ? CachedNetworkImage(
-                      imageUrl: thumbUrl,
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                    )
-                  : Container(
-                      width: 80,
-                      height: 80,
-                      color:
-                          Theme.of(context).colorScheme.onSurface.withAlpha(31),
-                      child: Icon(Icons.album_rounded,
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onSurface
-                              .withAlpha(97),
-                          size: 36),
-                    ),
+      child: Column(
+        children: [
+          // Handle
+          const SizedBox(height: 12),
+          Container(
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(32),
+              borderRadius: BorderRadius.circular(2),
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onSurface,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
+          ),
+          const SizedBox(height: 20),
+          // Title & Loading
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    widget.title,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w900,
                     ),
-                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '$type · $year',
-                    style: TextStyle(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onSurface
-                          .withAlpha(138),
-                      fontSize: 13,
+                ),
+                if (_isLoading)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                    decoration: BoxDecoration(
-                      color:
-                          Theme.of(context).colorScheme.onSurface.withAlpha(20),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onSurface
-                              .withAlpha(30)),
-                    ),
-                    child: Text(
-                      S.current.listenNow,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ],
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.close_rounded),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          // Search bar
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: TextField(
+              controller: _searchController,
+              onChanged: _filter,
+              decoration: InputDecoration(
+                hintText: S.current.search,
+                prefixIcon: const Icon(Icons.search_rounded),
+                filled: true,
+                fillColor: Theme.of(context).colorScheme.onSurface.withAlpha(12),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding: const EdgeInsets.symmetric(vertical: 0),
               ),
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 16),
+          // List
+          Expanded(
+            child: _filteredItems.isEmpty && !_isLoading
+                ? const Center(child: Text("No se encontraron resultados"))
+                : ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 24),
+                    itemCount: _filteredItems.length,
+                    itemBuilder: (context, index) {
+                      final item = _filteredItems[index];
+                      if (item is MediaItem || (item is Map && item.containsKey('videoId'))) {
+                        return _TrackRow(
+                          index: index + 1,
+                          item: item,
+                          ctrl: widget.ctrl,
+                          playerController: widget.playerController,
+                          isFromFavs: widget.isFromFavs,
+                        );
+                      } else {
+                        // For Albums/Videos in the modal
+                        return ListTile(
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: CachedNetworkImage(
+                              imageUrl: (item is Album) ? item.thumbnailUrl : (item['thumbnails']?[0]?['url'] ?? ''),
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          title: Text(
+                            (item is Album) ? item.title : (item['title'] as String? ?? ''),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(fontWeight: FontWeight.w600),
+                          ),
+                          subtitle: Text(
+                            (item is Album) ? (item.year ?? '') : (item['year'] as String? ?? ''),
+                            style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha(138), fontSize: 12),
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                            if (item is Map && item.containsKey('videoId')) {
+                              // It's a video
+                              widget.playerController.startRadio(null, playlistid: 'RDAMVM${item['videoId']}');
+                            } else {
+                              final browseId = (item is Album) ? item.browseId : (item['browseId'] as String? ?? '');
+                              Get.toNamed(
+                                ScreenNavigationSetup.albumScreen,
+                                id: ScreenNavigationSetup.id,
+                                arguments: (item is Album ? item : null, browseId),
+                              );
+                            }
+                          },
+                        );
+                      }
+                    },
+                  ),
+          ),
+        ],
       ),
     );
   }
