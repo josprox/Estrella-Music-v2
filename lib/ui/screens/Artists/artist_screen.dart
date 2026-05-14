@@ -192,6 +192,25 @@ class _SpotifyArtistScreen extends StatelessWidget {
                             ),
                           ),
                         ],
+                        // Monthly listeners (Metrolist parity)
+                        Obx(() {
+                          final ml = ctrl.monthlyListeners.value;
+                          if (ml == null || ml.isEmpty) return const SizedBox.shrink();
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Text(
+                              ml,
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onSurface
+                                    .withAlpha(140),
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ),
@@ -239,7 +258,42 @@ class _SpotifyArtistScreen extends StatelessWidget {
                             size: 32, color: Colors.white),
                       ),
                     ),
-                    const SizedBox(width: 20),
+                    const SizedBox(width: 12),
+                    // Shuffle Button (Metrolist parity)
+                    Obx(() {
+                      final sId = ctrl.shuffleId.value;
+                      if (sId == null) return const SizedBox.shrink();
+                      return GestureDetector(
+                        onTap: () {
+                          final songs = ctrl.artistData['Songs'];
+                          final allItems = songs != null
+                              ? (songs['content'] as List?) ?? []
+                              : <dynamic>[];
+                          if (allItems.isNotEmpty) {
+                            final shuffled = List.from(allItems)..shuffle();
+                            playerController.playPlayListSong(
+                                List.from(shuffled), 0);
+                          }
+                        },
+                        child: Container(
+                          width: 48,
+                          height: 48,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withAlpha(20),
+                          ),
+                          child: Icon(
+                            Icons.shuffle_rounded,
+                            color: Theme.of(context).colorScheme.primary,
+                            size: 22,
+                          ),
+                        ),
+                      );
+                    }),
+                    const SizedBox(width: 8),
                     // Follow Button
                     Obx(() => GestureDetector(
                           onTap: () => ctrl.addNremoveFromLibrary(
@@ -544,6 +598,63 @@ class _SpotifyArtistScreen extends StatelessWidget {
 
             // ── Videos ────────────────────────────────────────────
             _buildHorizontalSection(context, ctrl, 'Videos', isVideo: true),
+
+            // ── Podcasts ─────────────────────────────────────────
+            _buildHorizontalSection(context, ctrl, 'Podcasts'),
+
+            // ── Episodes ─────────────────────────────────────────
+            Obx(() {
+              final episodes = ctrl.artistData['Episodes'];
+              if (episodes == null) return const SliverToBoxAdapter();
+              final items = (episodes['content'] as List?)?.take(5).toList() ?? [];
+              if (items.isEmpty) return const SliverToBoxAdapter();
+              
+              return SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 32, 20, 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Episodes',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              // View all episodes logic
+                            },
+                            child: Text(
+                              S.current.viewAll,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface.withAlpha(138),
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      ...items.asMap().entries.map((entry) {
+                        return _TrackRow(
+                          index: entry.key + 1,
+                          item: entry.value,
+                          ctrl: ctrl,
+                          playerController: playerController,
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              );
+            }),
 
             // ── Playlists ─────────────────────────────────────────
             _buildHorizontalSection(context, ctrl, 'Playlists',
@@ -1169,39 +1280,76 @@ class _AlbumCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = item?.title ?? '';
-    final year =
-        (item is MediaItem) ? (item.extras?['year'] ?? '') : (item?.year ?? '');
-    final type = (item is MediaItem)
-        ? (item.extras?['description'] ??
+    final title = item is MediaItem
+        ? item.title
+        : item is Album
+            ? item.title
+            : item is Playlist
+                ? item.title
+                : (item is Map ? item['title'] as String? : null) ?? '';
+    final year = item is MediaItem
+        ? (item.extras?['year']?.toString() ?? '')
+        : item is Album
+            ? (item.year ?? '')
+            : '';
+    final type = item is MediaItem
+        ? (item.extras?['description']?.toString() ??
             (isVideo
                 ? S.current.video
                 : isPlaylist
                     ? S.current.playlist
                     : S.current.album))
-        : (item?.description ??
-            (isVideo
-                ? S.current.video
-                : isPlaylist
-                    ? S.current.playlist
-                    : S.current.album));
+        : item is Album
+            ? (item.description ??
+                (item.isPodcast ? 'Podcast' : S.current.album))
+            : item is Playlist
+                ? (item.description ?? S.current.playlist)
+                : (isVideo
+                    ? S.current.video
+                    : isPlaylist
+                        ? S.current.playlist
+                        : S.current.album);
 
     return InkWell(
       onTap: () {
         if (isVideo) {
           final pCtrl = Get.find<PlayerController>();
-          pCtrl.startRadio(null, playlistid: 'RDAMVM${item.videoId}');
+          final videoId = item is MediaItem
+              ? item.id
+              : item is Map
+                  ? item['videoId'] as String?
+                  : null;
+          if (videoId != null) {
+            pCtrl.startRadio(null, playlistid: 'RDAMVM$videoId');
+          }
         } else if (isPlaylist) {
+          final playlist = item is Playlist
+              ? item
+              : item is Map
+                  ? Playlist.fromJson(item)
+                  : Playlist(
+                      title: title,
+                      playlistId: item?.playlistId ?? item?.browseId ?? '',
+                      thumbnailUrl: item?.thumbnailUrl ?? '');
           Get.toNamed(
             ScreenNavigationSetup.playlistScreen,
             id: ScreenNavigationSetup.id,
-            arguments: (null as Playlist?, item.browseId as String, null, null),
+            arguments: [playlist, playlist.playlistId],
           );
         } else {
+          final album = item is Album
+              ? item
+              : item is Map
+                  ? Album.fromJson(item)
+                  : Album(
+                      title: title,
+                      browseId: item?.browseId ?? '',
+                      artists: item?.artists ?? const [],
+                      thumbnailUrl: item?.thumbnailUrl ?? '');
           Get.toNamed(
             ScreenNavigationSetup.albumScreen,
             id: ScreenNavigationSetup.id,
-            arguments: (null as Album?, item.browseId as String),
+            arguments: (album, album.browseId),
           );
         }
       },

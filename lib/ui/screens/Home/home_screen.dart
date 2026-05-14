@@ -194,6 +194,26 @@ class Body extends StatelessWidget {
                                 Obx(() => homeScreenController.forgottenFavorites.value != null ? QuickPicksWidget(
                                     content: homeScreenController
                                         .forgottenFavorites.value!) : const SizedBox.shrink()),
+                                // ?? Daily Discover (Metrolist parity) ??
+                                Obx(() => homeScreenController.dailyDiscover.value != null
+                                    ? QuickPicksWidget(
+                                        content: homeScreenController.dailyDiscover.value!)
+                                    : const SizedBox.shrink()),
+                                // ?? Keep Listening ??
+                                Obx(() => homeScreenController.keepListening.value != null
+                                    ? QuickPicksWidget(
+                                        content: homeScreenController.keepListening.value!)
+                                    : const SizedBox.shrink()),
+                                // ?? Similar Recommendations ??
+                                Obx(() => homeScreenController.similarRecommendations.value != null
+                                    ? QuickPicksWidget(
+                                        content: homeScreenController.similarRecommendations.value!)
+                                    : const SizedBox.shrink()),
+                                // ?? Community Playlists ??
+                                Obx(() => homeScreenController.communityPlaylists.value != null
+                                    ? QuickPicksWidget(
+                                        content: homeScreenController.communityPlaylists.value!)
+                                    : const SizedBox.shrink()),
                                 ...getWidgetList(
                                     homeScreenController.middleContent,
                                     homeScreenController),

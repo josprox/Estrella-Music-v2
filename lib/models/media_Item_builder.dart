@@ -35,7 +35,10 @@ class MediaItemBuilder {
           'date': json['date'],
           'year': json['year'],
           'podcastId': json['podcastId'],
+          'podcastTitle': json['podcastTitle'],
           'resultType': json['resultType'],
+          'isEpisode': json['isEpisode'] ?? false,
+          'publishDate': json['publishDate'],
           'totalPlayTime': json['totalPlayTime'] ?? 0,
           'lastPlayed': json['lastPlayed'],
         });
@@ -75,7 +78,10 @@ class MediaItemBuilder {
         'trackDetails': mediaItem.extras?['trackDetails'],
         'year': mediaItem.extras?['year'],
         'podcastId': mediaItem.extras?['podcastId'],
+        'podcastTitle': mediaItem.extras?['podcastTitle'],
         'resultType': mediaItem.extras?['resultType'],
+        'isEpisode': mediaItem.extras?['isEpisode'] ?? false,
+        'publishDate': mediaItem.extras?['publishDate'],
         'totalPlayTime': mediaItem.extras?['totalPlayTime'] ?? 0,
         'lastPlayed': mediaItem.extras?['lastPlayed'],
       };

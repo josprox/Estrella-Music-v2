@@ -65,12 +65,14 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
       // Check if the album is offline
       if (!wasInLibrary) {
         // Fetch album details online
-        final content =
-            await musicServices.getPlaylistOrAlbumSongs(albumId: albumId);
+        final isPodcast = album_?.isPodcast == true || albumId.startsWith('MPSP');
+        final content = isPodcast
+            ? await musicServices.podcast(albumId)
+            : await musicServices.getPlaylistOrAlbumSongs(albumId: albumId);
         content['browseId'] = albumId;
         album.value = Album.fromJson(content);
         animationController.forward();
-        songList.value = List<MediaItem>.from(content['tracks']);
+        songList.value = List<MediaItem>.from(content['tracks'] ?? []);
       } else {
         // If the album is offline, fetch the songs from the local database
         // Album details are already fetched in _checkIfAddedToLibrary method

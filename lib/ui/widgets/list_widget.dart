@@ -37,6 +37,7 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
 
   @override
   Widget build(BuildContext context) {
+    final normalizedTitle = title.toLowerCase();
     if (items.isEmpty) {
       return Expanded(
         child: Center(
@@ -46,7 +47,28 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
           ),
         ),
       );
-    } else if (title == "Videos" || title.contains("Songs")) {
+    }
+
+    final firstItem = items.first;
+    if (firstItem is Artist) {
+      return isCompleteList
+          ? Expanded(child: listViewArtists(items, sc: scrollController))
+          : SizedBox(
+              height: items.length * 95.0,
+              child: listViewArtists(items),
+            );
+    }
+    if (firstItem is Album) {
+      return listViewAlbums(items, sc: scrollController);
+    }
+    if (firstItem is Playlist) {
+      return listViewPlaylists(items, sc: scrollController);
+    }
+
+    if (normalizedTitle == "videos" ||
+        normalizedTitle.contains("songs") ||
+        normalizedTitle == "episodes" ||
+        normalizedTitle == "top result") {
       return isCompleteList
           ? Expanded(
               child: listViewSongVid(items,
@@ -60,11 +82,11 @@ class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
               height: items.length * 75.0,
               child: listViewSongVid(items),
             );
-    } else if (title.contains("playlists")) {
+    } else if (normalizedTitle.contains("playlist")) {
       return listViewPlaylists(items, sc: scrollController);
-    } else if (title == "Albums" || title == "Singles") {
+    } else if (title == "Albums" || title == "Singles" || title == "Podcasts") {
       return listViewAlbums(items, sc: scrollController);
-    } else if (title.contains('Artists')) {
+    } else if (title.contains('Artists') || title == "Profiles") {
       return isCompleteList
           ? Expanded(child: listViewArtists(items, sc: scrollController))
           : SizedBox(

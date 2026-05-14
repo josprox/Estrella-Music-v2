@@ -9,6 +9,7 @@ import '../../../utils/update_check_flag_file.dart';
 import '../../../utils/helper.dart';
 import '/models/album.dart';
 import '/models/playlist.dart';
+import '/models/artist.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 import '/models/quick_picks.dart';
 import '/services/music_service.dart';
@@ -27,6 +28,10 @@ class HomeScreenController extends GetxController {
   final randomMusic = Rx<QuickPicks?>(null);
   final mostListened = <MediaItem>[].obs;
   final forgottenFavorites = Rx<QuickPicks?>(null);
+  final dailyDiscover = Rx<QuickPicks?>(null);
+  final communityPlaylists = Rx<QuickPicks?>(null);
+  final keepListening = Rx<QuickPicks?>(null);
+  final similarRecommendations = Rx<QuickPicks?>(null);
 
   final showVersionDialog = true.obs;
   //isHomeScreenOnTop var only useful if bottom nav enabled
@@ -42,7 +47,177 @@ class HomeScreenController extends GetxController {
     loadContent();
     loadLocalCustomSections();
     if (updateCheckFlag) _checkNewVersion();
+    _loadDailyDiscover();
+    _loadCommunityPlaylists();
+    _loadKeepListening();
+    _loadSimilarRecommendations();
   }
+
+  Future<void> _loadDailyDiscover() async {
+    try {
+      final favBox = await Hive.openBox('LIBFAV');
+      if (favBox.isEmpty) return;
+
+      final allFavs = favBox.values.map((e) => MediaItemBuilder.fromJson(e)).toList();
+      allFavs.shuffle();
+      final seeds = allFavs.take(5).toList();
+
+      List<MediaItem> recommendations = [];
+
+      for (final seed in seeds) {
+        if (seed.id.isNotEmpty) {
+          final rel = await _musicServices.getContentRelatedToSong(seed.id, getContentHlCode());
+          if (rel.isNotEmpty) {
+            final con = rel.first;
+            if (con["contents"] != null) {
+               final items = List<MediaItem>.from(con["contents"]);
+               items.shuffle();
+               final recList = items.where((item) => item.id != seed.id).toList();
+               if (recList.isNotEmpty) {
+                 recommendations.add(recList.first);
+               }
+            }
+          }
+        }
+      }
+
+      if (recommendations.isNotEmpty) {
+        final uniqueRecs = <String, MediaItem>{};
+        for (var rec in recommendations) {
+           uniqueRecs[rec.id] = rec;
+        }
+        var finalRecs = uniqueRecs.values.toList();
+        finalRecs.shuffle();
+        dailyDiscover.value = QuickPicks(finalRecs, title: "Daily Discover");
+      }
+    } catch (e) {
+      printERROR("Daily Discover failed: \$e");
+    }
+  }
+
+  
+  Future<void> _loadCommunityPlaylists() async {
+    try {
+      final favBox = await Hive.openBox('LIBFAV');
+      if (favBox.isEmpty) return;
+
+      final allFavs = favBox.values.map((e) => MediaItemBuilder.fromJson(e)).toList();
+      allFavs.shuffle();
+      final seeds = allFavs.take(3).toList();
+
+      List<MediaItem> recommendations = [];
+
+      for (final seed in seeds) {
+
+          final res = await _musicServices.search(seed.title, filter: "community_playlists");
+          if (res.containsKey("Community playlists")) {
+            final items = List<MediaItem>.from(res["Community playlists"]);
+            items.shuffle();
+            if (items.isNotEmpty) recommendations.add(items.first);
+          }
+              }
+
+      if (recommendations.isNotEmpty) {
+        final uniqueRecs = <String, MediaItem>{};
+        for (var rec in recommendations) {
+           uniqueRecs[rec.id] = rec;
+        }
+        var finalRecs = uniqueRecs.values.toList();
+        finalRecs.shuffle();
+        communityPlaylists.value = QuickPicks(finalRecs, title: "Community Playlists");
+      }
+    } catch (e) {
+      printERROR("Community Playlists failed: $e");
+    }
+  }
+
+  Future<void> _loadKeepListening() async {
+    try {
+      final favBox = await Hive.openBox('LIBFAV');
+      if (favBox.isEmpty) return;
+
+      final allFavs = favBox.values.map((e) => MediaItemBuilder.fromJson(e)).toList();
+      // Sort by lastPlayed descending to get most recently played
+      final keepList = List<MediaItem>.from(allFavs)
+        ..sort((a, b) {
+          final lastA = a.extras?['lastPlayed'] as int? ?? 0;
+          final lastB = b.extras?['lastPlayed'] as int? ?? 0;
+          return lastB.compareTo(lastA);
+        });
+
+      final seeds = keepList.take(3).toList();
+      List<MediaItem> recommendations = [];
+      recommendations.addAll(seeds);
+
+      for (final seed in seeds) {
+        if (seed.id.isNotEmpty) {
+          final rel = await _musicServices.getContentRelatedToSong(seed.id, getContentHlCode());
+          if (rel.isNotEmpty) {
+            final con = rel.first;
+            if (con["contents"] != null) {
+               final items = List<MediaItem>.from(con["contents"]);
+               items.shuffle();
+               final recList = items.where((item) => item.id != seed.id).toList();
+               if (recList.isNotEmpty) {
+                 recommendations.add(recList.first);
+               }
+            }
+          }
+        }
+      }
+
+      if (recommendations.isNotEmpty) {
+        final uniqueRecs = <String, MediaItem>{};
+        for (var rec in recommendations) {
+           uniqueRecs[rec.id] = rec;
+        }
+        var finalRecs = uniqueRecs.values.toList();
+        finalRecs.shuffle();
+        keepListening.value = QuickPicks(finalRecs, title: "Keep Listening");
+      }
+    } catch (e) {
+      printERROR("Keep Listening failed: $e");
+    }
+  }
+
+  Future<void> _loadSimilarRecommendations() async {
+    try {
+      final favBox = await Hive.openBox('LIBFAV');
+      if (favBox.isEmpty) return;
+
+      final allFavs = favBox.values.map((e) => MediaItemBuilder.fromJson(e)).toList();
+      allFavs.shuffle();
+      final seed = allFavs.first;
+
+      List<MediaItem> recommendations = [];
+
+      if (seed.id.isNotEmpty) {
+        final rel = await _musicServices.getContentRelatedToSong(seed.id, getContentHlCode());
+        if (rel.isNotEmpty) {
+          final con = rel.first;
+          if (con["contents"] != null) {
+             final items = List<MediaItem>.from(con["contents"]);
+             items.shuffle();
+             final recList = items.where((item) => item.id != seed.id).toList();
+             recommendations.addAll(recList.take(15));
+          }
+        }
+      }
+
+      if (recommendations.isNotEmpty) {
+        final uniqueRecs = <String, MediaItem>{};
+        for (var rec in recommendations) {
+           uniqueRecs[rec.id] = rec;
+        }
+        var finalRecs = uniqueRecs.values.toList();
+        finalRecs.shuffle();
+        similarRecommendations.value = QuickPicks(finalRecs, title: "Similar to ${seed.title}");
+      }
+    } catch (e) {
+      printERROR("Similar Recommendations failed: $e");
+    }
+  }
+
 
   Future<void> loadLocalCustomSections() async {
     try {
@@ -119,11 +294,13 @@ class HomeScreenController extends GetxController {
       middleContent.value = middleContentData.map((e) {
         if (e["type"] == "Album Content") return AlbumContent.fromJson(e);
         if (e["type"] == "QuickPicks Content") return QuickPicks.fromJson(e);
+        if (e["type"] == "Artist Content") return ArtistContent.fromJson(e);
         return PlaylistContent.fromJson(e);
       }).toList();
       fixedContent.value = fixedContentData.map((e) {
         if (e["type"] == "Album Content") return AlbumContent.fromJson(e);
         if (e["type"] == "QuickPicks Content") return QuickPicks.fromJson(e);
+        if (e["type"] == "Artist Content") return ArtistContent.fromJson(e);
         return PlaylistContent.fromJson(e);
       }).toList();
       isContentFetched.value = true;
@@ -263,32 +440,34 @@ class HomeScreenController extends GetxController {
     }
   }
 
-  List _setContentList(
-    List<dynamic> contents,
-  ) {
+  List _setContentList(List<dynamic> contents) {
     List contentTemp = [];
     for (var content in contents) {
-      if ((content["contents"]).isEmpty) continue;
-      if ((content["contents"][0]).runtimeType == Playlist) {
-        final tmp = PlaylistContent(
-            playlistList: (content["contents"]).whereType<Playlist>().toList(),
-            title: content["title"]);
-        if (tmp.playlistList.length >= 2) {
-          contentTemp.add(tmp);
+      final items = content["contents"] as List?;
+      if (items == null || items.isEmpty) continue;
+
+      final firstItem = items[0];
+      if (firstItem is Playlist) {
+        final playlistList = items.whereType<Playlist>().toList();
+        if (playlistList.isNotEmpty) {
+          contentTemp.add(PlaylistContent(
+              playlistList: playlistList, title: content["title"]));
         }
-      } else if ((content["contents"][0]).runtimeType == Album) {
-        final tmp = AlbumContent(
-            albumList: (content["contents"]).whereType<Album>().toList(),
-            title: content["title"]);
-        if (tmp.albumList.length >= 2) {
-          contentTemp.add(tmp);
+      } else if (firstItem is Album) {
+        final albumList = items.whereType<Album>().toList();
+        if (albumList.isNotEmpty) {
+          contentTemp.add(AlbumContent(
+              albumList: albumList, title: content["title"]));
         }
-      } else if ((content["contents"][0]).runtimeType == MediaItem) {
-        final tmp = QuickPicks(
-            (content["contents"]).whereType<MediaItem>().toList(),
-            title: content["title"]);
-        if (tmp.songList.length >= 2) {
-          contentTemp.add(tmp);
+      } else if (firstItem is MediaItem) {
+        final songList = items.whereType<MediaItem>().toList();
+        if (songList.isNotEmpty) {
+          contentTemp.add(QuickPicks(songList, title: content["title"]));
+        }
+      } else if (firstItem is Artist) {
+        final artistList = items.whereType<Artist>().toList();
+        if (artistList.isNotEmpty) {
+          contentTemp.add(ArtistContent(artistList, title: content["title"]));
         }
       }
     }
@@ -449,6 +628,8 @@ class HomeScreenController extends GetxController {
           return (e as AlbumContent).toJson();
         } else if (e.runtimeType == QuickPicks) {
           return (e as QuickPicks).toJson();
+        } else if (e.runtimeType == ArtistContent) {
+          return (e as ArtistContent).toJson();
         } else {
           return (e as PlaylistContent).toJson();
         }

@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Estrella Music"
-#define MyAppVersion "2.2.8"
+#define MyAppVersion "2.3.1"
 #define MyAppPublisher "JOSPROX MX"
 #define MyAppURL "https://github.com/josprox/Estrella-Music-v2"
 #define MyAppExeName "harmonymusic.exe"

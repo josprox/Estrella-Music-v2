@@ -12,6 +12,8 @@ import '../utils/helper.dart';
 import 'constant.dart';
 import 'continuations.dart';
 import 'nav_parser.dart';
+import '/models/artist.dart';
+import '/models/playlist.dart';
 
 enum AudioQuality {
   Low,
@@ -648,9 +650,43 @@ class MusicServices extends getx.GetxService {
     final response = (await _sendRequest("search", data)).data;
 
     if (response['contents'] == null) {
-      return searchResults;
+    if (filter == null) {
+      final List<String> orderedKeys = [
+        'Top result',
+        'Songs',
+        'Videos',
+        'Albums',
+        'Podcasts',
+        'Episodes',
+        'Artists',
+        'Profiles',
+        'Playlists',
+        'Community playlists',
+        'Featured playlists'
+      ];
+      final Map<String, dynamic> orderedResults = {};
+      
+      if (searchResults.containsKey('searchEndpoint')) {
+        orderedResults['searchEndpoint'] = searchResults['searchEndpoint'];
+      }
+      
+      for (var key in orderedKeys) {
+        if (searchResults.containsKey(key) && searchResults[key].isNotEmpty) {
+          orderedResults[key] = searchResults[key];
+        }
+      }
+      
+      searchResults.forEach((key, value) {
+        if (!orderedResults.containsKey(key)) {
+          orderedResults[key] = value;
+        }
+      });
+      
+      return orderedResults;
     }
 
+    return searchResults;
+  }
     dynamic results;
 
     if ((response['contents']).containsKey('tabbedSearchResultsRenderer')) {
@@ -708,63 +744,104 @@ class MusicServices extends getx.GetxService {
     results = nav(results, ['sectionListRenderer', 'contents']);
 
     if (results.length == 1 && results[0]['itemSectionRenderer'] != null) {
-      return searchResults;
+    if (filter == null) {
+      final List<String> orderedKeys = [
+        'Top result',
+        'Songs',
+        'Videos',
+        'Albums',
+        'Podcasts',
+        'Episodes',
+        'Artists',
+        'Profiles',
+        'Playlists',
+        'Community playlists',
+        'Featured playlists'
+      ];
+      final Map<String, dynamic> orderedResults = {};
+      
+      if (searchResults.containsKey('searchEndpoint')) {
+        orderedResults['searchEndpoint'] = searchResults['searchEndpoint'];
+      }
+      
+      for (var key in orderedKeys) {
+        if (searchResults.containsKey(key) && searchResults[key].isNotEmpty) {
+          orderedResults[key] = searchResults[key];
+        }
+      }
+      
+      searchResults.forEach((key, value) {
+        if (!orderedResults.containsKey(key)) {
+          orderedResults[key] = value;
+        }
+      });
+      
+      return orderedResults;
     }
 
+    return searchResults;
+  }
     String? type;
 
     for (var res in results) {
-      String category;
-      if (res['musicShelfRenderer'] != null) {
+      String category = "mixed";
+      if (res.containsKey('musicCardShelfRenderer')) {
+        final topResult = parseTopResult(res['musicCardShelfRenderer'],
+            ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile']);
+        if (topResult != null) {
+          searchResults['Top result'] = [topResult];
+        }
+      } else if (res['musicShelfRenderer'] != null) {
         dynamic itemResults = res['musicShelfRenderer']['contents'];
-        String? typeFilter = filter;
-        category = "mixed"; // Just a default value
+        category = nav(res, ['musicShelfRenderer', ...title_text]) ?? "mixed";
+        
         final mixedItems = parseSearchResults(itemResults,
             ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'], type, category);
+        
         if (filter == null) {
+          // Grouping for summary search
           for (var item in mixedItems) {
-            final String itemType;
+            String itemType = "Other";
             if (item is MediaItem) {
-              final String? type = item.extras?['resultType'];
-              if (type == 'episode') {
+              final String? resType = item.extras?['resultType'];
+              if (resType == 'episode') {
                 itemType = "Episodes";
-              } else if (type == 'song') {
+              } else if (resType == 'song') {
                 itemType = "Songs";
-              } else if (type == 'video') {
+              } else if (resType == 'video') {
                 itemType = "Videos";
-              } else {
-                itemType = "${item.artist?.split(",")[0] ?? "Song"}s";
+              }
+            } else if (item is Artist) {
+              itemType = item.isProfile ? "Profiles" : "Artists";
+            } else if (item is Album) {
+              itemType = item.isPodcast ? "Podcasts" : "Albums";
+            } else if (item is Playlist) {
+              itemType = "Playlists";
+            }
+            
+            if (searchResults.containsKey(itemType)) {
+              if ((searchResults[itemType] as List).length < 5) {
+                (searchResults[itemType] as List).add(item);
               }
             } else {
-              itemType = "${item.runtimeType}s";
-            }
-            if (searchResults.containsKey(itemType) &&
-                (searchResults[itemType]).length < 3) {
-              (searchResults[itemType] as List).add(item);
-            } else if (!searchResults.containsKey(itemType)) {
               searchResults[itemType] = [item];
             }
           }
         } else {
-          category = nav(res, ['musicShelfRenderer', ...title_text]);
-          searchResults[category] = parseSearchResults(
-              res['musicShelfRenderer']['contents'],
-              ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'],
-              type,
-              category);
+          searchResults[category] = mixedItems;
         }
-        type = typeFilter?.substring(0, typeFilter.length - 1).toLowerCase();
+        type = filter?.substring(0, filter.length - 1).toLowerCase();
       } else {
         continue;
       }
 
-      if (filter != null) {
+      if (filter != null && res['musicShelfRenderer'] != null) {
         requestFunc(additionalParams) async =>
             (await _sendRequest("search", data,
                     additionalParams: additionalParams))
                 .data;
         parseFunc(contents) => parseSearchResults(contents,
-            ['artist', 'playlist', 'song', 'video', 'station'], type, category);
+            ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'], type, category);
 
         if (searchResults.containsKey(category)) {
           final x = await getContinuations(
@@ -789,10 +866,43 @@ class MusicServices extends getx.GetxService {
         }
       }
     }
+    if (filter == null) {
+      final List<String> orderedKeys = [
+        'Top result',
+        'Songs',
+        'Videos',
+        'Albums',
+        'Podcasts',
+        'Episodes',
+        'Artists',
+        'Profiles',
+        'Playlists',
+        'Community playlists',
+        'Featured playlists'
+      ];
+      final Map<String, dynamic> orderedResults = {};
+      
+      if (searchResults.containsKey('searchEndpoint')) {
+        orderedResults['searchEndpoint'] = searchResults['searchEndpoint'];
+      }
+      
+      for (var key in orderedKeys) {
+        if (searchResults.containsKey(key) && searchResults[key].isNotEmpty) {
+          orderedResults[key] = searchResults[key];
+        }
+      }
+      
+      searchResults.forEach((key, value) {
+        if (!orderedResults.containsKey(key)) {
+          orderedResults[key] = value;
+        }
+      });
+      
+      return orderedResults;
+    }
 
     return searchResults;
   }
-
   Future<Map<String, dynamic>> getSearchContinuation(Map additionalParamsNext,
       {int limit = 10}) async {
     final data = additionalParamsNext['data'];
@@ -805,7 +915,7 @@ class MusicServices extends getx.GetxService {
             .data;
 
     parseFunc(contents) => parseSearchResults(contents,
-        ['artist', 'playlist', 'song', 'video', 'station'], type, category);
+        ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'], type, category);
 
     final x = await getContinuations(
         {}, 'musicShelfContinuation', limit, requestFunc, parseFunc,
@@ -820,10 +930,8 @@ class MusicServices extends getx.GetxService {
     };
 
     searchResults[category] = x[0];
-
     return searchResults;
   }
-
   Future<Map<String, dynamic>> getArtist(String channelId) async {
     if (channelId.startsWith("MPLA")) {
       channelId = channelId.substring(4);
@@ -832,39 +940,47 @@ class MusicServices extends getx.GetxService {
     data['context']['client']["hl"] = 'en';
     data['browseId'] = channelId;
     final response = (await _sendRequest("browse", data)).data;
-    final results = nav(response, [...single_column_tab, ...section_list]);
+    final results = nav(response, [...single_column_tab, ...section_list]) ?? [];
 
     final Map<String, dynamic> artist = {'description': null, 'views': null};
-    final Map<String, dynamic> header = (response['header']
-            ['musicImmersiveHeaderRenderer']) ??
-        response['header']['musicVisualHeaderRenderer'];
-    artist['name'] = nav(header, title_text);
-    final descriptionShelf =
-        findObjectByKey(results, description_shelf[0], isKey: true);
+    
+    // Header can be immersive, visual, or responsive (for profiles)
+    final dynamic header = response['header']?['musicImmersiveHeaderRenderer'] ??
+        response['header']?['musicVisualHeaderRenderer'] ??
+        response['header']?['musicHeaderRenderer'] ??
+        response['header']?['musicEditablePlaylistDetailHeaderRenderer']?['header']?['musicResponsiveHeaderRenderer'];
+
+    if (header != null) {
+      artist['name'] = nav(header, title_text) ?? nav(header, ['title', 'runs', 0, 'text']);
+      artist['thumbnails'] = nav(header, thumbnails) ??
+          nav(header, thumbnail_renderer) ??
+          nav(header, ['thumbnail', 'thumbnails']) ??
+          [{'url': ''}];
+      
+      final dynamic subscriptionButton = header['subscriptionButton'] != null
+          ? header['subscriptionButton']['subscribeButtonRenderer']
+          : null;
+      
+      artist['subscribers'] = subscriptionButton != null
+          ? nav(subscriptionButton, ['subscriberCountText', 'runs', 0, 'text'])
+          : null;
+      
+      artist['isSubscribed'] = subscriptionButton != null ? (nav(subscriptionButton, ['subscribed']) ?? false) : false;
+      artist['monthlyListeners'] = nav(header, ['monthlyListenerCount', 'runs', 0, 'text']);
+      
+      artist['shuffleId'] = nav(header, ['playButton', 'buttonRenderer', ...navigation_watch_playlist_id]);
+      artist['radioId'] = nav(header, ['startRadioButton', 'buttonRenderer'] + navigation_playlist_id);
+    }
+
+    artist['channelId'] = channelId;
+    
+    final descriptionShelf = findObjectByKey(results, description_shelf[0], isKey: true);
     if (descriptionShelf != null) {
       artist['description'] = nav(descriptionShelf, description);
       artist['views'] = descriptionShelf['subheader'] == null
           ? null
           : descriptionShelf['subheader']['runs'][0]['text'];
     }
-    final dynamic subscriptionButton = header['subscriptionButton'] != null
-        ? header['subscriptionButton']['subscribeButtonRenderer']
-        : null;
-    artist['channelId'] = channelId;
-    artist['shuffleId'] = nav(header,
-        ['playButton', 'buttonRenderer', ...navigation_watch_playlist_id]);
-    artist['radioId'] = nav(
-      header,
-      ['startRadioButton', 'buttonRenderer'] + navigation_playlist_id,
-    );
-    artist['subscribers'] = subscriptionButton != null
-        ? nav(
-            subscriptionButton,
-            ['subscriberCountText', 'runs', 0, 'text'],
-          )
-        : null;
-
-    artist['thumbnails'] = nav(header, thumbnails);
 
     artist.addAll(parseArtistContents(results));
     return artist;
@@ -883,101 +999,81 @@ class MusicServices extends getx.GetxService {
     final response =
         (await _sendRequest("browse", data, additionalParams: additionalParams))
             .data;
-    final contents = nav(response, [
-      'contents',
-      'singleColumnBrowseResultsRenderer',
-      'tabs',
-      0,
-      'tabRenderer',
-      'content',
-      'sectionListRenderer',
-      'contents',
-      0,
-    ]);
 
-    if (category == "Songs" || category == "Videos") {
-      if (additionalParams != "") {
-        final contentList = nav(response, [
-          "onResponseReceivedActions",
-          0,
-          "appendContinuationItemsAction",
-          "continuationItems"
-        ]);
-        final x = parsePlaylistItems(contentList);
-        result['results'] = x;
-        result['additionalParams'] = "&ctoken=${null}&continuation=${null}";
-      } else if (contents.containsKey("gridRenderer")) {
-        result['results'] = (contents['gridRenderer']['items'])
-            .map((video) => parseVideo(video['musicTwoRowItemRenderer']))
-            .toList();
-        result['additionalParams'] = "&ctoken=${null}&continuation=${null}";
-      } else {
-        final collapseContent =
-            nav(contents, ['musicPlaylistShelfRenderer', "collapsedItemCount"]);
-        if (collapseContent != null) {
-          final contentlist =
-              contents['musicPlaylistShelfRenderer']['contents'];
-          if (contentlist.length.toString() != collapseContent.toString()) {
-            final continuationItem = contentlist.removeAt(100);
-            result['results'] = parsePlaylistItems(contentlist);
-            final continuationKey = nav(continuationItem, [
-              "continuationItemRenderer",
-              "continuationEndpoint",
-              "continuationCommand",
-              "token"
-            ]);
-            result['additionalParams'] =
-                "&ctoken=$continuationKey&continuation=$continuationKey";
-          } else {
-            result['results'] = parsePlaylistItems(contentlist);
-            result['additionalParams'] = "&ctoken=null&continuation=null";
-          }
-        }
-        return result;
-      }
-    } else if (category == 'Albums' || category == 'Singles') {
-      List contentlist;
+    List<dynamic> contentList = [];
+    dynamic renderer;
 
-      /// in continuation
-      if (additionalParams != "") {
-        contentlist =
-            response['continuationContents']['gridContinuation']['items'];
-        final continuationKey = nav(response, [
-          'continuationContents',
-          'gridContinuation',
-          'continuations',
-          0,
-          'nextContinuationData',
-          'continuation'
-        ]);
-        result['additionalParams'] =
-            "&ctoken=$continuationKey&continuation=$continuationKey";
-      } else {
-        /// in first request
-        contentlist = contents['gridRenderer']['items'];
-
-        final continuationKey = nav(contents, [
-          'gridRenderer',
-          'continuations',
-          0,
-          'nextContinuationData',
-          'continuation'
-        ]);
-        result['additionalParams'] =
-            "&ctoken=$continuationKey&continuation=$continuationKey";
-      }
-
-      result['results'] = category == 'Albums'
-          ? contentlist
-              .map((item) => parseAlbum(item['musicTwoRowItemRenderer']))
-              .whereType<Album>()
-              .toList()
-          : contentlist
-              .map((item) => parseSingle(item['musicTwoRowItemRenderer']))
-              .whereType<Album>()
-              .toList();
+    if (additionalParams.isNotEmpty) {
+      contentList = nav(response, [
+            'continuationContents',
+            'gridContinuation',
+            'items'
+          ]) ??
+          nav(response, [
+            'continuationContents',
+            'musicPlaylistShelfContinuation',
+            'contents'
+          ]) ??
+          nav(response, [
+            'continuationContents',
+            'musicShelfContinuation',
+            'contents'
+          ]) ??
+          nav(response, [
+            'onResponseReceivedActions',
+            0,
+            'appendContinuationItemsAction',
+            'continuationItems'
+          ]) ??
+          [];
+      result['additionalParams'] = _continuationParamsFromResponse(response);
+    } else {
+      final firstSection = nav(response, [
+        'contents',
+        'singleColumnBrowseResultsRenderer',
+        'tabs',
+        0,
+        'tabRenderer',
+        'content',
+        'sectionListRenderer',
+        'contents',
+        0,
+      ]);
+      renderer = firstSection?['gridRenderer'] ??
+          firstSection?['musicCarouselShelfRenderer'] ??
+          firstSection?['musicShelfRenderer'] ??
+          firstSection?['musicPlaylistShelfRenderer'];
+      contentList = renderer?['items'] ?? renderer?['contents'] ?? [];
+      result['additionalParams'] = renderer == null
+          ? '&ctoken=null&continuation=null'
+          : _continuationParamsFromRenderer(renderer);
     }
+
+    result['results'] = _parseArtistRelatedItems(contentList, category);
     return result;
+  }
+
+  List<dynamic> _parseArtistRelatedItems(List<dynamic> contentList, String category) {
+    return contentList
+        .map((item) {
+          if (item.containsKey(mtrir)) {
+            return category == 'Singles'
+                ? parseSingle(item[mtrir])
+                : parseTwoRowItem(item[mtrir]);
+          }
+          if (item.containsKey(mrlir)) {
+            final renderer = Map<String, dynamic>.from(item[mrlir]);
+            return isEpisodeRenderer(renderer)
+                ? parseEpisodeFlat(renderer)
+                : parseSongFlat(renderer);
+          }
+          if (item.containsKey(mmrlir)) {
+            return parseMultiRowEpisode(item[mmrlir]);
+          }
+          return null;
+        })
+        .whereType<dynamic>()
+        .toList();
   }
 
   Future<String?> getSongYear(String songId) async {
@@ -1034,26 +1130,259 @@ class MusicServices extends getx.GetxService {
     data['context']['client']["hl"] = 'en';
     data['browseId'] = channelId;
     final response = (await _sendRequest("browse", data)).data;
-    final results = nav(response, [...single_column_tab, ...section_list]) ?? [];
 
-    final Map<String, dynamic> podcastData = {'description': null, 'episodes': []};
-    final Map<String, dynamic>? header = (response['header']?['podcastHeaderRenderer']) ??
+    final sectionListRenderer = nav(response, [
+          'contents',
+          'twoColumnBrowseResultsRenderer',
+          'tabs',
+          0,
+          'tabRenderer',
+          'content',
+          'sectionListRenderer'
+        ]) ??
+        nav(response, [
+          'contents',
+          'singleColumnBrowseResultsRenderer',
+          'tabs',
+          0,
+          'tabRenderer',
+          'content',
+          'sectionListRenderer'
+        ]);
+    final results = nav(sectionListRenderer, ['contents']) ?? [];
+
+    final header = nav(results, [0, 'musicResponsiveHeaderRenderer']) ??
+        response['header']?['podcastHeaderRenderer'] ??
         response['header']?['musicImmersiveHeaderRenderer'] ??
         response['header']?['musicVisualHeaderRenderer'];
 
-    if(header != null) {
-      podcastData['name'] = nav(header, title_text) ?? "";
-      final descriptionShelf = findObjectByKey(results, description_shelf[0], isKey: true);
-      if (descriptionShelf != null) {
-        podcastData['description'] = nav(descriptionShelf, description);
+    final secondarySections = nav(response, [
+          'contents',
+          'twoColumnBrowseResultsRenderer',
+          'secondaryContents',
+          'sectionListRenderer',
+          'contents'
+        ]) ??
+        results;
+
+    final descriptionShelf =
+        findObjectByKey(results, description_shelf[0], isKey: true) ??
+            findObjectByKey(secondarySections, description_shelf[0], isKey: true);
+
+    final title = nav(header, title_text) ?? "";
+    final authorRun = nav(header, ['straplineTextOne', 'runs', 0]);
+    final thumbnailsList = nav(header, thumbnails) ??
+        nav(header, thumbnail_renderer) ??
+        nav(header, [
+          'thumbnail',
+          'musicThumbnailRenderer',
+          'thumbnail',
+          'thumbnails'
+        ]) ??
+        [{'url': ''}];
+
+    List<dynamic>? episodeContents;
+    dynamic episodeShelf;
+    for (final section in secondarySections) {
+      episodeShelf = section['musicShelfRenderer'] ??
+          section['musicPlaylistShelfRenderer'];
+      if (episodeShelf != null) {
+        episodeContents = episodeShelf['contents'];
+        if (episodeContents != null) break;
       }
-      podcastData['channelId'] = channelId;
-      podcastData['thumbnails'] = nav(header, thumbnails) ?? nav(header, ['thumbnail', 'musicThumbnailRenderer', 'thumbnail', 'thumbnails']);
     }
 
-    // Attempt to parse mixed content for episodes and sections
+    final podcastRef = {'id': channelId, 'title': title};
+    final episodes = (episodeContents ?? [])
+        .map((item) {
+          if (item.containsKey(mmrlir)) {
+            return parseMultiRowEpisode(item[mmrlir], podcast: podcastRef);
+          }
+          if (item.containsKey(mrlir)) {
+            return parseEpisodeFlat(Map<String, dynamic>.from(item[mrlir]));
+          }
+          if (item.containsKey(mtrir)) {
+            return parseEpisode(item[mtrir]);
+          }
+          return null;
+        })
+        .whereType<MediaItem>()
+        .toList();
+
+    final Map<String, dynamic> podcastData = {
+      'title': title,
+      'name': title,
+      'browseId': channelId,
+      'channelId': channelId,
+      'description': nav(descriptionShelf, description),
+      'thumbnails': thumbnailsList,
+      'isPodcast': true,
+      'artists': authorRun == null
+          ? [
+              {'name': ''}
+            ]
+          : [
+              {
+                'name': authorRun['text'],
+                'id': nav(authorRun, navigation_browse_id),
+              }
+            ],
+      'episodeCount': nav(header, ['secondSubtitle', 'runs', 0, 'text']),
+      'tracks': episodes,
+      'Episodes': {
+        'content': episodes,
+        'additionalParams': episodeShelf == null
+            ? '&ctoken=null&continuation=null'
+            : _continuationParamsFromRenderer(episodeShelf),
+      },
+    };
+
     podcastData.addAll(parseArtistContents(results));
+    podcastData['tracks'] = episodes;
+    podcastData['Episodes'] = {
+      'content': episodes,
+      'additionalParams': episodeShelf == null
+          ? '&ctoken=null&continuation=null'
+          : _continuationParamsFromRenderer(episodeShelf),
+    };
+
     return podcastData;
+  }
+
+  Future<List<dynamic>> getPodcastEpisodes(String browseId, String params, {int limit = 100}) async {
+    final data = Map.from(_context);
+    data['browseId'] = browseId;
+    data['params'] = params;
+    
+    final response = (await _sendRequest("browse", data)).data;
+    final results = nav(response, [...single_column_tab, ...section_list, 0, 'musicPlaylistShelfRenderer', 'contents']) ?? [];
+    
+    final episodes = parsePlaylistItems(results);
+    return episodes;
+  }
+
+  Future<List<dynamic>> savedPodcastShows() async {
+    final data = Map.from(_context);
+    data['browseId'] = "FEmusic_library_non_music_audio_list";
+    try {
+      final response = (await _sendRequest("browse", data)).data;
+      final contents = nav(response, [
+        'contents',
+        'singleColumnBrowseResultsRenderer',
+        'tabs',
+        0,
+        'tabRenderer',
+        'content',
+        'sectionListRenderer',
+        'contents',
+        0
+      ]);
+
+      List items = [];
+      if (contents?['gridRenderer'] != null) {
+        items = contents?['gridRenderer']['items']
+            ?.map((item) => parseTwoRowItem(item['musicTwoRowItemRenderer']))
+            ?.whereType<dynamic>()
+            ?.toList() ?? [];
+      } else if (contents?['musicShelfRenderer'] != null) {
+        items = contents?['musicShelfRenderer']['contents']
+            ?.map((item) => parseSongFlat(item['musicResponsiveListItemRenderer']))
+            ?.whereType<dynamic>()
+            ?.toList() ?? [];
+      }
+      return items.where((element) => element.isPodcast == true).toList();
+    } catch (e) {
+      printERROR("savedPodcastShows failed: $e");
+      return [];
+    }
+  }
+
+  Future<List<dynamic>> episodesForLater() async {
+    final data = Map.from(_context);
+    data['browseId'] = "VLSE";
+    try {
+      final response = (await _sendRequest("browse", data)).data;
+      final contents = nav(response, [
+        'contents',
+        'twoColumnBrowseResultsRenderer',
+        'secondaryContents',
+        'sectionListRenderer',
+        'contents',
+        0
+      ]);
+
+      final shelfContents = contents?['musicPlaylistShelfRenderer']?['contents'] ??
+          contents?['musicShelfRenderer']?['contents'];
+
+      if (shelfContents == null) return [];
+
+      return shelfContents
+          .map((item) => parseEpisodeFlat(item['musicResponsiveListItemRenderer'] ?? item))
+          .where((item) => item != null)
+          .toList();
+    } catch (e) {
+      printERROR("episodesForLater failed: $e");
+      return [];
+    }
+  }
+
+
+  String _continuationParamsFromRenderer(dynamic renderer) {
+    final continuationKey = nav(renderer, [
+      'continuations',
+      0,
+      'nextContinuationData',
+      'continuation'
+    ]);
+    return continuationKey == null
+        ? '&ctoken=null&continuation=null'
+        : '&ctoken=$continuationKey&continuation=$continuationKey';
+  }
+
+  String _continuationParamsFromResponse(Map<String, dynamic> response) {
+    final appendedItems = nav(response, [
+      'onResponseReceivedActions',
+      0,
+      'appendContinuationItemsAction',
+      'continuationItems'
+    ]);
+    final appendedContinuationKey =
+        appendedItems is List && appendedItems.isNotEmpty
+            ? nav(appendedItems.last, [
+                'continuationItemRenderer',
+                'continuationEndpoint',
+                'continuationCommand',
+                'token'
+              ])
+            : null;
+    final continuationKey = nav(response, [
+          'continuationContents',
+          'gridContinuation',
+          'continuations',
+          0,
+          'nextContinuationData',
+          'continuation'
+        ]) ??
+        nav(response, [
+          'continuationContents',
+          'musicPlaylistShelfContinuation',
+          'continuations',
+          0,
+          'nextContinuationData',
+          'continuation'
+        ]) ??
+        nav(response, [
+          'continuationContents',
+          'musicShelfContinuation',
+          'continuations',
+          0,
+          'nextContinuationData',
+          'continuation'
+        ]) ??
+        appendedContinuationKey;
+    return continuationKey == null
+        ? '&ctoken=null&continuation=null'
+        : '&ctoken=$continuationKey&continuation=$continuationKey';
   }
 
   @override

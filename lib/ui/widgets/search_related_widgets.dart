@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../screens/Search/search_result_screen_controller.dart';
 import '/models/album.dart';
 import '/models/artist.dart';
-// import '/models/playlist.dart';
+import '/models/playlist.dart';
 import '/ui/widgets/content_list_widget.dart';
 import 'separate_tab_item_widget.dart';
 import 'package:harmonymusic/generated/l10n.dart';
@@ -60,24 +60,61 @@ class ResultWidget extends StatelessWidget {
       SearchResultScreenController searchResScrController) {
     List<Widget> list = [];
     for (dynamic item in searchResScrController.resultContent.entries) {
+      final values = item.value is List ? item.value as List : [item.value];
+      if (values.isEmpty) continue;
+
       if (item.key == "Songs" || item.key == "Videos" || item.key == "Episodes") {
         list.add(SeparateTabItemWidget(
-          items: List<MediaItem>.from(item.value),
+          items: values.whereType<MediaItem>().toList(),
           title: item.key,
           isCompleteList: false,
         ));
       } else if (item.key == "Albums" || item.key == "Podcasts") {
         list.add(ContentListWidget(
           content: AlbumContent(
-              title: item.key, albumList: List<Album>.from(item.value)),
+              title: item.key, albumList: values.whereType<Album>().toList()),
+          isHomeContent: false,
+        ));
+      } else if (item.key == "Playlists" ||
+          item.key == "Featured playlists" ||
+          item.key == "Community playlists") {
+        list.add(ContentListWidget(
+          content: PlaylistContent(
+              title: item.key,
+              playlistList: values.whereType<Playlist>().toList()),
           isHomeContent: false,
         ));
       } else if (item.key.contains("Artist") || item.key == "Profiles") {
         list.add(SeparateTabItemWidget(
-          items: List<Artist>.from(item.value),
+          items: values.whereType<Artist>().toList(),
           title: item.key,
           isCompleteList: false,
         ));
+      } else if (item.key == "Top Result" || item.key == "Top result") {
+        final top = values.first;
+        if (top is MediaItem) {
+          list.add(SeparateTabItemWidget(
+            items: [top],
+            title: item.key,
+            isCompleteList: false,
+          ));
+        } else if (top is Album) {
+          list.add(ContentListWidget(
+            content: AlbumContent(title: item.key, albumList: [top]),
+            isHomeContent: false,
+          ));
+        } else if (top is Playlist) {
+          list.add(ContentListWidget(
+            content: PlaylistContent(title: item.key, playlistList: [top]),
+            isHomeContent: false,
+          ));
+        } else if (top is Artist) {
+          list.add(SeparateTabItemWidget(
+            items: [top],
+            title: item.key,
+            isCompleteList: false,
+          ));
+        }
       }
     }
 

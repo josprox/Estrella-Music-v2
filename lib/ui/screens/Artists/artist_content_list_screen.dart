@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '/models/album.dart';
 import '/models/media_Item_builder.dart';
+import '/models/playlist.dart';
 import '/services/music_service.dart';
 import '/ui/widgets/loader.dart';
 import '/ui/player/player_controller.dart';
@@ -262,6 +263,43 @@ class ArtistContentListScreen extends StatelessWidget {
               ],
             ),
           ),
+        );
+      } else if (item is Playlist ||
+          (item is Map && item.containsKey('playlistId'))) {
+        final title = (item is Playlist)
+            ? item.title
+            : (item['title'] as String? ?? '');
+        final subtitle = (item is Playlist)
+            ? item.description
+            : (item['description'] as String? ?? '');
+        final thumbUrl = (item is Playlist)
+            ? item.thumbnailUrl
+            : (item['thumbnails']?[0]?['url'] ?? '');
+        final playlistId = (item is Playlist)
+            ? item.playlistId
+            : ((item['playlistId'] as String?) ??
+                (item['browseId'] as String?) ??
+                '');
+
+        return ListTile(
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: CachedNetworkImage(
+              imageUrl: thumbUrl,
+              width: 50,
+              height: 50,
+              fit: BoxFit.cover,
+            ),
+          ),
+          title: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
+          subtitle: Text(subtitle ?? '', style: const TextStyle(fontSize: 12)),
+          onTap: () {
+            Get.toNamed(
+              ScreenNavigationSetup.playlistScreen,
+              id: ScreenNavigationSetup.id,
+              arguments: [item is Playlist ? item : null, playlistId],
+            );
+          },
         );
       } else if (item is Album || (item is Map && item.containsKey('browseId'))) {
         final title = (item is Album) ? item.title : (item['title'] as String? ?? '');

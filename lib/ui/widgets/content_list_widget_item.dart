@@ -18,7 +18,9 @@ class ContentListItem extends StatelessWidget {
     final subtitle = isAlbum
         ? isLibraryItem
             ? ""
-            : "${content.artists[0]['name'] ?? ""} | ${content.year ?? ""}"
+            : content.isPodcast
+                ? "${content.artists[0]['name'] ?? ""}${content.episodeCount == null ? "" : " | ${content.episodeCount}"}"
+                : "${content.artists[0]['name'] ?? ""} | ${content.year ?? ""}"
         : isLibraryItem
             ? ""
             : content.description ?? "";

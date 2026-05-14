@@ -14,11 +14,10 @@ int? parseDuration(String? duration) {
   if (duration == null) {
     return null;
   }
-  List<int> mappedIncrements = List.generate(3, (i) => max(0, 3600 - 60 * i));
   List<String> times = duration.split(":").reversed.toList();
   int seconds = 0;
   for (var i = 0; i < times.length; i++) {
-    seconds += mappedIncrements[i] * int.parse(times[i]);
+    seconds += pow(60, i).toInt() * int.parse(times[i]);
   }
   return seconds;
 }
@@ -47,12 +46,12 @@ int sumTotalDuration(Map<String, dynamic> item) {
 String? getItemText(Map<String, dynamic> item, int index,
     {int runIndex = 0, bool noneIfAbsent = false}) {
   dynamic column = getFlexColumnItem(item, index);
-  if (column == null) {
+  if (column == null || column.isEmpty || column['text'] == null || column['text']['runs'] == null) {
     return noneIfAbsent ? null : "";
   }
   List<dynamic> runs = column['text']['runs'];
-  if (noneIfAbsent && runs.length < runIndex + 1) {
-    return null;
+  if (runs.length < runIndex + 1) {
+    return noneIfAbsent ? null : "";
   }
   return runs[runIndex]['text'];
 }
@@ -162,6 +161,23 @@ String? getSearchParams(String? filter, String? scope, bool ignoreSpelling) {
   }
 
   if (scope == null && filter != null) {
+    if (!ignoreSpelling) {
+      final metrolistFilterParams = {
+        'songs': 'EgWKAQIIAWoKEAkQBRAKEAMQBA%3D%3D',
+        'videos': 'EgWKAQIQAWoKEAkQChAFEAMQBA%3D%3D',
+        'albums': 'EgWKAQIYAWoKEAkQChAFEAMQBA%3D%3D',
+        'artists': 'EgWKAQIgAWoKEAkQChAFEAMQBA%3D%3D',
+        'featured_playlists': 'EgeKAQQoADgBagwQDhAKEAMQBRAJEAQ%3D',
+        'community_playlists': 'EgeKAQQoAEABagoQAxAEEAoQCRAF',
+        'podcasts': 'EgWKAQJQAWoKEAkQChAFEAMQBA%3D%3D',
+        'episodes': 'EgWKAQJYAWoKEAkQChAFEAMQBA%3D%3D',
+        'profiles': 'EgWKAQJYAWoSEAUQCRADEAQQEBAVEAoQDhAR',
+      };
+      if (metrolistFilterParams.containsKey(filter)) {
+        return metrolistFilterParams[filter];
+      }
+    }
+
     if (filter == 'playlists') {
       params = 'Eg-KAQwIABAAGAAgACgB';
       if (!ignoreSpelling) {

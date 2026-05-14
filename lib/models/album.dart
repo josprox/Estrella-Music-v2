@@ -26,6 +26,8 @@ class Album {
       this.year,
       this.description,
       this.audioPlaylistId,
+      this.isPodcast = false,
+      this.episodeCount,
       required this.thumbnailUrl});
   final String browseId;
   final String? audioPlaylistId;
@@ -33,6 +35,8 @@ class Album {
   final String? description;
   final List<Map<dynamic, dynamic>>? artists;
   final String? year;
+  final bool isPodcast;
+  final String? episodeCount;
   final String thumbnailUrl;
 
   factory Album.fromJson(Map<dynamic, dynamic> json) => Album(
@@ -40,13 +44,19 @@ class Album {
       browseId: json["browseId"],
       artists: json["artists"] != null
           ? List<Map<dynamic, dynamic>>.from(json["artists"])
+          : json["author"] != null
+              ? [
+                  {'name': json["author"], 'id': json["authorId"]}
+                ]
           : [
               {'name': ''}
             ],
       year: json['year'],
       audioPlaylistId: json['audioPlaylistId'],
-      description: json['description'] ?? json["type"] ?? "Album",
-      thumbnailUrl: Thumbnail(json["thumbnails"][0]["url"]).medium);
+      description: json['description'] ?? json["type"] ?? (json['isPodcast'] == true ? "Podcast" : "Album"),
+      isPodcast: json['isPodcast'] ?? false,
+      episodeCount: json['episodeCount'],
+      thumbnailUrl: Thumbnail(json["thumbnails"] != null && json["thumbnails"].isNotEmpty ? json["thumbnails"][0]["url"] : "").medium);
 
   Map<String, dynamic> toJson() => {
         "title": title,
@@ -55,6 +65,8 @@ class Album {
         'year': year,
         'audioPlaylistId': audioPlaylistId,
         'description': description,
+        'isPodcast': isPodcast,
+        'episodeCount': episodeCount,
         'thumbnails': [
           {'url': thumbnailUrl}
         ]

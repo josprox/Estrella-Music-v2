@@ -38,6 +38,11 @@ class ArtistScreenController extends GetxController
   TabController? tabController;
   bool isTabTransitionReversed = false;
 
+  // Metrolist-parity: exposed reactive metadata
+  final monthlyListeners = RxnString();
+  final isSubscribed = false.obs;
+  final shuffleId = RxnString();
+
   @override
   void onInit() {
     final args = Get.arguments;
@@ -147,18 +152,32 @@ class ArtistScreenController extends GetxController
     artistData["Albums"] = artistData["Albums"] ?? artistData["Álbumes"];
     artistData["Videos"] = artistData["Videos"] ?? artistData["Popular music videos"] ?? artistData["Vídeos"];
     artistData["Playlists"] = artistData["Playlists"] ?? artistData["Listas de reproducción"];
+    artistData["Podcasts"] = artistData["Podcasts"] ?? artistData["Podcast shows"] ?? artistData["Podcasts"];
+    artistData["Episodes"] = artistData["Episodes"] ?? artistData["New episodes"] ?? artistData["Episodios"];
 
     final subscribers = artistData['subscribers']?.toString().trim();
+    final monthly = artistData['monthlyListeners']?.toString().trim();
+    final subBool = artistData['isSubscribed'] == true;
+    final shuffleEndpointId = artistData['shuffleId']?.toString();
+
+    monthlyListeners.value = (monthly != null && monthly.isNotEmpty) ? monthly : null;
+    isSubscribed.value = subBool;
+    shuffleId.value = shuffleEndpointId;
+
     artist_ = Artist(
       browseId: browseId,
       name: artistData['name'] ?? _artistNameHint(fallback: 'Artista'),
-      thumbnailUrl: artistData['thumbnails'] != null
+      thumbnailUrl: artistData['thumbnails'] != null &&
+              (artistData['thumbnails'] as List).isNotEmpty
           ? artistData['thumbnails'][0]['url']
           : "",
       subscribers: subscribers == null || subscribers.isEmpty
           ? ""
           : "$subscribers subscribers",
       radioId: artistData["radioId"],
+      shuffleId: shuffleEndpointId,
+      isSubscribed: subBool,
+      monthlyListeners: (monthly != null && monthly.isNotEmpty) ? monthly : null,
     );
     hasArtistSeed = true;
 

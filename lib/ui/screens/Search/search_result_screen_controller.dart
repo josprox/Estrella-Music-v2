@@ -56,10 +56,17 @@ class SearchResultScreenController extends GetxController
               tabName == 'Episodes')
           ? 25
           : 10;
-      final x = await musicServices.search(queryString.value,
-          filter: tabName.replaceAll(" ", "_").toLowerCase(), limit: itemCount, filterParams: resultContent['searchEndpoint'][tabName]);
-      separatedResultContent[tabName] = x[tabName];
-      additionalParamNext[tabName] = x['params'];
+      if (tabName == 'Episodes' && resultContent.containsKey('Episodes')) {
+        separatedResultContent[tabName] = resultContent['Episodes'];
+        additionalParamNext[tabName] = {
+          'additionalParams': '&ctoken=null&continuation=null'
+        };
+      } else {
+        final x = await musicServices.search(queryString.value,
+            filter: tabName.replaceAll(" ", "_").toLowerCase(), limit: itemCount, filterParams: resultContent['searchEndpoint'][tabName]);
+        separatedResultContent[tabName] = x[tabName];
+        additionalParamNext[tabName] = x['params'];
+      }
       isSeparatedResultContentFetced.value = true;
       final scrollController = scrollControllers[tabName];
       (scrollController)!.addListener(() {
@@ -104,17 +111,18 @@ class SearchResultScreenController extends GetxController
       final allKeys = resultContent.keys.where((element) => ([
             "Songs",
             "Videos",
+            "Episodes",
             "Albums",
+            "Playlists",
             "Featured playlists",
             "Community playlists",
             "Artists",
             "Podcasts",
-            "Episodes",
             "Profiles"
           ]).contains(element));
       railItems.value = List<String>.from(allKeys);
       final len =
-          railItems.where((element) => element.contains("playlists")).length;
+          railItems.where((element) => element.toLowerCase().contains("playlist")).length;
       final calH = 30 + (railItems.length + 1 - len) * 123 + len * 150.0;
       railitemHeight.value =
           calH >= railitemHeight.value ? calH : railitemHeight.value;
@@ -154,7 +162,7 @@ class SearchResultScreenController extends GetxController
       final songList = separatedResultContent[title].toList();
       sortSongsNVideos(songList, sortType, isAscending);
       separatedResultContent[title] = songList;
-    } else if (title.contains('playlists') || title == "Podcasts") {
+    } else if (title.toLowerCase().contains('playlist')) {
       final playlists = separatedResultContent[title].toList();
       sortPlayLists(playlists, sortType, isAscending);
       separatedResultContent[title] = playlists;
@@ -162,7 +170,7 @@ class SearchResultScreenController extends GetxController
       final artistList = separatedResultContent[title].toList();
       sortArtist(artistList, sortType, isAscending);
       separatedResultContent[title] = artistList;
-    } else if (title == "Albums") {
+    } else if (title == "Albums" || title == "Podcasts") {
       final albumList = separatedResultContent[title].toList();
       sortAlbumNSingles(albumList, sortType, isAscending);
       separatedResultContent[title] = albumList;

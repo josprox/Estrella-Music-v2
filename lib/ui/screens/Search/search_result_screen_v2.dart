@@ -140,7 +140,8 @@ class SearchResultScreenBN extends StatelessWidget {
                                   ...searchResScrController.railItems
                                       .map((tabName) {
                                     if (tabName == "Songs" ||
-                                        tabName == "Videos") {
+                                        tabName == "Videos" ||
+                                        tabName == "Episodes") {
                                       return SeparateTabItemWidget(
                                         isResultWidget: true,
                                         hideTitle: true,
