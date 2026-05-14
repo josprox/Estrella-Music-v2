@@ -108,7 +108,11 @@ class SearchResultScreenController extends GetxController
     if (args != null) {
       queryString.value = args;
       resultContent.value = await musicServices.search(args);
-      final allKeys = resultContent.keys.where((element) => ([
+      
+      final Set<String> allCategories = {};
+      
+      // Add keys from search results
+      allCategories.addAll(resultContent.keys.where((element) => ([
             "Songs",
             "Videos",
             "Episodes",
@@ -119,8 +123,43 @@ class SearchResultScreenController extends GetxController
             "Artists",
             "Podcasts",
             "Profiles"
-          ]).contains(element));
-      railItems.value = List<String>.from(allKeys);
+          ]).contains(element)));
+          
+      // Add keys from search chips (filters)
+      if (resultContent.containsKey('searchEndpoint')) {
+        allCategories.addAll((resultContent['searchEndpoint'] as Map).keys.cast<String>());
+      }
+      
+      // Exclude some keys that are not meant for tabs
+      allCategories.remove("Top result");
+      allCategories.remove("searchEndpoint");
+      allCategories.remove("params");
+
+      // Sort according to a preferred order
+      final List<String> orderedList = [
+        "Songs",
+        "Videos",
+        "Albums",
+        "Artists",
+        "Playlists",
+        "Podcasts",
+        "Episodes",
+        "Community playlists",
+        "Featured playlists",
+        "Profiles"
+      ];
+      
+      final List<String> sortedKeys = allCategories.toList();
+      sortedKeys.sort((a, b) {
+        int indexA = orderedList.indexOf(a);
+        int indexB = orderedList.indexOf(b);
+        if (indexA == -1) indexA = 99;
+        if (indexB == -1) indexB = 99;
+        return indexA.compareTo(indexB);
+      });
+
+      railItems.value = sortedKeys;
+      
       final len =
           railItems.where((element) => element.toLowerCase().contains("playlist")).length;
       final calH = 30 + (railItems.length + 1 - len) * 123 + len * 150.0;

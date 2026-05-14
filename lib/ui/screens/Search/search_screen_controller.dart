@@ -58,6 +58,11 @@ class SearchScreenController extends GetxController with ProcessLink {
       color: const Color(0xFF008080),
       imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=250&auto=format&fit=crop',
     ),
+    SearchCategory(
+      name: "Podcasts",
+      color: const Color(0xFFE91E63),
+      imageUrl: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=250&auto=format&fit=crop',
+    ),
   ];
 
   // Desktop search bar related

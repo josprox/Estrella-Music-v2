@@ -56,7 +56,10 @@ class HomeScreenController extends GetxController {
   Future<void> _loadDailyDiscover() async {
     try {
       final favBox = await Hive.openBox('LIBFAV');
-      if (favBox.isEmpty) return;
+      if (favBox.isEmpty) {
+        printINFO("Daily Discover: No favorites found in LIBFAV");
+        return;
+      }
 
       final allFavs = favBox.values.map((e) => MediaItemBuilder.fromJson(e)).toList();
       allFavs.shuffle();
@@ -68,14 +71,21 @@ class HomeScreenController extends GetxController {
         if (seed.id.isNotEmpty) {
           final rel = await _musicServices.getContentRelatedToSong(seed.id, getContentHlCode());
           if (rel.isNotEmpty) {
-            final con = rel.first;
-            if (con["contents"] != null) {
-               final items = List<MediaItem>.from(con["contents"]);
-               items.shuffle();
-               final recList = items.where((item) => item.id != seed.id).toList();
-               if (recList.isNotEmpty) {
-                 recommendations.add(recList.first);
-               }
+            printINFO("Daily Discover: Fetched ${rel.length} sections for seed ${seed.title}");
+            // Find the first section that contains songs
+            for (var section in rel) {
+              if (section["contents"] != null && section["contents"] is List) {
+                final items = (section["contents"] as List)
+                    .whereType<MediaItem>()
+                    .where((item) => item.id != seed.id)
+                    .toList();
+                
+                if (items.isNotEmpty) {
+                  items.shuffle();
+                  recommendations.add(items.first);
+                  break; // Move to next seed after finding one recommendation
+                }
+              }
             }
           }
         }
@@ -89,13 +99,15 @@ class HomeScreenController extends GetxController {
         var finalRecs = uniqueRecs.values.toList();
         finalRecs.shuffle();
         dailyDiscover.value = QuickPicks(finalRecs, title: "Daily Discover");
+        printINFO("Daily Discover: Loaded ${finalRecs.length} recommendations");
+      } else {
+        printWarning("Daily Discover: No recommendations could be generated from seeds");
       }
     } catch (e) {
-      printERROR("Daily Discover failed: \$e");
+      printERROR("Daily Discover failed: $e");
     }
   }
 
-  
   Future<void> _loadCommunityPlaylists() async {
     try {
       final favBox = await Hive.openBox('LIBFAV');
@@ -108,14 +120,13 @@ class HomeScreenController extends GetxController {
       List<MediaItem> recommendations = [];
 
       for (final seed in seeds) {
-
-          final res = await _musicServices.search(seed.title, filter: "community_playlists");
-          if (res.containsKey("Community playlists")) {
-            final items = List<MediaItem>.from(res["Community playlists"]);
-            items.shuffle();
-            if (items.isNotEmpty) recommendations.add(items.first);
-          }
-              }
+        final res = await _musicServices.search(seed.title, filter: "community_playlists");
+        if (res.containsKey("Community playlists")) {
+          final items = List<MediaItem>.from(res["Community playlists"]);
+          items.shuffle();
+          if (items.isNotEmpty) recommendations.add(items.first);
+        }
+      }
 
       if (recommendations.isNotEmpty) {
         final uniqueRecs = <String, MediaItem>{};
@@ -154,8 +165,8 @@ class HomeScreenController extends GetxController {
           final rel = await _musicServices.getContentRelatedToSong(seed.id, getContentHlCode());
           if (rel.isNotEmpty) {
             final con = rel.first;
-            if (con["contents"] != null) {
-               final items = List<MediaItem>.from(con["contents"]);
+            if (con["contents"] != null && con["contents"] is List) {
+               final items = (con["contents"] as List).whereType<MediaItem>().toList();
                items.shuffle();
                final recList = items.where((item) => item.id != seed.id).toList();
                if (recList.isNotEmpty) {
@@ -183,7 +194,10 @@ class HomeScreenController extends GetxController {
   Future<void> _loadSimilarRecommendations() async {
     try {
       final favBox = await Hive.openBox('LIBFAV');
-      if (favBox.isEmpty) return;
+      if (favBox.isEmpty) {
+        printINFO("Similar Recommendations: No favorites found in LIBFAV");
+        return;
+      }
 
       final allFavs = favBox.values.map((e) => MediaItemBuilder.fromJson(e)).toList();
       allFavs.shuffle();
@@ -194,12 +208,19 @@ class HomeScreenController extends GetxController {
       if (seed.id.isNotEmpty) {
         final rel = await _musicServices.getContentRelatedToSong(seed.id, getContentHlCode());
         if (rel.isNotEmpty) {
-          final con = rel.first;
-          if (con["contents"] != null) {
-             final items = List<MediaItem>.from(con["contents"]);
-             items.shuffle();
-             final recList = items.where((item) => item.id != seed.id).toList();
-             recommendations.addAll(recList.take(15));
+          // Find the first section that contains songs
+          for (var section in rel) {
+            if (section["contents"] != null && section["contents"] is List) {
+              final items = (section["contents"] as List)
+                  .whereType<MediaItem>()
+                  .where((item) => item.id != seed.id)
+                  .toList();
+              
+              if (items.isNotEmpty) {
+                recommendations.addAll(items.take(15));
+                break;
+              }
+            }
           }
         }
       }
@@ -212,12 +233,14 @@ class HomeScreenController extends GetxController {
         var finalRecs = uniqueRecs.values.toList();
         finalRecs.shuffle();
         similarRecommendations.value = QuickPicks(finalRecs, title: "Similar to ${seed.title}");
+        printINFO("Similar Recommendations: Loaded ${finalRecs.length} recommendations for seed ${seed.title}");
+      } else {
+        printWarning("Similar Recommendations: No recommendations could be generated from seed ${seed.title}");
       }
     } catch (e) {
       printERROR("Similar Recommendations failed: $e");
     }
   }
-
 
   Future<void> loadLocalCustomSections() async {
     try {
@@ -243,7 +266,7 @@ class HomeScreenController extends GetxController {
         });
       mostListened.value = mostListenedList.where((e) => (e.extras?['totalPlayTime'] ?? 0) > 0).take(15).toList();
 
-      // Forgotten Favorites (favoritos ordenados por lastPlayed ascendente, es decir, los más antiguos primero)
+      // Forgotten Favorites
       if (favBox.isNotEmpty) {
         final allFavs = favBox.values.map((e) => MediaItemBuilder.fromJson(e)).toList();
         final forgottenList = List<MediaItem>.from(allFavs)
@@ -363,16 +386,18 @@ class HomeScreenController extends GetxController {
         try {
           final songId = box.get("recentSongId");
           if (songId != null) {
-            final rel = (await _musicServices.getContentRelatedToSong(
-                songId, getContentHlCode()));
-            final con = rel.removeAt(0);
-            quickPicks.value =
-                QuickPicks(List<MediaItem>.from(con["contents"]));
-            middleContentTemp.addAll(rel);
+            final rel = await _musicServices.getContentRelatedToSong(
+                songId, getContentHlCode());
+            if (rel.isNotEmpty) {
+              final con = rel.removeAt(0);
+              final List<MediaItem> items = (con["contents"] as List).whereType<MediaItem>().toList();
+              quickPicks.value = QuickPicks(items, title: con["title"] ?? "Based on last interaction");
+              middleContentTemp.addAll(rel);
+            }
           }
         } catch (e) {
           printERROR(
-              "Seems Based on last interaction content currently not available!");
+              "Seems Based on last interaction content currently not available: $e");
         }
       }
 
@@ -384,16 +409,11 @@ class HomeScreenController extends GetxController {
           quickPicks.value = QuickPicks(List<MediaItem>.from(con["contents"]),
               title: "Quick picks");
         } else {
-          // Fallback: find the first content block that contains songs (MediaItem),
-          // not playlists. Some home blocks (e.g. "Moods & moments") contain
-          // Playlist objects, which would crash List<MediaItem>.from().
           bool fallbackFound = false;
           for (int i = 0; i < homeContentListMap.length; i++) {
             final candidate = homeContentListMap[i];
             final contents = candidate["contents"];
             if (contents == null || (contents as List).isEmpty) continue;
-            // Check if the first item looks like a song (has 'videoId')
-            // rather than a playlist (has 'playlistId' / 'browseId').
             final first = contents.first;
             if (first is Map &&
                 (first.containsKey('videoId') || first.containsKey('id'))) {
@@ -406,7 +426,6 @@ class HomeScreenController extends GetxController {
             }
           }
           if (!fallbackFound) {
-            // All blocks are playlists — leave quickPicks with its default empty state
             printERROR("No song-type content found for QuickPicks fallback.");
           }
         }
@@ -428,12 +447,10 @@ class HomeScreenController extends GetxController {
 
       isContentFetched.value = true;
 
-      // set home content last update time
       cachedHomeScreenData(updateAll: true);
       await Hive.box("AppPrefs")
           .put("homeScreenDataTime", DateTime.now().millisecondsSinceEpoch);
-      // ignore: unused_catch_stack
-    } on NetworkError catch (r, e) {
+    } on NetworkError catch (r) {
       printERROR("Home Content not loaded due to ${r.message}");
       await Future.delayed(const Duration(seconds: 1));
       networkError.value = !silent;
@@ -474,23 +491,26 @@ class HomeScreenController extends GetxController {
     return contentTemp;
   }
 
-
   Future<void> changeDiscoverContent(dynamic val, {String? songId}) async {
     QuickPicks? quickPicks_;
     if (val == 'QP') {
       final homeContentListMap = await _musicServices.getHome(limit: 3);
-      quickPicks_ = QuickPicks(
-          List<MediaItem>.from(homeContentListMap[0]["contents"]),
-          title: homeContentListMap[0]["title"]);
+      if (homeContentListMap.isNotEmpty) {
+        quickPicks_ = QuickPicks(
+            List<MediaItem>.from(homeContentListMap[0]["contents"]),
+            title: homeContentListMap[0]["title"]);
+      }
     } else if (val == "TMV" || val == 'TR') {
       try {
         final charts = await _musicServices.getCharts(val);
         final index = charts.indexWhere((element) =>
             element['title'] ==
             (val == "TMV" ? "Top Music Videos" : "Trending"));
-        quickPicks_ = QuickPicks(
-            List<MediaItem>.from(charts[index]["contents"]),
-            title: charts[index]["title"]);
+        if (index != -1) {
+          quickPicks_ = QuickPicks(
+              List<MediaItem>.from(charts[index]["contents"]),
+              title: charts[index]["title"]);
+        }
       } catch (e) {
         printERROR(
             "Seems ${val == "TMV" ? "Top music videos" : "Trending songs"} currently not available!");
@@ -501,21 +521,24 @@ class HomeScreenController extends GetxController {
         try {
           final value = await _musicServices.getContentRelatedToSong(
               songId, getContentHlCode());
-          middleContent.value = _setContentList(value);
-          if (value.isNotEmpty && (value[0]['title']).contains("like")) {
-            quickPicks_ =
-                QuickPicks(List<MediaItem>.from(value[0]["contents"]));
-            Hive.box("AppPrefs").put("recentSongId", songId);
+          if (value.isNotEmpty) {
+            middleContent.value = _setContentList(value);
+            if ((value[0]['title'] ?? "").toString().toLowerCase().contains("like") || 
+                (value[0]['title'] ?? "").toString().toLowerCase().contains("similar")) {
+              final List<MediaItem> items = (value[0]["contents"] as List).whereType<MediaItem>().toList();
+              quickPicks_ = QuickPicks(items, title: value[0]["title"]);
+              Hive.box("AppPrefs").put("recentSongId", songId);
+            }
           }
-          // ignore: empty_catches
-        } catch (e) {}
+        } catch (e) {
+          printERROR("changeDiscoverContent failed: $e");
+        }
       }
     }
     if (quickPicks_ == null) return;
 
     quickPicks.value = quickPicks_;
 
-    // set home content last update time
     cachedHomeScreenData(updateQuickPicksNMiddleContent: true);
     await Hive.box("AppPrefs")
         .put("homeScreenDataTime", DateTime.now().millisecondsSinceEpoch);
@@ -558,9 +581,6 @@ class HomeScreenController extends GetxController {
     showVersionDialog.value = !val;
   }
 
-  ///This is used to minimized bottom navigation bar by setting [isHomeSreenOnTop.value] to `true` and set mini player height.
-  ///
-  ///and applicable/useful if bottom nav enabled
   void whenHomeScreenOnTop() {
     if (Get.find<SettingsScreenController>().isBottomNavBarEnabled.isTrue) {
       final currentRoute = getCurrentRouteName();
@@ -570,10 +590,9 @@ class HomeScreenController extends GetxController {
 
       isHomeSreenOnTop.value = isHomeOnTop;
 
-      // Set miniplayer height accordingly
       if (!playerCon.initFlagForPlayer) {
         if (isHomeOnTop) {
-          playerCon.playerPanelMinHeight.value = 165.0; // 75 + 90 for navbar clearance
+          playerCon.playerPanelMinHeight.value = 165.0;
         } else {
           Future.delayed(
               isResultScreenOnTop

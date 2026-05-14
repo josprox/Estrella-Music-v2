@@ -9,6 +9,7 @@ import '../../widgets/loader.dart';
 import '../../widgets/search_related_widgets.dart';
 import '../../widgets/separate_tab_item_widget.dart';
 import 'search_result_screen_controller.dart';
+import 'components/search_chips.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 import '../../../utils/l10n_extensions.dart';
 
@@ -22,78 +23,86 @@ class SearchResultScreen extends StatelessWidget {
             Get.find<SettingsScreenController>().isBottomNavBarEnabled.isTrue
         ? const SearchResultScreenBN()
         : Scaffold(
-            body: Row(
+            body: Column(
               children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.only(bottom: 80),
-                    child: IntrinsicHeight(
-                      child: Obx(
-                        () => NavigationRail(
-                          onDestinationSelected:
-                              searchResScrController.onDestinationSelected,
-                          minWidth: 60,
-                          destinations: (searchResScrController
-                                      .isResultContentFetced.value &&
-                                  searchResScrController.railItems.isNotEmpty)
-                              ? [
-                                  railDestination(S.current.results),
-                                  ...(searchResScrController.railItems.map(
-                                      (element) => railDestination(element))),
-                                ]
-                              : [
-                                  railDestination(S.current.results),
-                                  railDestination("")
-                                ],
-                          leading: Column(
-                            children: [
-                              SizedBox(
-                                height: context.isLandscape ? 20 : 45,
-                              ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.arrow_back_ios_new,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .color,
+                const SizedBox(height: 10),
+                const SearchChips(),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.only(bottom: 80),
+                          child: IntrinsicHeight(
+                            child: Obx(
+                              () => NavigationRail(
+                                onDestinationSelected:
+                                    searchResScrController.onDestinationSelected,
+                                minWidth: 60,
+                                destinations: (searchResScrController
+                                            .isResultContentFetced.value &&
+                                        searchResScrController.railItems.isNotEmpty)
+                                    ? [
+                                        railDestination(S.current.results),
+                                        ...(searchResScrController.railItems.map(
+                                            (element) => railDestination(element))),
+                                      ]
+                                    : [
+                                        railDestination(S.current.results),
+                                        railDestination("")
+                                      ],
+                                leading: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: context.isLandscape ? 20 : 45,
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.arrow_back_ios_new,
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .color,
+                                      ),
+                                      onPressed: () {
+                                        Get.nestedKey(ScreenNavigationSetup.id)!
+                                            .currentState!
+                                            .pop();
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                      ),
+                                  ],
                                 ),
-                                onPressed: () {
-                                  Get.nestedKey(ScreenNavigationSetup.id)!
-                                      .currentState!
-                                      .pop();
-                                },
+                                labelType: NavigationRailLabelType.all,
+                                selectedIndex: searchResScrController
+                                    .navigationRailCurrentIndex.value,
                               ),
-                              const SizedBox(
-                                height: 10,
-                                ),
-                            ],
+                            ),
                           ),
-                          labelType: NavigationRailLabelType.all,
-                          selectedIndex: searchResScrController
-                              .navigationRailCurrentIndex.value,
                         ),
                       ),
-                    ),
+                      Expanded(
+                        child: GetX<SearchResultScreenController>(
+                          builder: (controller) => AnimatedScreenTransition(
+                            enabled: Get.find<SettingsScreenController>()
+                                .isTransitionAnimationDisabled
+                                .isFalse,
+                            resverse: controller.isTabTransitionReversed,
+                            child: Center(
+                              key: ValueKey<int>(
+                                  controller.navigationRailCurrentIndex.toInt() * 8),
+                              child: Body(
+                                  searchResScrController: searchResScrController),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: GetX<SearchResultScreenController>(
-                    builder: (controller) => AnimatedScreenTransition(
-                      enabled: Get.find<SettingsScreenController>()
-                          .isTransitionAnimationDisabled
-                          .isFalse,
-                      resverse: controller.isTabTransitionReversed,
-                      child: Center(
-                        key: ValueKey<int>(
-                            controller.navigationRailCurrentIndex.toInt() * 8),
-                        child: Body(
-                            searchResScrController: searchResScrController),
-                      ),
-                    ),
-                  ),
-                )
               ],
             ),
           );
