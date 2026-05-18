@@ -6,9 +6,14 @@ class NebulaBackground extends StatelessWidget {
   
   const NebulaBackground({super.key, required this.seedString});
 
-  List<Color> _getReactiveGradientColors(String seed) {
+  List<Color> _getReactiveGradientColors(BuildContext context, String seed) {
+    final theme = Theme.of(context);
     if (seed.isEmpty) {
-      return [Colors.transparent, Colors.transparent];
+      // Elegant default colors matching the active theme's colorScheme!
+      return [
+        theme.colorScheme.primary,
+        theme.colorScheme.secondary,
+      ];
     }
 
     final int hash = seed.hashCode;
@@ -23,16 +28,16 @@ class NebulaBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final colors = _getReactiveGradientColors(seedString.value);
+      final colors = _getReactiveGradientColors(context, seedString.value);
       return AnimatedContainer(
         duration: const Duration(milliseconds: 1500),
         curve: Curves.easeOutCubic,
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.75,
+        height: double.infinity, // Occupies full screen height to eliminate dividing lines
         child: CustomPaint(
           painter: NebulaPainter(
-            color1: colors[0].withValues(alpha: 0.18),
-            color2: colors[1].withValues(alpha: 0.18),
+            color1: colors[0].withValues(alpha: 0.12),
+            color2: colors[1].withValues(alpha: 0.12),
           ),
         ),
       );

@@ -23,11 +23,12 @@ class SearchScreen extends StatelessWidget {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Theme.of(context).colorScheme.surface,
+        backgroundColor: Colors.transparent,
         body: Stack(
           children: [
             NebulaBackground(seedString: searchScreenController.searchText),
             SafeArea(
+              bottom: false,
               child: Row(
                 children: [
                   if (settingsScreenController.isBottomNavBarEnabled.isFalse)
@@ -68,7 +69,7 @@ class SearchScreen extends StatelessWidget {
                           ] else ...[
                             _SearchResultsSliver(controller: searchScreenController),
                           ],
-                          const SliverPadding(padding: EdgeInsets.only(bottom: 120)),
+                          const SliverPadding(padding: EdgeInsets.only(bottom: 220)),
                         ],
                       );
                     }),
@@ -117,6 +118,7 @@ class _SearchBarSliver extends StatelessWidget {
       backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
+      scrolledUnderElevation: 0,
       titleSpacing: 16,
       toolbarHeight: 76,
       automaticallyImplyLeading: false,
@@ -219,13 +221,6 @@ class _ExpressiveGridCategoriesSliver extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: category.color.withValues(alpha: 0.12),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  )
-                ],
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),

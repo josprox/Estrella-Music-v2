@@ -56,18 +56,8 @@ class _MiniPlayerContent extends StatelessWidget {
           height: 68,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerHigh.withValues(alpha: 0.92),
+              color: colorScheme.surfaceContainerHigh.withValues(alpha: 0.65),
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(
-                color: colorScheme.outlineVariant.withValues(alpha: 0.15),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: colorScheme.shadow.withValues(alpha: 0.18),
-                  blurRadius: 24,
-                  offset: const Offset(0, 8),
-                ),
-              ],
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
