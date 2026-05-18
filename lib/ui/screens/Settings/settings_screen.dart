@@ -293,6 +293,104 @@ class SettingsScreen extends StatelessWidget {
                     onTap: ctrl.isIgnoringBatteryOptimizations.isFalse ? ctrl.enableIgnoringBatteryOptimizations : null,
                     subtitle: "${S.current.status}: ${ctrl.isIgnoringBatteryOptimizations.isTrue ? S.current.enabled : S.current.disabled}\n${S.current.ignoreBatOptDes}",
                   )),
+                  const Divider(height: 1, indent: 16, endIndent: 16),
+                  // Playback Speed Slider
+                  Obx(() => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: BoxDecoration(
+                                    color: cs.secondaryContainer,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Icon(Icons.speed_rounded, color: cs.onSecondaryContainer, size: 18),
+                                ),
+                                const SizedBox(width: 12),
+                                Text(
+                                  Get.locale?.languageCode == 'es' ? "Velocidad de reproducción" : "Playback Speed",
+                                  style: tt.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              "${ctrl.playbackSpeed.value.toStringAsFixed(2)}x",
+                              style: tt.bodyMedium?.copyWith(color: cs.primary, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Slider(
+                          value: ctrl.playbackSpeed.value,
+                          min: 0.5,
+                          max: 2.0,
+                          divisions: 30,
+                          activeColor: cs.primary,
+                          inactiveColor: cs.primaryContainer.withValues(alpha: 0.4),
+                          onChanged: ctrl.setPlaybackSpeed,
+                        ),
+                      ),
+                    ],
+                  )),
+                  const Divider(height: 1, indent: 16, endIndent: 16),
+                  // Playback Pitch Slider
+                  Obx(() => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 32,
+                                  height: 32,
+                                  decoration: BoxDecoration(
+                                    color: cs.secondaryContainer,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Icon(Icons.music_note_rounded, color: cs.onSecondaryContainer, size: 18),
+                                ),
+                                const SizedBox(width: 12),
+                                Text(
+                                  Get.locale?.languageCode == 'es' ? "Tono de la canción" : "Song Pitch",
+                                  style: tt.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              ctrl.playbackPitch.value.toStringAsFixed(2),
+                              style: tt.bodyMedium?.copyWith(color: cs.primary, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Slider(
+                          value: ctrl.playbackPitch.value,
+                          min: 0.5,
+                          max: 2.0,
+                          divisions: 30,
+                          activeColor: cs.primary,
+                          inactiveColor: cs.primaryContainer.withValues(alpha: 0.4),
+                          onChanged: ctrl.setPlaybackPitch,
+                        ),
+                      ),
+                    ],
+                  )),
                 ],
               ),
 

@@ -96,6 +96,10 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         Hive.box("AppPrefs").get("queueLoopModeEnabled") ?? false;
     loudnessNormalizationEnabled =
         appPrefsBox.get("loudnessNormalizationEnabled") ?? false;
+    final double initialSpeed = ((appPrefsBox.get("playbackSpeed") ?? 1.0) as num).toDouble();
+    final double initialPitch = ((appPrefsBox.get("playbackPitch") ?? 1.0) as num).toDouble();
+    _player.setSpeed(initialSpeed);
+    _player.setPitch(initialPitch);
     _listenForDurationChanges();
     if (GetPlatform.isAndroid) {
       _listenSessionIdStream();
@@ -579,6 +583,16 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
       case 'toggleSkipSilence':
         final enable = (extras!['enable'] as bool);
         await _player.setSkipSilenceEnabled(enable);
+        break;
+
+      case 'setSpeed':
+        final double speed = (extras!['speed'] as num).toDouble();
+        await _player.setSpeed(speed);
+        break;
+
+      case 'setPitch':
+        final double pitch = (extras!['pitch'] as num).toDouble();
+        await _player.setPitch(pitch);
         break;
 
       case 'toggleLoudnessNormalization':

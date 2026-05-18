@@ -7,6 +7,7 @@ import '/ui/navigator.dart';
 import '/ui/screens/Settings/settings_screen_controller.dart';
 import '../../widgets/nebula_background.dart';
 import 'components/search_item.dart';
+import 'components/music_recognition_bottom_sheet.dart';
 import 'search_screen_controller.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -194,7 +195,29 @@ class _SearchBarSliver extends StatelessWidget {
                         ),
                         onPressed: controller.reset,
                       )
-                    : const SizedBox(width: 18)),
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            icon: Icon(
+                              Icons.mic_rounded,
+                              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                              size: 22,
+                            ),
+                            onPressed: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                builder: (context) => const MusicRecognitionBottomSheet(),
+                              );
+                            },
+                          ),
+                          const SizedBox(width: 4),
+                        ],
+                      )),
               ],
             ),
           ),

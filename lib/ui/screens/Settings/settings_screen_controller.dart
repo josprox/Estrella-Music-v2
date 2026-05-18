@@ -50,6 +50,8 @@ class SettingsScreenController extends GetxController {
   final keepScreenAwake = false.obs;
   final restorePlaybackSession = false.obs;
   final cacheHomeScreenData = true.obs;
+  final playbackSpeed = 1.0.obs;
+  final playbackPitch = 1.0.obs;
   final currentVersion = "".obs;
 
   @override
@@ -142,6 +144,8 @@ class SettingsScreenController extends GetxController {
     }
     autoDownloadFavoriteSongEnabled.value =
         setBox.get("autoDownloadFavoriteSongEnabled") ?? false;
+    playbackSpeed.value = ((setBox.get("playbackSpeed") ?? 1.0) as num).toDouble();
+    playbackPitch.value = ((setBox.get("playbackPitch") ?? 1.0) as num).toDouble();
   }
 
   void setAppLanguage(String? val) {
@@ -328,6 +332,22 @@ class SettingsScreenController extends GetxController {
   void toggleStopPlyabackOnSwipeAway(bool val) {
     setBox.put('stopPlyabackOnSwipeAway', val);
     stopPlyabackOnSwipeAway.value = val;
+  }
+
+  void setPlaybackSpeed(double val) {
+    playbackSpeed.value = val;
+    setBox.put('playbackSpeed', val);
+    try {
+      Get.find<AudioHandler>().customAction('setSpeed', {'speed': val});
+    } catch (_) {}
+  }
+
+  void setPlaybackPitch(double val) {
+    playbackPitch.value = val;
+    setBox.put('playbackPitch', val);
+    try {
+      Get.find<AudioHandler>().customAction('setPitch', {'pitch': val});
+    } catch (_) {}
   }
 
   Future<void> closeAllDatabases() async {

@@ -241,7 +241,11 @@ class Downloader extends GetxService {
           // ignore: empty_catches
         } catch (e) {}
 
-        song.extras?['url'] = filePath;
+        if (song.extras == null) {
+          song = song.copyWith(extras: {});
+        }
+        song.extras!['url'] = filePath;
+        song.extras!['date'] = DateTime.now().millisecondsSinceEpoch;
         final songJson = MediaItemBuilder.toJson(song);
         final streamInfoJson = requiredAudioStream.toJson();
         streamInfoJson['url'] = filePath;
