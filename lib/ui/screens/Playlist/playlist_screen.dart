@@ -57,52 +57,39 @@ class PlaylistScreen extends StatelessWidget {
             Obx(
               () => playlistController.isContentFetched.isTrue
                   ? Positioned(
-                      top: landscape
-                          ? 0
-                          : -.25 * playlistController.scrollOffset.value,
+                      top: 0,
                       right: landscape ? 0 : null,
-                      child: Obx(() {
-                        final opacityValue = 1 -
-                            playlistController.scrollOffset.value /
-                                (size.width - 100);
-                        return Opacity(
-                          opacity: opacityValue < 0 ||
-                                  playlistController.isSearchingOn.isTrue && !landscape
-                              ? 0
-                              : opacityValue,
-                          child: DecoratedBox(
-                            position: DecorationPosition.foreground,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Theme.of(context).canvasColor,
-                                  spreadRadius: 200,
-                                  blurRadius: 100,
-                                  offset: Offset(-size.height, 0),
-                                ),
-                                BoxShadow(
-                                  color: Theme.of(context).canvasColor,
-                                  spreadRadius: 200,
-                                  blurRadius: 100,
-                                  offset: Offset(
-                                      0,
-                                      landscape
-                                          ? size.height
-                                          : size.width + 80),
-                                )
-                              ],
+                      child: DecoratedBox(
+                        position: DecorationPosition.foreground,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Theme.of(context).canvasColor,
+                              spreadRadius: 200,
+                              blurRadius: 100,
+                              offset: Offset(-size.height, 0),
                             ),
-                            child: CachedNetworkImage(
-                              imageUrl: Thumbnail(playlistController
-                                      .playlist.value.thumbnailUrl)
-                                  .extraHigh,
-                              fit: landscape ? BoxFit.fitHeight : BoxFit.cover,
-                              width: landscape ? null : size.width,
-                              height: landscape ? size.height : size.width,
-                            ),
-                          ),
-                        );
-                      }))
+                            BoxShadow(
+                              color: Theme.of(context).canvasColor,
+                              spreadRadius: 200,
+                              blurRadius: 100,
+                              offset: Offset(
+                                  0,
+                                  landscape
+                                      ? size.height
+                                      : size.width + 80),
+                            )
+                          ],
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: Thumbnail(playlistController
+                                  .playlist.value.thumbnailUrl)
+                              .extraHigh,
+                          fit: landscape ? BoxFit.fitHeight : BoxFit.cover,
+                          width: landscape ? null : size.width,
+                          height: landscape ? size.height : size.width,
+                        ),
+                      ))
                   : SizedBox(
                       height: size.width,
                       width: size.width,
