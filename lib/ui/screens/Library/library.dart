@@ -15,51 +15,73 @@ class SongsLibraryWidget extends StatelessWidget {
   const SongsLibraryWidget({super.key, this.isBottomNavActive = false});
   final bool isBottomNavActive;
 
+  Widget _buildExpressiveTitle(BuildContext context, String title) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20.0, bottom: 8.0, left: 16, right: 16),
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.w900,
+                letterSpacing: -1.0,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final topPadding = context.isLandscape ? 50.0 : 90.0;
+    final topPadding = context.isLandscape ? 30.0 : 70.0;
     return Padding(
-      padding: isBottomNavActive
-          ? const EdgeInsets.only(left: 15)
-          : EdgeInsets.only(left: 5.0, top: topPadding),
+      padding: EdgeInsets.only(
+        left: 16.0,
+        right: 16.0,
+        top: isBottomNavActive ? 10.0 : topPadding,
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          isBottomNavActive
-              ? const SizedBox(
-                  height: 10,
-                )
-              : Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    S.current.libSongs,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
+          _buildExpressiveTitle(context, S.current.libSongs),
           Obx(() {
             final libSongsController = Get.find<LibrarySongsController>();
-            return SortWidget(
-              tag: "LibSongSort",
-              screenController: libSongsController,
-              itemCountTitle: "${libSongsController.librarySongsList.length}",
-              itemIcon: Icons.music_note,
-              titleLeftPadding: 9,
-              requiredSortTypes: buildSortTypeSet(true, true),
-              isSearchFeatureRequired: true,
-              isSongDeletetioFeatureRequired: true,
-              onSort: (type, ascending) {
-                libSongsController.onSort(type, ascending);
-              },
-              onSearch: libSongsController.onSearch,
-              onSearchClose: libSongsController.onSearchClose,
-              onSearchStart: libSongsController.onSearchStart,
-              startAdditionalOperation:
-                  libSongsController.startAdditionalOperation,
-              selectAll: libSongsController.selectAll,
-              performAdditionalOperation:
-                  libSongsController.performAdditionalOperation,
-              cancelAdditionalOperation:
-                  libSongsController.cancelAdditionalOperation,
+            return Container(
+              margin: const EdgeInsets.only(bottom: 12.0, top: 4.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor.withValues(alpha: 0.4),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.08),
+                ),
+              ),
+              child: SortWidget(
+                tag: "LibSongSort",
+                screenController: libSongsController,
+                itemCountTitle: "${libSongsController.librarySongsList.length}",
+                itemIcon: Icons.music_note,
+                titleLeftPadding: 9,
+                requiredSortTypes: buildSortTypeSet(true, true),
+                isSearchFeatureRequired: true,
+                isSongDeletetioFeatureRequired: true,
+                onSort: (type, ascending) {
+                  libSongsController.onSort(type, ascending);
+                },
+                onSearch: libSongsController.onSearch,
+                onSearchClose: libSongsController.onSearchClose,
+                onSearchStart: libSongsController.onSearchStart,
+                startAdditionalOperation:
+                    libSongsController.startAdditionalOperation,
+                selectAll: libSongsController.selectAll,
+                performAdditionalOperation:
+                    libSongsController.performAdditionalOperation,
+                cancelAdditionalOperation:
+                    libSongsController.cancelAdditionalOperation,
+              ),
             );
           }),
           GetX<LibrarySongsController>(builder: (controller) {
@@ -101,84 +123,106 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
   final bool isAlbumContent;
   final bool isBottomNavActive;
 
+  Widget _buildExpressiveTitle(BuildContext context, String title) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20.0, bottom: 8.0, left: 16, right: 16),
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.w900,
+                letterSpacing: -1.0,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final libralbumCntrller = Get.find<LibraryAlbumsController>();
     final librplstCntrller = Get.find<LibraryPlaylistsController>();
     final settingscrnController = Get.find<SettingsScreenController>();
-    final size = MediaQuery.of(context).size;
 
     const double itemHeight = 180;
     const double itemWidth = 130;
-    final topPadding = context.isLandscape ? 50.0 : 90.0;
+    final topPadding = context.isLandscape ? 30.0 : 70.0;
 
     return Padding(
-      padding: isBottomNavActive
-          ? const EdgeInsets.only(left: 15)
-          : EdgeInsets.only(top: topPadding),
+      padding: EdgeInsets.only(
+        left: 16.0,
+        right: 16.0,
+        top: isBottomNavActive ? 10.0 : topPadding,
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 5.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                isBottomNavActive
-                    ? const SizedBox(
-                        height: 10,
-                      )
-                    : Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          isAlbumContent
-                              ? S.current.libAlbums
-                              : S.current.libPlaylists,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ),
-                (settingscrnController.isBottomNavBarEnabled.isTrue ||
-                        isAlbumContent ||
-                        settingscrnController.isLinkedWithPiped.isFalse)
-                    ? const SizedBox.shrink()
-                    : PipedSyncWidget(
-                        padding: EdgeInsets.only(right: size.width * .05),
-                      )
-              ],
-            ),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              _buildExpressiveTitle(
+                context,
+                isAlbumContent ? S.current.libAlbums : S.current.libPlaylists,
+              ),
+              if (!(settingscrnController.isBottomNavBarEnabled.isTrue ||
+                  isAlbumContent ||
+                  settingscrnController.isLinkedWithPiped.isFalse))
+                const Positioned(
+                  right: 0,
+                  child: PipedSyncWidget(
+                    padding: EdgeInsets.zero,
+                  ),
+                )
+            ],
           ),
           Obx(
-            () => isAlbumContent
-                ? SortWidget(
-                    tag: "LibAlbumSort",
-                    screenController: libralbumCntrller,
-                    isAdditionalOperationRequired: false,
-                    isSearchFeatureRequired: true,
-                    itemCountTitle:
-                        "${libralbumCntrller.libraryAlbums.length} ${S.current.items}",
-                    requiredSortTypes: buildSortTypeSet(true),
-                    onSort: (type, ascending) {
-                      libralbumCntrller.onSort(type, ascending);
-                    },
-                    onSearch: libralbumCntrller.onSearch,
-                    onSearchClose: libralbumCntrller.onSearchClose,
-                    onSearchStart: libralbumCntrller.onSearchStart,
-                  )
-                : SortWidget(
-                    tag: "LibPlaylistSort",
-                    screenController: librplstCntrller,
-                    isAdditionalOperationRequired: false,
-                    isSearchFeatureRequired: true,
-                    itemCountTitle:
-                        "${librplstCntrller.libraryPlaylists.length} ${S.current.items}",
-                    requiredSortTypes: buildSortTypeSet(),
-                    onSort: (type, ascending) {
-                      librplstCntrller.onSort(type, ascending);
-                    },
-                    onSearch: librplstCntrller.onSearch,
-                    onSearchClose: librplstCntrller.onSearchClose,
-                    onSearchStart: librplstCntrller.onSearchStart,
-                    isImportFeatureRequired: true,
-                  ),
+            () => Container(
+              margin: const EdgeInsets.only(bottom: 12.0, top: 4.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor.withValues(alpha: 0.4),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.08),
+                ),
+              ),
+              child: isAlbumContent
+                  ? SortWidget(
+                      tag: "LibAlbumSort",
+                      screenController: libralbumCntrller,
+                      isAdditionalOperationRequired: false,
+                      isSearchFeatureRequired: true,
+                      itemCountTitle:
+                          "${libralbumCntrller.libraryAlbums.length} ${S.current.items}",
+                      requiredSortTypes: buildSortTypeSet(true),
+                      onSort: (type, ascending) {
+                        libralbumCntrller.onSort(type, ascending);
+                      },
+                      onSearch: libralbumCntrller.onSearch,
+                      onSearchClose: libralbumCntrller.onSearchClose,
+                      onSearchStart: libralbumCntrller.onSearchStart,
+                    )
+                  : SortWidget(
+                      tag: "LibPlaylistSort",
+                      screenController: librplstCntrller,
+                      isAdditionalOperationRequired: false,
+                      isSearchFeatureRequired: true,
+                      itemCountTitle:
+                          "${librplstCntrller.libraryPlaylists.length} ${S.current.items}",
+                      requiredSortTypes: buildSortTypeSet(),
+                      onSort: (type, ascending) {
+                        librplstCntrller.onSort(type, ascending);
+                      },
+                      onSearch: librplstCntrller.onSearch,
+                      onSearchClose: librplstCntrller.onSearchClose,
+                      onSearchStart: librplstCntrller.onSearchStart,
+                      isImportFeatureRequired: true,
+                    ),
+            ),
           ),
           Expanded(
             child: Obx(
@@ -186,7 +230,6 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                       ? libralbumCntrller.libraryAlbums.isNotEmpty
                       : librplstCntrller.libraryPlaylists.isNotEmpty)
                   ? LayoutBuilder(builder: (context, constraints) {
-                      //Fix for grid in mobile screen
                       final availableWidth = constraints.maxWidth > 300 &&
                               constraints.maxWidth < 394
                           ? 310.0
@@ -254,41 +297,64 @@ class LibraryArtistWidget extends StatelessWidget {
   const LibraryArtistWidget({super.key, this.isBottomNavActive = false});
   final bool isBottomNavActive;
 
+  Widget _buildExpressiveTitle(BuildContext context, String title) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20.0, bottom: 8.0, left: 16, right: 16),
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.w900,
+                letterSpacing: -1.0,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cntrller = Get.find<LibraryArtistsController>();
-    final topPadding = context.isLandscape ? 50.0 : 90.0;
+    final topPadding = context.isLandscape ? 30.0 : 70.0;
     return Padding(
-      padding: isBottomNavActive
-          ? const EdgeInsets.only(left: 15)
-          : EdgeInsets.only(left: 5, top: topPadding),
+      padding: EdgeInsets.only(
+        left: 16.0,
+        right: 16.0,
+        top: isBottomNavActive ? 10.0 : topPadding,
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          isBottomNavActive
-              ? const SizedBox(
-                  height: 10,
-                )
-              : Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    S.current.libArtists,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
+          _buildExpressiveTitle(context, S.current.libArtists),
           Obx(
-            () => SortWidget(
-              tag: "LibArtistSort",
-              screenController: cntrller,
-              isAdditionalOperationRequired: false,
-              isSearchFeatureRequired: true,
-              itemCountTitle:
-                  "${cntrller.libraryArtists.length} ${S.current.items}",
-              onSort: (type, ascending) {
-                cntrller.onSort(type, ascending);
-              },
-              onSearch: cntrller.onSearch,
-              onSearchClose: cntrller.onSearchClose,
-              onSearchStart: cntrller.onSearchStart,
+            () => Container(
+              margin: const EdgeInsets.only(bottom: 12.0, top: 4.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor.withValues(alpha: 0.4),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.08),
+                ),
+              ),
+              child: SortWidget(
+                tag: "LibArtistSort",
+                screenController: cntrller,
+                isAdditionalOperationRequired: false,
+                isSearchFeatureRequired: true,
+                itemCountTitle:
+                    "${cntrller.libraryArtists.length} ${S.current.items}",
+                onSort: (type, ascending) {
+                  cntrller.onSort(type, ascending);
+                },
+                onSearch: cntrller.onSearch,
+                onSearchClose: cntrller.onSearchClose,
+                onSearchStart: cntrller.onSearchStart,
+              ),
             ),
           ),
           Obx(() => cntrller.libraryArtists.isNotEmpty

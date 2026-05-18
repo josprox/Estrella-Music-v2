@@ -36,8 +36,8 @@ class BottomNavBar extends StatelessWidget {
       String sfSymbol, String selectedSfSymbol) {
     final short = label.length > 9 ? '${label.substring(0, 8)}..' : label;
     return LiquidTabItem(
-      widget: Icon(unsel, color: Colors.white38),
-      selectedWidget: Icon(sel, color: Colors.white),
+      widget: Icon(unsel),
+      selectedWidget: Icon(sel),
       sfSymbol: sfSymbol,
       selectedSfSymbol: selectedSfSymbol,
       label: short,
