@@ -60,7 +60,7 @@ class ContentListWidget extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       final ctrl = Get.find<SearchResultScreenController>();
-                      ctrl.viewAllCallback(content.title);
+                      ctrl.applyFilter(content.title);
                     },
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(

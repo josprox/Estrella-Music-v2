@@ -122,7 +122,25 @@ class HomeScreenController extends GetxController {
       for (final seed in seeds) {
         final res = await _musicServices.search(seed.title, filter: "community_playlists");
         if (res.containsKey("Community playlists")) {
-          final items = List<MediaItem>.from(res["Community playlists"]);
+          // 'Community playlists' are Playlists, but recommendations expects MediaItems.
+          // In `loadCommunityPlaylists`, we probably shouldn't mix Playlists into a list of MediaItems.
+          // But wait, the original code tried to cast them to MediaItem.
+          // QuickPicks requires a list of MediaItem. 
+          // So if we get a Playlist, maybe we should convert it to a MediaItem using MediaItemBuilder?
+          // Let's just create a MediaItem from the Playlist properties, or skip if it's meant to be a QuickPick (which usually holds songs/videos).
+          // Wait, QuickPicks can hold playlists if their ID is used to navigate.
+          final items = (res["Community playlists"] as List).map((e) {
+            if (e is Playlist) {
+              return MediaItemBuilder.fromJson({
+                'id': e.playlistId,
+                'title': e.title,
+                'artist': e.description ?? "YouTube Music",
+                'artUri': e.thumbnailUrl,
+                'extras': {'resultType': 'playlist'}
+              });
+            }
+            return e as MediaItem;
+          }).toList();
           items.shuffle();
           if (items.isNotEmpty) recommendations.add(items.first);
         }

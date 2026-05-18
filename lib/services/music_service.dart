@@ -711,10 +711,25 @@ class MusicServices extends getx.GetxService {
     results = nav(results, ['sectionListRenderer', 'contents']);
     if (results == null) return searchResults;
 
-    String? type;
+    String? type = filter?.substring(0, filter.length - 1).toLowerCase();
 
     for (var res in results) {
-      String category = "mixed";
+      if (res is! Map) continue;
+
+      // Extract additional chips if present in sections (common in some YTM responses)
+      final sectionChips = nav(res, ['itemSectionRenderer', 'header', "chipCloudRenderer", "chips"]) ??
+                           nav(res, ["chipCloudRenderer", "chips"]);
+      if (sectionChips != null && filter == null) {
+        for (dynamic chipsItemRenderer in sectionChips) {
+          final chip = chipsItemRenderer['chipCloudChipRenderer'];
+          final chipText = nav(chip, ['text', 'runs', 0, 'text']);
+          if (chipText != null) {
+            searchResults['searchEndpoint'][chipText] =
+                nav(chip, ['navigationEndpoint', 'searchEndpoint', 'params']);
+          }
+        }
+      }
+
       if (res.containsKey('musicCardShelfRenderer')) {
         final card = res['musicCardShelfRenderer'];
         final topResult = parseTopResult(card,
@@ -731,77 +746,45 @@ class MusicServices extends getx.GetxService {
           }
         }
       } else if (res.containsKey('musicShelfRenderer')) {
-        final shelf = res['musicShelfRenderer'];
-        final itemResults = shelf['contents'];
-        final apiTitle = nav(shelf, title_text);
-        category = apiTitle ?? "mixed";
-        
-        final mixedItems = parseSearchResults(itemResults,
-            ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'], type, category);
-        
-        if (filter == null) {
-          if (apiTitle != null) {
-            _addToSearchResults(searchResults, apiTitle, mixedItems);
-          } else {
-            _groupResultsByType(mixedItems, searchResults);
-          }
-        } else {
-          _addToSearchResults(searchResults, category, mixedItems);
-        }
-
-        if (filter != null && shelf != null) {
-          requestFunc(additionalParams) async =>
-              (await _sendRequest("search", data,
-                      additionalParams: additionalParams))
-                  .data;
-          parseFunc(contents) => parseSearchResults(contents,
-              ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'], type, category);
-
-          if (searchResults.containsKey(category)) {
-            final x = await getContinuations(
-                shelf,
-                'musicShelfContinuation',
-                limit - ((searchResults[category] as List).length),
-                requestFunc,
-                parseFunc,
-                isAdditionparamReturnReq: true);
-
-            searchResults["params"] = {
-              'data': data,
-              "type": type,
-              "category": category,
-              'additionalParams': x[1],
-            };
-
-            searchResults[category] = [
-              ...(searchResults[category] as List),
-              ...(x[0])
-            ];
-          }
-        }
+        await _parseAndAddShelf(res['musicShelfRenderer'], searchResults, filter, type, data, limit);
+      } else if (res.containsKey('musicCarouselShelfRenderer')) {
+        await _parseAndAddShelf(res['musicCarouselShelfRenderer'], searchResults, filter, type, data, limit);
       } else if (res.containsKey('itemSectionRenderer')) {
-         final innerShelf = res['itemSectionRenderer']['contents']?.firstWhere((e) => e is Map && e.containsKey('musicShelfRenderer'), orElse: () => null);
-         if (innerShelf != null) {
-            final shelf = innerShelf['musicShelfRenderer'];
-            final itemResults = shelf['contents'];
-            final apiTitle = nav(shelf, title_text);
-            category = apiTitle ?? "mixed";
-            
-            final mixedItems = parseSearchResults(itemResults,
-                ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'], type, category);
-            
-            if (filter == null) {
-              if (apiTitle != null) {
-                _addToSearchResults(searchResults, apiTitle, mixedItems);
-              } else {
-                _groupResultsByType(mixedItems, searchResults);
-              }
-            } else {
-              _addToSearchResults(searchResults, category, mixedItems);
+        final sectionContents = res['itemSectionRenderer']['contents'];
+        if (sectionContents is List) {
+          bool hasShelves = false;
+          for (var content in sectionContents) {
+            if (content is Map && (content.containsKey('musicShelfRenderer') || content.containsKey('musicCarouselShelfRenderer'))) {
+              hasShelves = true;
+              break;
             }
-         }
+          }
+          if (hasShelves) {
+            for (var content in sectionContents) {
+              if (content is! Map) continue;
+              if (content.containsKey('musicShelfRenderer')) {
+                await _parseAndAddShelf(content['musicShelfRenderer'], searchResults, filter, type, data, limit);
+              } else if (content.containsKey('musicCarouselShelfRenderer')) {
+                await _parseAndAddShelf(content['musicCarouselShelfRenderer'], searchResults, filter, type, data, limit);
+              }
+            }
+          } else {
+            final parsedItems = parseSearchResults(
+              sectionContents,
+              ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'],
+              type,
+              'mixed',
+            );
+            if (parsedItems.isNotEmpty) {
+              if (filter == null) {
+                _groupResultsByType(parsedItems, searchResults);
+              } else {
+                _addToSearchResults(searchResults, 'mixed', parsedItems);
+              }
+            }
+          }
+        }
       }
-      type = filter?.substring(0, filter.length - 1).toLowerCase();
     }
 
     if (filter == null) {
@@ -870,12 +853,75 @@ class MusicServices extends getx.GetxService {
         itemType = "Playlists";
       }
       
-      if (searchResults.containsKey(itemType)) {
-        if ((searchResults[itemType] as List).length < 5) {
-          (searchResults[itemType] as List).add(item);
-        }
+      if (!searchResults.containsKey(itemType)) {
+        searchResults[itemType] = [];
+      }
+      
+      if ((searchResults[itemType] as List).length < 10) {
+        (searchResults[itemType] as List).add(item);
+      }
+    }
+  }
+
+  Future<void> _parseAndAddShelf(
+    Map<String, dynamic> shelf,
+    Map<String, dynamic> searchResults,
+    String? filter,
+    String? type,
+    Map<String, dynamic> data,
+    int limit,
+  ) async {
+    final itemResults = shelf['contents'];
+    if (itemResults == null) return;
+    
+    final apiTitle = nav(shelf, title_text) ?? nav(shelf, ['header', 'musicCarouselShelfBasicHeaderRenderer', 'title', 'runs', 0, 'text']);
+    final category = apiTitle ?? "mixed";
+
+    final mixedItems = parseSearchResults(
+      itemResults,
+      ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'],
+      type,
+      category,
+    );
+
+    if (filter == null) {
+      if (apiTitle != null) {
+        _addToSearchResults(searchResults, apiTitle, mixedItems);
       } else {
-        searchResults[itemType] = [item];
+        _groupResultsByType(mixedItems, searchResults);
+      }
+    } else {
+      _addToSearchResults(searchResults, category, mixedItems);
+    }
+
+    if (filter != null) {
+      requestFunc(additionalParams) async =>
+          (await _sendRequest("search", data,
+                  additionalParams: additionalParams))
+              .data;
+      parseFunc(contents) => parseSearchResults(contents,
+          ['artist', 'playlist', 'song', 'video', 'station', 'podcast', 'episode', 'profile'], type, category);
+
+      if (searchResults.containsKey(category)) {
+        final x = await getContinuations(
+            shelf,
+            'musicShelfContinuation',
+            limit - ((searchResults[category] as List).length),
+            requestFunc,
+            parseFunc,
+            isAdditionparamReturnReq: true);
+
+        searchResults["params"] = {
+          'data': data,
+          "type": type,
+          "category": category,
+          'additionalParams': x[1],
+        };
+
+        searchResults[category] = [
+          ...(searchResults[category] as List),
+          ...(x[0])
+        ];
       }
     }
   }

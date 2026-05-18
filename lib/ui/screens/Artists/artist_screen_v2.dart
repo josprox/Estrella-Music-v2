@@ -80,7 +80,6 @@ class ArtistScreenBN extends StatelessWidget {
                         child: SeparateTabItemWidget(
                           artistControllerTag: tag,
                           hideTitle: true,
-                          isResultWidget: false,
                           items: separatedContent.containsKey(item)
                               ? separatedContent[item]['results']
                               : [],

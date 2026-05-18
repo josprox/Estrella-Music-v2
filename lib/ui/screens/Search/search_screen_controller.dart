@@ -58,9 +58,9 @@ class SearchScreenController extends GetxController with ProcessLink {
       color: const Color(0xFF008080),
       imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=250&auto=format&fit=crop',
     ),
-    SearchCategory(
+    const SearchCategory(
       name: "Podcasts",
-      color: const Color(0xFFE91E63),
+      color: Color(0xFFE91E63),
       imageUrl: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=250&auto=format&fit=crop',
     ),
   ];
@@ -73,6 +73,15 @@ class SearchScreenController extends GetxController with ProcessLink {
   onInit() {
     _init();
     super.onInit();
+    // BloomeeTunes Debounce logic para sugerencias
+    debounce(searchText, (String text) async {
+      if (text.isEmpty || text.contains("https://")) {
+        suggestionList.clear();
+        return;
+      }
+      final results = await musicServices.getSearchSuggestion(text);
+      suggestionList.value = results;
+    }, time: const Duration(milliseconds: 300));
   }
 
   _init() async {
@@ -85,32 +94,53 @@ class SearchScreenController extends GetxController with ProcessLink {
     historyQuerylist.value = queryBox.values.toList().reversed.toList();
   }
 
-  Future<void> onChanged(String text) async {
+  void onChanged(String text) {
     searchText.value = text;
     if(text.contains("https://")){
       urlPasted.value = true; 
       return;
     }
     urlPasted.value = false;
-    suggestionList.value = await musicServices.getSearchSuggestion(text);
+  }
+
+  // Lógica de combinación: filtra historial local que coincida y añade sugerencias de API
+  List<String> get filteredHistory {
+    final query = searchText.value.trim().toLowerCase();
+    if (query.isEmpty) return historyQuerylist.take(8).cast<String>().toList();
+    return historyQuerylist
+        .where((q) => q.toString().toLowerCase().contains(query))
+        .take(5)
+        .cast<String>()
+        .toList();
+  }
+
+  List<String> get apiSuggestions {
+    final historySet = filteredHistory.map((e) => e.toLowerCase()).toSet();
+    return suggestionList
+        .cast<String>()
+        .where((q) => !historySet.contains(q.toLowerCase()))
+        .toList();
   }
 
   Future<void> suggestionInput(String txt) async {
     textInputController.text = txt;
     textInputController.selection =
         TextSelection.collapsed(offset: textInputController.text.length);
-    await onChanged(txt);
+    onChanged(txt);
   }
 
   Future<void> addToHistryQueryList(String txt) async {
+    final cleanTxt = txt.trim();
+    if (cleanTxt.isEmpty) return;
+
     if (historyQuerylist.length > 9) {
       final queryForRemoval = queryBox.getAt(0);
       await queryBox.deleteAt(0);
       historyQuerylist.removeWhere((element) => element == queryForRemoval);
     }
-    if (!historyQuerylist.contains(txt)) {
-      await queryBox.add(txt);
-      historyQuerylist.insert(0, txt);
+    if (!historyQuerylist.contains(cleanTxt)) {
+      await queryBox.add(cleanTxt);
+      historyQuerylist.insert(0, cleanTxt);
     }
 
     //reset current query and suggestionlist
@@ -126,8 +156,10 @@ class SearchScreenController extends GetxController with ProcessLink {
 
   Future<void> removeQueryFromHistory(String txt) async {
     final index = queryBox.values.toList().indexOf(txt);
-    await queryBox.deleteAt(index);
-    historyQuerylist.remove(txt);
+    if (index != -1) {
+      await queryBox.deleteAt(index);
+      historyQuerylist.remove(txt);
+    }
   }
 
   @override

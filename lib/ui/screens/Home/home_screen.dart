@@ -137,15 +137,6 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeScreenController = Get.find<HomeScreenController>();
     final settingsScreenController = Get.find<SettingsScreenController>();
-    final size = MediaQuery.of(context).size;
-
-    final topPadding = GetPlatform.isDesktop
-        ? 88.0
-        : context.isLandscape
-            ? 52.0
-            : size.height < 750
-                ? 80.0
-                : 88.0;
 
     final leftPadding =
         settingsScreenController.isBottomNavBarEnabled.isTrue ? 20.0 : 8.0;
@@ -223,11 +214,51 @@ class Body extends StatelessWidget {
                               ]
                             : [const HomeShimmer()];
 
-                        return ListView.builder(
-                          padding:
-                              EdgeInsets.only(bottom: 200, top: topPadding),
-                          itemCount: items.length,
-                          itemBuilder: (_, i) => items[i],
+                        return CustomScrollView(
+                          slivers: [
+                            SliverAppBar(
+                              floating: true,
+                              surfaceTintColor: Theme.of(context).colorScheme.surface,
+                              backgroundColor: Theme.of(context).colorScheme.surface,
+                              title: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    S.current.home, // Can use exploreDiscover if available in localized strings
+                                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                      fontSize: 34,
+                                      fontWeight: FontWeight.bold,
+                                      color: Theme.of(context).colorScheme.onSurface,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  IconButton(
+                                    icon: const Icon(Icons.notifications_none_rounded, size: 30),
+                                    onPressed: () {},
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.timer_outlined, size: 30),
+                                    onPressed: () {},
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.settings_outlined, size: 30),
+                                    onPressed: () {
+                                      homeScreenController.tabIndex.value = 5; // Settings tab
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SliverPadding(
+                              padding: const EdgeInsets.only(bottom: 200, top: 15),
+                              sliver: SliverList(
+                                delegate: SliverChildBuilderDelegate(
+                                  (_, i) => items[i],
+                                  childCount: items.length,
+                                ),
+                              ),
+                            ),
+                          ],
                         );
                       }),
               ),

@@ -860,7 +860,17 @@ List<dynamic> parseSearchResults(List<dynamic> results,
     List<String> searchResultTypes, String? resultType, String category) {
   return results
       .map((result) {
-        return parseSearchResult(result['musicResponsiveListItemRenderer'] ?? result,
+        if (result is! Map) return null;
+        if (result.containsKey('musicResponsiveListItemRenderer')) {
+          return parseSearchResult(
+              Map<String, dynamic>.from(result['musicResponsiveListItemRenderer']),
+              searchResultTypes,
+              resultType,
+              category);
+        } else if (result.containsKey('musicTwoRowItemRenderer')) {
+          return parseTwoRowItem(Map<String, dynamic>.from(result['musicTwoRowItemRenderer']));
+        }
+        return parseSearchResult(Map<String, dynamic>.from(result),
             searchResultTypes, resultType, category);
       })
       .whereType<dynamic>()
@@ -1416,10 +1426,7 @@ MediaItem? parseEpisodeFlat(Map<String, dynamic> data) {
     'podcastId': podcast['podcastId'],
     'podcastTitle': podcastTitle,
     'publishDate': podcast['publishDate'],
-    'length': extractDurationText(sections) ??
-        (sections.isNotEmpty && sections.last.isNotEmpty
-            ? sections.last[0]['text']
-            : null),
+    'length': extractDurationText(sections),
   });
 }
 
@@ -1487,8 +1494,7 @@ MediaItem? parseEpisode(Map<String, dynamic> result) {
     'podcastId': podcast['podcastId'],
     'podcastTitle': podcast['podcastTitle'],
     'publishDate': publishDate,
-    'length': extractDurationText(secondaryLine) ??
-        (secondaryLine.isNotEmpty && secondaryLine.last.isNotEmpty ? secondaryLine.last[0]['text'] : null),
+    'length': extractDurationText(secondaryLine),
   });
 }
 

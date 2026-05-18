@@ -4,7 +4,6 @@ import 'package:harmonymusic/ui/widgets/modification_list.dart';
 import '../../utils/l10n_extensions.dart';
 
 import '../screens/Artists/artist_screen_controller.dart';
-import '../screens/Search/search_result_screen_controller.dart';
 import 'list_widget.dart';
 import 'loader.dart';
 import 'sort_widget.dart';
@@ -16,7 +15,6 @@ class SeparateTabItemWidget extends StatelessWidget {
       required this.items,
       required this.title,
       this.isCompleteList = true,
-      this.isResultWidget = true,
       this.hideTitle = false,
       this.topPadding = 0,
       this.scrollController,
@@ -28,7 +26,6 @@ class SeparateTabItemWidget extends StatelessWidget {
   final String title;
   final bool isCompleteList;
   final double topPadding;
-  final bool isResultWidget;
   final bool hideTitle;
   final ScrollController? scrollController;
 
@@ -38,9 +35,6 @@ class SeparateTabItemWidget extends StatelessWidget {
         Get.isRegistered<ArtistScreenController>(tag: artistControllerTag)
             ? Get.find<ArtistScreenController>(tag: artistControllerTag)
             : null;
-    final searchResController = Get.isRegistered<SearchResultScreenController>()
-        ? Get.find<SearchResultScreenController>()
-        : null;
     return Padding(
       padding: EdgeInsets.only(top: topPadding, left: 5),
       child: Column(
@@ -55,15 +49,6 @@ class SeparateTabItemWidget extends StatelessWidget {
                     title.t,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  isCompleteList
-                      ? const SizedBox.shrink()
-                      : TextButton(
-                          onPressed: () {
-                            searchResController!.viewAllCallback(title);
-                          },
-                          child: Text(S.current.viewAll,
-                              style:
-                                  Theme.of(Get.context!).textTheme.titleSmall))
                 ],
               ),
             ),
@@ -76,14 +61,12 @@ class SeparateTabItemWidget extends StatelessWidget {
                     isSearchFeatureRequired: artistController != null,
                     titleLeftPadding: 9,
                     itemCountTitle:
-                        "${isResultWidget ? (searchResController?.separatedResultContent[title] ?? []).length : (artistController?.sepataredContent[title] != null ? artistController?.sepataredContent[title]['results'] : []).length} ${S.current.items}",
+                        "${(artistController?.sepataredContent[title] != null ? artistController?.sepataredContent[title]['results'] : []).length} ${S.current.items}",
                     requiredSortTypes: buildSortTypeSet(
                         title == 'Albums' || title == "Singles" || title == "Podcasts",
                         title == "Songs" || title == "Videos" || title == "Episodes"),
                     onSort: (type, ascending) {
-                      isResultWidget
-                          ? searchResController!.onSort(type, ascending, title)
-                          : artistController?.onSort(type, ascending, title);
+                      artistController?.onSort(type, ascending, title);
                     },
                     onSearch: artistController?.onSearch,
                     onSearchClose: artistController?.onSearchClose,
@@ -98,21 +81,7 @@ class SeparateTabItemWidget extends StatelessWidget {
                   ))
               : const SizedBox.shrink(),
           isCompleteList
-              ? isResultWidget
-                  ? GetX<SearchResultScreenController>(builder: (controller) {
-                      if (controller.isSeparatedResultContentFetced.isTrue) {
-                        return ListWidget(
-                          controller.separatedResultContent[title],
-                          title,
-                          isCompleteList,
-                          scrollController: scrollController,
-                        );
-                      } else {
-                        return const Expanded(
-                            child: Center(child: LoadingIndicator()));
-                      }
-                    })
-                  : (artistController!.isArtistContentFetced.isTrue
+              ? (artistController!.isArtistContentFetced.isTrue
                       ? Obx(() =>
                           (artistController.additionalOperationMode.value ==
                                   OperationMode.none
