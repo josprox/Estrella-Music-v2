@@ -403,9 +403,12 @@ List<dynamic>? parseSongArtists(Map<String, dynamic> data, int index) {
 }
 
 Map<String, dynamic> getFlexColumnItem(Map<String, dynamic> item, int index) {
-  if ((item['flexColumns']).length <= index ||
+  if (item['flexColumns'] == null ||
+      (item['flexColumns']).length <= index ||
+      item['flexColumns'][index]['musicResponsiveListItemFlexColumnRenderer'] == null ||
       !item['flexColumns'][index]['musicResponsiveListItemFlexColumnRenderer']
           .containsKey('text') ||
+      item['flexColumns'][index]['musicResponsiveListItemFlexColumnRenderer']['text'] == null ||
       !item['flexColumns'][index]['musicResponsiveListItemFlexColumnRenderer']
               ['text']
           .containsKey('runs')) {

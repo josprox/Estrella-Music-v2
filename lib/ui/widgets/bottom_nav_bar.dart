@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:liquid_tabbar_minimize/liquid_tabbar_minimize.dart';
+import 'liquid_bottom_navigation_bar.dart';
 import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 

@@ -790,14 +790,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
-  liquid_tabbar_minimize:
-    dependency: "direct main"
-    description:
-      name: liquid_tabbar_minimize
-      sha256: "227e6f282eff62b290811dd30e3f576a0f513a8a6a5aa520494ac00706e42c94"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.9"
   lists:
     dependency: transitive
     description:

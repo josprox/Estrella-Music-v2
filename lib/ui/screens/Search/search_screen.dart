@@ -117,6 +117,7 @@ class _SearchBarSliver extends StatelessWidget {
       floating: true,
       backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
+      shadowColor: Colors.transparent,
       elevation: 0,
       scrolledUnderElevation: 0,
       titleSpacing: 16,
@@ -129,11 +130,15 @@ class _SearchBarSliver extends StatelessWidget {
           child: Container(
             height: 56,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.35),
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.black.withValues(alpha: 0.15)
+                  : Colors.white.withValues(alpha: 0.25),
               borderRadius: BorderRadius.circular(28),
               border: Border.all(
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.08),
-                width: 1.2,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white.withValues(alpha: 0.12)
+                    : Colors.black.withValues(alpha: 0.06),
+                width: 1.0,
               ),
             ),
             child: Row(

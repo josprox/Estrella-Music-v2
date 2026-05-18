@@ -5,6 +5,7 @@ import 'package:harmonymusic/ui/widgets/search_related_widgets.dart';
 
 import '../../navigator.dart';
 import 'search_result_screen_controller.dart';
+import '../../widgets/nebula_background.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 import '../../../utils/l10n_extensions.dart';
 
@@ -18,9 +19,13 @@ class SearchResultScreenBN extends StatelessWidget {
     final topPadding = context.isLandscape ? 50.0 : 80.0;
     
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(top: topPadding),
-        child: Column(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          NebulaBackground(seedString: searchResScrController.queryString),
+          Padding(
+            padding: EdgeInsets.only(top: topPadding),
+            child: Column(
           children: [
             Row(
               children: [
@@ -136,6 +141,8 @@ class SearchResultScreenBN extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
+    ],
+   ),
+  );
+ }
 }

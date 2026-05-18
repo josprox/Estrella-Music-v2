@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:liquid_tabbar_minimize/liquid_tabbar_minimize.dart';
+import 'package:harmonymusic/ui/widgets/liquid_bottom_navigation_bar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
 import 'package:dynamic_color/dynamic_color.dart';
