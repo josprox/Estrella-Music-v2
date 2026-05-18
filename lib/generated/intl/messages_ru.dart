@@ -265,6 +265,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Произошла ошибка!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Произошла ошибка"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Ошибка при воспроизведении:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Экспортировать"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Экспортировать скачанные файлы",
@@ -419,6 +423,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Связать с Piped для плейлистов",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Слушай сейчас"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Слушаем окружающую среду...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("На устройстве"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Громкость (Db)"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -431,6 +438,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Слова песни не доступны!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Убедитесь, что музыка рядом с микрофоном играет достаточно громко.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Выбрать файл и импортировать",
     ),
@@ -441,6 +451,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Музыка и Воспроизведение",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Распознавание музыки",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Ошибка сети! Проверьте подключение к сети.",
@@ -453,6 +466,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "У вас нет плейлистов в библиотеке!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Не удалось найти ни одной песни в записанном аудио.",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Нет совпадений"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage("Нет офлайн-песен!"),
     "nomatch": MessageLookupByLibrary.simpleMessage("Совпадений не найдено"),
     "notaSongVideo": MessageLookupByLibrary.simpleMessage("Не является видео!"),
@@ -471,10 +488,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Обычно"),
     "playNext": MessageLookupByLibrary.simpleMessage("Включить следующим"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Играть сейчас"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Скорость воспроизведения",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage("Интерфейс плеера"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Выберите интерфейс плеера",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Играю:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "Воспроизвести из альбома",
     ),
@@ -518,6 +540,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Предстоящие"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Популярные треки"),
     "processFiles": MessageLookupByLibrary.simpleMessage("Обработка файлов..."),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Обработка звука...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Цикл очереди"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "Режим цикла очереди нельзя отключить, если включен режим перемешивания.",
@@ -541,6 +566,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Упорядочить плейлист",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Переставить песни"),
+    "readMore": MessageLookupByLibrary.simpleMessage("Читать далее"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Недавние поиски"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "Недавно проигранные",
@@ -604,6 +630,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Песни, плейлист, альбом или исполнитель",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Искать в библиотеке",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Результаты поиска"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Недавние поиски",
@@ -636,6 +665,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Миграция с Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Поделиться этой песней"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Поиск совпадений в базе данных Shazam...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Перемешать очередь"),
     "singles": MessageLookupByLibrary.simpleMessage("Синглы"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Пропускать тишину"),
@@ -658,10 +690,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Песня добавлена в очередь!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Песня найдена!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Информация"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Воспроизведение песни невозможно из-за ограничений сервера!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("тон песни"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Удалено из"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Удалено из очереди!",
@@ -670,6 +704,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Вы не можете удалить проигрываемую песню",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Песни"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Скорость и шаг"),
     "standard": MessageLookupByLibrary.simpleMessage("Стандарт"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Запустить радио"),
     "status": MessageLookupByLibrary.simpleMessage("Статус"),

@@ -203,5 +203,69 @@
   "readMore": "Больш падрабязна",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Хуткасць і крок",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Хуткасць прайгравання",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "тон песні",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Распазнаванне музыкі",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Слухаючы навакольнае асяроддзе...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Пераканайцеся, што музыка гучыць дастаткова гучна каля мікрафона.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Апрацоўка аўдыя...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Пошук супадзенняў у базе дадзеных Shazam...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Песня знойдзена!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Гуляць зараз",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Пошук у бібліятэцы",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Супадзенняў няма",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Не ўдалося знайсці ніводнай песні ў запісаным аўдыя",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Адбылася памылка",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Прайграванне:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Памылка пры прайграванні:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

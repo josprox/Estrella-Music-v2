@@ -161,6 +161,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "କିଛି ତ୍ରୁଟି ଘଟିଲା!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("ଏକ ତ୍ରୁଟି ଘଟିଲା |"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "ଖେଳିବା ସମୟରେ ତ୍ରୁଟି:",
+    ),
     "favorites": MessageLookupByLibrary.simpleMessage("ମନପସନ୍ଦ"),
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "ପ୍ରଦର୍ଶିତ ପ୍ଲେଲିଷ୍ଟଗୁଡିକ",
@@ -224,10 +228,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "ପ୍ଲେଲିଷ୍ଟ ପାଇଁ ପାଇପ୍ ସହିତ ଲିଙ୍କ୍ କରନ୍ତୁ",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("ବର୍ତ୍ତମାନ ଶୁଣ |"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "ପରିବେଶ ଶୁଣିବା ...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("ସ୍ଥାନୀୟ"),
     "low": MessageLookupByLibrary.simpleMessage("ନିମ୍ନ"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "ଗୀତ ଉପଲବ୍ଧ ନାହିଁ!",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "ନିଶ୍ଚିତ କର ଯେ ତୁମର ମାଇକ୍ରୋଫୋନ୍ ନିକଟରେ ସଂଗୀତ ଯଥେଷ୍ଟ ଉଚ୍ଚରେ ବାଜୁଛି |",
     ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "ଫାଇଲ୍ ଏବଂ ଆମଦାନୀ ଚୟନ କରନ୍ତୁ |",
@@ -236,6 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "mostListenedSong": MessageLookupByLibrary.simpleMessage(
       "ଗୀତ ସବୁଠୁ ଅଧିକ ଶୁଣୁଥିଲା |",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("ସଙ୍ଗୀତ ସ୍ୱୀକୃତି"),
     "networkError1": MessageLookupByLibrary.simpleMessage(
       "Oops ନେଟୱର୍କ ତ୍ରୁଟି!",
     ),
@@ -247,6 +258,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "ଆପଣଙ୍କ ପାଖରେ କୌଣସି lib ପ୍ଲେଲିଷ୍ଟ ନାହିଁ!",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "ରେକର୍ଡ ହୋଇଥିବା ଅଡିଓରେ କ songs ଣସି ଗୀତ ଖୋଜି ପାଇଲା ନାହିଁ |",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage(
+      "କ No ଣସି ମେଳ ନାହିଁ |",
     ),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage("ଅଫଲାଇନ ଗୀତ ନାହିଁ!"),
     "nomatch": MessageLookupByLibrary.simpleMessage("କୌଣସି ମେଳକ ମିଳିଲା ନାହିଁ"),
@@ -262,6 +279,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "password": MessageLookupByLibrary.simpleMessage("ପାସୱାର୍ଡ"),
     "password_text": MessageLookupByLibrary.simpleMessage("ପାସୱାର୍ଡ"),
     "playNext": MessageLookupByLibrary.simpleMessage("ପରବର୍ତ୍ତୀ ଖେଳାନ୍ତୁ"),
+    "playNow": MessageLookupByLibrary.simpleMessage("ବର୍ତ୍ତମାନ ଖେଳନ୍ତୁ |"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("ପ୍ଲେକ୍ ବେଗ |"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("ଖେଳିବା:"),
     "playlistBlacklistAlert": MessageLookupByLibrary.simpleMessage(
       "ପ୍ଲେ-ଲିଷ୍ଟ କଳା ତାଲିକାଭୁକ୍ତ!",
     ),
@@ -285,10 +305,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("ପ୍ଲେ-ଲିଷ୍ଟଗୁଡ଼ିକ"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("ଲୋକପ୍ରିୟ ଟ୍ରାକ୍ |"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "ଅଡିଓ ପ୍ରକ୍ରିୟାକରଣ ...",
+    ),
     "quickpicks": MessageLookupByLibrary.simpleMessage("ଶୀଘ୍ର ଚୟନ"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "ଏହି କଳାକାରଙ୍କ ପାଇଁ ରେଡିଓ ଉପଲବ୍ଧ ନାହିଁ!",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("ଅଧିକ ପ Read ନ୍ତୁ |"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "ସାମ୍ପ୍ରତିକ ସନ୍ଧାନ |",
     ),
@@ -328,6 +352,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "ଗୀତ,ପ୍ଲେଲିଷ୍ଟ,ଆଲବମ କିମ୍ବା କଳାକାର",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "ଲାଇବ୍ରେରୀରେ ଖୋଜ |",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("ସନ୍ଧାନ ଫଳାଫଳ"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "ସାମ୍ପ୍ରତିକ ସନ୍ଧାନ |",
@@ -361,6 +388,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "ଜୋସ୍ ମ୍ୟୁଜିକ୍ କୋଟଲିନ୍ ରୁ ସ୍ଥାନାନ୍ତର |",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("ଏହି ଗୀତକୁ ସହଭାଗ କରନ୍ତୁ"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "ମ୍ୟାଚ୍ ପାଇଁ ଶାଜାମ ଡାଟାବେସ୍ ଖୋଜୁଛି ...",
+    ),
     "singles": MessageLookupByLibrary.simpleMessage("ଏକାକୀ"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("ନୀରବତା ଛାଡିଦିଅ"),
     "skipSilenceDes": MessageLookupByLibrary.simpleMessage(
@@ -379,6 +409,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "ଗୀତଟି ଧାଡିରେ ଯୋଡା ଯାଇଗଲା!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("ଗୀତ ମିଳିଲା!"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("ଗୀତ ସ୍ୱର"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage(
       "ଏଥିରୁ ଅପସାରିତ ହୋଇଛି",
     ),
@@ -389,6 +421,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ଆପଣ ବର୍ତ୍ତମାନ ଚାଲୁଥିବା ଗୀତକୁ ଅପସାରଣ କରିପାରିବେ ନାହିଁ",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("ଗୀତ"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("ଗତି ଏବଂ ପିଚ୍ |"),
     "startRadio": MessageLookupByLibrary.simpleMessage("ରେଡିଓ ଆରମ୍ଭ କରନ୍ତୁ"),
     "status": MessageLookupByLibrary.simpleMessage("ସ୍ଥିତି"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(

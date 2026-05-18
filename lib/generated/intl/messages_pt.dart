@@ -265,6 +265,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Aconteceu algum erro!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Ocorreu um erro"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage("Erro ao jogar:"),
     "export": MessageLookupByLibrary.simpleMessage("Exportar"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Exportar arquivos baixados",
@@ -398,6 +400,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Vincular as playlist com Piped",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Ouça agora"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Ouvindo o ambiente...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Local"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Intensidade"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -410,6 +415,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Letra não disponível!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Certifique-se de que a música esteja tocando alto o suficiente perto do microfone.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Selecione o arquivo e importe",
     ),
@@ -420,6 +428,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Musica & Reprodução",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Reconhecimento Musical",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Falha na rede! Verifique sua conexão.",
@@ -433,6 +444,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noBookmarks": MessageLookupByLibrary.simpleMessage("Nenhuma salva!"),
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Você não tem uma biblioteca de playlist!",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Não foi possível encontrar nenhuma música no áudio gravado",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage(
+      "Sem correspondências",
     ),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Sem músicas offline!",
@@ -452,10 +469,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Simples"),
     "playNext": MessageLookupByLibrary.simpleMessage("Reproduzir próxima"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Jogue agora"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Velocidade de reprodução",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage("Interface do player"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Tipo de interface do player",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Jogando:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "TOCANDO DO ÁLBUM",
     ),
@@ -501,6 +523,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Processando os ficheiros...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Processando o áudio...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Fila de repetição"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "O modo de ciclo não pode ser desativado quando o modo aleatório está ativado.",
@@ -526,6 +551,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Reorganizar playlist",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Reordenar músicas"),
+    "readMore": MessageLookupByLibrary.simpleMessage("Leia mais"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Pesquisas recentes",
     ),
@@ -587,6 +613,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Músicas,Playlist,Álbum ou Artista",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Pesquisar na Biblioteca",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Resultados da pesquisa"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Pesquisas recentes",
@@ -623,6 +652,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "shareSong": MessageLookupByLibrary.simpleMessage(
       "Compartilhar essa música",
     ),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Procurando correspondências no banco de dados do Shazam...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage(
       "Misturar Enfileirados",
     ),
@@ -647,10 +679,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Músicas adicionadas à fila!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Canção encontrada!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Detalhes"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Música não pode ser reproduzida devido a restrições do servidor!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("tom da música"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Removida da/do"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Removido da fila!",
@@ -659,6 +693,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Você não pode remover a música enquanto toca",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Músicas"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Velocidade e passo"),
     "standard": MessageLookupByLibrary.simpleMessage("Padrão"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Iniciar rádio"),
     "status": MessageLookupByLibrary.simpleMessage("Status/Situação"),

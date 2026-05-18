@@ -472,5 +472,69 @@
   "readMore": "続きを読む",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "スピードとピッチ",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "再生速度",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "歌の調子",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "音楽認識",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "環境の声を聞きながら…",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "マイクの近くで音楽が十分な音量で再生されていることを確認してください。",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "音声を処理しています...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Shazam データベースで一致するものを検索しています...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "曲が見つかりました！",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "今すぐプレイ",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "ライブラリ内検索",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "一致しません",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "録音されたオーディオに曲が見つかりませんでした",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "エラーが発生しました",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "演奏:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "再生時のエラー:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

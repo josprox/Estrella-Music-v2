@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "about": MessageLookupByLibrary.simpleMessage("关于"),
     "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
       "可爱的小兔子矢量素材 素材中国 素材网...",
     ),
@@ -52,6 +53,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "backup_upload_success": MessageLookupByLibrary.simpleMessage("备份已正确上传。"),
     "close": MessageLookupByLibrary.simpleMessage("关闭"),
     "email": MessageLookupByLibrary.simpleMessage("电子邮件"),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("发生错误"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage("播放时出错："),
     "follow": MessageLookupByLibrary.simpleMessage("继续"),
     "following": MessageLookupByLibrary.simpleMessage("下列的"),
     "forgottenFavorites": MessageLookupByLibrary.simpleMessage("忘记收藏夹"),
@@ -63,12 +66,27 @@ class MessageLookup extends MessageLookupByLibrary {
     "genre_rock": MessageLookupByLibrary.simpleMessage("岩石"),
     "latestRelease": MessageLookupByLibrary.simpleMessage("最新发布"),
     "listenNow": MessageLookupByLibrary.simpleMessage("现在听"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage("聆听环境..."),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "确保麦克风附近的音乐播放声音足够大。",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage("选择文件并导入"),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage("听次数最多的歌曲"),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("音乐识别"),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "在录制的音频中找不到任何歌曲",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("没有匹配项"),
     "password_text": MessageLookupByLibrary.simpleMessage("密码"),
+    "playNow": MessageLookupByLibrary.simpleMessage("立即播放"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("播放速度"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("播放："),
     "popularTracks": MessageLookupByLibrary.simpleMessage("热门曲目"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage("处理音频..."),
+    "readMore": MessageLookupByLibrary.simpleMessage("阅读更多"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("最近的搜索"),
     "reproducedBy": MessageLookupByLibrary.simpleMessage("转载者"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage("在图书馆中搜索"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage("最近的搜索"),
     "settings_cloud_backup": MessageLookupByLibrary.simpleMessage("云备份"),
     "settings_cloud_backup_desc": MessageLookupByLibrary.simpleMessage(
@@ -82,6 +100,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings_migration_title": MessageLookupByLibrary.simpleMessage(
       "从 Joss Music Kotlin 迁移",
     ),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "正在 Shazam 数据库中搜索匹配项...",
+    ),
+    "songFound": MessageLookupByLibrary.simpleMessage("歌曲找到了！"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("歌声"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("速度和音调"),
     "username": MessageLookupByLibrary.simpleMessage("用户名"),
     "video": MessageLookupByLibrary.simpleMessage("视频"),
   };

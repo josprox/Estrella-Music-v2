@@ -263,6 +263,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Une erreur s\'est produite !",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage(
+      "Une erreur s\'est produite",
+    ),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Erreur lors de la lecture :",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Exporter"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Exporter les fichiers téléchargés",
@@ -425,6 +431,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Lien avec piped pour les playlists",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Écoute maintenant"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "A l\'écoute de l\'environnement...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Local"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Niveau Sonore Db"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -437,6 +446,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Paroles indisponibles !",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Assurez-vous que la musique est suffisamment forte à proximité de votre microphone.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Sélectionnez le fichier et importez",
     ),
@@ -447,6 +459,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Musique et Lecture",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Reconnaissance musicale",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Erreur de réseau ! Vérifiez votre connexion réseau.",
@@ -460,6 +475,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noBookmarks": MessageLookupByLibrary.simpleMessage("Aucun élément !"),
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Vous n\'avez pas de playlist !",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Impossible de trouver des chansons dans l\'audio enregistré",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage(
+      "Aucune correspondance",
     ),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Pas de titre hors ligne !",
@@ -485,10 +506,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Entier"),
     "playNext": MessageLookupByLibrary.simpleMessage("Lecture suivante"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Jouez maintenant"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("Vitesse de lecture"),
     "playerUi": MessageLookupByLibrary.simpleMessage("Interface du lecteur"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Sélectionner l\'interface du lecteur",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Jouant:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "LECTURE DE L\'ALBUM",
     ),
@@ -534,6 +558,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Traitement des fichiers...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Traitement de l\'audio...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage(
       "Lecture en boucle de la file d\'attente",
     ),
@@ -563,6 +590,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "Réorganiser les titres",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("En savoir plus"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Recherches récentes",
     ),
@@ -632,6 +660,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Titres, Playlist, Album ou Artiste",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Rechercher dans la bibliothèque",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage(
       "Résultats de la Recherche",
     ),
@@ -670,6 +701,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Migrer depuis Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Partager ce titre"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Recherche de correspondances dans la base de données Shazam...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage(
       "Lecture aléatoire de la file d\'attente",
     ),
@@ -694,12 +728,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Titre en file d\'attente !",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Chanson trouvée !"),
     "songInfo": MessageLookupByLibrary.simpleMessage(
       "Informations sur le titre",
     ),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Le titre n\'est pas jouable en raison d\'une restriction du serveur !",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("ton de la chanson"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Supprimé de"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Supprimé de la file d\'attente !",
@@ -708,6 +744,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Vous ne pouvez pas supprimer le titre en cours de lecture",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Titres"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Vitesse et pitch"),
     "standard": MessageLookupByLibrary.simpleMessage("Standard"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Démarrer la radio"),
     "status": MessageLookupByLibrary.simpleMessage("État"),

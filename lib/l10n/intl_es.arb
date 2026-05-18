@@ -574,5 +574,69 @@
   "readMore": "Leer más",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Velocidad y Tono",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Velocidad de reproducción",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "Tono de la canción",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Reconocimiento de Música",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Escuchando el entorno...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Asegúrate de que la música suene con suficiente volumen cerca de tu micrófono.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Procesando el audio...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Buscando coincidencias en la base de datos de Shazam...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "¡Canción Encontrada!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Reproducir Ahora",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Buscar en Biblioteca",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Sin Coincidencias",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "No se pudo encontrar ninguna canción en el audio registrado",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Ocurrió un error",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Reproduciendo:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Error al reproducir:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

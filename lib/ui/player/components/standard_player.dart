@@ -3,7 +3,7 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:widget_marquee/widget_marquee.dart';
+import '../../widgets/custom_marquee.dart';
 import 'package:audio_service/audio_service.dart';
 import '/utils/youtube_share_manager.dart';
 
@@ -17,6 +17,7 @@ import '/ui/widgets/image_widget.dart';
 import '/ui/widgets/songinfo_bottom_sheet.dart';
 import '/ui/navigator.dart';
 import 'package:harmonymusic/generated/l10n.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 
 class StandardPlayer extends StatelessWidget {
   const StandardPlayer({super.key});
@@ -559,7 +560,7 @@ class _SecondaryActions extends StatelessWidget {
         // Add to playlist
         _SecondaryButton(
           icon: Icons.playlist_add_rounded,
-          label: 'Cola',
+          label: S.current.upNext,
           colorScheme: colorScheme,
           onTap: () => ctrl.queuePanelController.open(),
         ),
@@ -588,7 +589,246 @@ class _SecondaryActions extends StatelessWidget {
             ctrl.openEqualizer();
           },
         ),
+        // Speed & Pitch
+        _SecondaryButton(
+          icon: Icons.speed_rounded,
+          label: S.current.playbackSpeed.split(' ').first,
+          colorScheme: colorScheme,
+          onTap: () {
+            _openSpeedPitchDialog(context, colorScheme);
+          },
+        ),
       ],
+    );
+  }
+
+  void _openSpeedPitchDialog(BuildContext context, ColorScheme colorScheme) {
+    final settingsCtrl = Get.find<SettingsScreenController>();
+    final textTheme = Theme.of(context).textTheme;
+    
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return ClipRRect(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+              decoration: BoxDecoration(
+                color: colorScheme.surfaceContainerHigh.withValues(alpha: 0.85),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+                border: Border.all(
+                  color: colorScheme.outlineVariant.withValues(alpha: 0.2),
+                  width: 1,
+                ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Pull handle
+                  Center(
+                    child: Container(
+                      width: 48,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  
+                  // Header Row with Reset Button
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        S.current.speedAndPitch,
+                        style: textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w900,
+                          color: colorScheme.onSurface,
+                        ),
+                      ),
+                      TextButton.icon(
+                        onPressed: () {
+                          settingsCtrl.setPlaybackSpeed(1.0);
+                          settingsCtrl.setPlaybackPitch(1.0);
+                        },
+                        icon: Icon(Icons.refresh_rounded, size: 18, color: colorScheme.primary),
+                        label: Text(
+                          S.current.reset,
+                          style: textTheme.labelLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  
+                  // Playback Speed Slider
+                  Obx(() => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.speed_rounded, color: colorScheme.primary, size: 22),
+                              const SizedBox(width: 12),
+                              Text(
+                                S.current.playbackSpeed,
+                                style: textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme.onSurface,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            '${settingsCtrl.playbackSpeed.value.toStringAsFixed(2)}x',
+                            style: textTheme.bodyLarge?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      SliderTheme(
+                        data: SliderThemeData(
+                          trackHeight: 6,
+                          activeTrackColor: colorScheme.primary,
+                          inactiveTrackColor: colorScheme.primary.withValues(alpha: 0.15),
+                          thumbColor: colorScheme.primary,
+                          overlayColor: colorScheme.primary.withValues(alpha: 0.12),
+                          thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8),
+                        ),
+                        child: Slider(
+                          value: settingsCtrl.playbackSpeed.value,
+                          min: 0.5,
+                          max: 2.0,
+                          divisions: 30,
+                          onChanged: settingsCtrl.setPlaybackSpeed,
+                        ),
+                      ),
+                      
+                      // Quick speed presets
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        child: Row(
+                          children: [0.75, 1.0, 1.25, 1.5, 2.0].map((speed) {
+                            final isSelected = (settingsCtrl.playbackSpeed.value - speed).abs() < 0.01;
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: ChoiceChip(
+                                label: Text('${speed.toStringAsFixed(2)}x'),
+                                selected: isSelected,
+                                onSelected: (_) => settingsCtrl.setPlaybackSpeed(speed),
+                                selectedColor: colorScheme.primary,
+                                labelStyle: textTheme.labelMedium?.copyWith(
+                                  color: isSelected ? colorScheme.onPrimary : colorScheme.onSurface,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  )),
+                  
+                  const SizedBox(height: 28),
+                  const Divider(height: 1),
+                  const SizedBox(height: 28),
+                  
+                  // Song Pitch Slider
+                  Obx(() => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.music_note_rounded, color: colorScheme.primary, size: 22),
+                              const SizedBox(width: 12),
+                              Text(
+                                S.current.songPitch,
+                                style: textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme.onSurface,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            settingsCtrl.playbackPitch.value.toStringAsFixed(2),
+                            style: textTheme.bodyLarge?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      SliderTheme(
+                        data: SliderThemeData(
+                          trackHeight: 6,
+                          activeTrackColor: colorScheme.primary,
+                          inactiveTrackColor: colorScheme.primary.withValues(alpha: 0.15),
+                          thumbColor: colorScheme.primary,
+                          overlayColor: colorScheme.primary.withValues(alpha: 0.12),
+                          thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8),
+                        ),
+                        child: Slider(
+                          value: settingsCtrl.playbackPitch.value,
+                          min: 0.5,
+                          max: 2.0,
+                          divisions: 30,
+                          onChanged: settingsCtrl.setPlaybackPitch,
+                        ),
+                      ),
+                      
+                      // Quick pitch presets
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        child: Row(
+                          children: [0.75, 1.0, 1.25, 1.5, 2.0].map((pitch) {
+                            final isSelected = (settingsCtrl.playbackPitch.value - pitch).abs() < 0.01;
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: ChoiceChip(
+                                label: Text(pitch.toStringAsFixed(2)),
+                                selected: isSelected,
+                                onSelected: (_) => settingsCtrl.setPlaybackPitch(pitch),
+                                selectedColor: colorScheme.primary,
+                                labelStyle: textTheme.labelMedium?.copyWith(
+                                  color: isSelected ? colorScheme.onPrimary : colorScheme.onSurface,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  )),
+                  const SizedBox(height: 32),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

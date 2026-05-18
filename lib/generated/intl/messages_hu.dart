@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
       "Új lejátszólista",
     ),
+    "about": MessageLookupByLibrary.simpleMessage("Körülbelül"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("Még 5 perc"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "Dalok lejátszólistához adása",
@@ -139,6 +140,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "endOfThisSong": MessageLookupByLibrary.simpleMessage("A dal vége"),
     "enqueueSong": MessageLookupByLibrary.simpleMessage("Dal sorba állítása"),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Hiba történt"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Hiba lejátszás közben:",
+    ),
     "favorites": MessageLookupByLibrary.simpleMessage("Kedvencek"),
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "Kiemelt lejátszólisták",
@@ -178,6 +183,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "library": MessageLookupByLibrary.simpleMessage("Gyüjtemény"),
     "light": MessageLookupByLibrary.simpleMessage("Világos"),
     "listenNow": MessageLookupByLibrary.simpleMessage("Figyelj most"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "A környezetre figyelve...",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Győződjön meg arról, hogy a zene elég hangosan szól a mikrofon közelében.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Válassza ki a fájlt és importálja",
     ),
@@ -188,6 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Zene & Lejátszás",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("Zene felismerés"),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Hálózati hiba! Ellenőrizze a hálózati kapcsolatot.",
     ),
@@ -200,6 +212,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Nincs lib lejátszási listád!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Nem található dal a rögzített hanganyagban",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Nincs egyezés"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Nincsenek offline dalok!",
     ),
@@ -207,12 +223,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "password_text": MessageLookupByLibrary.simpleMessage("Jelszó"),
     "personalisation": MessageLookupByLibrary.simpleMessage("Személyreszabás"),
     "playNext": MessageLookupByLibrary.simpleMessage("Következő lejátszása"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Játssz most"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Lejátszási sebesség",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage("Lejátszó Ui"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "Lejátszás:",
+    ),
     "playlists": MessageLookupByLibrary.simpleMessage("Lejátszólisták"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Következő"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Népszerű számok"),
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Fájlok előkészítése...",
+    ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Hang feldolgozása...",
     ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Várólista ismétlése"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
@@ -232,6 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Lejátszólista rendezése",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Zenék átrendezése"),
+    "readMore": MessageLookupByLibrary.simpleMessage("Olvass tovább"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Legutóbbi keresések",
     ),
@@ -273,6 +300,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "restoring": MessageLookupByLibrary.simpleMessage("Visszaállítás..."),
     "retry": MessageLookupByLibrary.simpleMessage("Újrapróbálom!"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Keresés a könyvtárban",
+    ),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Legutóbbi keresések",
     ),
@@ -299,13 +329,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "Migráció a Joss Music Kotlin szolgáltatásból",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Dal megosztása"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Egyezések keresése a Shazam adatbázisban...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Várólista keverése"),
     "singles": MessageLookupByLibrary.simpleMessage("Kislemezek"),
     "sleepTimer": MessageLookupByLibrary.simpleMessage("Alvás időzítő"),
+    "songFound": MessageLookupByLibrary.simpleMessage("Dal megtalálva!"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "A dal nem játszható le, a szerver korlátozása miatt!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("dal hangja"),
     "songs": MessageLookupByLibrary.simpleMessage("Számok"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage(
+      "Sebesség és hangmagasság",
+    ),
     "standard": MessageLookupByLibrary.simpleMessage("Alapértelmezett"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Rádió indítása"),
     "systemDefault": MessageLookupByLibrary.simpleMessage("Alapértelmezett"),

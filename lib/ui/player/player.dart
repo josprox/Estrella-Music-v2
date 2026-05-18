@@ -28,40 +28,13 @@ class Player extends StatelessWidget {
       /// It is used to show the current queue panel in mobile
       body: SlidingUpPanel(
         boxShadow: const [],
-        minHeight: 65 + Get.mediaQuery.padding.bottom,
+        minHeight: 0,
         maxHeight: size.height,
         isDraggable: !GetPlatform.isDesktop,
         controller: GetPlatform.isDesktop
             ? null
             : playerController.queuePanelController,
-
-        /// this is the header of the collapsed panel
-        /// contains the button ^ to open the queue panel
-        collapsed: InkWell(
-          onTap: () {
-            /// queue open in end drawer in desktop
-            if (GetPlatform.isDesktop) {
-              playerController.homeScaffoldkey.currentState!.openEndDrawer();
-            } else {
-              playerController.queuePanelController.open();
-            }
-          },
-          child: Container(
-              color: Theme.of(context).primaryColor,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 65,
-                    child: Center(
-                        child: Icon(
-                      color: Theme.of(context).textTheme.titleMedium!.color,
-                      Icons.keyboard_arrow_up,
-                      size: 40,
-                    )),
-                  ),
-                ],
-              )),
-        ),
+        collapsed: null,
 
         /// Panel for queue
         panelBuilder: (ScrollController sc, onReorderStart, onReorderEnd) {

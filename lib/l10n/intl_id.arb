@@ -463,5 +463,69 @@
   "readMore": "Baca selengkapnya",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Kecepatan dan Pitch",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Kecepatan pemutaran",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "nada lagu",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Pengenalan Musik",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Mendengarkan lingkungan...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Pastikan musik diputar cukup keras di dekat mikrofon Anda.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Memproses audio...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Mencari kecocokan di database Shazam...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Lagu Ditemukan!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Mainkan Sekarang",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Cari di Perpustakaan",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Tidak Ada Kecocokan",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Tidak dapat menemukan lagu apa pun dalam rekaman audio",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Terjadi kesalahan",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Bermain:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Kesalahan saat bermain:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

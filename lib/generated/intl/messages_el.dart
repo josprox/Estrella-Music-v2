@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "about": MessageLookupByLibrary.simpleMessage("Για"),
     "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
       "Acepto usar mis datas...",
     ),
@@ -74,6 +75,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "close": MessageLookupByLibrary.simpleMessage("Κοντά"),
     "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage(
+      "Παρουσιάστηκε σφάλμα",
+    ),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Σφάλμα κατά την αναπαραγωγή:",
+    ),
     "follow": MessageLookupByLibrary.simpleMessage("Συνεχίζω"),
     "following": MessageLookupByLibrary.simpleMessage("Εξής"),
     "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
@@ -87,18 +94,43 @@ class MessageLookup extends MessageLookupByLibrary {
     "genre_rock": MessageLookupByLibrary.simpleMessage("Βράχος"),
     "latestRelease": MessageLookupByLibrary.simpleMessage("Τελευταία έκδοση"),
     "listenNow": MessageLookupByLibrary.simpleMessage("Άκου τώρα"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Ακούγοντας το περιβάλλον...",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Βεβαιωθείτε ότι η μουσική παίζει αρκετά δυνατά κοντά στο μικρόφωνό σας.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Επιλέξτε αρχείο και εισαγωγή",
     ),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage(
       "Το πιο πολυακουσμένο τραγούδι",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Αναγνώριση μουσικής",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Δεν ήταν δυνατή η εύρεση τραγουδιών στον ηχογραφημένο ήχο",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Χωρίς αγώνες"),
     "password_text": MessageLookupByLibrary.simpleMessage("Σύνθημα"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Παίξτε Τώρα"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Ταχύτητα αναπαραγωγής",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Παιχνίδι:"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Δημοφιλή κομμάτια"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Επεξεργασία του ήχου...",
+    ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Διαβάστε περισσότερα"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Πρόσφατες αναζητήσεις",
     ),
     "reproducedBy": MessageLookupByLibrary.simpleMessage("Αναπαράγεται από"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Αναζήτηση στη Βιβλιοθήκη",
+    ),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Πρόσφατες αναζητήσεις",
     ),
@@ -116,6 +148,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings_migration_title": MessageLookupByLibrary.simpleMessage(
       "Μετανάστευση από την Joss Music Kotlin",
     ),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Αναζήτηση στη βάση δεδομένων Shazam για αγώνες...",
+    ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Το τραγούδι βρέθηκε!"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("τόνο τραγουδιού"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Ταχύτητα και Βήμα"),
     "username": MessageLookupByLibrary.simpleMessage("Όνομα χρήστη"),
     "video": MessageLookupByLibrary.simpleMessage("Βίντεο"),
   };

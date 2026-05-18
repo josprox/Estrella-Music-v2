@@ -355,6 +355,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "¡Ha ocurrido algún error!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Ocurrió un error"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Error al reproducir:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Exportar"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Exportar archivos descargados",
@@ -532,6 +536,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Vincular con Piped para listas de reproducción",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Escuchar ahora"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Escuchando el entorno...",
+    ),
     "loadInfoUpdate": MessageLookupByLibrary.simpleMessage(
       "No se pudo cargar la información de la actualización",
     ),
@@ -547,6 +554,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyrics": MessageLookupByLibrary.simpleMessage("Letras"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "¡Letras no disponibles!",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Asegúrate de que la música suene con suficiente volumen cerca de tu micrófono.",
     ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Seleccionar archivo e importar",
@@ -571,6 +581,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Música y reproducción",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Reconocimiento de Música",
+    ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "¡Error de red! Comprueba tu conexión a Internet.",
     ),
@@ -585,6 +598,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "¡No tienes ninguna lista de reproducción en la biblioteca!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "No se pudo encontrar ninguna canción en el audio registrado",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Sin Coincidencias"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "¡No hay canciones sin conexión!",
     ),
@@ -613,9 +630,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "plain": MessageLookupByLibrary.simpleMessage("Simple"),
     "play": MessageLookupByLibrary.simpleMessage("Reproducir"),
     "playNext": MessageLookupByLibrary.simpleMessage("Reproducir siguiente"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Reproducir Ahora"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Velocidad de reproducción",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage("IU del reproductor"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Seleccionar la interfaz de usuario del reproductor",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "Reproduciendo:",
     ),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "REPRODUCIENDO DESDE ÁLBUM",
@@ -664,6 +688,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Procesando archivos...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Procesando el audio...",
+    ),
     "profiles": MessageLookupByLibrary.simpleMessage("Perfiles"),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Bucle de cola"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
@@ -692,6 +719,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "Reordenar canciones",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Leer más"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Búsquedas recientes",
     ),
@@ -765,6 +793,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Canciones, listas de reproducción, álbumes o artistas",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Buscar en Biblioteca",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Resultados de búsqueda"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Búsquedas recientes",
@@ -806,6 +837,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Compartir lista de reproducción",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Compartir esta canción"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Buscando coincidencias en la base de datos de Shazam...",
+    ),
     "shuffle": MessageLookupByLibrary.simpleMessage("Aleatorio"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Mezclar cola"),
     "singles": MessageLookupByLibrary.simpleMessage("Sencillos"),
@@ -831,12 +865,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "¡Canción añadida a la cola!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("¡Canción Encontrada!"),
     "songInfo": MessageLookupByLibrary.simpleMessage(
       "Información de la canción",
     ),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "¡La canción no se puede reproducir debido a restricciones del servidor!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("Tono de la canción"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Eliminado de"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "¡Eliminado de la cola!",
@@ -853,6 +889,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ordenar por duración",
     ),
     "sortByName": MessageLookupByLibrary.simpleMessage("Ordenar por nombre"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Velocidad y Tono"),
     "standard": MessageLookupByLibrary.simpleMessage("Estándar"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Iniciar radio"),
     "status": MessageLookupByLibrary.simpleMessage("Estado"),

@@ -1374,11 +1374,6 @@ class S {
     return Intl.message('subscribers', name: 'subscribers', desc: '', args: []);
   }
 
-  /// `About`
-  String get about {
-    return Intl.message('About', name: 'about', desc: '', args: []);
-  }
-
   /// `Synced`
   String get synced {
     return Intl.message('Synced', name: 'synced', desc: '', args: []);
@@ -3272,6 +3267,161 @@ class S {
   /// `Video`
   String get video {
     return Intl.message('Video', name: 'video', desc: '', args: []);
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message('About', name: 'about', desc: '', args: []);
+  }
+
+  /// `Read more`
+  String get readMore {
+    return Intl.message('Read more', name: 'readMore', desc: '', args: []);
+  }
+
+  /// `Speed ​​and Pitch`
+  String get speedAndPitch {
+    return Intl.message(
+      'Speed ​​and Pitch',
+      name: 'speedAndPitch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Playback speed`
+  String get playbackSpeed {
+    return Intl.message(
+      'Playback speed',
+      name: 'playbackSpeed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `song tone`
+  String get songPitch {
+    return Intl.message('song tone', name: 'songPitch', desc: '', args: []);
+  }
+
+  /// `Music Recognition`
+  String get musicRecognition {
+    return Intl.message(
+      'Music Recognition',
+      name: 'musicRecognition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Listening to the environment...`
+  String get listeningToEnvironment {
+    return Intl.message(
+      'Listening to the environment...',
+      name: 'listeningToEnvironment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure the music is playing loud enough near your microphone.`
+  String get micInstruction {
+    return Intl.message(
+      'Make sure the music is playing loud enough near your microphone.',
+      name: 'micInstruction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing the audio...`
+  String get processingAudio {
+    return Intl.message(
+      'Processing the audio...',
+      name: 'processingAudio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Searching the Shazam database for matches...`
+  String get shazamSearching {
+    return Intl.message(
+      'Searching the Shazam database for matches...',
+      name: 'shazamSearching',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Song Found!`
+  String get songFound {
+    return Intl.message('Song Found!', name: 'songFound', desc: '', args: []);
+  }
+
+  /// `Play Now`
+  String get playNow {
+    return Intl.message('Play Now', name: 'playNow', desc: '', args: []);
+  }
+
+  /// `Search in Library`
+  String get searchInLibrary {
+    return Intl.message(
+      'Search in Library',
+      name: 'searchInLibrary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Matches`
+  String get noMatchesFound {
+    return Intl.message(
+      'No Matches',
+      name: 'noMatchesFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not find any songs in the recorded audio`
+  String get noMatchInstruction {
+    return Intl.message(
+      'Could not find any songs in the recorded audio',
+      name: 'noMatchInstruction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred`
+  String get errorOccurred {
+    return Intl.message(
+      'An error occurred',
+      name: 'errorOccurred',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Playing:`
+  String get playingRecognizedTrack {
+    return Intl.message(
+      'Playing:',
+      name: 'playingRecognizedTrack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error when playing:`
+  String get errorPlayingTrack {
+    return Intl.message(
+      'Error when playing:',
+      name: 'errorPlayingTrack',
+      desc: '',
+      args: [],
+    );
   }
 }
 

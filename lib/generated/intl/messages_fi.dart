@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Luo soittolista",
     ),
     "Piped": MessageLookupByLibrary.simpleMessage("Piped"),
-    "about": MessageLookupByLibrary.simpleMessage("Tietoa"),
+    "about": MessageLookupByLibrary.simpleMessage("Noin"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("Lisää 5 minuuttia"),
     "addToPlaylist": MessageLookupByLibrary.simpleMessage(
       "Lisää soittolistaan",
@@ -171,6 +171,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Tapahtui virhe!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Tapahtui virhe"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Virhe pelatessa:",
+    ),
     "favorites": MessageLookupByLibrary.simpleMessage("Suosikit"),
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "Suositellut soittolistat",
@@ -238,10 +242,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "Yhdistä Piped soittolistojen synkronointiin",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Kuuntele nyt"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Kuuntelee ympäristöä...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Paikallinen"),
     "low": MessageLookupByLibrary.simpleMessage("Matala"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Sanoituksia ei ole saatavilla!",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Varmista, että musiikki soi tarpeeksi kovaa mikrofonin lähellä.",
     ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Valitse tiedosto ja tuo",
@@ -250,12 +260,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "mostListenedSong": MessageLookupByLibrary.simpleMessage(
       "Eniten kuunneltu kappale",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Musiikin tunnistus",
+    ),
     "networkError1": MessageLookupByLibrary.simpleMessage("Oho, verkkovirhe!"),
     "newVersionAvailable": MessageLookupByLibrary.simpleMessage(
       "Uusi versio saatavilla!",
     ),
     "noBookmarks": MessageLookupByLibrary.simpleMessage("Ei kirjanmerkkejä!"),
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage("Ei soittolistoja!"),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Tallennetusta äänestä ei löytynyt yhtään kappaletta",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Ei otteluita"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Ei ladattuja kappaleita!",
     ),
@@ -275,6 +292,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "Synkronoitu Piped-soittolista!",
     ),
     "playNext": MessageLookupByLibrary.simpleMessage("Toista seuraavaksi"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Pelaa nyt"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("Toistonopeus"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "Toistetaan:",
+    ),
     "playlistBlacklistAlert": MessageLookupByLibrary.simpleMessage(
       "Soittolista siirretty mustalle listalla!",
     ),
@@ -300,10 +322,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "popularTracks": MessageLookupByLibrary.simpleMessage(
       "Suosittuja kappaleita",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Käsitellään ääntä...",
+    ),
     "quickpicks": MessageLookupByLibrary.simpleMessage("Pikavalinnat"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Tälle artistille ei ole saatavilla radiota!",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Lue lisää"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Viimeaikaiset haut",
     ),
@@ -334,6 +360,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Kappale, soittolista, albumi tai artisti",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage("Hae kirjastosta"),
     "searchRes": MessageLookupByLibrary.simpleMessage("Hakutulokset"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Viimeaikaiset haut",
@@ -363,6 +390,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Siirrä Joss Music Kotlinista",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Jaa kappale"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Haetaan osumia Shazam-tietokannasta...",
+    ),
     "singles": MessageLookupByLibrary.simpleMessage("Singlet"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Ohita hiljaisuus"),
     "skipSilenceDes": MessageLookupByLibrary.simpleMessage(
@@ -384,6 +414,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Kappale lisätty jonoon!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Kappale löytynyt!"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("laulun sävy"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage(
       "Poistettu kohteesta",
     ),
@@ -394,6 +426,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Et voi poistaa parhaillaan soivaa kappaletta",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Kappaleet"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage(
+      "Nopeus ja sävelkorkeus",
+    ),
     "startRadio": MessageLookupByLibrary.simpleMessage("Käynnistä radio"),
     "status": MessageLookupByLibrary.simpleMessage("Tila"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(

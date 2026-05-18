@@ -8,6 +8,7 @@ import '../../../../services/music_service.dart';
 import '../../../player/player_controller.dart';
 import '../../../widgets/loader.dart';
 import '../../../navigator.dart';
+import '../../../../generated/l10n.dart';
 
 class MusicRecognitionBottomSheet extends StatefulWidget {
   const MusicRecognitionBottomSheet({super.key});
@@ -94,7 +95,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
           Navigator.pop(context); // Close bottom sheet
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Reproduciendo: ${matchItem.title} - ${matchItem.artist}'),
+              content: Text('${S.current.playingRecognizedTrack} ${matchItem.title} - ${matchItem.artist}'),
               behavior: SnackBarBehavior.floating,
               backgroundColor: Theme.of(context).colorScheme.primary,
             ),
@@ -111,7 +112,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Reproduciendo: ${matchItem.title} - ${matchItem.artist}'),
+                content: Text('${S.current.playingRecognizedTrack} ${matchItem.title} - ${matchItem.artist}'),
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Theme.of(context).colorScheme.primary,
               ),
@@ -125,7 +126,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error al reproducir: $e'),
+            content: Text('${S.current.errorPlayingTrack} $e'),
             behavior: SnackBarBehavior.floating,
             backgroundColor: Colors.redAccent,
           ),
@@ -211,7 +212,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
       children: [
         const SizedBox(height: 20),
         Text(
-          'Reconocimiento de Música',
+          S.current.musicRecognition,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
             color: theme.colorScheme.onSurface.withOpacity(0.6),
@@ -219,7 +220,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
         ),
         const SizedBox(height: 8),
         Text(
-          'Escuchando el entorno...',
+          S.current.listeningToEnvironment,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w800,
             letterSpacing: -0.5,
@@ -262,7 +263,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
         ),
         const SizedBox(height: 40),
         Text(
-          'Asegúrate de que la música suene con suficiente volumen cerca de tu micrófono.',
+          S.current.micInstruction,
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurface.withOpacity(0.55),
@@ -279,7 +280,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
       children: [
         const SizedBox(height: 20),
         Text(
-          'Procesando el audio...',
+          S.current.processingAudio,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w800,
             letterSpacing: -0.5,
@@ -295,7 +296,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
         ),
         const SizedBox(height: 40),
         Text(
-          'Buscando coincidencias en la base de datos de Shazam...',
+          S.current.shazamSearching,
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurface.withOpacity(0.6),
@@ -315,7 +316,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
     return Column(
       children: [
         Text(
-          '¡Canción Encontrada!',
+          S.current.songFound,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: Colors.greenAccent.shade700,
@@ -412,7 +413,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
                         child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
                       )
                     : const Icon(Icons.play_arrow_rounded),
-                label: const Text('Reproducir Ahora'),
+                label: Text(S.current.playNow),
               ),
             ),
           ],
@@ -439,7 +440,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
                   side: BorderSide(color: theme.colorScheme.outline.withOpacity(0.4)),
                 ),
                 icon: const Icon(Icons.search_rounded),
-                label: const Text('Buscar en Biblioteca'),
+                label: Text(S.current.searchInLibrary),
               ),
             ),
           ],
@@ -460,7 +461,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
         ),
         const SizedBox(height: 16),
         Text(
-          'Sin Coincidencias',
+          S.current.noMatchesFound,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w800,
             letterSpacing: -0.5,
@@ -468,7 +469,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
         ),
         const SizedBox(height: 12),
         Text(
-          'No se pudo encontrar ninguna canción en el audio registrado.',
+          S.current.noMatchInstruction,
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurface.withOpacity(0.6),
@@ -487,7 +488,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
                   ),
                 ),
                 icon: const Icon(Icons.replay_rounded),
-                label: const Text('Reintentar'),
+                label: Text(S.current.retry),
               ),
             ),
           ],
@@ -498,7 +499,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
             Expanded(
               child: TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cancelar'),
+                child: Text(S.current.cancel),
               ),
             ),
           ],
@@ -519,7 +520,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
         ),
         const SizedBox(height: 16),
         Text(
-          'Ocurrió un error',
+          S.current.errorOccurred,
           style: theme.textTheme.headlineSmall?.copyWith(
             fontWeight: FontWeight.w800,
             letterSpacing: -0.5,
@@ -550,7 +551,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
                   ),
                 ),
                 icon: const Icon(Icons.replay_rounded),
-                label: const Text('Reintentar'),
+                label: Text(S.current.retry),
               ),
             ),
           ],
@@ -561,7 +562,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
             Expanded(
               child: TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cerrar'),
+                child: Text(S.current.close),
               ),
             ),
           ],

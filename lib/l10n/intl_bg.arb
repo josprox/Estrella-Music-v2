@@ -473,5 +473,69 @@
   "readMore": "Прочетете повече",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Скорост и височина",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Скорост на възпроизвеждане",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "тон на песента",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Разпознаване на музика",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Вслушване в околната среда...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Уверете се, че музиката се възпроизвежда достатъчно силно близо до вашия микрофон.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Аудиото се обработва...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Търсене в базата данни на Shazam за съвпадения...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Песента е намерена!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Играйте сега",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Търсене в библиотеката",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Няма съвпадения",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Не можах да намеря никакви песни в записания звук",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Възникна грешка",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Играя:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Грешка при игра:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

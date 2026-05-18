@@ -473,5 +473,69 @@
   "readMore": "Devamını oku",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Hız ve Pitch",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Oynatma hızı",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "şarkı sesi",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Müzik Tanıma",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Çevreyi dinlemek...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Müziğin mikrofonunuzun yakınında yeterince yüksek sesle çalındığından emin olun.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Ses işleniyor...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Eşleşmeler için Shazam veritabanında arama yapılıyor...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Şarkı Bulundu!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Şimdi Oyna",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Kütüphanede Ara",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Eşleşme Yok",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Kaydedilen ses dosyasında herhangi bir şarkı bulunamadı",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Bir hata oluştu",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Oynanıyor:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Oynarken hata:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

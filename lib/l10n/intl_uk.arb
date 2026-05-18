@@ -472,5 +472,69 @@
   "readMore": "Читати далі",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Швидкість і висота",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Швидкість відтворення",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "тон пісні",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Розпізнавання музики",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Прислухаючись до оточення...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Переконайтеся, що біля мікрофона музика грає достатньо голосно.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Обробка аудіо...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Пошук збігів у базі даних Shazam...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Пісню знайдено!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Грати зараз",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Пошук у бібліотеці",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Немає збігів",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Не вдалося знайти жодної пісні в записаному аудіо",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Сталася помилка",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "грає:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Помилка під час відтворення:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

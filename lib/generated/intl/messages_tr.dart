@@ -263,6 +263,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Bir hata oluştu!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Bir hata oluştu"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage("Oynarken hata:"),
     "export": MessageLookupByLibrary.simpleMessage("Dışarı aktar"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "İndirilen dosyaları dışa aktar",
@@ -415,6 +417,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Çalma listeleri için piped\'a bağla",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Şimdi dinle"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Çevreyi dinlemek...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Yerel"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Ses Yüksekliği (Db)"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -427,6 +432,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Şarkı sözleri mevcut değil!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Müziğin mikrofonunuzun yakınında yeterince yüksek sesle çalındığından emin olun.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Dosyayı seçin ve içe aktarın",
     ),
@@ -436,6 +444,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "En çok dinlenen şarkı",
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage("Müzik & Oynatma"),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("Müzik Tanıma"),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Ağ hatası! Ağ bağlantınızı kontrol edin.",
     ),
@@ -447,6 +456,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Kitaplıkta hiç çalma listesi yok!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Kaydedilen ses dosyasında herhangi bir şarkı bulunamadı",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Eşleşme Yok"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Çevrimdışı şarkı yok!",
     ),
@@ -467,9 +480,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Normal"),
     "playNext": MessageLookupByLibrary.simpleMessage("Bundan sonra çal"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Şimdi Oyna"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("Oynatma hızı"),
     "playerUi": MessageLookupByLibrary.simpleMessage("Oynatıcı arayüzü"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Oynatıcı arayüzünü seç",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "Oynanıyor:",
     ),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "ALBÜMDEN ÇALINIYOR",
@@ -516,6 +534,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Dosyalar işleniyor...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage("Ses işleniyor..."),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Sıra döngüsü"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "Sıra döngüsü, karma modu devrede iken devre dışı bırakılamıyor.",
@@ -541,6 +560,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "Şarkıları yeniden düzenle",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Devamını oku"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Son aramalar"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Son Çalınan"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
@@ -606,6 +626,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Şarkılar, Çalma Listesi, Albüm ya da Sanatçı",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage("Kütüphanede Ara"),
     "searchRes": MessageLookupByLibrary.simpleMessage("Arama sonucu"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage("Son aramalar"),
     "selectAll": MessageLookupByLibrary.simpleMessage("Tümünü Seç"),
@@ -636,6 +657,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Joss Music Kotlin\'den geçiş",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Paylaş"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Eşleşmeler için Shazam veritabanında arama yapılıyor...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Karma Sırası"),
     "singles": MessageLookupByLibrary.simpleMessage("Single\'lar"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Sessizliği atla"),
@@ -658,10 +682,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Şarkı sıraya eklendi!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Şarkı Bulundu!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Şarkı Bilgileri"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Şarkı sunucu kısıtlaması nedeniyle çalınamıyor!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("şarkı sesi"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage(
       "Şuradan çıkarıldı",
     ),
@@ -672,6 +698,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Çalmakta olanı kaldıramazsınız",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Şarkılar"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Hız ve Pitch"),
     "standard": MessageLookupByLibrary.simpleMessage("Standart"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Radyo başlat"),
     "status": MessageLookupByLibrary.simpleMessage("Durum"),

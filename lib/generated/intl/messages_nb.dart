@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "about": MessageLookupByLibrary.simpleMessage("Om"),
     "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
       "Aksepterer bruker mis data...",
     ),
@@ -74,6 +75,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "close": MessageLookupByLibrary.simpleMessage("Lukke"),
     "email": MessageLookupByLibrary.simpleMessage("E-post"),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage(
+      "Det oppstod en feil",
+    ),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Feil under avspilling:",
+    ),
     "follow": MessageLookupByLibrary.simpleMessage("Fortsette"),
     "following": MessageLookupByLibrary.simpleMessage("Følgende"),
     "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
@@ -87,16 +94,41 @@ class MessageLookup extends MessageLookupByLibrary {
     "genre_rock": MessageLookupByLibrary.simpleMessage("Stein"),
     "latestRelease": MessageLookupByLibrary.simpleMessage("Siste utgivelse"),
     "listenNow": MessageLookupByLibrary.simpleMessage("Hør nå"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Å lytte til miljøet...",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Sørg for at musikken spilles høyt nok i nærheten av mikrofonen.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Velg fil og importer",
     ),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage(
       "Den mest lyttede sangen",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Musikkgjenkjenning",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Kunne ikke finne noen sanger i den innspilte lyden",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Ingen treff"),
     "password_text": MessageLookupByLibrary.simpleMessage("Passord"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Spill nå"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Avspillingshastighet",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Spiller:"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Populære låter"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Behandler lyden...",
+    ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Les mer"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Nylige søk"),
     "reproducedBy": MessageLookupByLibrary.simpleMessage("Gjengitt av"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Søk i biblioteket",
+    ),
     "search_recent_title": MessageLookupByLibrary.simpleMessage("Nylige søk"),
     "settings_cloud_backup": MessageLookupByLibrary.simpleMessage(
       "Cloud backup",
@@ -111,6 +143,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settings_migration_title": MessageLookupByLibrary.simpleMessage(
       "Migrer fra Joss Music Kotlin",
+    ),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Søker i Shazam-databasen etter treff...",
+    ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Sangen funnet!"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("sang tone"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage(
+      "Hastighet og tonehøyde",
     ),
     "username": MessageLookupByLibrary.simpleMessage("Brukernavn"),
     "video": MessageLookupByLibrary.simpleMessage("Video"),

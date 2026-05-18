@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "about": MessageLookupByLibrary.simpleMessage("Аб"),
     "auth_agree_personal_data": MessageLookupByLibrary.simpleMessage(
       "Acepto usar mis datos...",
     ),
@@ -76,6 +77,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "close": MessageLookupByLibrary.simpleMessage("Блізка"),
     "email": MessageLookupByLibrary.simpleMessage("Электронная пошта"),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Адбылася памылка"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Памылка пры прайграванні:",
+    ),
     "follow": MessageLookupByLibrary.simpleMessage("Працягнуць"),
     "following": MessageLookupByLibrary.simpleMessage("Пасля"),
     "forgottenFavorites": MessageLookupByLibrary.simpleMessage(
@@ -89,16 +94,43 @@ class MessageLookup extends MessageLookupByLibrary {
     "genre_rock": MessageLookupByLibrary.simpleMessage("Рок"),
     "latestRelease": MessageLookupByLibrary.simpleMessage("Апошні выпуск"),
     "listenNow": MessageLookupByLibrary.simpleMessage("Слухай цяпер"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Слухаючы навакольнае асяроддзе...",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Пераканайцеся, што музыка гучыць дастаткова гучна каля мікрафона.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Выберыце файл і імпартуйце",
     ),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage(
       "Самая слухаемая песня",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Распазнаванне музыкі",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Не ўдалося знайсці ніводнай песні ў запісаным аўдыя",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Супадзенняў няма"),
     "password_text": MessageLookupByLibrary.simpleMessage("Пароль"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Гуляць зараз"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Хуткасць прайгравання",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "Прайграванне:",
+    ),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Папулярныя трэкі"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Апрацоўка аўдыя...",
+    ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Больш падрабязна"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Апошнія пошукі"),
     "reproducedBy": MessageLookupByLibrary.simpleMessage("Узноўлена"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Пошук у бібліятэцы",
+    ),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Апошнія пошукі",
     ),
@@ -116,6 +148,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings_migration_title": MessageLookupByLibrary.simpleMessage(
       "Пераход з Joss Music Kotlin",
     ),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Пошук супадзенняў у базе дадзеных Shazam...",
+    ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Песня знойдзена!"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("тон песні"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Хуткасць і крок"),
     "username": MessageLookupByLibrary.simpleMessage("Імя карыстальніка"),
     "video": MessageLookupByLibrary.simpleMessage("Відэа"),
   };

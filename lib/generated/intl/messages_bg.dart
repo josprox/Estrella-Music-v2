@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Създай нов плейлист",
     ),
     "Piped": MessageLookupByLibrary.simpleMessage("Piped"),
-    "about": MessageLookupByLibrary.simpleMessage("Относно"),
+    "about": MessageLookupByLibrary.simpleMessage("За"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("Добави 5 минути"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "Добави песни към плейлист",
@@ -263,6 +263,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Възникна някаква грешка!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Възникна грешка"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Грешка при игра:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Изнеси"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Изнеси изтеглени файлове",
@@ -419,6 +423,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Връзка с Piped за плейлисти",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Слушай сега"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Вслушване в околната среда...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Локално"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Сила на звука dB"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -431,6 +438,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Текстовете не са налични!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Уверете се, че музиката се възпроизвежда достатъчно силно близо до вашия микрофон.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Изберете файл и импортирайте",
     ),
@@ -441,6 +451,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Музика и Възпроизвеждане",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Разпознаване на музика",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Мрежова грешка! Проверете вашата мрежова връзка.",
@@ -455,6 +468,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Нямате плейлист в библиотеката!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Не можах да намеря никакви песни в записания звук",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Няма съвпадения"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage("Няма офлайн песни!"),
     "nomatch": MessageLookupByLibrary.simpleMessage(
       "Няма намерени съвпадения за",
@@ -475,10 +492,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Обикновен"),
     "playNext": MessageLookupByLibrary.simpleMessage("Изпълни като следваща"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Играйте сега"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Скорост на възпроизвеждане",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage("Интерфейс на плейър"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Избери потребителски интерфейс на плейъра",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Играя:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "ИЗПЪЛНЕНИЕ ОТ АЛБУМ",
     ),
@@ -524,6 +546,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Файловете се обработват...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Аудиото се обработва...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Повтори опашката"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "Режимът повторение на опашката не може да бъде деактивиран, когато режимът на разбъркване е активиран.",
@@ -547,6 +572,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Пренареди плейлист",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Пренареди песните"),
+    "readMore": MessageLookupByLibrary.simpleMessage("Прочетете повече"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Последни търсения"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "Последно изпълнявани",
@@ -612,6 +638,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Песни, Плейлист, Албум или Изпълнител",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Търсене в библиотеката",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Резултати от търсенето"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Последни търсения",
@@ -644,6 +673,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Мигрирайте от Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Сподели тази песен"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Търсене в базата данни на Shazam за съвпадения...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Разбъркай опашката"),
     "singles": MessageLookupByLibrary.simpleMessage("Сингли"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Пропусни тишината"),
@@ -666,10 +698,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Песента е в опашката!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Песента е намерена!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Информация за песен"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Песента не може да се изпълни поради ограничение на сървъра!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("тон на песента"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Премахнато от"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Премахнато от опашката!",
@@ -678,6 +712,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Не можете да премахнете изпълняваната в момента песен",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Песни"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Скорост и височина"),
     "standard": MessageLookupByLibrary.simpleMessage("Стандартен"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Стартирай радиото"),
     "status": MessageLookupByLibrary.simpleMessage("Статус"),

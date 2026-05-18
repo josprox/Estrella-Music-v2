@@ -377,5 +377,69 @@
   "readMore": "더 읽어보세요",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "속도와 피치",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "재생 속도",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "노래 톤",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "음악 인식",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "환경에 귀를 기울이다...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "마이크 근처에서 음악이 충분히 크게 재생되는지 확인하세요.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "오디오 처리 중...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Shazam 데이터베이스에서 일치하는 항목을 검색하는 중...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "노래 발견!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "지금 플레이",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "도서관에서 검색",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "일치하는 항목 없음",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "녹음된 오디오에서 노래를 찾을 수 없습니다.",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "오류가 발생했습니다",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "재생 중:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "플레이 중 오류:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

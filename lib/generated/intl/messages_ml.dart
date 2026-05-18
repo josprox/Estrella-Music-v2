@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
       "പുതിയ പ്ലേലിസ്റ്റ് സൃഷ്ടിക്കുക",
     ),
+    "about": MessageLookupByLibrary.simpleMessage("കുറിച്ച്"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "പ്ലേലിസ്റ്റിലേക്ക് പാട്ടുകൾ ചേർക്കുക",
     ),
@@ -109,6 +110,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "enqueueSong": MessageLookupByLibrary.simpleMessage(
       "ഈ പാട്ട് ക്യൂവിൽ ചേർക്കുക",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage(
+      "ഒരു പിശക് സംഭവിച്ചു",
+    ),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "കളിക്കുമ്പോൾ പിശക്:",
+    ),
     "favorites": MessageLookupByLibrary.simpleMessage("പ്രിയപ്പെട്ടവ"),
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "തിരഞ്ഞെടുത്ത പ്ലേലിസ്റ്റുകൾ",
@@ -146,11 +153,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "libSongs": MessageLookupByLibrary.simpleMessage("ലൈബ്രറി ഗാനങ്ങൾ"),
     "library": MessageLookupByLibrary.simpleMessage("ലൈബ്രറി"),
     "listenNow": MessageLookupByLibrary.simpleMessage("ഇപ്പോൾ കേൾക്കൂ"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "പരിസ്ഥിതിയെ ശ്രദ്ധിക്കുന്നു...",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "നിങ്ങളുടെ മൈക്രോഫോണിന് സമീപം സംഗീതം വേണ്ടത്ര ഉച്ചത്തിൽ പ്ലേ ചെയ്യുന്നുണ്ടെന്ന് ഉറപ്പാക്കുക.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "ഫയൽ തിരഞ്ഞെടുത്ത് ഇറക്കുമതി ചെയ്യുക",
     ),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage(
       "ഏറ്റവും കൂടുതൽ കേട്ട പാട്ട്",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "സംഗീതം തിരിച്ചറിയൽ",
     ),
     "networkError1": MessageLookupByLibrary.simpleMessage(
       "അയ്യോ നെറ്റ്‌വർക്ക് പിശക്!",
@@ -161,12 +177,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "നിങ്ങളുടെ കയ്യിൽ ഒരു ലിബ് പ്ലേലിസ്റ്റും ഇല്ലേ!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "റെക്കോർഡ് ചെയ്‌ത ഓഡിയോയിൽ പാട്ടുകളൊന്നും കണ്ടെത്താൻ കഴിഞ്ഞില്ല",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("പൊരുത്തമില്ല"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "ഓഫ്‌ലൈൻ പാട്ടുകളൊന്നുമില്ല!",
     ),
     "openIn": MessageLookupByLibrary.simpleMessage("തുറക്കുക"),
     "password_text": MessageLookupByLibrary.simpleMessage("രഹസ്യവാക്ക്"),
     "playNext": MessageLookupByLibrary.simpleMessage("അടുത്ത പാട്ട് കേൾക്കൂ"),
+    "playNow": MessageLookupByLibrary.simpleMessage("ഇപ്പോൾ കളിക്കുക"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("പ്ലേബാക്ക് വേഗത"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "കളിക്കുന്നു:",
+    ),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "ആൽബത്തിൽ നിന്ന് പ്ലേ ചെയ്യുന്നു",
     ),
@@ -182,6 +207,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "playlists": MessageLookupByLibrary.simpleMessage("പ്ലേലിസ്റ്റുകൾ"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("വെരാൻ പോകുന്നത്"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("ജനപ്രിയ ട്രാക്കുകൾ"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "ഓഡിയോ പ്രോസസ്സ് ചെയ്യുന്നു...",
+    ),
     "queueShufflingDeniedMsg": MessageLookupByLibrary.simpleMessage(
       "ഷഫിൾ മോഡ് പ്രവർത്തനക്ഷമമാക്കിയിരിക്കുമ്പോൾ ക്യൂ ഷഫിൾ ചെയ്യാൻ കഴിയില്ല",
     ),
@@ -198,6 +226,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "പാട്ടുകൾ പുനഃക്രമീകരിക്കുക",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("കൂടുതൽ വായിക്കുക"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("സമീപകാല തിരയലുകൾ"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "അടുത്തിടെ കളിച്ചത്",
@@ -220,6 +249,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "reproducedBy": MessageLookupByLibrary.simpleMessage("പുനർനിർമ്മിച്ചത്"),
     "retry": MessageLookupByLibrary.simpleMessage("വീണ്ടും ശ്രമിക്കുക!"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "ലൈബ്രറിയിൽ തിരയുക",
+    ),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "സമീപകാല തിരയലുകൾ",
     ),
@@ -243,11 +275,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "ജോസ് മ്യൂസിക് കോട്ലിനിൽ നിന്ന് മൈഗ്രേറ്റ് ചെയ്യുക",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("ഈ ഗാനം ഷെയർ ചെയ്യുക"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "പൊരുത്തങ്ങൾക്കായി Shazam ഡാറ്റാബേസിൽ തിരയുന്നു...",
+    ),
     "singles": MessageLookupByLibrary.simpleMessage("സിംഗിൾസ്"),
+    "songFound": MessageLookupByLibrary.simpleMessage("ഗാനം കണ്ടെത്തി!"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "സെർവർ നിയന്ത്രണം കാരണം ഗാനം പ്ലേ ചെയ്യാൻ കഴിയില്ല",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("പാട്ടിൻ്റെ സ്വരം"),
     "songs": MessageLookupByLibrary.simpleMessage("പാട്ടുകൾ"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("വേഗതയും പിച്ചും"),
     "startRadio": MessageLookupByLibrary.simpleMessage("റേഡിയോ ആരംഭിക്കുക"),
     "upNext": MessageLookupByLibrary.simpleMessage("അടുത്തത്"),
     "username": MessageLookupByLibrary.simpleMessage("ഉപയോക്തൃനാമം"),

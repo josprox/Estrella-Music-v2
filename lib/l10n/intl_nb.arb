@@ -203,5 +203,69 @@
   "readMore": "Les mer",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Hastighet og tonehøyde",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Avspillingshastighet",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "sang tone",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Musikkgjenkjenning",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Å lytte til miljøet...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Sørg for at musikken spilles høyt nok i nærheten av mikrofonen.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Behandler lyden...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Søker i Shazam-databasen etter treff...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Sangen funnet!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Spill nå",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Søk i biblioteket",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Ingen treff",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Kunne ikke finne noen sanger i den innspilte lyden",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Det oppstod en feil",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Spiller:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Feil under avspilling:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

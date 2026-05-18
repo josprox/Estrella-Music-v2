@@ -210,6 +210,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Er is een fout opgetreden!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage(
+      "Er is een fout opgetreden",
+    ),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Fout bij het afspelen:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Exporteer"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Exporteer gedownloade bestanden",
@@ -289,10 +295,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "Link met piped voor afspeellijsten",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Luister nu"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Luisteren naar de omgeving...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Lokaal"),
     "low": MessageLookupByLibrary.simpleMessage("Laag"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Tekst niet beschikbaar!",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Zorg ervoor dat de muziek luid genoeg staat in de buurt van uw microfoon.",
     ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Bestand selecteren en importeren",
@@ -300,6 +312,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "minutes": MessageLookupByLibrary.simpleMessage("minuten"),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage(
       "Het meest beluisterde nummer",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Muziekherkenning",
     ),
     "networkError1": MessageLookupByLibrary.simpleMessage(
       "Oops netwerk error!",
@@ -310,6 +325,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noBookmarks": MessageLookupByLibrary.simpleMessage("Geen bladwijzers!"),
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Je hebt geen lib afspeellijsten!",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Kon geen nummers vinden in de opgenomen audio",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage(
+      "Geen overeenkomsten",
     ),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Geen offline liedjes!",
@@ -332,6 +353,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Vlak"),
     "playNext": MessageLookupByLibrary.simpleMessage("Speel volgende"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Speel nu"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("Afspeelsnelheid"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Spelen:"),
     "playlistBlacklistAlert": MessageLookupByLibrary.simpleMessage(
       "Afspeellijst op zwarte lijst gezet!",
     ),
@@ -355,6 +379,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Afspeellijsten"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Populaire nummers"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Het geluid verwerken...",
+    ),
     "quickpicks": MessageLookupByLibrary.simpleMessage("Snelle keuzes"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Radio is niet beschikbaar voor deze artiest!",
@@ -362,6 +389,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangePlaylist": MessageLookupByLibrary.simpleMessage(
       "Afspeellijst herschikken",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Lees meer"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Recente zoekopdrachten",
     ),
@@ -409,6 +437,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Liedjes, Afspeelijst, Album of Artiest",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Zoek in Bibliotheek",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Zoek resultaten"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Recente zoekopdrachten",
@@ -442,6 +473,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Migreren van Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Deel dit liedje"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Zoeken in de Shazam-database naar overeenkomsten...",
+    ),
     "singles": MessageLookupByLibrary.simpleMessage("Singles"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Stilte overslaan"),
     "skipSilenceDes": MessageLookupByLibrary.simpleMessage(
@@ -463,6 +497,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Liedje toegevoegd aan wachtrij!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Lied gevonden!"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("toon van het lied"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Verwijderd van"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Verwijder van wachtrij!",
@@ -471,6 +507,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Je kunt niet het liedje dat nu afspeelt verwijderen",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Liedjes"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage(
+      "Snelheid en toonhoogte",
+    ),
     "startRadio": MessageLookupByLibrary.simpleMessage("Start radio"),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(

@@ -463,5 +463,69 @@
   "readMore": "আরও পড়ুন",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "গতি এবং পিচ",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "প্লেব্যাক গতি",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "গানের সুর",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "সঙ্গীত স্বীকৃতি",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "পরিবেশের কথা শুনছি...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "আপনার মাইক্রোফোনের কাছে সঙ্গীত যথেষ্ট জোরে বাজছে তা নিশ্চিত করুন।",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "অডিও প্রক্রিয়া করা হচ্ছে...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "ম্যাচের জন্য Shazam ডাটাবেস অনুসন্ধান করা হচ্ছে...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "গান পাওয়া গেছে!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "এখন খেলুন",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "লাইব্রেরিতে অনুসন্ধান করুন",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "কোনো মিল নেই",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "রেকর্ড করা অডিওতে কোনো গান পাওয়া যায়নি",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "একটি ত্রুটি ঘটেছে",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "বাজানো:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "খেলার সময় ত্রুটি:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

@@ -473,5 +473,69 @@
   "readMore": "Читать далее",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Скорость и шаг",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Скорость воспроизведения",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "тон песни",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Распознавание музыки",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Слушаем окружающую среду...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Убедитесь, что музыка рядом с микрофоном играет достаточно громко.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Обработка звука...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Поиск совпадений в базе данных Shazam...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Песня найдена!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Играть сейчас",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Искать в библиотеке",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Нет совпадений",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Не удалось найти ни одной песни в записанном аудио.",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Произошла ошибка",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Играю:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Ошибка при воспроизведении:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

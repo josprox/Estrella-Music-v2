@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Створити новий список відтворення",
     ),
     "Piped": MessageLookupByLibrary.simpleMessage("Piped"),
-    "about": MessageLookupByLibrary.simpleMessage("Про"),
+    "about": MessageLookupByLibrary.simpleMessage("про"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("Додати 5 хвилин"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "Додати пісні до списку відтворення",
@@ -265,6 +265,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Сталася помилка!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Сталася помилка"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Помилка під час відтворення:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Експорт"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Експорт завантажених файлів",
@@ -419,6 +423,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Посилання з piped для списків відтворення",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Слухай зараз"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Прислухаючись до оточення...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("На пристрої"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Гучність (Дб)"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -431,6 +438,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Тексти пісень недоступні!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Переконайтеся, що біля мікрофона музика грає достатньо голосно.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Виберіть файл і імпортуйте",
     ),
@@ -441,6 +451,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Музика та відтворення",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Розпізнавання музики",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Помилка мережі! Перевірте з\'єднння з мережею.",
@@ -455,6 +468,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "У вас немає жодного списку відтворення в бібліотеці!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Не вдалося знайти жодної пісні в записаному аудіо",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Немає збігів"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Немає пісень поза мережею!",
     ),
@@ -477,10 +494,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Звичайний"),
     "playNext": MessageLookupByLibrary.simpleMessage("Наступна"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Грати зараз"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Швидкість відтворення",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage("Інтерфейс програвача"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Виберіть інтерфейс програвача",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("грає:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage("ГРАЄ З АЛЬБОМУ"),
     "playingfromArtist": MessageLookupByLibrary.simpleMessage(
       "ГРАЄ З ВИКОНАВЦІВ",
@@ -522,6 +544,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Найближчим часом"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Популярні треки"),
     "processFiles": MessageLookupByLibrary.simpleMessage("Обробка файлів..."),
+    "processingAudio": MessageLookupByLibrary.simpleMessage("Обробка аудіо..."),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Повторювати чергу"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "Режим повторення не можна вимкнути, коли активовано режим перемішування.",
@@ -545,6 +568,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Перегрупувати список відтворення",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Переставити пісні"),
+    "readMore": MessageLookupByLibrary.simpleMessage("Читати далі"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Останні пошуки"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "Нещодавно відтворено",
@@ -610,6 +634,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Пісні, плейлиси, альбом або виконавець",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Пошук у бібліотеці",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Результати пошуку"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Останні пошуки",
@@ -644,6 +671,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Перехід із Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Поділитися цією піснею"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Пошук збігів у базі даних Shazam...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Перемішати чергу"),
     "singles": MessageLookupByLibrary.simpleMessage("Сингли"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Пропускати тишу"),
@@ -662,10 +692,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Пісня вже офлайн у кеші",
     ),
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage("Пісня в черзі!"),
+    "songFound": MessageLookupByLibrary.simpleMessage("Пісню знайдено!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Інформація про пісню"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Пісня не відтворюється через обмеження сервера!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("тон пісні"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Видалено з"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Знято з черги!",
@@ -674,6 +706,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Ви не можете видалити пісню, яка зараз відтворюється",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Пісні"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Швидкість і висота"),
     "standard": MessageLookupByLibrary.simpleMessage("Стандартний"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Увімкнути радіо"),
     "status": MessageLookupByLibrary.simpleMessage("Статус"),

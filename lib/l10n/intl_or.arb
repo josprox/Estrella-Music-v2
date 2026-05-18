@@ -342,5 +342,69 @@
   "readMore": "ଅଧିକ ପ Read ନ୍ତୁ |",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "ଗତି ଏବଂ ପିଚ୍ |",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "ପ୍ଲେକ୍ ବେଗ |",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "ଗୀତ ସ୍ୱର",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "ସଙ୍ଗୀତ ସ୍ୱୀକୃତି",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "ପରିବେଶ ଶୁଣିବା ...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "ନିଶ୍ଚିତ କର ଯେ ତୁମର ମାଇକ୍ରୋଫୋନ୍ ନିକଟରେ ସଂଗୀତ ଯଥେଷ୍ଟ ଉଚ୍ଚରେ ବାଜୁଛି |",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "ଅଡିଓ ପ୍ରକ୍ରିୟାକରଣ ...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "ମ୍ୟାଚ୍ ପାଇଁ ଶାଜାମ ଡାଟାବେସ୍ ଖୋଜୁଛି ...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "ଗୀତ ମିଳିଲା!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "ବର୍ତ୍ତମାନ ଖେଳନ୍ତୁ |",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "ଲାଇବ୍ରେରୀରେ ଖୋଜ |",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "କ No ଣସି ମେଳ ନାହିଁ |",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "ରେକର୍ଡ ହୋଇଥିବା ଅଡିଓରେ କ songs ଣସି ଗୀତ ଖୋଜି ପାଇଲା ନାହିଁ |",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "ଏକ ତ୍ରୁଟି ଘଟିଲା |",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "ଖେଳିବା:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "ଖେଳିବା ସମୟରେ ତ୍ରୁଟି:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

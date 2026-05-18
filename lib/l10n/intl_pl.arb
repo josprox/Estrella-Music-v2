@@ -468,5 +468,69 @@
   "readMore": "Przeczytaj więcej",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Szybkość i wysokość",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Szybkość odtwarzania",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "ton piosenki",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Rozpoznawanie muzyki",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Słuchając otoczenia...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Upewnij się, że muzyka gra wystarczająco głośno w pobliżu mikrofonu.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Przetwarzanie dźwięku...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Przeszukiwanie bazy danych Shazam w poszukiwaniu dopasowań...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Znaleziono piosenkę!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Zagraj teraz",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Szukaj w Bibliotece",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Brak dopasowań",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Nie udało się znaleźć żadnych utworów w nagranym dźwięku",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Wystąpił błąd",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Gra:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Błąd podczas odtwarzania:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

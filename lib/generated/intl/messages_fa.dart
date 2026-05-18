@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage(
       "ساختن لیست پخش جدید",
     ),
+    "about": MessageLookupByLibrary.simpleMessage("درباره"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("افزودن 5 دقیقه"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "افزودن موسیقی ها به لیست پخش",
@@ -165,6 +166,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "enqueueSong": MessageLookupByLibrary.simpleMessage(
       "افزودن این موسیقی به صف",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("خطایی رخ داد"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "خطا هنگام بازی:",
+    ),
     "favorites": MessageLookupByLibrary.simpleMessage("مورد علاقه ها"),
     "featuredplaylists": MessageLookupByLibrary.simpleMessage(
       "لیست پخش های برگزیده",
@@ -209,6 +214,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "library": MessageLookupByLibrary.simpleMessage("کتابخانه"),
     "light": MessageLookupByLibrary.simpleMessage("روشن"),
     "listenNow": MessageLookupByLibrary.simpleMessage("حالا گوش کن"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "گوش دادن به محیط ...",
+    ),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
       "عادی سازی بلندی صدا",
     ),
@@ -216,6 +224,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "سطح صدای یکسانی را برای همه آهنگ ها تنظیم می کند (تجربی) (روی آهنگ های دانلود شده در نسخه های قبلی کار نمی کند (قبل از v1.10.0))",
     ),
     "low": MessageLookupByLibrary.simpleMessage("کم"),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "مطمئن شوید که موسیقی با صدای کافی در نزدیکی میکروفون شما پخش می شود.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "فایل را انتخاب کرده و وارد کنید",
     ),
@@ -225,6 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "پر شنیده ترین آهنگ",
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage("موسیقی و پخش"),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("تشخیص موسیقی"),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "خطای شبکه! اتصال شبکه خود را بررسی کنید.",
     ),
@@ -233,6 +245,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "شما هیچ لیست پخشی در کتابخانه ندارید!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "هیچ آهنگی در صدای ضبط شده یافت نشد",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage(
+      "هیچ مسابقه ای وجود ندارد",
+    ),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "آهنگ آفلاینی وجود ندارد!",
     ),
@@ -240,9 +258,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "password_text": MessageLookupByLibrary.simpleMessage("رمز عبور"),
     "personalisation": MessageLookupByLibrary.simpleMessage("شخصی سازی"),
     "playNext": MessageLookupByLibrary.simpleMessage("پخش بعدی"),
+    "playNow": MessageLookupByLibrary.simpleMessage("بازی کن"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("سرعت پخش"),
     "playerUi": MessageLookupByLibrary.simpleMessage("رابط کاربری پخش کننده"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "رابط کاربری پخش کننده را انتخاب کنید",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "در حال پخش:",
     ),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage("پخش از آلبوم"),
     "playingfromArtist": MessageLookupByLibrary.simpleMessage("پخش از ارتیست"),
@@ -255,6 +278,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "playlists": MessageLookupByLibrary.simpleMessage("لیست پخش"),
     "playnextMsg": MessageLookupByLibrary.simpleMessage("پس از این"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("آهنگ های محبوب"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "در حال پردازش صدا...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("حلقه زنی صف"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "حالت حلقه زنی صف نمی‌تواند زمانی که حالت بُر زدن فعال است غیرفعال شود.",
@@ -277,6 +303,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "تنظیم مجدد آهنگ‌ ها",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("ادامه مطلب"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("جستجوهای اخیر"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("اخیرا پخش شده"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
@@ -300,6 +327,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "به طور خودکار آخرین نشست پخش در آغاز برنامه بازیابی شود",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("دوباره امتحان کنید!"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "جستجو در کتابخانه",
+    ),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "جستجوهای اخیر",
     ),
@@ -328,6 +358,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "shareSong": MessageLookupByLibrary.simpleMessage(
       "به اشتراک گذاری این موسیقی",
     ),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "جستجو در پایگاه داده Shazam برای موارد مشابه...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("بُر زدن صف"),
     "singles": MessageLookupByLibrary.simpleMessage("تکی"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("رد کردن سکوت"),
@@ -335,10 +368,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "سکوت در زمان پخش موسیقی رد خواهد شد",
     ),
     "sleepTimer": MessageLookupByLibrary.simpleMessage("زمان‌سنج خواب"),
+    "songFound": MessageLookupByLibrary.simpleMessage("آهنگ پیدا شد"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "موسیقی به علت محدودیت سرور، قابل پخش نیست!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("لحن آهنگ"),
     "songs": MessageLookupByLibrary.simpleMessage("آهنگ"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("سرعت و پیچ"),
     "standard": MessageLookupByLibrary.simpleMessage("استاندارد"),
     "startRadio": MessageLookupByLibrary.simpleMessage("آغاز رادیو"),
     "streamingQuality": MessageLookupByLibrary.simpleMessage("کیفیت استریم"),

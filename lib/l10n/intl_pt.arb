@@ -465,5 +465,69 @@
   "readMore": "Leia mais",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Velocidade e passo",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Velocidade de reprodução",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "tom da música",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Reconhecimento Musical",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Ouvindo o ambiente...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Certifique-se de que a música esteja tocando alto o suficiente perto do microfone.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Processando o áudio...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Procurando correspondências no banco de dados do Shazam...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Canção encontrada!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Jogue agora",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Pesquisar na Biblioteca",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Sem correspondências",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Não foi possível encontrar nenhuma música no áudio gravado",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Ocorreu um erro",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Jogando:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Erro ao jogar:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

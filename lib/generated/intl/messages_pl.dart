@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Utwórz nową playlistę",
     ),
     "Piped": MessageLookupByLibrary.simpleMessage("Piped"),
-    "about": MessageLookupByLibrary.simpleMessage("O Estrella Music"),
+    "about": MessageLookupByLibrary.simpleMessage("O"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("Dodaj 5 minut"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "Dodaj utwory do listy odtwarzania",
@@ -265,6 +265,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Otwórz korektor systemowy",
     ),
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage("Wystąpił błąd!"),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Wystąpił błąd"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Błąd podczas odtwarzania:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Eksportuj"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Eksportuj pobrane pliki",
@@ -398,6 +402,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Link z potokiem dla list odtwarzania",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Posłuchaj teraz"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Słuchając otoczenia...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Lokalny"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("GłośnośćDb"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -410,6 +417,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Tekst jest niedostępny!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Upewnij się, że muzyka gra wystarczająco głośno w pobliżu mikrofonu.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Wybierz plik i zaimportuj",
     ),
@@ -420,6 +430,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Muzyka i Odtwarzanie",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Rozpoznawanie muzyki",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Błąd sieci! Sprawdź połączenie sieciowe.",
@@ -432,6 +445,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Nie masz żadnej playlisty!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Nie udało się znaleźć żadnych utworów w nagranym dźwięku",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Brak dopasowań"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Brak utworów offline!",
     ),
@@ -456,12 +473,17 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Zwykły"),
     "playNext": MessageLookupByLibrary.simpleMessage("Odtwórz następny"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Zagraj teraz"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Szybkość odtwarzania",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage(
       "Interfejs użytkownika gracza",
     ),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Wybierz interfejs użytkownika odtwarzacza",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Gra:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "ODTWARZANIE Z ALBUMU",
     ),
@@ -507,6 +529,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Przetwarzanie plików...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Przetwarzanie dźwięku...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Pętla kolejki"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "Trybu pętli kolejki nie można wyłączyć, gdy włączony jest tryb losowy.",
@@ -532,6 +557,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "Zmień kolejność utworów",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Przeczytaj więcej"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Ostatnie wyszukiwania",
     ),
@@ -595,6 +621,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Utwory, Playlista, Album lub Wykonawca",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Szukaj w Bibliotece",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Wyniki wyszukiwania"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Ostatnie wyszukiwania",
@@ -627,6 +656,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Przeprowadź migrację z Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Udostępnij ten utwór"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Przeszukiwanie bazy danych Shazam w poszukiwaniu dopasowań...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Przetasuj kolejkę"),
     "singles": MessageLookupByLibrary.simpleMessage("Single"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Pomiń ciszę"),
@@ -649,10 +681,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Utwór dodano do kolejki!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Znaleziono piosenkę!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Informacje o utworze"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Nie można odtworzyć utworu z powodu ograniczeń serwera!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("ton piosenki"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Usunięto z"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Usunięto z kolejki!",
@@ -661,6 +695,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Nie można usunąć aktualnie odtwarzanego utworu",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Utwory"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage(
+      "Szybkość i wysokość",
+    ),
     "standard": MessageLookupByLibrary.simpleMessage("Standard"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Uruchom radio"),
     "status": MessageLookupByLibrary.simpleMessage("Stan"),

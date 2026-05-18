@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:widget_marquee/widget_marquee.dart';
+import 'custom_marquee.dart';
 
 import '/ui/widgets/sort_widget.dart' show OperationMode;
 import 'image_widget.dart';

@@ -1,14 +1,15 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:harmonymusic/ui/player/player_controller.dart';
-import 'package:widget_marquee/widget_marquee.dart';
+import 'custom_marquee.dart';
 
 import 'image_widget.dart';
 import 'snackbar.dart';
 import 'songinfo_bottom_sheet.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 
-class UpNextQueue extends StatelessWidget {
+class UpNextQueue extends StatefulWidget {
   const UpNextQueue(
       {super.key,
       this.onReorderEnd,
@@ -19,50 +20,113 @@ class UpNextQueue extends StatelessWidget {
   final bool isQueueInSlidePanel;
 
   @override
+  State<UpNextQueue> createState() => _UpNextQueueState();
+}
+
+class _UpNextQueueState extends State<UpNextQueue> {
+  late PlayerController _playerController;
+  StreamSubscription? _indexSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _playerController = Get.find<PlayerController>();
+    
+    // Auto-scroll when the song index changes
+    _indexSubscription = _playerController.currentSongIndex.listen((index) {
+      _scrollToActiveIndex(index);
+    });
+
+    // Auto-scroll on initial build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToActiveIndex(_playerController.currentSongIndex.value);
+    });
+  }
+
+  @override
+  void dispose() {
+    _indexSubscription?.cancel();
+    super.dispose();
+  }
+
+  void _scrollToActiveIndex(int index) {
+    if (!widget.isQueueInSlidePanel) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final controller = _playerController.scrollController;
+      if (controller.hasClients) {
+        final double targetOffset = index * 72.0;
+        final double maxScroll = controller.position.maxScrollExtent;
+        final double offset = targetOffset.clamp(0.0, maxScroll);
+        controller.animateTo(
+          offset,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.fastOutSlowIn,
+        );
+      } else {
+        Future.delayed(const Duration(milliseconds: 100), () {
+          if (mounted && _playerController.scrollController.hasClients) {
+            final ctrl = _playerController.scrollController;
+            final double targetOffset = index * 72.0;
+            final double maxScroll = ctrl.position.maxScrollExtent;
+            final double offset = targetOffset.clamp(0.0, maxScroll);
+            ctrl.animateTo(
+              offset,
+              duration: const Duration(milliseconds: 400),
+              curve: Curves.fastOutSlowIn,
+            );
+          }
+        });
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final playerController = Get.find<PlayerController>();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToActiveIndex(_playerController.currentSongIndex.value);
+    });
+    
     return Container(
       color: Theme.of(context).bottomSheetTheme.backgroundColor,
       child: Obx(() {
         return ReorderableListView.builder(
           footer: SizedBox(height: Get.mediaQuery.padding.bottom),
           scrollController:
-              isQueueInSlidePanel ? playerController.scrollController : null,
+              widget.isQueueInSlidePanel ? _playerController.scrollController : null,
           onReorder: (int oldIndex, int newIndex) {
-            if (playerController.isShuffleModeEnabled.isTrue) {
+            if (_playerController.isShuffleModeEnabled.isTrue) {
               ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
                   Get.context!, S.current.queuerearrangingDeniedMsg,
                   size: SanckBarSize.BIG));
               return;
             }
-            playerController.onReorder(oldIndex, newIndex);
+            _playerController.onReorder(oldIndex, newIndex);
           },
-          onReorderStart: onReorderStart,
-          onReorderEnd: onReorderEnd,
-          itemCount: playerController.currentQueue.length,
+          onReorderStart: widget.onReorderStart,
+          onReorderEnd: widget.onReorderEnd,
+          itemCount: _playerController.currentQueue.length,
           padding: EdgeInsets.only(
-              top: isQueueInSlidePanel ? 55 : 0,
-              bottom: isQueueInSlidePanel ? 80 : 0),
+              top: widget.isQueueInSlidePanel ? 55 : 0,
+              bottom: widget.isQueueInSlidePanel ? 80 : 0),
           physics: const AlwaysScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final homeScaffoldContext =
-                playerController.homeScaffoldkey.currentContext!;
-            //print("${playerController.currentSongIndex.value == index} $index");
+                _playerController.homeScaffoldkey.currentContext!;
             return Material(
               key: Key('$index'),
               child: Obx(
                 () => Dismissible(
-                  key: Key(playerController.currentQueue[index].id),
+                  key: Key(_playerController.currentQueue[index].id),
                   direction: DismissDirection.horizontal,
                   confirmDismiss: (direction) async =>
-                      playerController.currentSongIndex.value != index,
+                      _playerController.currentSongIndex.value != index,
                   onDismissed: (direction) {
-                    playerController
-                        .removeFromQueue(playerController.currentQueue[index]);
+                    _playerController
+                        .removeFromQueue(_playerController.currentQueue[index]);
                   },
                   child: ListTile(
                     onTap: () {
-                      playerController.seekByIndex(index);
+                      _playerController.seekByIndex(index);
                     },
                     onLongPress: () {
                       showModalBottomSheet(
@@ -72,12 +136,11 @@ class UpNextQueue extends StatelessWidget {
                               BorderRadius.vertical(top: Radius.circular(10.0)),
                         ),
                         isScrollControlled: true,
-                        context: playerController
+                        context: _playerController
                             .homeScaffoldkey.currentState!.context,
-                        //constraints: BoxConstraints(maxHeight:Get.height),
                         barrierColor: Colors.transparent.withAlpha(100),
                         builder: (context) => SongInfoBottomSheet(
-                          playerController.currentQueue[index],
+                          _playerController.currentQueue[index],
                           calledFromQueue: true,
                         ),
                       ).whenComplete(() => Get.delete<SongInfoController>());
@@ -86,7 +149,7 @@ class UpNextQueue extends StatelessWidget {
                         top: 0,
                         left: GetPlatform.isAndroid ? 30 : 0,
                         right: 25),
-                    tileColor: playerController.currentSongIndex.value == index
+                    tileColor: _playerController.currentSongIndex.value == index
                         ? Theme.of(homeScaffoldContext).colorScheme.secondary
                         : Theme.of(homeScaffoldContext)
                             .bottomSheetTheme
@@ -97,7 +160,7 @@ class UpNextQueue extends StatelessWidget {
                         if (GetPlatform.isDesktop)
                           IconButton(
                               onPressed: () {
-                                if (playerController.currentSongIndex.value ==
+                                if (_playerController.currentSongIndex.value ==
                                     index) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       snackbar(
@@ -106,32 +169,32 @@ class UpNextQueue extends StatelessWidget {
                                               .songRemovedfromQueueCurrSong,
                                           size: SanckBarSize.BIG));
                                 } else {
-                                  playerController.removeFromQueue(
-                                      playerController.currentQueue[index]);
+                                  _playerController.removeFromQueue(
+                                      _playerController.currentQueue[index]);
                                 }
                               },
                               icon: const Icon(Icons.close)),
                         ImageWidget(
                           size: 50,
-                          song: playerController.currentQueue[index],
+                          song: _playerController.currentQueue[index],
                         ),
                       ],
                     ),
                     title: Marquee(
                       delay: const Duration(milliseconds: 300),
                       duration: const Duration(seconds: 5),
-                      id: "queue${playerController.currentQueue[index].title.hashCode}",
+                      id: "queue${_playerController.currentQueue[index].title.hashCode}",
                       child: Text(
-                        playerController.currentQueue[index].title,
+                        _playerController.currentQueue[index].title,
                         maxLines: 1,
                         style:
                             Theme.of(homeScaffoldContext).textTheme.titleMedium,
                       ),
                     ),
                     subtitle: Text(
-                      "${playerController.currentQueue[index].artist}",
+                      "${_playerController.currentQueue[index].artist}",
                       maxLines: 1,
-                      style: playerController.currentSongIndex.value == index
+                      style: _playerController.currentSongIndex.value == index
                           ? Theme.of(homeScaffoldContext)
                               .textTheme
                               .titleSmall!
@@ -156,13 +219,13 @@ class UpNextQueue extends StatelessWidget {
                               const Icon(
                                 Icons.drag_handle,
                               ),
-                            playerController.currentSongIndex.value == index
+                            _playerController.currentSongIndex.value == index
                                 ? const Icon(
                                     Icons.equalizer,
                                     color: Colors.white,
                                   )
                                 : Text(
-                                    playerController.currentQueue[index]
+                                    _playerController.currentQueue[index]
                                             .extras!['length'] ??
                                         "",
                                     style: Theme.of(homeScaffoldContext)

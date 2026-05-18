@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage("再生リストを作成"),
     "Piped": MessageLookupByLibrary.simpleMessage("Piped"),
-    "about": MessageLookupByLibrary.simpleMessage("説明"),
+    "about": MessageLookupByLibrary.simpleMessage("について"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("5分追加"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage("再生リストに曲を追加"),
     "addToPlaylist": MessageLookupByLibrary.simpleMessage("再生リストに追加"),
@@ -203,6 +203,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "equalizer": MessageLookupByLibrary.simpleMessage("イコライザー"),
     "equalizerDes": MessageLookupByLibrary.simpleMessage("システムのイコライザーを開く"),
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage("何かエラーが発生しました！"),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("エラーが発生しました"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage("再生時のエラー:"),
     "export": MessageLookupByLibrary.simpleMessage("エクスポート"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "ダウンロード済みファイルをエクスポート",
@@ -323,6 +325,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "linkCopied": MessageLookupByLibrary.simpleMessage("リンクをクリップボードにコピー"),
     "linkPipedDes": MessageLookupByLibrary.simpleMessage("再生リストをPipedで同期"),
     "listenNow": MessageLookupByLibrary.simpleMessage("今すぐ聞いてください"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "環境の声を聞きながら…",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("端末内"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("音の大きさ:デジベル"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage("音の大きさの正規化"),
@@ -331,6 +336,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "low": MessageLookupByLibrary.simpleMessage("低"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage("歌詞が利用できません！"),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "マイクの近くで音楽が十分な音量で再生されていることを確認してください。",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "ファイルを選択してインポートする",
     ),
@@ -338,6 +346,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "misc": MessageLookupByLibrary.simpleMessage("ほか"),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage("最もよく聞かれた曲"),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage("音楽と再生"),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("音楽認識"),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "ネットワークエラー！ネットワーク接続をご確認ください。",
     ),
@@ -345,6 +354,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "newVersionAvailable": MessageLookupByLibrary.simpleMessage("最新版があります！"),
     "noBookmarks": MessageLookupByLibrary.simpleMessage("ブックマークなし！"),
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage("再生リストがありませんよ！"),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "録音されたオーディオに曲が見つかりませんでした",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("一致しません"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage("オフラインの曲なし！"),
     "nomatch": MessageLookupByLibrary.simpleMessage("検索結果なし"),
     "notaSongVideo": MessageLookupByLibrary.simpleMessage("曲/音楽の動画ではありません！"),
@@ -359,8 +372,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("通常"),
     "playNext": MessageLookupByLibrary.simpleMessage("次に再生"),
+    "playNow": MessageLookupByLibrary.simpleMessage("今すぐプレイ"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("再生速度"),
     "playerUi": MessageLookupByLibrary.simpleMessage("プレイヤーUI"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage("プレイヤーの外観を選択"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("演奏:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage("アルバムを再生中"),
     "playingfromArtist": MessageLookupByLibrary.simpleMessage("アーティストから再生中"),
     "playingfromPlaylist": MessageLookupByLibrary.simpleMessage("再生リストを再生中"),
@@ -394,6 +410,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "playnextMsg": MessageLookupByLibrary.simpleMessage("公開予定 {Song Name}"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("人気の曲"),
     "processFiles": MessageLookupByLibrary.simpleMessage("ファイルを処理中..."),
+    "processingAudio": MessageLookupByLibrary.simpleMessage("音声を処理しています..."),
     "queueLoop": MessageLookupByLibrary.simpleMessage("キューをループ"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "シャッフル有効時は、ループを無効にできません。",
@@ -415,6 +432,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "randomSelection": MessageLookupByLibrary.simpleMessage("選曲からランダム再生"),
     "reArrangePlaylist": MessageLookupByLibrary.simpleMessage("再生リスト内の並べ替え"),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("曲を並べ替え"),
+    "readMore": MessageLookupByLibrary.simpleMessage("続きを読む"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("最近の検索"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("再生履歴"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage("曲のライブラリから削除"),
@@ -458,6 +476,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanning": MessageLookupByLibrary.simpleMessage("スキャン中..."),
     "search": MessageLookupByLibrary.simpleMessage("検索"),
     "searchDes": MessageLookupByLibrary.simpleMessage("曲、再生リスト、アルバム、アーティスト"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage("ライブラリ内検索"),
     "searchRes": MessageLookupByLibrary.simpleMessage("検索結果"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage("最近の検索"),
     "selectAll": MessageLookupByLibrary.simpleMessage("すべて選択"),
@@ -482,6 +501,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Joss Music Kotlin からの移行",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("この曲を共有"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Shazam データベースで一致するものを検索しています...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("キューをシャッフル"),
     "singles": MessageLookupByLibrary.simpleMessage("シングル"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("無音部分を飛ばす"),
@@ -498,10 +520,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "この曲は既にキャッシュ済みです",
     ),
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage("曲をキューに追加しました！"),
+    "songFound": MessageLookupByLibrary.simpleMessage("曲が見つかりました！"),
     "songInfo": MessageLookupByLibrary.simpleMessage("曲の情報"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "曲はサーバーの制限により再生できません！",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("歌の調子"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("以下から削除しました"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "キューから削除しました！",
@@ -510,6 +534,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "再生中の曲は削除できません",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("曲"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("スピードとピッチ"),
     "standard": MessageLookupByLibrary.simpleMessage("標準"),
     "startRadio": MessageLookupByLibrary.simpleMessage("ラジオで開始"),
     "status": MessageLookupByLibrary.simpleMessage("状態"),

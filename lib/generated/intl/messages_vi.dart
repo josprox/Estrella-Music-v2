@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tạo danh sách phát mới",
     ),
     "Piped": MessageLookupByLibrary.simpleMessage("Kết nối Piped"),
-    "about": MessageLookupByLibrary.simpleMessage("Thông tin"),
+    "about": MessageLookupByLibrary.simpleMessage("Về"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("Thêm 5 phút"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "Thêm bài hát vào danh sách phát",
@@ -261,6 +261,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Có vài lỗi xảy ra!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Đã xảy ra lỗi"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage("Lỗi khi chơi:"),
     "export": MessageLookupByLibrary.simpleMessage("Xuất"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Xuất bài hát đã tải xuống",
@@ -417,6 +419,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Liên kết với đường ống cho danh sách phát",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Nghe bây giờ"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Lắng nghe môi trường...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Địa phương"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Độ ồn Db"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -429,6 +434,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Lời bài hát không có sẵn!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Đảm bảo nhạc đang phát đủ lớn ở gần micrô của bạn.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Chọn tệp và nhập",
     ),
@@ -439,6 +447,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Âm nhạc & Phát nhạc",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Nhận dạng âm nhạc",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Lỗi mạng! Kiểm tra kết nối mạng của bạn.",
@@ -452,6 +463,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noBookmarks": MessageLookupByLibrary.simpleMessage("Không có đánh dấu!"),
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Bạn không có danh sách phát nào!",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Không thể tìm thấy bất kỳ bài hát nào trong âm thanh đã ghi",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage(
+      "Không có kết quả phù hợp",
     ),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Không có bài hát ngoại tuyến!",
@@ -475,9 +492,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Lời"),
     "playNext": MessageLookupByLibrary.simpleMessage("Phát kế tiếp"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Chơi ngay"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("Tốc độ phát lại"),
     "playerUi": MessageLookupByLibrary.simpleMessage("Giao diện phát nhạc"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Chọn giao diện phát nhạc",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "Đang chơi:",
     ),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "Phát từ tập nhạc",
@@ -524,6 +546,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Đang xử lý tập tin...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Đang xử lý âm thanh...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Lặp lại hàng đợi"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "Không thể tắt lặp lại hàng đợi khi chế độ ngẫu nhiên được bật.",
@@ -549,6 +574,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "Sắp xếp lại bài hát",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Đọc thêm"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Tìm kiếm gần đây"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Đã phát gần đây"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
@@ -612,6 +638,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Bài hát, Danh sách phát, Tập nhạc hoặc Nghệ sỹ",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Tìm kiếm trong Thư viện",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Kết quả tìm kiếm"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Tìm kiếm gần đây",
@@ -646,6 +675,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Di chuyển từ Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Chia sẻ bài hát này"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Đang tìm kiếm cơ sở dữ liệu Shazam để tìm kết quả phù hợp...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Xáo trộn hàng đợi"),
     "singles": MessageLookupByLibrary.simpleMessage("Đĩa đơn"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Bỏ qua khoảng lặng"),
@@ -668,10 +700,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Đã thêm bài hát vào hàng đợi!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Đã tìm thấy bài hát!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Thông tin bài hát"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Bài hát không thể phát vì giới hạn của máy chủ!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("giai điệu bài hát"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Xóa khỏi"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Đã xóa khỏi hàng đợi!",
@@ -680,6 +714,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Bạn không thể xóa bài hát đang phát",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Bài hát"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Tốc độ và cao độ"),
     "standard": MessageLookupByLibrary.simpleMessage("Tiêu Chuẩn"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Bắt đầu đài phát"),
     "status": MessageLookupByLibrary.simpleMessage("Trạng thái"),

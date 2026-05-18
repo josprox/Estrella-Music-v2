@@ -323,6 +323,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Some error occured!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("An error occurred"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Error when playing:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Export"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Export downloaded files",
@@ -482,6 +486,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Link with piped for playlists",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Listen now"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Listening to the environment...",
+    ),
     "loadInfoUpdate": MessageLookupByLibrary.simpleMessage(
       "Could not load update information",
     ),
@@ -497,6 +504,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyrics": MessageLookupByLibrary.simpleMessage("Lyrics"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Lyrics not available!",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Make sure the music is playing loud enough near your microphone.",
     ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Select file and import",
@@ -521,6 +531,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Music & Playback",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Music Recognition",
+    ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Network error! Check your network connection.",
     ),
@@ -535,6 +548,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "You don\'t have any lib playlist!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Could not find any songs in the recorded audio",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("No Matches"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage("No offline songs!"),
     "nomatch": MessageLookupByLibrary.simpleMessage("No Match found for"),
     "notaSongVideo": MessageLookupByLibrary.simpleMessage(
@@ -555,10 +572,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "plain": MessageLookupByLibrary.simpleMessage("Plain"),
     "play": MessageLookupByLibrary.simpleMessage("Play"),
     "playNext": MessageLookupByLibrary.simpleMessage("Play next"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Play Now"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("Playback speed"),
     "playerUi": MessageLookupByLibrary.simpleMessage("Player Ui"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Select player user interface",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Playing:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "PLAYING FROM ÁLBUM",
     ),
@@ -604,6 +624,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "podcasts": MessageLookupByLibrary.simpleMessage("Podcasts"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Popular tracks"),
     "processFiles": MessageLookupByLibrary.simpleMessage("Processing files..."),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Processing the audio...",
+    ),
     "profiles": MessageLookupByLibrary.simpleMessage("Profiles"),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Queue loop"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
@@ -628,6 +651,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Rearrange playlist",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Rearrange songs"),
+    "readMore": MessageLookupByLibrary.simpleMessage("Read more"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Recent searches"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Recently Played"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
@@ -691,6 +715,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Songs, Playlist, Album or Artist",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Search in Library",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Search results"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Recent searches",
@@ -728,6 +755,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "shareAlbum": MessageLookupByLibrary.simpleMessage("Share album"),
     "sharePlaylist": MessageLookupByLibrary.simpleMessage("Share playlist"),
     "shareSong": MessageLookupByLibrary.simpleMessage("Share this song"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Searching the Shazam database for matches...",
+    ),
     "shuffle": MessageLookupByLibrary.simpleMessage("Shuffle"),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Shuffle Queue"),
     "singles": MessageLookupByLibrary.simpleMessage("Singles"),
@@ -749,10 +779,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Song already offline in cache",
     ),
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage("Song enqueued!"),
+    "songFound": MessageLookupByLibrary.simpleMessage("Song Found!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Song Info"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Song is not playable due to server restriction!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("song tone"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Removed from"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Removed from queue!",
@@ -767,6 +799,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sortByDate": MessageLookupByLibrary.simpleMessage("Sort by Date"),
     "sortByDuration": MessageLookupByLibrary.simpleMessage("Sort by Duration"),
     "sortByName": MessageLookupByLibrary.simpleMessage("Sort by Name"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Speed ​​and Pitch"),
     "standard": MessageLookupByLibrary.simpleMessage("Standard"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Start radio"),
     "status": MessageLookupByLibrary.simpleMessage("Status"),

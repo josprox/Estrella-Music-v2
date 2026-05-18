@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ਨਵੀਂ ਪਲੇਲਿਸਟ ਬਣਾਓ",
     ),
     "Piped": MessageLookupByLibrary.simpleMessage("ਪਾਈਪਡ"),
-    "about": MessageLookupByLibrary.simpleMessage("ਦੇ ਬਾਰੇ"),
+    "about": MessageLookupByLibrary.simpleMessage("ਬਾਰੇ"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("5 ਮਿੰਟ ਜੋੜੋ"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "ਪਲੇਲਿਸਟ ਵਿੱਚ ਗੀਤ ਜੋੜ੍ਹੋ",
@@ -246,6 +246,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "ਕੁਝ ਤਰੁੱਟੀ ਆਈ ਹੈ!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage(
+      "ਇੱਕ ਤਰੁੱਟੀ ਉਤਪੰਨ ਹੋਈ",
+    ),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "ਖੇਡਣ ਵੇਲੇ ਗਲਤੀ:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("ਐਕਸਪੋਰਟ ਕਰੋ"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫ਼ਾਈਲਾਂ ਨੂੰ ਐਕਸਪੋਰਟ ਕਰੋ",
@@ -331,6 +337,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "ਪਲੇਲਿਸਟਸ ਲਈ ਪਾਈਪਡ ਦੇ ਨਾਲ ਲਿੰਕ ਕਰੋ",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("ਹੁਣ ਸੁਣੋ"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "ਵਾਤਾਵਰਣ ਨੂੰ ਸੁਣਨਾ ...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("ਸਥਾਨਕ"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("ਉੱਚੀ ਆਵਾਜ਼ ਡੀ.ਬੀ"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -343,6 +352,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "ਬੋਲ ਉਪਲੱਬਧ ਨਹੀਂ ਹਨ!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਦੇ ਨੇੜੇ ਸੰਗੀਤ ਕਾਫ਼ੀ ਉੱਚੀ ਆਵਾਜ਼ ਵਿੱਚ ਚੱਲ ਰਿਹਾ ਹੈ।",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "ਫਾਈਲ ਚੁਣੋ ਅਤੇ ਆਯਾਤ ਕਰੋ",
     ),
@@ -353,6 +365,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "ਸੰਗੀਤ ਅਤੇ ਪਲੇਬੈਕ",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("ਸੰਗੀਤ ਮਾਨਤਾ"),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "ਨੈੱਟਵਰਕ ਗੜਬੜ! ਆਪਣੇ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ।",
     ),
@@ -364,6 +377,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਲਾਇਬ੍ਰੇਰੀ ਪਲੇਲਿਸਟ ਨਹੀਂ ਹੈ!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "ਰਿਕਾਰਡ ਕੀਤੇ ਆਡੀਓ ਵਿੱਚ ਕੋਈ ਗੀਤ ਨਹੀਂ ਲੱਭ ਸਕਿਆ",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("ਕੋਈ ਮੇਲ ਨਹੀਂ"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "ਕੋਈ ਆਫਲਾਈਨ ਗੀਤ ਨਹੀਂ!",
     ),
@@ -382,10 +399,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("ਪਲੇਨ"),
     "playNext": MessageLookupByLibrary.simpleMessage("ਅਗਲਾ ਚਲਾਓ"),
+    "playNow": MessageLookupByLibrary.simpleMessage("ਹੁਣੇ ਚਲਾਓ"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("ਪਲੇਬੈਕ ਗਤੀ"),
     "playerUi": MessageLookupByLibrary.simpleMessage("ਪਲੇਅਰ ਯੂ.ਆਈ"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "ਪਲੇਅਰ ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਚੁਣੋ",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("ਖੇਡਣਾ:"),
     "playlistBlacklistAlert": MessageLookupByLibrary.simpleMessage(
       "ਪਲੇਲਿਸਟ ਬਲੈਕਲਿਸਟ ਕੀਤੀ ਗਈ!",
     ),
@@ -413,6 +433,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "ਫ਼ਾਈਲਾਂ ਦੀ ਪ੍ਰੋਸੈਸਿੰਗ ਹੋ ਰਹੀ ਹੈ...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "ਆਡੀਓ \'ਤੇ ਪ੍ਰਕਿਰਿਆ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("ਕਤਾਰ ਲੂਪ"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "ਕਤਾਰ ਲੂਪ ਮੋਡ ਨੂੰ ਅਸਮਰੱਥ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ ਜਦੋਂ ਸ਼ਫਲ ਮੋਡ ਸਮਰੱਥ ਹੁੰਦਾ ਹੈ।",
@@ -433,6 +456,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangePlaylist": MessageLookupByLibrary.simpleMessage(
       "ਪਲੇਲਿਸਟ ਨੂੰ ਰੀ-ਅਰੇਂਜ ਕਰੋ",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("ਹੋਰ ਪੜ੍ਹੋ"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("ਹਾਲੀਆ ਖੋਜਾਂ"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage(
       "ਹਾਲ ਹੀ ਵਿੱਚ ਚਲਾਏ ਗਏ",
@@ -489,6 +513,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "ਗੀਤ, ਪਲੇਲਿਸਟ, ਐਲਬਮ ਜਾਂ ਕਲਾਕਾਰ",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਖੋਜ ਕਰੋ",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("ਖੋਜ ਦੇ ਨਤੀਜੇ"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage("ਹਾਲੀਆ ਖੋਜਾਂ"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage(
@@ -516,6 +543,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Joss Music Kotlin ਤੋਂ ਮਾਈਗ੍ਰੇਟ ਕਰੋ",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("ਇਸ ਗੀਤ ਨੂੰ ਸ਼ੇਅਰ ਕਰੋ"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "ਮੈਚਾਂ ਲਈ ਸ਼ਾਜ਼ਮ ਡੇਟਾਬੇਸ ਦੀ ਖੋਜ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("ਸ਼ਫਲ ਕਤਾਰ"),
     "singles": MessageLookupByLibrary.simpleMessage("ਸਿੰਗਲਜ਼"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("ਚੁੱਪ ਛੱਡੋ"),
@@ -538,10 +568,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "ਗੀਤ ਕਤਾਰਬੱਧ ਹੋਇਆ!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("ਗੀਤ ਮਿਲਿਆ!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("ਗੀਤ ਦੀ ਜਾਣਕਾਰੀ"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "ਸਰਵਰ ਪਾਬੰਦੀ ਕਾਰਨ ਗੀਤ ਚਲਾਉਣ ਯੋਗ ਨਹੀਂ ਹੈ!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("ਗੀਤ ਦੀ ਸੁਰ"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("ਤੋਂ ਹਟਾਇਆ ਗਿਆ"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "ਕਤਾਰ ਤੋਂ ਹਟਾਇਆ ਗਿਆ!",
@@ -550,6 +582,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ਤੁਸੀਂ ਇਸ ਸਮੇਂ ਚੱਲ ਰਹੇ ਗੀਤ ਨੂੰ ਨਹੀਂ ਹਟਾ ਸਕਦੇ",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("ਗੀਤ"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("ਸਪੀਡ ਅਤੇ ਪਿੱਚ"),
     "standard": MessageLookupByLibrary.simpleMessage("ਮਿਆਰੀ"),
     "startRadio": MessageLookupByLibrary.simpleMessage("ਰੇਡੀਓ ਸ਼ੁਰੂ ਕਰੋ"),
     "status": MessageLookupByLibrary.simpleMessage("ਸਥਿਤੀ"),

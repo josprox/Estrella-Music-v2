@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:harmonymusic/models/playling_from.dart';
 import 'package:harmonymusic/models/thumbnail.dart';
 import 'package:harmonymusic/ui/widgets/playlist_album_scroll_behaviour.dart';
-import 'package:widget_marquee/widget_marquee.dart';
+import '../../widgets/custom_marquee.dart';
 import '/utils/youtube_share_manager.dart';
 
 import '../../../services/downloader.dart';

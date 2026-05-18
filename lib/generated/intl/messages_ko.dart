@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "CreateNewPlaylist": MessageLookupByLibrary.simpleMessage("새 플레이리스트 만들기"),
     "Piped": MessageLookupByLibrary.simpleMessage("Piped"),
-    "about": MessageLookupByLibrary.simpleMessage("정보"),
+    "about": MessageLookupByLibrary.simpleMessage("에 대한"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("5분 추가"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage("음악을 플레이리스트에 추가"),
     "addToPlaylist": MessageLookupByLibrary.simpleMessage("플레이리스트에 추가"),
@@ -162,6 +162,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "알 수 없는 오류가 생겼습니다!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("오류가 발생했습니다"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage("플레이 중 오류:"),
     "export": MessageLookupByLibrary.simpleMessage("내보내기"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "다운로드한 파일을 내보내기",
@@ -227,14 +229,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "플레이리스트를 Piped로부터 가져오기",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("지금 들어보세요"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "환경에 귀를 기울이다...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("기기"),
     "low": MessageLookupByLibrary.simpleMessage("낮음"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage("가사를 찾지 못했습니다!"),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "마이크 근처에서 음악이 충분히 크게 재생되는지 확인하세요.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "파일을 선택하고 가져오기",
     ),
     "minutes": MessageLookupByLibrary.simpleMessage("분"),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage("가장 많이 듣는 노래"),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("음악 인식"),
     "networkError1": MessageLookupByLibrary.simpleMessage("네트워크 에러!"),
     "newVersionAvailable": MessageLookupByLibrary.simpleMessage(
       "새 버전을 이용할 수 있음!",
@@ -243,6 +252,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "라이브러리 플레이리스트가 없습니다!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "녹음된 오디오에서 노래를 찾을 수 없습니다.",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("일치하는 항목 없음"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage("오프라인 음악이 없습니다!"),
     "nomatch": MessageLookupByLibrary.simpleMessage("검색결과 없음"),
     "notaSongVideo": MessageLookupByLibrary.simpleMessage("음악/뮤직비디오가 아님!"),
@@ -256,6 +269,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("보통"),
     "playNext": MessageLookupByLibrary.simpleMessage("다음에 재생"),
+    "playNow": MessageLookupByLibrary.simpleMessage("지금 플레이"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("재생 속도"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("재생 중:"),
     "playlistBlacklistAlert": MessageLookupByLibrary.simpleMessage(
       "플레이리스트를 블랙리스트에 추가함!",
     ),
@@ -273,11 +289,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "playlistRenameAlert": MessageLookupByLibrary.simpleMessage("이름 바꾸기 완료!"),
     "playlists": MessageLookupByLibrary.simpleMessage("플레이리스트"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("인기 트랙"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage("오디오 처리 중..."),
     "quickpicks": MessageLookupByLibrary.simpleMessage("빠른 추천"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "이 아티스트의 라디오는 없습니다!",
     ),
     "reArrangePlaylist": MessageLookupByLibrary.simpleMessage("플레이리스트 순서 변경"),
+    "readMore": MessageLookupByLibrary.simpleMessage("더 읽어보세요"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("최근 검색어"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("최근 재생됨"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage("라이브러리 음악에서 제거"),
@@ -306,6 +324,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "scanning": MessageLookupByLibrary.simpleMessage("스캔하는 중..."),
     "search": MessageLookupByLibrary.simpleMessage("검색"),
     "searchDes": MessageLookupByLibrary.simpleMessage("음악,플레이리스트,앨범 혹은 아티스트"),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage("도서관에서 검색"),
     "searchRes": MessageLookupByLibrary.simpleMessage("검색 결과"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage("최근 검색어"),
     "selectAuthIns": MessageLookupByLibrary.simpleMessage("인증 인스턴스를 선택"),
@@ -327,6 +346,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Joss Music Kotlin에서 마이그레이션",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("이 곡을 공유"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Shazam 데이터베이스에서 일치하는 항목을 검색하는 중...",
+    ),
     "singles": MessageLookupByLibrary.simpleMessage("싱글"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("묵음 건너뛰기"),
     "skipSilenceDes": MessageLookupByLibrary.simpleMessage(
@@ -342,12 +364,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "음악이 이미 캐시에 있습니다",
     ),
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage("대기열에 음악 추가됨!"),
+    "songFound": MessageLookupByLibrary.simpleMessage("노래 발견!"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("노래 톤"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("다음으로부터 제거됨"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage("대기열에서 제거됨!"),
     "songRemovedfromQueueCurrSong": MessageLookupByLibrary.simpleMessage(
       "지금 재생중인 곡을 제거할 순 없습니다",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("음악"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("속도와 피치"),
     "startRadio": MessageLookupByLibrary.simpleMessage("라디오 시작"),
     "status": MessageLookupByLibrary.simpleMessage("상태"),
     "stopMusicOnTaskClear": MessageLookupByLibrary.simpleMessage(

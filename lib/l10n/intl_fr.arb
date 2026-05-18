@@ -475,5 +475,69 @@
   "readMore": "En savoir plus",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Vitesse et pitch",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Vitesse de lecture",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "ton de la chanson",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Reconnaissance musicale",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "A l'écoute de l'environnement...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Assurez-vous que la musique est suffisamment forte à proximité de votre microphone.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Traitement de l'audio...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Recherche de correspondances dans la base de données Shazam...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Chanson trouvée !",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Jouez maintenant",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Rechercher dans la bibliothèque",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Aucune correspondance",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Impossible de trouver des chansons dans l'audio enregistré",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Une erreur s'est produite",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Jouant:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Erreur lors de la lecture :",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

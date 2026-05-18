@@ -437,5 +437,69 @@
   "readMore": "اقرأ المزيد",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "السرعة والملعب",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "سرعة التشغيل",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "نغمة الأغنية",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "التعرف على الموسيقى",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "الاستماع إلى البيئة...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "تأكد من تشغيل الموسيقى بصوت عالٍ بدرجة كافية بالقرب من الميكروفون.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "معالجة الصوت...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "جارٍ البحث في قاعدة بيانات Shazam عن التطابقات...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "تم العثور على الأغنية!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "العب الآن",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "ابحث في المكتبة",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "لا يوجد مباريات",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "تعذر العثور على أي أغاني في الصوت المسجل",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "حدث خطأ",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "اللعب:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "خطأ أثناء اللعب:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

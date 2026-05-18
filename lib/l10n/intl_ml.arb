@@ -262,5 +262,69 @@
   "readMore": "കൂടുതൽ വായിക്കുക",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "വേഗതയും പിച്ചും",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "പ്ലേബാക്ക് വേഗത",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "പാട്ടിൻ്റെ സ്വരം",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "സംഗീതം തിരിച്ചറിയൽ",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "പരിസ്ഥിതിയെ ശ്രദ്ധിക്കുന്നു...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "നിങ്ങളുടെ മൈക്രോഫോണിന് സമീപം സംഗീതം വേണ്ടത്ര ഉച്ചത്തിൽ പ്ലേ ചെയ്യുന്നുണ്ടെന്ന് ഉറപ്പാക്കുക.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "ഓഡിയോ പ്രോസസ്സ് ചെയ്യുന്നു...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "പൊരുത്തങ്ങൾക്കായി Shazam ഡാറ്റാബേസിൽ തിരയുന്നു...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "ഗാനം കണ്ടെത്തി!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "ഇപ്പോൾ കളിക്കുക",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "ലൈബ്രറിയിൽ തിരയുക",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "പൊരുത്തമില്ല",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "റെക്കോർഡ് ചെയ്‌ത ഓഡിയോയിൽ പാട്ടുകളൊന്നും കണ്ടെത്താൻ കഴിഞ്ഞില്ല",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "ഒരു പിശക് സംഭവിച്ചു",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "കളിക്കുന്നു:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "കളിക്കുമ്പോൾ പിശക്:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

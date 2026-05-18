@@ -574,5 +574,69 @@
   "readMore": "Read more",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Speed ​​and Pitch",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Playback speed",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "song tone",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Music Recognition",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Listening to the environment...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Make sure the music is playing loud enough near your microphone.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Processing the audio...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Searching the Shazam database for matches...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Song Found!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Play Now",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Search in Library",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "No Matches",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Could not find any songs in the recorded audio",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "An error occurred",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Playing:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Error when playing:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

@@ -431,5 +431,69 @@
   "readMore": "ਹੋਰ ਪੜ੍ਹੋ",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "ਸਪੀਡ ਅਤੇ ਪਿੱਚ",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "ਪਲੇਬੈਕ ਗਤੀ",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "ਗੀਤ ਦੀ ਸੁਰ",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "ਸੰਗੀਤ ਮਾਨਤਾ",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "ਵਾਤਾਵਰਣ ਨੂੰ ਸੁਣਨਾ ...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਮਾਈਕ੍ਰੋਫ਼ੋਨ ਦੇ ਨੇੜੇ ਸੰਗੀਤ ਕਾਫ਼ੀ ਉੱਚੀ ਆਵਾਜ਼ ਵਿੱਚ ਚੱਲ ਰਿਹਾ ਹੈ।",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "ਆਡੀਓ 'ਤੇ ਪ੍ਰਕਿਰਿਆ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "ਮੈਚਾਂ ਲਈ ਸ਼ਾਜ਼ਮ ਡੇਟਾਬੇਸ ਦੀ ਖੋਜ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "ਗੀਤ ਮਿਲਿਆ!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "ਹੁਣੇ ਚਲਾਓ",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਖੋਜ ਕਰੋ",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "ਕੋਈ ਮੇਲ ਨਹੀਂ",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "ਰਿਕਾਰਡ ਕੀਤੇ ਆਡੀਓ ਵਿੱਚ ਕੋਈ ਗੀਤ ਨਹੀਂ ਲੱਭ ਸਕਿਆ",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "ਇੱਕ ਤਰੁੱਟੀ ਉਤਪੰਨ ਹੋਈ",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "ਖੇਡਣਾ:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "ਖੇਡਣ ਵੇਲੇ ਗਲਤੀ:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

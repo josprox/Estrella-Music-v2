@@ -203,5 +203,69 @@
   "readMore": "Διαβάστε περισσότερα",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Ταχύτητα και Βήμα",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Ταχύτητα αναπαραγωγής",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "τόνο τραγουδιού",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Αναγνώριση μουσικής",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Ακούγοντας το περιβάλλον...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Βεβαιωθείτε ότι η μουσική παίζει αρκετά δυνατά κοντά στο μικρόφωνό σας.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Επεξεργασία του ήχου...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Αναζήτηση στη βάση δεδομένων Shazam για αγώνες...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Το τραγούδι βρέθηκε!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Παίξτε Τώρα",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Αναζήτηση στη Βιβλιοθήκη",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Χωρίς αγώνες",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Δεν ήταν δυνατή η εύρεση τραγουδιών στον ηχογραφημένο ήχο",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Παρουσιάστηκε σφάλμα",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Παιχνίδι:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Σφάλμα κατά την αναπαραγωγή:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

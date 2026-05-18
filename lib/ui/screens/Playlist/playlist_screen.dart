@@ -2,7 +2,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:widget_marquee/widget_marquee.dart';
+import '../../widgets/custom_marquee.dart';
 import '/utils/youtube_share_manager.dart';
 
 import '/models/playling_from.dart';

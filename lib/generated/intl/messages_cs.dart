@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Vytvořit nový playlist",
     ),
     "Piped": MessageLookupByLibrary.simpleMessage("Piped"),
-    "about": MessageLookupByLibrary.simpleMessage("O aplikaci"),
+    "about": MessageLookupByLibrary.simpleMessage("O"),
     "add5Minutes": MessageLookupByLibrary.simpleMessage("Ještě 5 minut"),
     "addMultipleSongs": MessageLookupByLibrary.simpleMessage(
       "Přidat skladby do playlistu",
@@ -255,6 +255,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Došlo k nějaké chybě!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Došlo k chybě"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Chyba při přehrávání:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Exportovat"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Exportovat stažené soubory",
@@ -409,6 +413,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Odkaz s Piped pro playlisty",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Poslouchej teď"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Naslouchat prostředí...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Místní"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Hlasitost (Db)"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -421,6 +428,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Text není k dispozici!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Ujistěte se, že hudba hraje v blízkosti mikrofonu dostatečně hlasitě.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Vyberte soubor a importujte",
     ),
@@ -431,6 +441,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Hudba a přehrávání",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Rozpoznávání hudby",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Chyba sítě! Zkontrolujte připojení k internetu.",
@@ -443,6 +456,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Nemáte žádný playlist v knihovně!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "V nahraném zvuku nelze najít žádné skladby",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Žádné shody"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Žádné skladby offline!",
     ),
@@ -463,9 +480,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Prostý"),
     "playNext": MessageLookupByLibrary.simpleMessage("Přehrát jako další"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Hrát hned"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Rychlost přehrávání",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage("Rozhraní přehrávače"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Vybrat uživatelské rozhraní přehrávače",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage(
+      "Přehrávání:",
     ),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "Přehrávání z albumu",
@@ -512,6 +536,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "Zpracování souborů...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Zpracování zvuku...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Opakovat"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "Režim opakování nelze vypnout, pokud je povoleno promíchání.",
@@ -535,6 +562,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Přeskupit playlist",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Přeskupit skladby"),
+    "readMore": MessageLookupByLibrary.simpleMessage("Přečtěte si více"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "Nedávná vyhledávání",
     ),
@@ -602,6 +630,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Skladby, playlisty, alba, interprety",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Hledat v knihovně",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Výsledky vyhledávání"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Nedávná vyhledávání",
@@ -634,6 +665,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Migrujte z Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Sdílet tuto skladbu"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Hledání shod v databázi Shazam...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Promíchat"),
     "singles": MessageLookupByLibrary.simpleMessage("Singly"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Přeskočit ticho"),
@@ -656,10 +690,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Skladba zařazena!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Píseň nalezena!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Informace skladby"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Skladbu nelze přehrát z důvodu omezení serveru!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("tón písně"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Odstraněno z"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Odstraněno z fronty!",
@@ -668,6 +704,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Aktuálně přehrávanou skladbu nelze odebrat",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Skladby"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("Rychlost a rozteč"),
     "standard": MessageLookupByLibrary.simpleMessage("Standard"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Spustit rádio"),
     "status": MessageLookupByLibrary.simpleMessage("Stav"),

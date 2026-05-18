@@ -186,6 +186,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Ett fel uppstod!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Ett fel uppstod"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Fel vid uppspelning:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Exportera"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Exportera nedladdade filer",
@@ -265,9 +269,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "Länka med piped för spellistor",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Lyssna nu"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Att lyssna på miljön...",
+    ),
     "low": MessageLookupByLibrary.simpleMessage("Låg"),
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Låttexten är inte tillgänglig!",
+    ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Se till att musiken spelar tillräckligt högt nära din mikrofon.",
     ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Välj fil och importera",
@@ -275,6 +285,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "minutes": MessageLookupByLibrary.simpleMessage("minuter"),
     "mostListenedSong": MessageLookupByLibrary.simpleMessage(
       "Den mest lyssnade låten",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Musikigenkänning",
     ),
     "networkError1": MessageLookupByLibrary.simpleMessage("Nätverksfel!"),
     "newVersionAvailable": MessageLookupByLibrary.simpleMessage(
@@ -284,6 +297,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Inga spellistor i biblioteket!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Det gick inte att hitta några låtar i det inspelade ljudet",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("Inga matchningar"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage("Inga offlinelåtar!"),
     "nomatch": MessageLookupByLibrary.simpleMessage(
       "Inget resultat hittades för",
@@ -301,6 +318,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "Piped spellista synkroniserad!",
     ),
     "playNext": MessageLookupByLibrary.simpleMessage("Spela nästa"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Spela nu"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Uppspelningshastighet",
+    ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Spelar:"),
     "playlistBlacklistAlert": MessageLookupByLibrary.simpleMessage(
       "Spellistan svartlistad!",
     ),
@@ -324,6 +346,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "playlists": MessageLookupByLibrary.simpleMessage("Spellistor"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Populära låtar"),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Bearbetar ljudet...",
+    ),
     "quickpicks": MessageLookupByLibrary.simpleMessage("Snabbval"),
     "radioNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Radio inte tillgänglig för denna artist!",
@@ -331,6 +356,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangePlaylist": MessageLookupByLibrary.simpleMessage(
       "Ordna om i Spellistan",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("Läs mer"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Senaste sökningar"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Senast Spelat"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
@@ -369,6 +395,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Låtar, Spellista, Album eller Artist",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Sök i biblioteket",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Sökresultat"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Senaste sökningar",
@@ -395,6 +424,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Migrera från Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Dela låt"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Söker i Shazam-databasen efter matchningar...",
+    ),
     "singles": MessageLookupByLibrary.simpleMessage("Singlar"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Hoppa över tystnad"),
     "skipSilenceDes": MessageLookupByLibrary.simpleMessage(
@@ -414,6 +446,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Låten är redan offline i cachen",
     ),
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage("Låt köad!"),
+    "songFound": MessageLookupByLibrary.simpleMessage("Låten hittad!"),
+    "songPitch": MessageLookupByLibrary.simpleMessage("låtens ton"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Borttagen från"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Borttagen från kö!",
@@ -422,6 +456,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Du kan inte ta bort den låt som spelas för närvarande",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Låtar"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage(
+      "Hastighet och Pitch",
+    ),
     "startRadio": MessageLookupByLibrary.simpleMessage("Starta radio"),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
     "streamingQuality": MessageLookupByLibrary.simpleMessage(

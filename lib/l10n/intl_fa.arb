@@ -328,5 +328,69 @@
   "readMore": "ادامه مطلب",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "سرعت و پیچ",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "سرعت پخش",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "لحن آهنگ",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "تشخیص موسیقی",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "گوش دادن به محیط ...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "مطمئن شوید که موسیقی با صدای کافی در نزدیکی میکروفون شما پخش می شود.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "در حال پردازش صدا...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "جستجو در پایگاه داده Shazam برای موارد مشابه...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "آهنگ پیدا شد",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "بازی کن",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "جستجو در کتابخانه",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "هیچ مسابقه ای وجود ندارد",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "هیچ آهنگی در صدای ضبط شده یافت نشد",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "خطایی رخ داد",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "در حال پخش:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "خطا هنگام بازی:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

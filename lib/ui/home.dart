@@ -43,7 +43,10 @@ class Home extends StatelessWidget {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        if (panelController.isAttached && panelController.isPanelOpen) {
+        if (playerController.queuePanelController.isAttached &&
+            playerController.queuePanelController.isPanelOpen) {
+          playerController.queuePanelController.close();
+        } else if (panelController.isAttached && panelController.isPanelOpen) {
           panelController.close();
         } else {
           if (Get.nestedKey(ScreenNavigationSetup.id)!.currentState!.canPop()) {

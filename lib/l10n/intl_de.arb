@@ -468,5 +468,69 @@
   "readMore": "Mehr lesen",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Geschwindigkeit und Tonhöhe",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Wiedergabegeschwindigkeit",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "Liedton",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Musikanerkennung",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Auf die Umgebung hören...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Stellen Sie sicher, dass die Musik in der Nähe Ihres Mikrofons laut genug abgespielt wird.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Verarbeiten des Audios...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Suche in der Shazam-Datenbank nach Übereinstimmungen...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Lied gefunden!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "jetzt spielen",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "In der Bibliothek suchen",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Keine Übereinstimmungen",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Im aufgenommenen Audio konnten keine Lieder gefunden werden",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Es ist ein Fehler aufgetreten",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Spielen:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Fehler beim Abspielen:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

@@ -364,5 +364,69 @@
   "readMore": "Läs mer",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Hastighet och Pitch",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Uppspelningshastighet",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "låtens ton",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Musikigenkänning",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Att lyssna på miljön...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Se till att musiken spelar tillräckligt högt nära din mikrofon.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Bearbetar ljudet...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Söker i Shazam-databasen efter matchningar...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Låten hittad!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Spela nu",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Sök i biblioteket",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Inga matchningar",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Det gick inte att hitta några låtar i det inspelade ljudet",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Ett fel uppstod",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Spelar:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Fel vid uppspelning:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

@@ -384,5 +384,69 @@
   "readMore": "Lees meer",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Snelheid en toonhoogte",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Afspeelsnelheid",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "toon van het lied",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Muziekherkenning",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Luisteren naar de omgeving...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Zorg ervoor dat de muziek luid genoeg staat in de buurt van uw microfoon.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Het geluid verwerken...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Zoeken in de Shazam-database naar overeenkomsten...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Lied gevonden!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Speel nu",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Zoek in Bibliotheek",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Geen overeenkomsten",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Kon geen nummers vinden in de opgenomen audio",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Er is een fout opgetreden",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Spelen:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Fout bij het afspelen:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

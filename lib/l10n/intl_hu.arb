@@ -302,5 +302,69 @@
   "readMore": "Olvass tovább",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Sebesség és hangmagasság",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Lejátszási sebesség",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "dal hangja",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Zene felismerés",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "A környezetre figyelve...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Győződjön meg arról, hogy a zene elég hangosan szól a mikrofon közelében.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Hang feldolgozása...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Egyezések keresése a Shazam adatbázisban...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Dal megtalálva!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Játssz most",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Keresés a könyvtárban",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Nincs egyezés",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Nem található dal a rögzített hanganyagban",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Hiba történt",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Lejátszás:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Hiba lejátszás közben:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

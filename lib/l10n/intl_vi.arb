@@ -472,5 +472,69 @@
   "readMore": "Đọc thêm",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Tốc độ và cao độ",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Tốc độ phát lại",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "giai điệu bài hát",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Nhận dạng âm nhạc",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Lắng nghe môi trường...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Đảm bảo nhạc đang phát đủ lớn ở gần micrô của bạn.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Đang xử lý âm thanh...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Đang tìm kiếm cơ sở dữ liệu Shazam để tìm kết quả phù hợp...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Đã tìm thấy bài hát!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Chơi ngay",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Tìm kiếm trong Thư viện",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Không có kết quả phù hợp",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Không thể tìm thấy bất kỳ bài hát nào trong âm thanh đã ghi",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Đã xảy ra lỗi",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Đang chơi:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Lỗi khi chơi:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

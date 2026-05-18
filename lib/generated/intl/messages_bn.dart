@@ -255,6 +255,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "কিছু ত্রুটি ঘটেছে!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("একটি ত্রুটি ঘটেছে"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "খেলার সময় ত্রুটি:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("রপ্তানি"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "ডাউনলোড করা ফাইল রপ্তানি করুন",
@@ -390,6 +394,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "প্লেলিস্টের জন্য পাইপডের সাথে লিঙ্ক করুন",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("এখন শুনুন"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "পরিবেশের কথা শুনছি...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("স্থানীয়"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("জোরে"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -402,6 +409,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "লিরিক্স পাওয়া যাচ্ছে না!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "আপনার মাইক্রোফোনের কাছে সঙ্গীত যথেষ্ট জোরে বাজছে তা নিশ্চিত করুন।",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "ফাইল নির্বাচন করুন এবং আমদানি করুন",
     ),
@@ -413,6 +423,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "সঙ্গীত ও প্লেব্যাক",
     ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage("সঙ্গীত স্বীকৃতি"),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "নেটওয়ার্ক ত্রুটি! আপনার নেটওয়ার্ক সংযোগ পরীক্ষা করুন।",
     ),
@@ -426,6 +437,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "তোমার কোন লিব প্লেলিস্ট নেই!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "রেকর্ড করা অডিওতে কোনো গান পাওয়া যায়নি",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("কোনো মিল নেই"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "কোনো অফলাইন গান নেই!",
     ),
@@ -446,10 +461,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("সরল"),
     "playNext": MessageLookupByLibrary.simpleMessage("পরবর্তী চালান"),
+    "playNow": MessageLookupByLibrary.simpleMessage("এখন খেলুন"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("প্লেব্যাক গতি"),
     "playerUi": MessageLookupByLibrary.simpleMessage("প্লেয়ার ইউআই"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "প্লেয়ার ইউজার ইন্টারফেস নির্বাচন করুন",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("বাজানো:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "অ্যালবাম হতে বাজানো হচ্ছে",
     ),
@@ -495,6 +513,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "ফাইলগুলি প্রক্রিয়া করা হচ্ছে..।",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "অডিও প্রক্রিয়া করা হচ্ছে...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("সারিবদ্ধ লুপ"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "শাফেল মোড সক্রিয় থাকলে কিউ লুপ মোড অক্ষম করা যাবে না।",
@@ -520,6 +541,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "গানগুলি পুনরায় সাজান",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("আরও পড়ুন"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "সাম্প্রতিক অনুসন্ধান",
     ),
@@ -579,6 +601,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "গান, প্লেলিস্ট, অ্যালবাম অথবা শিল্পী",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "লাইব্রেরিতে অনুসন্ধান করুন",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("অনুসন্ধানের ফলাফল"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "সাম্প্রতিক অনুসন্ধান",
@@ -611,6 +636,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "জস মিউজিক কোটলিন থেকে মাইগ্রেট করুন",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("এই গানটি শেয়ার করুন"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "ম্যাচের জন্য Shazam ডাটাবেস অনুসন্ধান করা হচ্ছে...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("সারি মেশান"),
     "singles": MessageLookupByLibrary.simpleMessage("সিঙ্গেল সমূহ"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("নীরবতা এড়িয়ে যান"),
@@ -631,10 +659,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "গানটি ইতিমধ্যেই ক্যাশে অফলাইনে আছে",
     ),
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage("গানটি সারিবদ্ধ!"),
+    "songFound": MessageLookupByLibrary.simpleMessage("গান পাওয়া গেছে!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("গানের তথ্য"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "সার্ভারের সীমাবদ্ধতার কারণে গানটি চালানো যাচ্ছে না!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("গানের সুর"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("সরানো হয়েছে"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "সারি থেকে সরানো হয়েছে!",
@@ -643,6 +673,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "বর্তমানে চলমান গানটি আপনি সরাতে পারবেন না",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("গানগুলো"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("গতি এবং পিচ"),
     "standard": MessageLookupByLibrary.simpleMessage("মানক"),
     "startRadio": MessageLookupByLibrary.simpleMessage("রেডিও শুরু করুন"),
     "status": MessageLookupByLibrary.simpleMessage("অবস্থা"),

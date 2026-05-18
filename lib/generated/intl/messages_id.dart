@@ -261,6 +261,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "Terjadi kesalahan!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("Terjadi kesalahan"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "Kesalahan saat bermain:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("Ekspor"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "Ekspor file yang diunduh",
@@ -396,6 +400,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tautan dengan saluran untuk daftar putar",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("Dengarkan sekarang"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "Mendengarkan lingkungan...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("Lokal"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("Kekerasan Suara dB"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -408,6 +415,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "Lirik tidak tersedia!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "Pastikan musik diputar cukup keras di dekat mikrofon Anda.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "Pilih file dan impor",
     ),
@@ -418,6 +428,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "Musik & Pemutaran",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "Pengenalan Musik",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Jaringan bermasalah! Periksa koneksi jaringan anda.",
@@ -431,6 +444,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noBookmarks": MessageLookupByLibrary.simpleMessage("Tidak ada penanda!"),
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "Anda tidak memiliki pustaka daftar putar!",
+    ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "Tidak dapat menemukan lagu apa pun dalam rekaman audio",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage(
+      "Tidak Ada Kecocokan",
     ),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "Tidak ada lagu offline!",
@@ -454,10 +473,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("Polos"),
     "playNext": MessageLookupByLibrary.simpleMessage("Putar berikutnya"),
+    "playNow": MessageLookupByLibrary.simpleMessage("Mainkan Sekarang"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage(
+      "Kecepatan pemutaran",
+    ),
     "playerUi": MessageLookupByLibrary.simpleMessage("Antarmuka Pengguna"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage(
       "Pilih antarmuka pengguna",
     ),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("Bermain:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "MEMUTAR LAGU DARI ALBUM",
     ),
@@ -501,6 +525,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "playnextMsg": MessageLookupByLibrary.simpleMessage("Selanjutnya"),
     "popularTracks": MessageLookupByLibrary.simpleMessage("Lagu populer"),
     "processFiles": MessageLookupByLibrary.simpleMessage("Memproses file..."),
+    "processingAudio": MessageLookupByLibrary.simpleMessage(
+      "Memproses audio...",
+    ),
     "queueLoop": MessageLookupByLibrary.simpleMessage("Ulangi Antrean"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "Mode ulangi antrean tidak dapat dinonaktifkan saat mode acak diaktifkan.",
@@ -524,6 +551,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Menyusun ulang daftar putar",
     ),
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage("Atur ulang lagu"),
+    "readMore": MessageLookupByLibrary.simpleMessage("Baca selengkapnya"),
     "recentSearches": MessageLookupByLibrary.simpleMessage("Pencarian terkini"),
     "recentlyPlayed": MessageLookupByLibrary.simpleMessage("Baru Dimainkan"),
     "removeFromLib": MessageLookupByLibrary.simpleMessage(
@@ -587,6 +615,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "Lagu, Daftar Putar, Album atau Artis",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage(
+      "Cari di Perpustakaan",
+    ),
     "searchRes": MessageLookupByLibrary.simpleMessage("Hasil pencarian"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "Pencarian terkini",
@@ -617,6 +648,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Bermigrasi dari Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("Bagikan lagu ini"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "Mencari kecocokan di database Shazam...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("Acak Antrean"),
     "singles": MessageLookupByLibrary.simpleMessage("Single"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("Lewati keheningan"),
@@ -639,10 +673,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "Lagu masuk dalam antrean!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("Lagu Ditemukan!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("Info Lagu"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "Lagu ini tidak dapat diputar karena pembatasan server!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("nada lagu"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("Dihapus dari"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "Dihapus dari antrean!",
@@ -651,6 +687,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Anda tidak dapat menghapus lagu yang sedang diputar",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("Lagu"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage(
+      "Kecepatan dan Pitch",
+    ),
     "standard": MessageLookupByLibrary.simpleMessage("Standar"),
     "startRadio": MessageLookupByLibrary.simpleMessage("Mulai radio"),
     "status": MessageLookupByLibrary.simpleMessage("Status"),

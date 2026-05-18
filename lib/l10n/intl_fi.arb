@@ -350,5 +350,69 @@
   "readMore": "Lue lisää",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Nopeus ja sävelkorkeus",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Toistonopeus",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "laulun sävy",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Musiikin tunnistus",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Kuuntelee ympäristöä...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Varmista, että musiikki soi tarpeeksi kovaa mikrofonin lähellä.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Käsitellään ääntä...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Haetaan osumia Shazam-tietokannasta...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Kappale löytynyt!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Pelaa nyt",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Hae kirjastosta",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Ei otteluita",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "Tallennetusta äänestä ei löytynyt yhtään kappaletta",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Tapahtui virhe",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Toistetaan:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Virhe pelatessa:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

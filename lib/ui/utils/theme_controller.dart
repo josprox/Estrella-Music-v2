@@ -53,10 +53,13 @@ class ThemeController extends GetxController {
       brightness = themeType == ThemeType.light ? Brightness.light : Brightness.dark;
     }
 
+    // Prioritize song's dominant color palette (primaryColor) over system dynamic colors when a song is active
+    final finalDynamicColors = (currentSongId != null) ? null : dynamicColors;
+
     themedata.value = _buildThemeData(
       primaryColor.value, 
       brightness, 
-      dynamicColors: dynamicColors
+      dynamicColors: finalDynamicColors
     );
     setWindowsTitleBarColor(themedata.value!.scaffoldBackgroundColor);
   }

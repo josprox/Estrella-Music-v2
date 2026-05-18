@@ -203,5 +203,69 @@
   "readMore": "阅读更多",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "速度和音调",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "播放速度",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "歌声",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "音乐识别",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "聆听环境...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "确保麦克风附近的音乐播放声音足够大。",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "处理音频...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "正在 Shazam 数据库中搜索匹配项...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "歌曲找到了！",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "立即播放",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "在图书馆中搜索",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "没有匹配项",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "在录制的音频中找不到任何歌曲",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "发生错误",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "播放：",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "播放时出错：",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }

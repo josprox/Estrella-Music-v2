@@ -251,6 +251,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorOccuredAlert": MessageLookupByLibrary.simpleMessage(
       "لقد حدث خطأ ما!",
     ),
+    "errorOccurred": MessageLookupByLibrary.simpleMessage("حدث خطأ"),
+    "errorPlayingTrack": MessageLookupByLibrary.simpleMessage(
+      "خطأ أثناء اللعب:",
+    ),
     "export": MessageLookupByLibrary.simpleMessage("تصدير"),
     "exportDowloadedFiles": MessageLookupByLibrary.simpleMessage(
       "تصدير الملفات التي تم تنزيلها",
@@ -328,6 +332,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "رابط مع Piped للقوائم التشغيل",
     ),
     "listenNow": MessageLookupByLibrary.simpleMessage("استمع الآن"),
+    "listeningToEnvironment": MessageLookupByLibrary.simpleMessage(
+      "الاستماع إلى البيئة...",
+    ),
     "local": MessageLookupByLibrary.simpleMessage("محلي"),
     "loudnessDb": MessageLookupByLibrary.simpleMessage("شدة الصوت بالديسيبل"),
     "loudnessNormalization": MessageLookupByLibrary.simpleMessage(
@@ -340,6 +347,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lyricsNotAvailable": MessageLookupByLibrary.simpleMessage(
       "كلمات غير متوفرة!",
     ),
+    "micInstruction": MessageLookupByLibrary.simpleMessage(
+      "تأكد من تشغيل الموسيقى بصوت عالٍ بدرجة كافية بالقرب من الميكروفون.",
+    ),
     "migration_btn_select": MessageLookupByLibrary.simpleMessage(
       "حدد الملف والاستيراد",
     ),
@@ -349,6 +359,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "musicAndPlayback": MessageLookupByLibrary.simpleMessage(
       "الموسيقى والتشغيل",
+    ),
+    "musicRecognition": MessageLookupByLibrary.simpleMessage(
+      "التعرف على الموسيقى",
     ),
     "networkError": MessageLookupByLibrary.simpleMessage(
       "خطأ في الشبكة! يرجى التأكد من الاتصال بالإنترنت.",
@@ -363,6 +376,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLibPlaylist": MessageLookupByLibrary.simpleMessage(
       "ليس لديك أي قائمة تشغيل!",
     ),
+    "noMatchInstruction": MessageLookupByLibrary.simpleMessage(
+      "تعذر العثور على أي أغاني في الصوت المسجل",
+    ),
+    "noMatchesFound": MessageLookupByLibrary.simpleMessage("لا يوجد مباريات"),
     "noOfflineSong": MessageLookupByLibrary.simpleMessage(
       "لا يوجد أغاني بدون إنترنت!",
     ),
@@ -381,8 +398,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "plain": MessageLookupByLibrary.simpleMessage("عادي"),
     "playNext": MessageLookupByLibrary.simpleMessage("تشغيل التالي"),
+    "playNow": MessageLookupByLibrary.simpleMessage("العب الآن"),
+    "playbackSpeed": MessageLookupByLibrary.simpleMessage("سرعة التشغيل"),
     "playerUi": MessageLookupByLibrary.simpleMessage("واجهة مشغل الاغاني"),
     "playerUiDes": MessageLookupByLibrary.simpleMessage("اختر واجهة للمشغل"),
+    "playingRecognizedTrack": MessageLookupByLibrary.simpleMessage("اللعب:"),
     "playingfromAlbum": MessageLookupByLibrary.simpleMessage(
       "اللعب من الألبوم",
     ),
@@ -419,6 +439,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "processFiles": MessageLookupByLibrary.simpleMessage(
       "جاري معالجة الملفات...",
     ),
+    "processingAudio": MessageLookupByLibrary.simpleMessage("معالجة الصوت..."),
     "queueLoop": MessageLookupByLibrary.simpleMessage("تكرار قائمة الانتظار"),
     "queueLoopNotDisMsg1": MessageLookupByLibrary.simpleMessage(
       "لا يمكن ايقاف وضع تكرار قائمة الانتظار عند تفعيل وضع التبديل.",
@@ -442,6 +463,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reArrangeSongs": MessageLookupByLibrary.simpleMessage(
       "إعادة ترتيب الأغاني",
     ),
+    "readMore": MessageLookupByLibrary.simpleMessage("اقرأ المزيد"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
       "عمليات البحث الأخيرة",
     ),
@@ -498,6 +520,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchDes": MessageLookupByLibrary.simpleMessage(
       "الأغاني، قائمة التشغيل، الألبوم، أو الفنان",
     ),
+    "searchInLibrary": MessageLookupByLibrary.simpleMessage("ابحث في المكتبة"),
     "searchRes": MessageLookupByLibrary.simpleMessage("نتائج البحث"),
     "search_recent_title": MessageLookupByLibrary.simpleMessage(
       "عمليات البحث الأخيرة",
@@ -527,6 +550,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "الهجرة من Joss Music Kotlin",
     ),
     "shareSong": MessageLookupByLibrary.simpleMessage("مشاركة هذه الأغنية"),
+    "shazamSearching": MessageLookupByLibrary.simpleMessage(
+      "جارٍ البحث في قاعدة بيانات Shazam عن التطابقات...",
+    ),
     "shuffleQueue": MessageLookupByLibrary.simpleMessage("خلط قائمة الانتظار"),
     "singles": MessageLookupByLibrary.simpleMessage("منفردة"),
     "skipSilence": MessageLookupByLibrary.simpleMessage("تخطي الصمت"),
@@ -549,10 +575,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "songEnqueueAlert": MessageLookupByLibrary.simpleMessage(
       "أغنية في قائمة الانتظار!",
     ),
+    "songFound": MessageLookupByLibrary.simpleMessage("تم العثور على الأغنية!"),
     "songInfo": MessageLookupByLibrary.simpleMessage("معلومات الأغنية"),
     "songNotPlayable": MessageLookupByLibrary.simpleMessage(
       "الأغنية غير قابلة للتشغيل بسبب قيود النظام!",
     ),
+    "songPitch": MessageLookupByLibrary.simpleMessage("نغمة الأغنية"),
     "songRemovedAlert": MessageLookupByLibrary.simpleMessage("تمت الإزالة من"),
     "songRemovedfromQueue": MessageLookupByLibrary.simpleMessage(
       "تمت إزالتها من قائمة الانتظار!",
@@ -561,6 +589,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا يمكنك إزالة الأغنية التي يتم تشغيلها حاليًا",
     ),
     "songs": MessageLookupByLibrary.simpleMessage("أغاني"),
+    "speedAndPitch": MessageLookupByLibrary.simpleMessage("السرعة والملعب"),
     "standard": MessageLookupByLibrary.simpleMessage("الافتراضي"),
     "startRadio": MessageLookupByLibrary.simpleMessage("تشغيل الراديو"),
     "status": MessageLookupByLibrary.simpleMessage("الحالة"),

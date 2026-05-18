@@ -473,5 +473,69 @@
   "readMore": "Přečtěte si více",
   "@readMore": {
     "description": ""
+  },
+  "speedAndPitch": "Rychlost a rozteč",
+  "@speedAndPitch": {
+    "description": ""
+  },
+  "playbackSpeed": "Rychlost přehrávání",
+  "@playbackSpeed": {
+    "description": ""
+  },
+  "songPitch": "tón písně",
+  "@songPitch": {
+    "description": ""
+  },
+  "musicRecognition": "Rozpoznávání hudby",
+  "@musicRecognition": {
+    "description": ""
+  },
+  "listeningToEnvironment": "Naslouchat prostředí...",
+  "@listeningToEnvironment": {
+    "description": ""
+  },
+  "micInstruction": "Ujistěte se, že hudba hraje v blízkosti mikrofonu dostatečně hlasitě.",
+  "@micInstruction": {
+    "description": ""
+  },
+  "processingAudio": "Zpracování zvuku...",
+  "@processingAudio": {
+    "description": ""
+  },
+  "shazamSearching": "Hledání shod v databázi Shazam...",
+  "@shazamSearching": {
+    "description": ""
+  },
+  "songFound": "Píseň nalezena!",
+  "@songFound": {
+    "description": ""
+  },
+  "playNow": "Hrát hned",
+  "@playNow": {
+    "description": ""
+  },
+  "searchInLibrary": "Hledat v knihovně",
+  "@searchInLibrary": {
+    "description": ""
+  },
+  "noMatchesFound": "Žádné shody",
+  "@noMatchesFound": {
+    "description": ""
+  },
+  "noMatchInstruction": "V nahraném zvuku nelze najít žádné skladby",
+  "@noMatchInstruction": {
+    "description": ""
+  },
+  "errorOccurred": "Došlo k chybě",
+  "@errorOccurred": {
+    "description": ""
+  },
+  "playingRecognizedTrack": "Přehrávání:",
+  "@playingRecognizedTrack": {
+    "description": ""
+  },
+  "errorPlayingTrack": "Chyba při přehrávání:",
+  "@errorPlayingTrack": {
+    "description": ""
   }
 }
