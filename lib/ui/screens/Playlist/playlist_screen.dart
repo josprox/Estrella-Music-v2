@@ -766,6 +766,7 @@ class PlaylistScreen extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
       ),
+      backgroundColor: Colors.transparent,
       isScrollControlled: true,
       context: context,
       barrierColor: Colors.transparent.withAlpha(100),

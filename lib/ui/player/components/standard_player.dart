@@ -206,6 +206,7 @@ class _TopBar extends StatelessWidget {
     if (ctrl.currentSong.value == null) return;
     showModalBottomSheet(
       constraints: const BoxConstraints(maxWidth: 500),
+      backgroundColor: Colors.transparent,
       isScrollControlled: true,
       context: context,
       builder: (_) => SongInfoBottomSheet(ctrl.currentSong.value!, calledFromPlayer: true),

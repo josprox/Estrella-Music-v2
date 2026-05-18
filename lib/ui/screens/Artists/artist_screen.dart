@@ -1034,6 +1034,7 @@ class _TrackRow extends StatelessWidget {
                   Get.bottomSheet(
                     SongInfoBottomSheet(song),
                     isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
                   );
                 },
                 icon: Icon(

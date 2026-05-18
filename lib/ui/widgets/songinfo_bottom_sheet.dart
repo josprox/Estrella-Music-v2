@@ -1,4 +1,6 @@
+import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -41,12 +43,39 @@ class SongInfoBottomSheet extends StatelessWidget {
     final songInfoController =
         Get.put(SongInfoController(song, calledFromPlayer));
     final playerController = Get.find<PlayerController>();
-    return Padding(
-      padding: EdgeInsets.only(bottom: Get.mediaQuery.padding.bottom),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
+    final colorScheme = Theme.of(context).colorScheme;
+    return ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+        child: Container(
+          decoration: BoxDecoration(
+            color: colorScheme.surfaceContainerHigh.withValues(alpha: 0.65),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
+            border: Border.all(
+              color: colorScheme.outlineVariant.withValues(alpha: 0.2),
+              width: 1,
+            ),
+          ),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: Get.mediaQuery.padding.bottom),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 12),
+                  Center(
+                    child: Container(
+                      width: 48,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+
             ListTile(
               contentPadding:
                   const EdgeInsets.only(left: 15, top: 7, right: 10, bottom: 0),
@@ -305,7 +334,10 @@ class SongInfoBottomSheet extends StatelessWidget {
               onTap: () =>
                   YoutubeShareManager.shareSong(song.id, title: song.title, artist: song.artist),
             ),
-          ],
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

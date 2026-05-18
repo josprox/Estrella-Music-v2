@@ -147,6 +147,7 @@ class _UpNextQueueState extends State<UpNextQueue> {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(10.0)),
                         ),
+                        backgroundColor: Colors.transparent,
                         isScrollControlled: true,
                         context: _playerController
                             .homeScaffoldkey.currentState!.context,

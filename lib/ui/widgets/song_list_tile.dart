@@ -216,6 +216,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
+      backgroundColor: Colors.transparent,
       isScrollControlled: true,
       context: playerController.homeScaffoldkey.currentState!.context,
       barrierColor: Colors.transparent.withAlpha(100),
