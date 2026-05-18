@@ -14,6 +14,7 @@ import '/models/playlist.dart';
 import '/ui/widgets/image_widget.dart';
 import '/utils/youtube_share_manager.dart';
 import 'package:harmonymusic/generated/l10n.dart';
+import '/ui/widgets/song_status_badges.dart';
 
 class ArtistScreen extends StatelessWidget {
   const ArtistScreen({super.key});
@@ -940,9 +941,12 @@ class _TrackRow extends StatelessWidget {
                       ),
               ),
               const SizedBox(width: 12),
-              ImageWidget(
-                song: song,
-                size: 48,
+              SongStatusBadges(
+                songId: songId,
+                child: ImageWidget(
+                  song: song,
+                  size: 48,
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(

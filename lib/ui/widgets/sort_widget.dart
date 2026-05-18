@@ -243,8 +243,13 @@ class SortWidget extends StatelessWidget {
                           Icons.more_vert,
                           size: 20,
                         ),
-                        // Callback that sets the selected popup menu item.
                         onSelected: (mode) {
+                          if (mode == OperationMode.arrange) {
+                            try {
+                              screenController.isArranging.value = true;
+                              return;
+                            } catch (_) {}
+                          }
                           showDialog(
                               context: context,
                               builder: (context) => AdditionalOperationDialog(

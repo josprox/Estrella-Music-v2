@@ -42,6 +42,8 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
   final isExporting = false.obs;
   final exportProgress = 0.0.obs;
 
+  final isArranging = false.obs;
+
   String generatedYtmPlaylistUrl = '';
 
   // Title animation
@@ -313,6 +315,15 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
     // update the playlist thumbnail based on the first song's thumbnail
     _updatePlaylistThumbSongBased();
+  }
+
+  void reorderList(int oldIndex, int newIndex) {
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
+    final item = songList.removeAt(oldIndex);
+    songList.insert(newIndex, item);
+    updateSongsIntoDb();
   }
 
   @override

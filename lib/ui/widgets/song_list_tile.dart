@@ -14,6 +14,7 @@ import 'image_widget.dart';
 import 'snackbar.dart';
 import 'songinfo_bottom_sheet.dart';
 import 'package:harmonymusic/generated/l10n.dart';
+import 'song_status_badges.dart';
 
 class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
   const SongListTile(
@@ -141,10 +142,13 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                                 ]
                               : null,
                         ),
-                        child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(AppSpacing.radiusSm),
-                          child: ImageWidget(size: 52, song: song),
+                        child: SongStatusBadges(
+                          songId: song.id,
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(AppSpacing.radiusSm),
+                            child: ImageWidget(size: 52, song: song),
+                          ),
                         ),
                       ),
                 title: Marquee(

@@ -7,6 +7,7 @@ import '../player/player_controller.dart';
 import 'image_widget.dart';
 import 'songinfo_bottom_sheet.dart';
 import '../../utils/l10n_extensions.dart';
+import 'song_status_badges.dart';
 
 class QuickPicksWidget extends StatelessWidget {
   const QuickPicksWidget(
@@ -67,22 +68,57 @@ class QuickPicksWidget extends StatelessWidget {
                               () => Get.delete<SongInfoController>());
                         }
                       },
-                      child: ListTile(
-                          contentPadding: const EdgeInsets.only(left: 5),
-                          leading: ImageWidget(
-                            song: content.songList[item],
-                            size: 55,
+                      child: Obx(() {
+                        final isPlaying = playerController.currentSong.value?.id == content.songList[item].id;
+                        final cs = Theme.of(context).colorScheme;
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 250),
+                          curve: Curves.easeInOut,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: isPlaying
+                                ? cs.primary.withValues(alpha: 0.10)
+                                : Colors.transparent,
                           ),
-                          title: Text(
-                            content.songList[item].title,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                          subtitle: Text(
-                            "${content.songList[item].artist}",
-                            maxLines: 1,
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
+                          child: ListTile(
+                              contentPadding: const EdgeInsets.only(left: 5),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              leading: SongStatusBadges(
+                                songId: content.songList[item].id,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: isPlaying
+                                        ? [
+                                            BoxShadow(
+                                              color: cs.primary.withValues(alpha: 0.3),
+                                              blurRadius: 8,
+                                              offset: const Offset(0, 2),
+                                            )
+                                          ]
+                                        : null,
+                                  ),
+                                  child: ImageWidget(
+                                    song: content.songList[item],
+                                    size: 55,
+                                  ),
+                                ),
+                              ),
+                              title: Text(
+                                content.songList[item].title,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  color: isPlaying ? cs.primary : null,
+                                  fontWeight: isPlaying ? FontWeight.w700 : FontWeight.w500,
+                                ),
+                              ),
+                              subtitle: Text(
+                                "${content.songList[item].artist}",
+                                maxLines: 1,
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
                           onTap: () {
                             playerController
                                 .pushSongToQueue(content.songList[item]);
@@ -128,6 +164,8 @@ class QuickPicksWidget extends StatelessWidget {
                                   },
                                   icon: const Icon(Icons.more_vert))
                               : null),
+                        );
+                      }),
                     );
                   }),
             ),

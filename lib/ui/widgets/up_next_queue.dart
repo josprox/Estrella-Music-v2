@@ -26,18 +26,19 @@ class UpNextQueue extends StatefulWidget {
 class _UpNextQueueState extends State<UpNextQueue> {
   late PlayerController _playerController;
   StreamSubscription? _indexSubscription;
+  bool _userIsScrolling = false;
 
   @override
   void initState() {
     super.initState();
     _playerController = Get.find<PlayerController>();
     
-    // Auto-scroll when the song index changes
+    // Auto-scroll only when the song index changes
     _indexSubscription = _playerController.currentSongIndex.listen((index) {
       _scrollToActiveIndex(index);
     });
 
-    // Auto-scroll on initial build
+    // Auto-scroll on initial build (once)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _scrollToActiveIndex(_playerController.currentSongIndex.value);
     });
@@ -51,6 +52,7 @@ class _UpNextQueueState extends State<UpNextQueue> {
 
   void _scrollToActiveIndex(int index) {
     if (!widget.isQueueInSlidePanel) return;
+    if (_userIsScrolling) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final controller = _playerController.scrollController;
       if (controller.hasClients) {
@@ -64,7 +66,7 @@ class _UpNextQueueState extends State<UpNextQueue> {
         );
       } else {
         Future.delayed(const Duration(milliseconds: 100), () {
-          if (mounted && _playerController.scrollController.hasClients) {
+          if (mounted && _playerController.scrollController.hasClients && !_userIsScrolling) {
             final ctrl = _playerController.scrollController;
             final double targetOffset = index * 72.0;
             final double maxScroll = ctrl.position.maxScrollExtent;
@@ -82,33 +84,43 @@ class _UpNextQueueState extends State<UpNextQueue> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollToActiveIndex(_playerController.currentSongIndex.value);
-    });
-    
+    // NOTE: No auto-scroll here — it only triggers via the index subscription above
     return Container(
       color: Theme.of(context).bottomSheetTheme.backgroundColor,
-      child: Obx(() {
-        return ReorderableListView.builder(
-          footer: SizedBox(height: Get.mediaQuery.padding.bottom),
-          scrollController:
-              widget.isQueueInSlidePanel ? _playerController.scrollController : null,
-          onReorder: (int oldIndex, int newIndex) {
-            if (_playerController.isShuffleModeEnabled.isTrue) {
-              ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
-                  Get.context!, S.current.queuerearrangingDeniedMsg,
-                  size: SanckBarSize.BIG));
-              return;
-            }
-            _playerController.onReorder(oldIndex, newIndex);
-          },
-          onReorderStart: widget.onReorderStart,
-          onReorderEnd: widget.onReorderEnd,
-          itemCount: _playerController.currentQueue.length,
-          padding: EdgeInsets.only(
-              top: widget.isQueueInSlidePanel ? 55 : 0,
-              bottom: widget.isQueueInSlidePanel ? 80 : 0),
-          physics: const AlwaysScrollableScrollPhysics(),
+      child: NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          if (notification is ScrollStartNotification) {
+            _userIsScrolling = true;
+          } else if (notification is ScrollEndNotification) {
+            // Give a short grace period before re-enabling auto-scroll
+            Future.delayed(const Duration(milliseconds: 1500), () {
+              if (mounted) _userIsScrolling = false;
+            });
+          }
+          return false;
+        },
+        child: Obx(() {
+          return ReorderableListView.builder(
+            footer: SizedBox(height: Get.mediaQuery.padding.bottom),
+            scrollController:
+                widget.isQueueInSlidePanel ? _playerController.scrollController : null,
+            onReorder: (int oldIndex, int newIndex) {
+              if (_playerController.isShuffleModeEnabled.isTrue) {
+                ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
+                    Get.context!, S.current.queuerearrangingDeniedMsg,
+                    size: SanckBarSize.BIG));
+                return;
+              }
+              _playerController.onReorder(oldIndex, newIndex);
+            },
+            onReorderStart: widget.onReorderStart,
+            onReorderEnd: widget.onReorderEnd,
+            itemCount: _playerController.currentQueue.length,
+            padding: EdgeInsets.only(
+                top: widget.isQueueInSlidePanel ? 55 : 0,
+                bottom: widget.isQueueInSlidePanel ? 80 : 0),
+            physics: const AlwaysScrollableScrollPhysics(),
+
           itemBuilder: (context, index) {
             final homeScaffoldContext =
                 _playerController.homeScaffoldkey.currentContext!;
@@ -243,6 +255,7 @@ class _UpNextQueueState extends State<UpNextQueue> {
           },
         );
       }),
+      ),  // NotificationListener
     );
   }
 }

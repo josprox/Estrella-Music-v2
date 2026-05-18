@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:harmonymusic/services/auth_service.dart';
-import 'package:harmonymusic/utils/helper.dart';
+
 import 'package:harmonymusic/utils/lang_mapping.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,7 +16,7 @@ import '../Library/library_controller.dart';
 import '../../widgets/snackbar.dart';
 import '/ui/widgets/link_piped.dart';
 import '/services/music_service.dart';
-import '/ui/player/player_controller.dart';
+
 import '/ui/utils/theme_controller.dart';
 import 'components/custom_expansion_tile.dart';
 import 'settings_screen_controller.dart';
@@ -273,13 +273,7 @@ class SettingsScreen extends StatelessWidget {
                     leadingIcon: Icons.open_in_full_rounded,
                     trailing: Obx(() => CustSwitch(value: ctrl.autoOpenPlayer.value, onChanged: ctrl.toggleAutoOpenPlayer)),
                   ),
-                  if (!isDesktop) SettingsTile(
-                    title: S.current.equalizer,
-                    subtitle: S.current.equalizerDes,
-                    leadingIcon: Icons.tune_rounded,
-                    onTap: () async { try { await Get.find<PlayerController>().openEqualizer(); } catch (e) { printERROR(e); } },
-                    trailing: const Icon(Icons.chevron_right_rounded),
-                  ),
+
                   if (!isDesktop) SettingsTile(
                     title: S.current.stopMusicOnTaskClear,
                     subtitle: S.current.stopMusicOnTaskClearDes,

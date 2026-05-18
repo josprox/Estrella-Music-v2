@@ -231,27 +231,12 @@ class PlaylistScreen extends StatelessWidget {
                       constraints: const BoxConstraints(
                         maxWidth: 800,
                       ),
-                      child: Obx(
-                        () => ScrollConfiguration(
-                          behavior: PlaylistAlbumScrollBehaviour(),
-                          child: ListView.builder(
-                            addRepaintBoundaries: false,
-                            padding: EdgeInsets.only(
-                              top: playlistController.isSearchingOn.isTrue
-                                  ? 0
-                                  : landscape
-                                      ? 150
-                                      : 200,
-                              bottom: 200,
-                            ),
-                            itemCount: playlistController.songList.isEmpty ||
-                                    playlistController.isContentFetched.isFalse
-                                ? 4
-                                : playlistController.songList.length + 3,
-                            itemBuilder: (_, index) {
-                              if (index == 0) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(left: 15.0),
+                      child: Obx(() {
+                        Widget buildItem(BuildContext context, int index) {
+                          if (index == 0) {
+                            return Padding(
+                              key: const ValueKey('header_0'),
+                              padding: const EdgeInsets.only(left: 15.0),
                                   child: SizedBox(
                                     height: 40,
                                     child: SingleChildScrollView(
@@ -543,6 +528,7 @@ class PlaylistScreen extends StatelessWidget {
                                     .playlist.value.description;
 
                                 return AnimatedBuilder(
+                                  key: const ValueKey('header_1'),
                                   animation:
                                       playlistController.animationController,
                                   builder: (context, child) {
@@ -602,7 +588,37 @@ class PlaylistScreen extends StatelessWidget {
                                   ),
                                 );
                               } else if (index == 2) {
+                                if (playlistController.isArranging.isTrue) {
+                                  return Padding(
+                                    key: const ValueKey('header_2_arranging'),
+                                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          S.current.reArrangePlaylist,
+                                          style: Theme.of(context).textTheme.titleMedium,
+                                        ),
+                                        ElevatedButton.icon(
+                                          onPressed: () {
+                                            playlistController.isArranging.value = false;
+                                          },
+                                          icon: const Icon(Icons.check),
+                                          label: const Text("Listo"),
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                                            foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(20),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }
                                 return SizedBox(
+                                    key: const ValueKey('header_2_sort'),
                                     height:
                                         playlistController.isSearchingOn.isTrue
                                             ? 60
@@ -662,6 +678,7 @@ class PlaylistScreen extends StatelessWidget {
                                       .isContentFetched.isFalse ||
                                   playlistController.songList.isEmpty) {
                                 return SizedBox(
+                                  key: const ValueKey('header_3_empty'),
                                   height: 300,
                                   child: Center(
                                     child: playlistController
@@ -677,7 +694,8 @@ class PlaylistScreen extends StatelessWidget {
                                 );
                               }
 
-                              return Padding(
+                              final song = playlistController.songList[index - 3];
+                              final child = Padding(
                                 padding:
                                     const EdgeInsets.only(left: 20.0, right: 5),
                                 child: SongListTile(
@@ -691,18 +709,62 @@ class PlaylistScreen extends StatelessWidget {
                                                 .playlist.value.title,
                                             type: PlaylingFromType.PLAYLIST));
                                   },
-                                  song: playlistController.songList[index - 3],
+                                  song: song,
                                   isPlaylistOrAlbum: true,
                                   playlist: playlistController.playlist.value,
                                 ),
                               );
-                            },
-                          ),
-                        ),
+
+                              if (playlistController.isArranging.isTrue) {
+                                return KeyedSubtree(
+                                  key: ValueKey('${song.id}_$index'),
+                                  child: Row(
+                                    children: [
+                                      ReorderableDragStartListener(
+                                        index: index,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(left: 10, right: 5),
+                                          child: Icon(Icons.drag_handle, color: Theme.of(context).colorScheme.secondary),
+                                        ),
+                                      ),
+                                      Expanded(child: child),
+                                    ],
+                                  ),
+                                );
+                              }
+                              return KeyedSubtree(key: ValueKey('${song.id}_$index'), child: child);
+                            }
+
+                            final padding = EdgeInsets.only(
+                              top: playlistController.isSearchingOn.isTrue ? 0 : landscape ? 150 : 200,
+                              bottom: 200,
+                            );
+                            final itemCount = playlistController.songList.isEmpty || playlistController.isContentFetched.isFalse ? 4 : playlistController.songList.length + 3;
+
+                            return ScrollConfiguration(
+                              behavior: PlaylistAlbumScrollBehaviour(),
+                              child: playlistController.isArranging.isTrue ?
+                                ReorderableListView.builder(
+                                  padding: padding,
+                                  itemCount: itemCount,
+                                  buildDefaultDragHandles: false,
+                                  onReorder: (oldIndex, newIndex) {
+                                    if (oldIndex < 3 || newIndex < 3) return;
+                                    playlistController.reorderList(oldIndex - 3, newIndex - 3);
+                                  },
+                                  itemBuilder: buildItem,
+                                )
+                              : ListView.builder(
+                                  addRepaintBoundaries: false,
+                                  padding: padding,
+                                  itemCount: itemCount,
+                                  itemBuilder: buildItem,
+                              ),
+                            );
+                          }),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
           ],
