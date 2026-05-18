@@ -148,45 +148,59 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
 
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-      child: Container(
-        padding: const EdgeInsets.all(24.0),
-        decoration: BoxDecoration(
-          color: brightness == Brightness.dark
-              ? Colors.black.withValues(alpha: 0.65)
-              : Colors.white.withValues(alpha: 0.75),
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(32),
-            topRight: Radius.circular(32),
+      child: Obx(() {
+        final double playerHeight = _playerController.playerPanelMinHeight.value;
+        final double extraBottomPadding = playerHeight > 0
+            ? (playerHeight > Get.mediaQuery.padding.bottom
+                ? playerHeight - Get.mediaQuery.padding.bottom
+                : playerHeight)
+            : 0.0;
+
+        return Container(
+          padding: EdgeInsets.only(
+            left: 24.0,
+            right: 24.0,
+            top: 24.0,
+            bottom: 24.0 + extraBottomPadding,
           ),
-          border: Border.all(
+          decoration: BoxDecoration(
             color: brightness == Brightness.dark
-                ? Colors.white.withValues(alpha: 0.08)
-                : Colors.black.withValues(alpha: 0.05),
-            width: 1.0,
+                ? Colors.black.withValues(alpha: 0.65)
+                : Colors.white.withValues(alpha: 0.75),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(32),
+              topRight: Radius.circular(32),
+            ),
+            border: Border.all(
+              color: brightness == Brightness.dark
+                  ? Colors.white.withValues(alpha: 0.08)
+                  : Colors.black.withValues(alpha: 0.05),
+              width: 1.0,
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Bottom sheet drag handle
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(2),
+          child: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Bottom sheet drag handle
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              _buildContent(),
-              const SizedBox(height: 16),
-            ],
+                const SizedBox(height: 24),
+                _buildContent(),
+                const SizedBox(height: 16),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 

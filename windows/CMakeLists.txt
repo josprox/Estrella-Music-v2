@@ -29,8 +29,8 @@ set(CMAKE_SHARED_LINKER_FLAGS_PROFILE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE}")
 set(CMAKE_C_FLAGS_PROFILE "${CMAKE_C_FLAGS_RELEASE}")
 set(CMAKE_CXX_FLAGS_PROFILE "${CMAKE_CXX_FLAGS_RELEASE}")
 
-# Use Unicode for all projects.
-add_definitions(-DUNICODE -D_UNICODE)
+# Use Unicode for all projects and silence C++ experimental coroutine deprecation warnings.
+add_definitions(-DUNICODE -D_UNICODE -D_SILENCE_EXPERIMENTAL_COROUTINE_DEPRECATION_WARNINGS)
 
 # Workaround: Dynamically find ATL headers/libs for flutter_secure_storage_windows.
 # ATL (Active Template Library) may only be present in certain MSVC toolset versions.

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Search/components/desktop_search_bar.dart';
 import '/ui/screens/Search/search_screen_controller.dart';
 import '/ui/widgets/animated_screen_transition.dart';
 
@@ -295,21 +294,7 @@ class Body extends StatelessWidget {
                       }),
               ),
             ),
-            // Desktop search bar
-            if (GetPlatform.isDesktop)
-              Align(
-                alignment: Alignment.topCenter,
-                child: LayoutBuilder(builder: (context, constraints) {
-                  return SizedBox(
-                    width: constraints.maxWidth > 800
-                        ? 800
-                        : constraints.maxWidth - 40,
-                    child: const Padding(
-                        padding: EdgeInsets.only(top: AppSpacing.lg),
-                        child: DesktopSearchBar()),
-                  );
-                }),
-              ),
+
           ],
         ),
       );

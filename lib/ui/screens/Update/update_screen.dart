@@ -163,8 +163,11 @@ class UpdateScreen extends StatelessWidget {
             height: 64,
             child: ElevatedButton.icon(
               onPressed: () async {
-                final url = data['Descarga'];
+                String? url = data['Descarga'];
                 if (url != null) {
+                  if (GetPlatform.isWindows) {
+                    url = url.replaceAll('app-release.apk', 'EstrellaMusicInstaller.exe');
+                  }
                   final uri = Uri.parse(url);
                   if (await canLaunchUrl(uri)) {
                     await launchUrl(uri, mode: LaunchMode.externalApplication);
