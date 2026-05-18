@@ -5,8 +5,19 @@ import '../navigator.dart';
 import 'image_widget.dart';
 
 class ContentListItem extends StatelessWidget {
+  final double? width;
+  final double? height;
+  final double? imageSize;
   const ContentListItem(
-      {super.key, required this.content, this.isLibraryItem = false});
+      {super.key,
+      required this.content,
+      this.isLibraryItem = false,
+      this.width,
+      this.height,
+      this.imageSize});
+// ignore: unused_element
+  // const ContentListItem.old(
+  // {super.key, required this.content, this.isLibraryItem = false});
 
   ///content will be of Type class Album or Playlist
   final dynamic content;
@@ -14,6 +25,9 @@ class ContentListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final finalWidth = width ?? 130.0;
+    final finalHeight = height ?? 194.0;
+    final finalImageSize = imageSize ?? 120.0;
     final isAlbum = content.runtimeType.toString() == "Album";
     final subtitle = isAlbum
         ? isLibraryItem
@@ -39,15 +53,15 @@ class ContentListItem extends StatelessWidget {
             arguments: [content, content.playlistId]);
       },
       child: Container(
-        width: 130,
-        height: 194,
+        width: finalWidth,
+        height: finalHeight,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             isAlbum
                 ? ImageWidget(
-                    size: 120,
+                    size: finalImageSize,
                     album: content,
                   )
                 : content.isCloudPlaylist ||
@@ -56,11 +70,11 @@ class ContentListItem extends StatelessWidget {
                             content.playlistId == 'SongsCache' ||
                             content.playlistId == 'SongDownloads')
                     ? SizedBox.square(
-                        dimension: 120,
+                        dimension: finalImageSize,
                         child: Stack(
                           children: [
                             ImageWidget(
-                              size: 120,
+                              size: finalImageSize,
                               playlist: content,
                             ),
                             if (content.isPipedPlaylist)
@@ -117,8 +131,8 @@ class ContentListItem extends StatelessWidget {
                         ),
                       )
                     : Container(
-                        height: 120,
-                        width: 120,
+                        height: finalImageSize,
+                        width: finalImageSize,
                         decoration: BoxDecoration(
                             color: Theme.of(context).primaryColorLight,
                             borderRadius: BorderRadius.circular(10)),

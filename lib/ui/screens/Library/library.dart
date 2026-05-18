@@ -130,7 +130,9 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                     : Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          isAlbumContent ? S.current.libAlbums : S.current.libPlaylists,
+                          isAlbumContent
+                              ? S.current.libAlbums
+                              : S.current.libPlaylists,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
@@ -189,7 +191,18 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                               constraints.maxWidth < 394
                           ? 310.0
                           : constraints.maxWidth;
-                      int columns = (availableWidth / itemWidth).floor();
+                      final isMobile = availableWidth < 600;
+                      final int columns =
+                          isMobile ? 3 : (availableWidth / itemWidth).floor();
+
+                      final currentItemWidth =
+                          isMobile ? (availableWidth / columns) - 4 : itemWidth;
+                      final currentItemHeight = isMobile
+                          ? (currentItemWidth * (itemHeight / itemWidth))
+                          : itemHeight;
+                      final currentImageSize =
+                          isMobile ? (currentItemWidth - 10) : 120.0;
+
                       return SizedBox(
                         width: availableWidth,
                         child: GridView.builder(
@@ -197,7 +210,8 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: columns,
-                              childAspectRatio: (itemWidth / itemHeight),
+                              childAspectRatio:
+                                  (currentItemWidth / currentItemHeight),
                             ),
                             controller:
                                 ScrollController(keepScrollOffset: false),
@@ -215,6 +229,10 @@ class PlaylistNAlbumLibraryWidget extends StatelessWidget {
                                         : librplstCntrller
                                             .libraryPlaylists[index],
                                     isLibraryItem: true,
+                                    width: isMobile ? currentItemWidth : null,
+                                    height: isMobile ? currentItemHeight : null,
+                                    imageSize:
+                                        isMobile ? currentImageSize : null,
                                   ),
                                 )),
                       );
@@ -263,7 +281,8 @@ class LibraryArtistWidget extends StatelessWidget {
               screenController: cntrller,
               isAdditionalOperationRequired: false,
               isSearchFeatureRequired: true,
-              itemCountTitle: "${cntrller.libraryArtists.length} ${S.current.items}",
+              itemCountTitle:
+                  "${cntrller.libraryArtists.length} ${S.current.items}",
               onSort: (type, ascending) {
                 cntrller.onSort(type, ascending);
               },

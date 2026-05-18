@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import '../Search/components/desktop_search_bar.dart';
 import '/ui/screens/Search/search_screen_controller.dart';
 import '/ui/widgets/animated_screen_transition.dart';
-import '../Library/library_combined.dart';
+
 import '../../widgets/side_nav_bar.dart';
 import '../Library/library.dart';
-import '../Search/search_screen.dart';
+
 import '../Settings/settings_screen_controller.dart';
 import '/ui/player/player_controller.dart';
 import '/ui/widgets/create_playlist_dialog.dart';
@@ -174,36 +174,57 @@ class Body extends StatelessWidget {
                                           homeScreenController.quickPicks.value,
                                       scrollController: sc);
                                 }),
-                                Obx(() => homeScreenController.mostListened.isEmpty
+                                Obx(() => homeScreenController
+                                        .mostListened.isEmpty
                                     ? const SizedBox.shrink()
                                     : MostListenedWidget(
+                                        content:
+                                            homeScreenController.mostListened)),
+                                Obx(() =>
+                                    homeScreenController.randomMusic.value !=
+                                            null
+                                        ? QuickPicksWidget(
+                                            content: homeScreenController
+                                                .randomMusic.value!)
+                                        : const SizedBox.shrink()),
+                                Obx(() => homeScreenController
+                                            .forgottenFavorites.value !=
+                                        null
+                                    ? QuickPicksWidget(
                                         content: homeScreenController
-                                            .mostListened)),
-                                Obx(() => homeScreenController.randomMusic.value != null ? QuickPicksWidget(
-                                    content: homeScreenController
-                                        .randomMusic.value!) : const SizedBox.shrink()),
-                                Obx(() => homeScreenController.forgottenFavorites.value != null ? QuickPicksWidget(
-                                    content: homeScreenController
-                                        .forgottenFavorites.value!) : const SizedBox.shrink()),
+                                            .forgottenFavorites.value!)
+                                    : const SizedBox.shrink()),
                                 // ?? Daily Discover (Metrolist parity) ??
-                                Obx(() => homeScreenController.dailyDiscover.value != null
-                                    ? QuickPicksWidget(
-                                        content: homeScreenController.dailyDiscover.value!)
-                                    : const SizedBox.shrink()),
+                                Obx(() =>
+                                    homeScreenController.dailyDiscover.value !=
+                                            null
+                                        ? QuickPicksWidget(
+                                            content: homeScreenController
+                                                .dailyDiscover.value!)
+                                        : const SizedBox.shrink()),
                                 // ?? Keep Listening ??
-                                Obx(() => homeScreenController.keepListening.value != null
-                                    ? QuickPicksWidget(
-                                        content: homeScreenController.keepListening.value!)
-                                    : const SizedBox.shrink()),
+                                Obx(() =>
+                                    homeScreenController.keepListening.value !=
+                                            null
+                                        ? QuickPicksWidget(
+                                            content: homeScreenController
+                                                .keepListening.value!)
+                                        : const SizedBox.shrink()),
                                 // ?? Similar Recommendations ??
-                                Obx(() => homeScreenController.similarRecommendations.value != null
+                                Obx(() => homeScreenController
+                                            .similarRecommendations.value !=
+                                        null
                                     ? QuickPicksWidget(
-                                        content: homeScreenController.similarRecommendations.value!)
+                                        content: homeScreenController
+                                            .similarRecommendations.value!)
                                     : const SizedBox.shrink()),
                                 // ?? Community Playlists ??
-                                Obx(() => homeScreenController.communityPlaylists.value != null
+                                Obx(() => homeScreenController
+                                            .communityPlaylists.value !=
+                                        null
                                     ? QuickPicksWidget(
-                                        content: homeScreenController.communityPlaylists.value!)
+                                        content: homeScreenController
+                                            .communityPlaylists.value!)
                                     : const SizedBox.shrink()),
                                 ...getWidgetList(
                                     homeScreenController.middleContent,
@@ -218,39 +239,50 @@ class Body extends StatelessWidget {
                           slivers: [
                             SliverAppBar(
                               floating: true,
-                              surfaceTintColor: Theme.of(context).colorScheme.surface,
-                              backgroundColor: Theme.of(context).colorScheme.surface,
+                              surfaceTintColor:
+                                  Theme.of(context).colorScheme.surface,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.surface,
                               title: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    S.current.home, // Can use exploreDiscover if available in localized strings
-                                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                      fontSize: 34,
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).colorScheme.onSurface,
-                                    ),
+                                    S.current
+                                        .home, // Can use exploreDiscover if available in localized strings
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium
+                                        ?.copyWith(
+                                          fontSize: 34,
+                                          fontWeight: FontWeight.bold,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurface,
+                                        ),
                                   ),
                                   const Spacer(),
                                   IconButton(
-                                    icon: const Icon(Icons.notifications_none_rounded, size: 30),
-                                    onPressed: () {},
-                                  ),
+                                      icon: const Icon(Icons.search_rounded,
+                                          size: 30),
+                                      onPressed: () => Get.toNamed(
+                                          ScreenNavigationSetup.searchScreen,
+                                          id: ScreenNavigationSetup.id)),
+                                  const SizedBox.shrink(),
                                   IconButton(
-                                    icon: const Icon(Icons.timer_outlined, size: 30),
-                                    onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    icon: const Icon(Icons.settings_outlined, size: 30),
+                                    icon: const Icon(Icons.settings_outlined,
+                                        size: 30),
                                     onPressed: () {
-                                      homeScreenController.tabIndex.value = 5; // Settings tab
+                                      homeScreenController.tabIndex.value =
+                                          5; // Settings tab
                                     },
                                   ),
                                 ],
                               ),
                             ),
                             SliverPadding(
-                              padding: const EdgeInsets.only(bottom: 200, top: 15),
+                              padding:
+                                  const EdgeInsets.only(bottom: 200, top: 15),
                               sliver: SliverList(
                                 delegate: SliverChildBuilderDelegate(
                                   (_, i) => items[i],
@@ -283,18 +315,22 @@ class Body extends StatelessWidget {
       );
     } else if (homeScreenController.tabIndex.value == 1) {
       return settingsScreenController.isBottomNavBarEnabled.isTrue
-          ? const SearchScreen()
+          ? const SongsLibraryWidget(isBottomNavActive: true)
           : const SongsLibraryWidget();
     } else if (homeScreenController.tabIndex.value == 2) {
       return settingsScreenController.isBottomNavBarEnabled.isTrue
-          ? const CombinedLibrary()
+          ? const PlaylistNAlbumLibraryWidget(
+              isAlbumContent: true, isBottomNavActive: true)
           : const PlaylistNAlbumLibraryWidget(isAlbumContent: false);
     } else if (homeScreenController.tabIndex.value == 3) {
       return settingsScreenController.isBottomNavBarEnabled.isTrue
-          ? const SettingsScreen(isBottomNavActive: true)
+          ? const LibraryArtistWidget(isBottomNavActive: true)
           : const PlaylistNAlbumLibraryWidget();
     } else if (homeScreenController.tabIndex.value == 4) {
-      return const LibraryArtistWidget();
+      return settingsScreenController.isBottomNavBarEnabled.isTrue
+          ? const PlaylistNAlbumLibraryWidget(
+              isAlbumContent: false, isBottomNavActive: true)
+          : const LibraryArtistWidget();
     } else if (homeScreenController.tabIndex.value == 5) {
       return const SettingsScreen();
     } else {

@@ -17,16 +17,23 @@ class BottomNavBar extends StatelessWidget {
         onTap: ctrl.onBottonBarTabSelected,
         labelVisibility: LabelVisibility.always,
         items: [
-          _dest(Icons.home_rounded, Icons.home_outlined, S.current.home, 'house', 'house.fill'),
-          _dest(Icons.search_rounded, Icons.search_outlined, S.current.search, 'magnifyingglass', 'magnifyingglass'),
-          _dest(Icons.library_music_rounded, Icons.library_music_outlined, S.current.library, 'music.note.list', 'music.note.list'),
-          _dest(Icons.settings_rounded, Icons.settings_outlined, S.current.settings, 'gearshape', 'gearshape.fill'),
+          _dest(Icons.home_rounded, Icons.home_outlined, S.current.home,
+              'house', 'house.fill'),
+          _dest(Icons.music_note_rounded, Icons.music_note_outlined,
+              S.current.libSongs, 'music.note', 'music.note'),
+          _dest(Icons.album_rounded, Icons.album_outlined, S.current.libAlbums,
+              'play.rectangle', 'play.rectangle.fill'),
+          _dest(Icons.people_alt_rounded, Icons.people_outline_rounded,
+              S.current.libArtists, 'person.2', 'person.2.fill'),
+          _dest(Icons.queue_music_rounded, Icons.queue_music_outlined,
+              S.current.libPlaylists, 'music.note.list', 'music.note.list'),
         ],
       ),
     );
   }
 
-  LiquidTabItem _dest(IconData sel, IconData unsel, String label, String sfSymbol, String selectedSfSymbol) {
+  LiquidTabItem _dest(IconData sel, IconData unsel, String label,
+      String sfSymbol, String selectedSfSymbol) {
     final short = label.length > 9 ? '${label.substring(0, 8)}..' : label;
     return LiquidTabItem(
       widget: Icon(unsel, color: Colors.white38),
