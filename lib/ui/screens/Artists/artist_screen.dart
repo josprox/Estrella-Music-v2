@@ -63,6 +63,15 @@ class _SpotifyArtistScreen extends StatelessWidget {
           return const Center(child: LoadingIndicator());
         }
 
+        // ── Offline mode ─────────────────────────────────────────────────
+        if (ctrl.isOffline.isTrue) {
+          return _OfflineArtistView(
+            ctrl: ctrl,
+            playerController: playerController,
+            heroHeight: heroHeight,
+          );
+        }
+
         final data = ctrl.artistData;
         final artist = ctrl.artist_;
         final thumbnails = data['thumbnails'] as List?;
@@ -1472,6 +1481,222 @@ class AboutArtist extends StatelessWidget {
               : const SizedBox.shrink(),
         ),
       ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Offline Artist View
+// ─────────────────────────────────────────────────────────────────────────────
+class _OfflineArtistView extends StatelessWidget {
+  final ArtistScreenController ctrl;
+  final PlayerController playerController;
+  final double heroHeight;
+
+  const _OfflineArtistView({
+    required this.ctrl,
+    required this.playerController,
+    required this.heroHeight,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final artist = ctrl.artist_;
+    final thumbnailUrl = artist.thumbnailUrl;
+
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        // ── Hero image ────────────────────────────────────────────────────
+        SliverToBoxAdapter(
+          child: Stack(
+            children: [
+              SizedBox(
+                height: heroHeight,
+                width: double.infinity,
+                child: thumbnailUrl.isNotEmpty
+                    ? CachedNetworkImage(
+                        imageUrl: thumbnailUrl,
+                        fit: BoxFit.cover,
+                        placeholder: (_, __) => Container(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(26),
+                        ),
+                        errorWidget: (_, __, ___) => Container(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(26),
+                          child: Icon(Icons.person_rounded,
+                              size: 80,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withAlpha(97)),
+                        ),
+                      )
+                    : Container(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withAlpha(26),
+                        child: Icon(Icons.person_rounded,
+                            size: 80,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withAlpha(97)),
+                      ),
+              ),
+              // Gradient fade
+              Container(
+                height: heroHeight,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: const [0.0, 0.4, 0.75, 1.0],
+                    colors: [
+                      Colors.transparent,
+                      Colors.transparent,
+                      Theme.of(context)
+                          .colorScheme
+                          .surface
+                          .withAlpha(150),
+                      Theme.of(context).colorScheme.surface,
+                    ],
+                  ),
+                ),
+              ),
+              // Back button
+              SafeArea(
+                child: IconButton(
+                  onPressed: () =>
+                      Get.nestedKey(ScreenNavigationSetup.id)!
+                          .currentState!
+                          .pop(),
+                  icon: Container(
+                    width: 38,
+                    height: 38,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .surface
+                          .withAlpha(120),
+                    ),
+                    child: Icon(Icons.arrow_back_ios_new_rounded,
+                        color: Theme.of(context).colorScheme.onSurface,
+                        size: 18),
+                  ),
+                ),
+              ),
+              // Artist name + offline chip
+              Positioned(
+                bottom: 24,
+                left: 20,
+                right: 20,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      artist.name,
+                      style: const TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: -1.5,
+                        height: 1.1,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Chip(
+                      label: Text(
+                        'Sin conexión',
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w600),
+                      ),
+                      avatar: Icon(Icons.wifi_off_rounded, size: 14),
+                      visualDensity: VisualDensity.compact,
+                      padding: EdgeInsets.symmetric(horizontal: 4),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // ── Downloaded songs header ────────────────────────────────────────
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 12),
+            child: Text(
+              'Canciones descargadas',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: 22,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+        ),
+
+        // ── Downloaded songs list ─────────────────────────────────────────
+        Obx(() {
+          if (ctrl.offlineDownloadedSongs.isEmpty) {
+            return SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(32),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.music_off_rounded,
+                        size: 56,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withAlpha(60),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        'No hay canciones descargadas de este artista',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withAlpha(120),
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final song = ctrl.offlineDownloadedSongs[index];
+                return _TrackRow(
+                  index: index + 1,
+                  item: song,
+                  ctrl: ctrl,
+                  playerController: playerController,
+                  isFromFavs: false,
+                );
+              },
+              childCount: ctrl.offlineDownloadedSongs.length,
+            ),
+          );
+        }),
+
+        const SliverToBoxAdapter(child: SizedBox(height: 200)),
+      ],
     );
   }
 }

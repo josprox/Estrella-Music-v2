@@ -24,6 +24,8 @@ class ArtistScreenController extends GetxController
   final sepataredContent = <String, dynamic>{}.obs;
   final isSeparatedArtistContentFetced = false.obs;
   final isAddedToLibrary = false.obs;
+  final isOffline = false.obs;
+  final offlineDownloadedSongs = <MediaItem>[].obs;
   final songScrollController = ScrollController();
   final videoScrollController = ScrollController();
   final albumScrollController = ScrollController();
@@ -114,28 +116,115 @@ class ArtistScreenController extends GetxController
         content,
         browseId: id,
       );
+      // Save the artist thumbnail URL for offline use
+      _cacheArtistThumbnail(id);
     } on NetworkError catch (error) {
       printERROR("Error fetching artist details: $error");
+      // Try catalog recovery first
       final recoveredArtist =
           await Get.find<CatalogRecoveryService>().findSimilarArtist(
         artistName: _artistNameHint(),
       );
       if (recoveredArtist != null && recoveredArtist.browseId != id) {
-        final content = await musicServices.getArtist(recoveredArtist.browseId);
-        _applyArtistContent(
-          content,
-          browseId: recoveredArtist.browseId,
-          persistRecovery: isAddedToLibrary.isTrue,
-          previousBrowseId: id,
-        );
+        try {
+          final content =
+              await musicServices.getArtist(recoveredArtist.browseId);
+          _applyArtistContent(
+            content,
+            browseId: recoveredArtist.browseId,
+            persistRecovery: isAddedToLibrary.isTrue,
+            previousBrowseId: id,
+          );
+          _cacheArtistThumbnail(recoveredArtist.browseId);
+        } catch (_) {
+          await _loadOfflineMode(id);
+        }
       } else {
-        _ensureArtistPlaceholder(id);
+        await _loadOfflineMode(id);
       }
     } catch (e) {
       printERROR("Error fetching artist details: $e");
       _ensureArtistPlaceholder(id);
     } finally {
       isArtistContentFetced.value = true;
+    }
+  }
+
+  /// Persists the artist thumbnail URL to Hive for offline access
+  Future<void> _cacheArtistThumbnail(String artistId) async {
+    try {
+      if (!hasArtistSeed) return;
+      final thumbnailUrl = artist_.thumbnailUrl;
+      if (thumbnailUrl.isEmpty) return;
+      final box = await Hive.openBox('ArtistThumbnails');
+      box.put(artistId, thumbnailUrl);
+    } catch (_) {}
+  }
+
+  /// Gets a cached thumbnail URL for offline display
+  Future<String> _getCachedThumbnail(String artistId) async {
+    try {
+      final box = await Hive.openBox('ArtistThumbnails');
+      return box.get(artistId, defaultValue: '') as String;
+    } catch (_) {
+      return '';
+    }
+  }
+
+  /// Loads offline mode: uses cached artist data + songs from SongDownloads
+  Future<void> _loadOfflineMode(String id) async {
+    _ensureArtistPlaceholder(id);
+    isOffline.value = true;
+
+    // Try to restore thumbnail URL from Hive cache
+    final cachedThumbnail = await _getCachedThumbnail(id);
+    if (cachedThumbnail.isNotEmpty) {
+      artist_ = Artist(
+        browseId: artist_.browseId,
+        name: artist_.name,
+        thumbnailUrl: cachedThumbnail,
+        subscribers: artist_.subscribers ?? '',
+        radioId: artist_.radioId,
+      );
+      hasArtistSeed = true;
+    }
+
+    // Load downloaded songs that belong to this artist
+    await _loadOfflineDownloadedSongs();
+  }
+
+  /// Loads songs from SongDownloads that match this artist
+  Future<void> _loadOfflineDownloadedSongs() async {
+    try {
+      final dlBox = Hive.box('SongDownloads');
+      final artistName = _artistNameHint().toLowerCase();
+      if (artistName.isEmpty) return;
+
+      final List<MediaItem> songs = [];
+      for (final value in dlBox.values) {
+        if (value is! Map) continue;
+        // Check artist field
+        final artist = (value['artist'] as String?)?.toLowerCase() ?? '';
+        // Check artists list
+        final artistsList = value['extras']?['artists'] as List?;
+        bool matches = artist.contains(artistName);
+        if (!matches && artistsList != null) {
+          for (final a in artistsList) {
+            final name = (a['name'] as String?)?.toLowerCase() ?? '';
+            if (name.contains(artistName)) {
+              matches = true;
+              break;
+            }
+          }
+        }
+        if (matches) {
+          final item = MediaItemBuilder.fromJson(value);
+          songs.add(item);
+        }
+      }
+      offlineDownloadedSongs.assignAll(songs);
+    } catch (e) {
+      printERROR('Error loading offline downloaded songs: $e');
     }
   }
 

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:harmonymusic/models/playling_from.dart';
 import 'package:harmonymusic/models/thumbnail.dart';
 import 'package:harmonymusic/ui/widgets/playlist_album_scroll_behaviour.dart';
+import 'package:hive/hive.dart';
 import '../../widgets/custom_marquee.dart';
 import '/utils/youtube_share_manager.dart';
 
@@ -52,52 +53,41 @@ class AlbumScreen extends StatelessWidget {
             Obx(
               () => albumController.isContentFetched.isTrue
                   ? Positioned(
-                      top: landscape
-                          ? 0
-                          : -.25 * albumController.scrollOffset.value,
+                      top: 0,
                       right: landscape ? 0 : null,
-                      child: Obx(() {
-                        final opacityValue = 1 -
-                            albumController.scrollOffset.value /
-                                (size.width - 100);
-                        return Opacity(
-                            opacity: opacityValue < 0 ||
-                                    albumController.isSearchingOn.isTrue
-                                ? 0
-                                : opacityValue,
-                            child: DecoratedBox(
-                                position: DecorationPosition.foreground,
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Theme.of(context).canvasColor,
-                                      spreadRadius: 200,
-                                      blurRadius: 100,
-                                      offset: Offset(-size.height, 0),
-                                    ),
-                                    BoxShadow(
-                                      color: Theme.of(context).canvasColor,
-                                      spreadRadius: 200,
-                                      blurRadius: 100,
-                                      offset: Offset(
-                                          0,
-                                          landscape
-                                              ? size.height
-                                              : size.width + 80),
-                                    )
-                                  ],
-                                ),
-                                child: CachedNetworkImage(
-                                  imageUrl: Thumbnail(albumController
-                                          .album.value.thumbnailUrl)
-                                      .extraHigh,
-                                  fit: landscape
-                                      ? BoxFit.fitHeight
-                                      : BoxFit.fitWidth,
-                                  width: landscape ? null : size.width,
-                                  height: landscape ? size.height : null,
-                                )));
-                      }))
+                      child: DecoratedBox(
+                        position: DecorationPosition.foreground,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Theme.of(context).canvasColor,
+                              spreadRadius: 200,
+                              blurRadius: 100,
+                              offset: Offset(-size.height, 0),
+                            ),
+                            BoxShadow(
+                              color: Theme.of(context).canvasColor,
+                              spreadRadius: 200,
+                              blurRadius: 100,
+                              offset: Offset(
+                                  0,
+                                  landscape
+                                      ? size.height
+                                      : size.width + 80),
+                            )
+                          ],
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: Thumbnail(albumController
+                                  .album.value.thumbnailUrl)
+                              .extraHigh,
+                          fit: landscape
+                              ? BoxFit.fitHeight
+                              : BoxFit.fitWidth,
+                          width: landscape ? null : size.width,
+                          height: landscape ? size.height : null,
+                        ),
+                      ))
                   : SizedBox(
                       height: size.width,
                       width: size.width,
@@ -139,6 +129,22 @@ class AlbumScreen extends StatelessWidget {
                             ),
                           ),
                         ),
+                        // Offline banner chip
+                        Obx(() => albumController.isOffline.isTrue
+                            ? const Padding(
+                                padding: EdgeInsets.only(right: 8),
+                                child: Chip(
+                                  label: Text('Sin conexión',
+                                      style: TextStyle(
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w600)),
+                                  avatar: Icon(Icons.wifi_off_rounded,
+                                      size: 14),
+                                  visualDensity: VisualDensity.compact,
+                                  padding: EdgeInsets.zero,
+                                ),
+                              )
+                            : const SizedBox.shrink()),
                       ],
                     ),
                   ),
@@ -412,21 +418,33 @@ class AlbumScreen extends StatelessWidget {
                               return Padding(
                                 padding:
                                     const EdgeInsets.only(left: 20.0, right: 5),
-                                child: SongListTile(
-                                    onTap: () {
-                                      playerController.playPlayListSong(
-                                          List<MediaItem>.from(
-                                              albumController.songList),
-                                          index - 3,
-                                          playfrom: PlaylingFrom(
-                                              name: albumController
-                                                  .album.value.title,
-                                              type: PlaylingFromType.ALBUM));
-                                    },
-                                    song: albumController.songList[index - 3],
-                                    isPlaylistOrAlbum: true,
-                                    thumbReplacementWithIndex: true,
-                                    index: index - 2),
+                                child: Obx(() {
+                                  final song = albumController.songList[index - 3];
+                                  final isDownloaded = Hive.box('SongDownloads').containsKey(song.id);
+                                  final isOffline = albumController.isOffline.isTrue;
+                                  final disabled = isOffline && !isDownloaded;
+                                  return Opacity(
+                                    opacity: disabled ? 0.38 : 1.0,
+                                    child: AbsorbPointer(
+                                      absorbing: disabled,
+                                      child: SongListTile(
+                                          onTap: () {
+                                            playerController.playPlayListSong(
+                                                List<MediaItem>.from(
+                                                    albumController.songList),
+                                                index - 3,
+                                                playfrom: PlaylingFrom(
+                                                    name: albumController
+                                                        .album.value.title,
+                                                    type: PlaylingFromType.ALBUM));
+                                          },
+                                          song: song,
+                                          isPlaylistOrAlbum: true,
+                                          thumbReplacementWithIndex: true,
+                                          index: index - 2),
+                                    ),
+                                  );
+                                }),
                               );
                             },
                           ),

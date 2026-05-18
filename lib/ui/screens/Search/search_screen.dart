@@ -113,18 +113,33 @@ class _SearchBarSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
+    return SliverPersistentHeader(
       pinned: true,
       floating: true,
-      backgroundColor: Colors.transparent,
-      surfaceTintColor: Colors.transparent,
-      shadowColor: Colors.transparent,
-      elevation: 0,
-      scrolledUnderElevation: 0,
-      titleSpacing: 16,
-      toolbarHeight: 76,
-      automaticallyImplyLeading: false,
-      title: ClipRRect(
+      delegate: _SearchBarDelegate(controller: controller),
+    );
+  }
+}
+
+class _SearchBarDelegate extends SliverPersistentHeaderDelegate {
+  final SearchScreenController controller;
+
+  const _SearchBarDelegate({required this.controller});
+
+  @override
+  double get minExtent => 76;
+  @override
+  double get maxExtent => 76;
+
+  @override
+  bool shouldRebuild(covariant _SearchBarDelegate oldDelegate) => false;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: ClipRRect(
         borderRadius: BorderRadius.circular(28),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
@@ -132,8 +147,8 @@ class _SearchBarSliver extends StatelessWidget {
             height: 56,
             decoration: BoxDecoration(
               color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.black.withValues(alpha: 0.15)
-                  : Colors.white.withValues(alpha: 0.25),
+                  ? Colors.black.withValues(alpha: 0.18)
+                  : Colors.white.withValues(alpha: 0.30),
               borderRadius: BorderRadius.circular(28),
               border: Border.all(
                 color: Theme.of(context).brightness == Brightness.dark
@@ -147,7 +162,10 @@ class _SearchBarSliver extends StatelessWidget {
                 const SizedBox(width: 18),
                 Icon(
                   Icons.search_rounded,
-                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.65),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSurface
+                      .withValues(alpha: 0.65),
                   size: 22,
                 ),
                 const SizedBox(width: 12),
@@ -175,10 +193,14 @@ class _SearchBarSliver extends StatelessWidget {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       isDense: true,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 14),
+                      contentPadding:
+                          const EdgeInsets.symmetric(vertical: 14),
                       hintText: S.current.searchDes,
                       hintStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.4),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withValues(alpha: 0.4),
                         fontSize: 15,
                       ),
                     ),
@@ -190,7 +212,10 @@ class _SearchBarSliver extends StatelessWidget {
                         highlightColor: Colors.transparent,
                         icon: Icon(
                           Icons.close_rounded,
-                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withValues(alpha: 0.6),
                           size: 20,
                         ),
                         onPressed: controller.reset,
@@ -203,7 +228,10 @@ class _SearchBarSliver extends StatelessWidget {
                             highlightColor: Colors.transparent,
                             icon: Icon(
                               Icons.mic_rounded,
-                              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurface
+                                  .withValues(alpha: 0.7),
                               size: 22,
                             ),
                             onPressed: () {
@@ -211,7 +239,8 @@ class _SearchBarSliver extends StatelessWidget {
                                 context: context,
                                 isScrollControlled: true,
                                 backgroundColor: Colors.transparent,
-                                builder: (context) => const MusicRecognitionBottomSheet(),
+                                builder: (context) =>
+                                    const MusicRecognitionBottomSheet(),
                               );
                             },
                           ),

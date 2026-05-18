@@ -5,6 +5,7 @@ import 'package:harmonymusic/models/artist.dart';
 
 import 'package:harmonymusic/ui/screens/Artists/artist_screen.dart';
 import 'package:harmonymusic/ui/screens/Home/home_screen.dart';
+import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
 
 import 'screens/Album/album_screen.dart';
 import 'screens/Playlist/playlist_screen.dart';
@@ -25,6 +26,40 @@ class ScreenNavigationSetup {
   static const playlistScreen = '/playlistScreen';
 }
 
+class ScreenNavigationObserver extends NavigatorObserver {
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    super.didPop(route, previousRoute);
+    _updateNavbar();
+  }
+
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    super.didPush(route, previousRoute);
+    _updateNavbar();
+  }
+
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    super.didRemove(route, previousRoute);
+    _updateNavbar();
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    _updateNavbar();
+  }
+
+  void _updateNavbar() {
+    try {
+      if (Get.isRegistered<HomeScreenController>()) {
+        Get.find<HomeScreenController>().whenHomeScreenOnTop();
+      }
+    } catch (_) {}
+  }
+}
+
 class ScreenNavigation extends StatelessWidget {
   const ScreenNavigation({super.key});
 
@@ -33,6 +68,7 @@ class ScreenNavigation extends StatelessWidget {
     return Navigator(
         key: Get.nestedKey(ScreenNavigationSetup.id),
         initialRoute: '/homeScreen',
+        observers: [ScreenNavigationObserver()],
         onGenerateRoute: (settings) {
           Get.routing.args = settings.arguments;
           switch (settings.name) {

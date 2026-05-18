@@ -152,16 +152,16 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
         padding: const EdgeInsets.all(24.0),
         decoration: BoxDecoration(
           color: brightness == Brightness.dark
-              ? Colors.black.withOpacity(0.65)
-              : Colors.white.withOpacity(0.75),
+              ? Colors.black.withValues(alpha: 0.65)
+              : Colors.white.withValues(alpha: 0.75),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(32),
             topRight: Radius.circular(32),
           ),
           border: Border.all(
             color: brightness == Brightness.dark
-                ? Colors.white.withOpacity(0.08)
-                : Colors.black.withOpacity(0.05),
+                ? Colors.white.withValues(alpha: 0.08)
+                : Colors.black.withValues(alpha: 0.05),
             width: 1.0,
           ),
         ),
@@ -175,7 +175,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.onSurface.withOpacity(0.2),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -215,7 +215,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
           S.current.musicRecognition,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
-            color: theme.colorScheme.onSurface.withOpacity(0.6),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
         ),
         const SizedBox(height: 8),
@@ -245,7 +245,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: theme.colorScheme.primary.withOpacity(0.3),
+                        color: theme.colorScheme.primary.withValues(alpha: 0.3),
                         blurRadius: 20,
                         spreadRadius: 5,
                       ),
@@ -266,7 +266,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
           S.current.micInstruction,
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withOpacity(0.55),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.55),
           ),
         ),
         const SizedBox(height: 20),
@@ -299,7 +299,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
           S.current.shazamSearching,
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withOpacity(0.6),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
         ),
         const SizedBox(height: 20),
@@ -332,7 +332,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
               borderRadius: BorderRadius.circular(24),
               boxShadow: [
                 BoxShadow(
-                  color: theme.colorScheme.primary.withOpacity(0.25),
+                  color: theme.colorScheme.primary.withValues(alpha: 0.25),
                   blurRadius: 30,
                   spreadRadius: 2,
                 ),
@@ -345,16 +345,16 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
                       imageUrl: coverUrl,
                       fit: BoxFit.cover,
                       placeholder: (context, url) => Container(
-                        color: theme.colorScheme.onSurface.withOpacity(0.08),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.08),
                         child: const Center(child: CircularProgressIndicator()),
                       ),
                       errorWidget: (context, url, error) => Container(
-                        color: theme.colorScheme.onSurface.withOpacity(0.08),
+                        color: theme.colorScheme.onSurface.withValues(alpha: 0.08),
                         child: Icon(Icons.music_note, size: 50, color: theme.colorScheme.primary),
                       ),
                     )
                   : Container(
-                      color: theme.colorScheme.onSurface.withOpacity(0.08),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.08),
                       child: Icon(Icons.music_note, size: 50, color: theme.colorScheme.primary),
                     ),
             ),
@@ -379,7 +379,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
           overflow: TextOverflow.ellipsis,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
-            color: theme.colorScheme.onSurface.withOpacity(0.7),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
           ),
         ),
         if (_result!.album != null && _result!.album!.isNotEmpty) ...[
@@ -390,7 +390,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.45),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.45),
             ),
           ),
         ],
@@ -437,7 +437,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  side: BorderSide(color: theme.colorScheme.outline.withOpacity(0.4)),
+                  side: BorderSide(color: theme.colorScheme.outline.withValues(alpha: 0.4)),
                 ),
                 icon: const Icon(Icons.search_rounded),
                 label: Text(S.current.searchInLibrary),
@@ -457,7 +457,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
         Icon(
           Icons.sentiment_dissatisfied_rounded,
           size: 72,
-          color: theme.colorScheme.error.withOpacity(0.7),
+          color: theme.colorScheme.error.withValues(alpha: 0.7),
         ),
         const SizedBox(height: 16),
         Text(
@@ -472,7 +472,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
           S.current.noMatchInstruction,
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.colorScheme.onSurface.withOpacity(0.6),
+            color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
           ),
         ),
         const SizedBox(height: 32),
@@ -534,7 +534,7 @@ class _MusicRecognitionBottomSheetState extends State<MusicRecognitionBottomShee
             _errorMessage,
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.7),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
         ),
@@ -630,7 +630,7 @@ class RipplePainter extends CustomPainter {
   void circle(Canvas canvas, Rect rect, double value) {
     final double opacity = (1.0 - (value / 4.0)).clamp(0.0, 1.0);
     final Paint paint = Paint()
-      ..color = color.withOpacity(opacity * 0.25)
+      ..color = color.withValues(alpha: opacity * 0.25)
       ..style = PaintingStyle.fill;
 
     final double radius = rect.width / 2 * (value / 4.0);

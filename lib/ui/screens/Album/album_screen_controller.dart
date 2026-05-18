@@ -23,6 +23,7 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
   final album =
       Album(title: "", browseId: "", thumbnailUrl: "", artists: []).obs;
   final isOfflineAlbum = false.obs;
+  // isOffline is inherited from PlaylistAlbumScreenControllerBase
 
   // Title animation
   late AnimationController _animationController;
@@ -62,10 +63,9 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
         album.value = album_;
         animationController.forward();
       }
-      // Check if the album is offline
       if (!wasInLibrary) {
-        // Fetch album details online
-        final isPodcast = album_?.isPodcast == true || albumId.startsWith('MPSP');
+        final isPodcast =
+            album_?.isPodcast == true || albumId.startsWith('MPSP');
         final content = isPodcast
             ? await musicServices.podcast(albumId)
             : await musicServices.getPlaylistOrAlbumSongs(albumId: albumId);
@@ -73,41 +73,50 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
         album.value = Album.fromJson(content);
         animationController.forward();
         songList.value = List<MediaItem>.from(content['tracks'] ?? []);
+        // Cache the thumbnail URL for offline
+        _cacheAlbumThumbnail(albumId, album.value.thumbnailUrl);
       } else {
-        // If the album is offline, fetch the songs from the local database
-        // Album details are already fetched in _checkIfAddedToLibrary method
+        // Album details already loaded via checkIfAddedToLibrary
         final box = await Hive.openBox(albumId);
         songList.value = box.values
             .map<MediaItem?>((item) => MediaItemBuilder.fromJson(item))
             .whereType<MediaItem>()
             .toList();
+        _cacheAlbumThumbnail(albumId, album.value.thumbnailUrl);
       }
       checkDownloadStatus();
     } on NetworkError catch (error) {
       printERROR("Error fetching album details: $error");
-      final recoveredAlbum = await catalogRecoveryService.findSimilarAlbum(
-        title: _albumTitleHint(),
-        artistName: _albumArtistHint(),
-      );
-      if (recoveredAlbum != null && recoveredAlbum.browseId != albumId) {
-        final content = await musicServices.getPlaylistOrAlbumSongs(
-          albumId: recoveredAlbum.browseId,
+      if (wasInLibrary) {
+        // Library songs loaded — try catalog recovery
+        final recoveredAlbum = await catalogRecoveryService.findSimilarAlbum(
+          title: _albumTitleHint(),
+          artistName: _albumArtistHint(),
         );
-        content['browseId'] = recoveredAlbum.browseId;
-        album.value = Album.fromJson(content);
-        animationController.forward();
-        songList.value = List<MediaItem>.from(content['tracks']);
-        if (wasInLibrary) {
-          await catalogRecoveryService.persistRecoveredAlbum(
-            oldBrowseId: albumId,
-            album: album.value,
-            tracks: songList.toList(),
-          );
+        if (recoveredAlbum != null && recoveredAlbum.browseId != albumId) {
+          try {
+            final content = await musicServices.getPlaylistOrAlbumSongs(
+              albumId: recoveredAlbum.browseId,
+            );
+            content['browseId'] = recoveredAlbum.browseId;
+            album.value = Album.fromJson(content);
+            animationController.forward();
+            songList.value = List<MediaItem>.from(content['tracks']);
+            await catalogRecoveryService.persistRecoveredAlbum(
+              oldBrowseId: albumId,
+              album: album.value,
+              tracks: songList.toList(),
+            );
+            checkDownloadStatus();
+            return;
+          } catch (_) {}
         }
-        checkDownloadStatus();
+        // Fall through to offline mode using library songs
+        await _loadOfflineMode(albumId);
+      } else {
+        await _loadOfflineMode(albumId);
       }
     } catch (e) {
-      // Handle any errors that occur during the fetch
       printERROR("Error fetching album details: $e");
     } finally {
       isContentFetched.value = true;
@@ -121,6 +130,56 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
   String _albumArtistHint() {
     final artistName = album.value.artists?.firstOrNull?['name']?.toString();
     return artistName?.trim() ?? '';
+  }
+
+  /// Saves album thumbnail URL to Hive for offline access
+  Future<void> _cacheAlbumThumbnail(String albumId, String url) async {
+    if (url.isEmpty) return;
+    try {
+      final box = await Hive.openBox('AlbumThumbnails');
+      box.put(albumId, url);
+    } catch (_) {}
+  }
+
+  /// Loads offline mode: fills songList from SongDownloads filtered by album
+  Future<void> _loadOfflineMode(String albumId) async {
+    isOffline.value = true;
+
+    // Restore thumbnail from Hive cache
+    try {
+      final box = await Hive.openBox('AlbumThumbnails');
+      final cachedUrl = box.get(albumId, defaultValue: '') as String;
+      if (cachedUrl.isNotEmpty && album.value.thumbnailUrl.isEmpty) {
+        album.value = Album(
+          browseId: album.value.browseId,
+          title: album.value.title,
+          thumbnailUrl: cachedUrl,
+          artists: album.value.artists ?? [],
+        );
+      }
+    } catch (_) {}
+
+    // Load downloaded songs matching this album
+    try {
+      final dlBox = Hive.box('SongDownloads');
+      final albumTitle = _albumTitleHint().toLowerCase();
+      final List<MediaItem> downloaded = [];
+      for (final value in dlBox.values) {
+        if (value is! Map) continue;
+        final songAlbum = (value['album'] as String?)?.toLowerCase() ?? '';
+        if (albumTitle.isEmpty || songAlbum.contains(albumTitle)) {
+          final item = MediaItemBuilder.fromJson(value);
+          downloaded.add(item);
+        }
+      }
+      if (downloaded.isNotEmpty) {
+        songList.value = downloaded;
+      }
+    } catch (e) {
+      printERROR('Error loading offline album songs: $e');
+    }
+
+    checkDownloadStatus();
   }
 
   @override
