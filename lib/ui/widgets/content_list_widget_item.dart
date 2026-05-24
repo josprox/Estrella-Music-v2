@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:audio_service/audio_service.dart';
+import 'package:hive/hive.dart';
 
 import '../navigator.dart';
 import 'image_widget.dart';
+import 'hover_card_wrapper.dart';
+import '../../models/playling_from.dart';
+import '../../models/media_Item_builder.dart';
+import '../../services/music_service.dart';
+import '../../ui/player/player_controller.dart';
+import '../../utils/helper.dart';
 
 class ContentListItem extends StatelessWidget {
   final double? width;
@@ -59,95 +67,168 @@ class ContentListItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            isAlbum
-                ? ImageWidget(
-                    size: finalImageSize,
-                    album: content,
-                  )
-                : content.isCloudPlaylist ||
-                        !(content.playlistId == 'LIBRP' ||
-                            content.playlistId == 'LIBFAV' ||
-                            content.playlistId == 'SongsCache' ||
-                            content.playlistId == 'SongDownloads')
-                    ? SizedBox.square(
-                        dimension: finalImageSize,
-                        child: Stack(
-                          children: [
-                            ImageWidget(
-                              size: finalImageSize,
-                              playlist: content,
-                            ),
-                            if (content.isPipedPlaylist)
-                              Align(
-                                alignment: Alignment.bottomRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: 18,
-                                    width: 18,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      "P",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(fontSize: 14),
-                                    )),
-                                  ),
-                                ),
+            HoverCardWrapper(
+              borderRadius: 12.0,
+              onPlayTap: (isAlbum || !(content.playlistId == 'LIBRP' || content.playlistId == 'SongsCache'))
+                  ? () async {
+                      final playerController = Get.find<PlayerController>();
+                      final musicServices = Get.find<MusicServices>();
+                      final scaffoldMessenger = ScaffoldMessenger.of(context);
+                      try {
+                        final id = isAlbum ? content.browseId : content.playlistId;
+
+                        scaffoldMessenger.showSnackBar(
+                          SnackBar(
+                            content: Text('Cargando "${content.title}"...'),
+                            duration: const Duration(milliseconds: 1500),
+                          ),
+                        );
+
+                        if (id == 'LIBFAV' || id == 'SongDownloads') {
+                          final box = await Hive.openBox(id);
+                          final tracks = box.values
+                              .map<MediaItem?>((item) => MediaItemBuilder.fromJson(item))
+                              .whereType<MediaItem>()
+                              .toList();
+                          if (tracks.isNotEmpty) {
+                            playerController.playPlayListSong(
+                              tracks,
+                              0,
+                              playfrom: PlaylingFrom(
+                                name: content.title,
+                                type: PlaylingFromType.PLAYLIST,
                               ),
-                            if (!content.isCloudPlaylist)
-                              Align(
-                                alignment: Alignment.bottomRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: 18,
-                                    width: 18,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
+                            );
+                          }
+                          return;
+                        }
+
+                        Map<String, dynamic> data;
+                        if (isAlbum) {
+                          final isPodcast = content.isPodcast == true || id.startsWith('MPSP');
+                          data = isPodcast
+                              ? await musicServices.podcast(id)
+                              : await musicServices.getPlaylistOrAlbumSongs(albumId: id);
+                        } else {
+                          data = await musicServices.getPlaylistOrAlbumSongs(playlistId: id);
+                        }
+                        final tracks = List<MediaItem>.from(data['tracks'] ?? []);
+                        if (tracks.isNotEmpty) {
+                          playerController.playPlayListSong(
+                            tracks,
+                            0,
+                            playfrom: PlaylingFrom(
+                              name: content.title,
+                              type: isAlbum ? PlaylingFromType.ALBUM : PlaylingFromType.PLAYLIST,
+                            ),
+                          );
+                        } else {
+                          scaffoldMessenger.showSnackBar(
+                            const SnackBar(
+                              content: Text('No se encontraron canciones en esta lista.'),
+                            ),
+                          );
+                        }
+                      } catch (e) {
+                        printERROR("Failed to hover-play: $e");
+                        scaffoldMessenger.showSnackBar(
+                          const SnackBar(
+                            content: Text('Error al cargar la música.'),
+                          ),
+                        );
+                      }
+                    }
+                  : null,
+              child: isAlbum
+                  ? ImageWidget(
+                      size: finalImageSize,
+                      album: content,
+                    )
+                  : content.isCloudPlaylist ||
+                          !(content.playlistId == 'LIBRP' ||
+                              content.playlistId == 'LIBFAV' ||
+                              content.playlistId == 'SongsCache' ||
+                              content.playlistId == 'SongDownloads')
+                      ? SizedBox.square(
+                          dimension: finalImageSize,
+                          child: Stack(
+                            children: [
+                              ImageWidget(
+                                size: finalImageSize,
+                                playlist: content,
+                              ),
+                              if (content.isPipedPlaylist)
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: 18,
+                                      width: 18,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                        "P",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(fontSize: 14),
+                                      )),
                                     ),
-                                    child: Center(
-                                        child: Text(
-                                      "L",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(fontSize: 14),
-                                    )),
                                   ),
                                 ),
-                              )
-                          ],
-                        ),
-                      )
-                    : Container(
-                        height: finalImageSize,
-                        width: finalImageSize,
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColorLight,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                            child: Icon(
-                          content.playlistId == 'LIBRP'
-                              ? Icons.history
-                              : content.playlistId == 'LIBFAV'
-                                  ? Icons.favorite
-                                  : content.playlistId == 'SongsCache'
-                                      ? Icons.flight
-                                      : Icons.download,
-                          color: Colors.white,
-                          size: 40,
-                        ))),
+                              if (!content.isCloudPlaylist)
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height: 18,
+                                      width: 18,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                        "L",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(fontSize: 14),
+                                      )),
+                                    ),
+                                  ),
+                                )
+                            ],
+                          ),
+                        )
+                      : Container(
+                          height: finalImageSize,
+                          width: finalImageSize,
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColorLight,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Center(
+                              child: Icon(
+                            content.playlistId == 'LIBRP'
+                                ? Icons.history
+                                : content.playlistId == 'LIBFAV'
+                                    ? Icons.favorite
+                                    : content.playlistId == 'SongsCache'
+                                        ? Icons.flight
+                                        : Icons.download,
+                            color: Colors.white,
+                            size: 40,
+                          ))),
+            ),
             const SizedBox(height: 5),
             Expanded(
               child: Column(

@@ -6,6 +6,7 @@ import 'package:ionicons/ionicons.dart';
 import '../../widgets/custom_marquee.dart';
 import 'package:audio_service/audio_service.dart';
 import '/utils/youtube_share_manager.dart';
+import '../../widgets/up_next_queue.dart';
 
 
 import '/ui/player/components/animated_play_button.dart';
@@ -48,6 +49,7 @@ class _StandardPlayerContent extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final botPad = MediaQuery.of(context).padding.bottom;
     final artSize = (size.width * 0.82).clamp(240.0, 400.0);
+    final isWide = size.width > 800;
 
     return Obx(
       () => Opacity(
@@ -85,48 +87,149 @@ class _StandardPlayerContent extends StatelessWidget {
               ),
             ),
 
-            // ── Scrollable content ─────────────────────────────────────────
+            // ── Main Content ─────────────────────────────────────────
             SafeArea(
-              child: CustomScrollView(
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Top bar
-                          _TopBar(ctrl: ctrl, textTheme: textTheme, colorScheme: colorScheme),
-                          const SizedBox(height: 24),
+              child: isWide
+                  ? _buildWideLayout(context, size, colorScheme, textTheme)
+                  : _buildMobileLayout(context, size, colorScheme, textTheme, botPad, artSize),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-                          // Album art — centered
-                          Center(child: _AlbumArt(song: song, artSize: artSize)),
-                          const SizedBox(height: 36),
+  Widget _buildMobileLayout(
+      BuildContext context, Size size, ColorScheme colorScheme, TextTheme textTheme, double botPad, double artSize) {
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Top bar
+                _TopBar(ctrl: ctrl, textTheme: textTheme, colorScheme: colorScheme),
+                const SizedBox(height: 24),
 
-                          // Song info + fav
-                          _SongInfo(song: song, ctrl: ctrl, colorScheme: colorScheme, textTheme: textTheme),
-                          const SizedBox(height: 28),
+                // Album art — centered
+                Center(child: _AlbumArt(song: song, artSize: artSize)),
+                const SizedBox(height: 36),
 
-                          // Progress bar
-                          _ProgressBar(ctrl: ctrl, colorScheme: colorScheme, textTheme: textTheme),
-                          const SizedBox(height: 20),
+                // Song info + fav
+                _SongInfo(song: song, ctrl: ctrl, colorScheme: colorScheme, textTheme: textTheme),
+                const SizedBox(height: 28),
 
-                          // Transport controls
-                          _TransportControls(ctrl: ctrl, colorScheme: colorScheme),
-                          const SizedBox(height: 36),
+                // Progress bar
+                _ProgressBar(ctrl: ctrl, colorScheme: colorScheme, textTheme: textTheme),
+                const SizedBox(height: 20),
 
-                          // Secondary actions row
-                          _SecondaryActions(ctrl: ctrl, colorScheme: colorScheme),
-                          const SizedBox(height: 32),
+                // Transport controls
+                _TransportControls(ctrl: ctrl, colorScheme: colorScheme),
+                const SizedBox(height: 36),
 
-                          // Lyrics card
-                          _LyricsCard(ctrl: ctrl, colorScheme: colorScheme, textTheme: textTheme),
-                          SizedBox(height: botPad + 64),
+                // Secondary actions row
+                _SecondaryActions(ctrl: ctrl, colorScheme: colorScheme),
+                const SizedBox(height: 32),
+
+                // Lyrics card
+                _LyricsCard(ctrl: ctrl, colorScheme: colorScheme, textTheme: textTheme),
+                SizedBox(height: botPad + 64),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildWideLayout(
+      BuildContext context, Size size, ColorScheme colorScheme, TextTheme textTheme) {
+    final double artSize = (size.height * 0.45).clamp(240.0, 360.0);
+    return DefaultTabController(
+      length: 2,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Left column: Album Art and details
+            Expanded(
+              flex: 4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: _AlbumArt(song: song, artSize: artSize)),
+                  const SizedBox(height: 24),
+                  _SongInfo(song: song, ctrl: ctrl, colorScheme: colorScheme, textTheme: textTheme),
+                  const SizedBox(height: 24),
+                  _SecondaryActions(ctrl: ctrl, colorScheme: colorScheme),
+                ],
+              ),
+            ),
+            const SizedBox(width: 48),
+            // Right column: Tabbed section for Lyrics / Queue, and Controls
+            Expanded(
+              flex: 6,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // TabBar + Close Button Row
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TabBar(
+                        isScrollable: true,
+                        tabAlignment: TabAlignment.start,
+                        dividerColor: Colors.transparent,
+                        indicatorColor: colorScheme.primary,
+                        labelColor: colorScheme.onSurface,
+                        unselectedLabelColor: colorScheme.onSurfaceVariant,
+                        indicatorSize: TabBarIndicatorSize.label,
+                        tabs: [
+                          Tab(text: S.current.upNext),
+                          Tab(text: S.current.lyrics),
                         ],
+                      ),
+                      // Collapse button
+                      IconButton(
+                        onPressed: ctrl.playerPanelController.close,
+                        icon: const Icon(Icons.keyboard_arrow_down_rounded, size: 30),
+                        tooltip: S.current.back,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  // Tab content container
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: Container(
+                        color: colorScheme.surfaceContainerHigh.withValues(alpha: 0.4),
+                        child: const TabBarView(
+                          children: [
+                            // Tab 1: Play Queue
+                            UpNextQueue(
+                              isQueueInSlidePanel: false,
+                            ),
+                            // Tab 2: Synced Lyrics
+                            LyricsWidget(
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                              isFull: true,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
+                  const SizedBox(height: 24),
+                  // Progress Bar
+                  _ProgressBar(ctrl: ctrl, colorScheme: colorScheme, textTheme: textTheme),
+                  const SizedBox(height: 16),
+                  // Transport controls
+                  _TransportControls(ctrl: ctrl, colorScheme: colorScheme),
                 ],
               ),
             ),

@@ -6,6 +6,7 @@ import '../../models/artist.dart';
 import '../navigator.dart';
 import '/ui/widgets/content_list_widget_item.dart';
 import 'image_widget.dart';
+import 'hover_card_wrapper.dart';
 import '/ui/theme/app_spacing.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 
@@ -143,7 +144,10 @@ class _ArtistListItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ImageWidget(size: 120, artist: content),
+            HoverCardWrapper(
+              isCircle: true,
+              child: ImageWidget(size: 120, artist: content),
+            ),
             const SizedBox(height: AppSpacing.sm),
             Text(
               content.name,

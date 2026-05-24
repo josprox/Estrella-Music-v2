@@ -86,7 +86,9 @@ class _UpNextQueueState extends State<UpNextQueue> {
   Widget build(BuildContext context) {
     // NOTE: No auto-scroll here — it only triggers via the index subscription above
     return Container(
-      color: Theme.of(context).bottomSheetTheme.backgroundColor,
+      color: widget.isQueueInSlidePanel
+          ? Theme.of(context).bottomSheetTheme.backgroundColor
+          : Colors.transparent,
       child: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
           if (notification is ScrollStartNotification) {

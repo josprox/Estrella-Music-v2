@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '/models/quick_picks.dart';
 import '../player/player_controller.dart';
 import 'image_widget.dart';
+import 'hover_card_wrapper.dart';
 import 'songinfo_bottom_sheet.dart';
 import '../../utils/l10n_extensions.dart';
 import 'song_status_badges.dart';
@@ -101,9 +102,15 @@ class QuickPicksWidget extends StatelessWidget {
                                           ]
                                         : null,
                                   ),
-                                  child: ImageWidget(
-                                    song: content.songList[item],
-                                    size: 55,
+                                  child: HoverCardWrapper(
+                                    borderRadius: 8.0,
+                                    onPlayTap: () {
+                                      playerController.pushSongToQueue(content.songList[item]);
+                                    },
+                                    child: ImageWidget(
+                                      song: content.songList[item],
+                                      size: 55,
+                                    ),
                                   ),
                                 ),
                               ),
