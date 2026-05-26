@@ -497,14 +497,16 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         }
 
         if (restoreSession) {
-          if (!GetPlatform.isDesktop) {
-            final position = extras['position'];
-            await _player.load();
-            await _player.seek(
-              Duration(
-                milliseconds: position,
-              ),
-            );
+          final position = extras['position'];
+          await _player.load();
+          await _player.seek(
+            Duration(
+              milliseconds: position,
+            ),
+          );
+          if (GetPlatform.isDesktop) {
+            await _player.pause();
+          } else {
             await _player.seek(
               Duration(
                 milliseconds: position,

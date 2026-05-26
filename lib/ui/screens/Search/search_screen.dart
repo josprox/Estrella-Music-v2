@@ -263,6 +263,10 @@ class _ExpressiveGridCategoriesSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final crossAxisCount = width > 1200 ? 5 : (width > 800 ? 3 : 2);
+    final childAspectRatio = width > 800 ? 1.8 : 1.6;
+
     return Obx(() {
       if (controller.searchText.value.isNotEmpty) {
         return const SliverToBoxAdapter(child: SizedBox.shrink());
@@ -270,86 +274,22 @@ class _ExpressiveGridCategoriesSliver extends StatelessWidget {
       return SliverPadding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
         sliver: SliverGrid(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
             mainAxisSpacing: 12,
             crossAxisSpacing: 12,
-            childAspectRatio: 1.6,
+            childAspectRatio: childAspectRatio,
           ),
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               final category = controller.categories[index];
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(ScreenNavigationSetup.searchResultScreen,
-                          id: ScreenNavigationSetup.id, arguments: category.name);
-                      controller.addToHistryQueryList(category.name);
-                    },
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        // Background Image
-                        Image.network(
-                          category.imageUrl,
-                          fit: BoxFit.cover,
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Container(
-                              color: category.color.withValues(alpha: 0.2),
-                            );
-                          },
-                          errorBuilder: (context, error, stackTrace) {
-                            return Container(
-                              color: category.color.withValues(alpha: 0.25),
-                            );
-                          },
-                        ),
-                        // Gradient Overlay matching Category color
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topRight,
-                              colors: [
-                                category.color.withValues(alpha: 0.85),
-                                category.color.withValues(alpha: 0.25),
-                              ],
-                            ),
-                          ),
-                        ),
-                        // Text label
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              category.name,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: -0.3,
-                                shadows: [
-                                  Shadow(
-                                    color: Colors.black38,
-                                    blurRadius: 6,
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              return _CategoryCard(
+                category: category,
+                onTap: () {
+                  Get.toNamed(ScreenNavigationSetup.searchResultScreen,
+                      id: ScreenNavigationSetup.id, arguments: category.name);
+                  controller.addToHistryQueryList(category.name);
+                },
               );
             },
             childCount: controller.categories.length,
@@ -357,6 +297,117 @@ class _ExpressiveGridCategoriesSliver extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class _CategoryCard extends StatefulWidget {
+  final SearchCategory category;
+  final VoidCallback onTap;
+
+  const _CategoryCard({required this.category, required this.onTap});
+
+  @override
+  State<_CategoryCard> createState() => _CategoryCardState();
+}
+
+class _CategoryCardState extends State<_CategoryCard> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedScale(
+        scale: _isHovered ? 1.04 : 1.0,
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeOutBack,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 250),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: _isHovered
+                ? [
+                    BoxShadow(
+                      color: widget.category.color.withValues(alpha: 0.35),
+                      blurRadius: 16,
+                      offset: const Offset(0, 6),
+                    )
+                  ]
+                : [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.08),
+                      blurRadius: 6,
+                      offset: const Offset(0, 2),
+                    )
+                  ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: InkWell(
+              onTap: widget.onTap,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Background Image
+                  Image.network(
+                    widget.category.imageUrl,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(
+                        color: widget.category.color.withValues(alpha: 0.2),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: widget.category.color.withValues(alpha: 0.25),
+                      );
+                    },
+                  ),
+                  // Gradient Overlay matching Category color
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 250),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        colors: [
+                          widget.category.color.withValues(alpha: _isHovered ? 0.90 : 0.80),
+                          widget.category.color.withValues(alpha: _isHovered ? 0.35 : 0.20),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        widget.category.name,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.3,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black45,
+                              blurRadius: 8,
+                              offset: Offset(0, 2),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

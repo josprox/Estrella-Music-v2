@@ -24,7 +24,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 
 class SettingsScreenController extends GetxController {
-  late String _supportDir;
+  String _supportDir = "";
   final cacheSongs = false.obs;
   final setBox = Hive.box("AppPrefs");
   final themeModetype = ThemeType.dynamic.obs;

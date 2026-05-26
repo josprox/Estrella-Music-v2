@@ -85,38 +85,43 @@ class SettingsTile extends StatelessWidget {
     this.onTap,
     this.isThreeLine = false,
   });
-
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final tt = Theme.of(context).textTheme;
 
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-      onTap: onTap,
-      isThreeLine: isThreeLine,
-      leading: leadingIcon != null
-          ? Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: cs.secondaryContainer,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(leadingIcon, color: cs.onSecondaryContainer, size: 18),
-            )
-          : null,
-      title: Text(title, style: tt.bodyLarge?.copyWith(fontWeight: FontWeight.w500)),
-      subtitle: subtitle != null
-          ? Text(
-              subtitle!,
-              style: tt.bodySmall?.copyWith(
-                color: cs.onSurfaceVariant,
-                height: 1.4,
-              ),
-            )
-          : null,
-      trailing: trailing,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+      child: ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        hoverColor: cs.primary.withValues(alpha: 0.08),
+        splashColor: cs.primary.withValues(alpha: 0.12),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        onTap: onTap,
+        isThreeLine: isThreeLine,
+        leading: leadingIcon != null
+            ? Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: cs.secondaryContainer,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(leadingIcon, color: cs.onSecondaryContainer, size: 18),
+              )
+            : null,
+        title: Text(title, style: tt.bodyLarge?.copyWith(fontWeight: FontWeight.w600, letterSpacing: 0.1)),
+        subtitle: subtitle != null
+            ? Text(
+                subtitle!,
+                style: tt.bodySmall?.copyWith(
+                  color: cs.onSurfaceVariant.withValues(alpha: 0.8),
+                  height: 1.4,
+                ),
+              )
+            : null,
+        trailing: trailing,
+      ),
     );
   }
 }

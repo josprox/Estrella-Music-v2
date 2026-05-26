@@ -14,6 +14,10 @@ class ThemeController extends GetxController {
   final platform = const MethodChannel('win_titlebar_color');
   String? currentSongId;
   late Brightness systemBrightness;
+  ThemeType? _lastThemeType;
+  Brightness? _lastBrightness;
+  Color? _lastPrimaryColor;
+  ColorScheme? _lastDynamicColors;
 
   ThemeController() {
     systemBrightness =
@@ -55,6 +59,20 @@ class ThemeController extends GetxController {
 
     // Prioritize song's dominant color palette (primaryColor) over system dynamic colors when a song is active
     final finalDynamicColors = (currentSongId != null) ? null : dynamicColors;
+
+    // Check if parameters changed to avoid infinite post-frame rebuild loops
+    if (_lastThemeType == themeType &&
+        _lastBrightness == brightness &&
+        _lastPrimaryColor == primaryColor.value &&
+        _lastDynamicColors == finalDynamicColors &&
+        themedata.value != null) {
+      return;
+    }
+
+    _lastThemeType = themeType;
+    _lastBrightness = brightness;
+    _lastPrimaryColor = primaryColor.value;
+    _lastDynamicColors = finalDynamicColors;
 
     themedata.value = _buildThemeData(
       primaryColor.value, 

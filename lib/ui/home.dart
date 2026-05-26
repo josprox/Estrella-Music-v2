@@ -66,158 +66,153 @@ class Home extends StatelessWidget {
           }
         }
       },
-      child: CallbackShortcuts(
-        bindings: {
-          LogicalKeySet(LogicalKeyboardKey.space): playerController.playPause
-        },
-        child: Obx(
-          () => Scaffold(
-              extendBody: true, // Allow liquid glass to overlay content
-              bottomNavigationBar: (isWideScreen)
-                  ? null
-                  : ScrollToHideWidget(
-                      isVisible: homeScreenController.isHomeSreenOnTop.isTrue &&
-                          playerController.isPanelGTHOpened.isFalse,
-                      child: const BottomNavBar()),
-              key: playerController.homeScaffoldkey,
-              endDrawer: GetPlatform.isDesktop || isWideScreen
-                  ? Container(
-                      constraints: const BoxConstraints(maxWidth: 600),
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10)),
-                        border: Border(
-                          left: BorderSide(
-                              color: Theme.of(context).colorScheme.secondary),
-                          top: BorderSide(
-                              color: Theme.of(context).colorScheme.secondary),
-                        ),
+      child: Obx(
+        () => Scaffold(
+            extendBody: true, // Allow liquid glass to overlay content
+            bottomNavigationBar: (isWideScreen)
+                ? null
+                : ScrollToHideWidget(
+                    isVisible: homeScreenController.isHomeSreenOnTop.isTrue &&
+                        playerController.isPanelGTHOpened.isFalse,
+                    child: const BottomNavBar()),
+            key: playerController.homeScaffoldkey,
+            endDrawer: GetPlatform.isDesktop || isWideScreen
+                ? Container(
+                    constraints: const BoxConstraints(maxWidth: 600),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10)),
+                      border: Border(
+                        left: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary),
+                        top: BorderSide(
+                            color: Theme.of(context).colorScheme.secondary),
                       ),
-                      margin: const EdgeInsets.only(
-                        top: 5,
-                        bottom: 106,
-                      ),
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 60,
-                              child: ColoredBox(
-                                color: Theme.of(context).canvasColor,
-                                child: Center(
-                                    child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 15.0, right: 15),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                          "${playerController.currentQueue.length} ${S.current.songs}"),
-                                      Text(
-                                        S.current.upNext,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleLarge,
-                                      ),
-                                      Row(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              playerController
-                                                  .toggleQueueLoopMode();
-                                            },
-                                            child: Obx(
-                                              () => Container(
-                                                height: 30,
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 20),
-                                                decoration: BoxDecoration(
-                                                  color: playerController
-                                                          .isQueueLoopModeEnabled
-                                                          .isFalse
-                                                      ? Colors.white24
-                                                      : Colors.white.withValues(
-                                                          alpha: 0.8),
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: Center(
-                                                    child:
-                                                        Text(S.current.queueLoop)),
+                    ),
+                    margin: const EdgeInsets.only(
+                      top: 5,
+                      bottom: 106,
+                    ),
+                    child: SizedBox(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 60,
+                            child: ColoredBox(
+                              color: Theme.of(context).canvasColor,
+                              child: Center(
+                                  child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 15.0, right: 15),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                        "${playerController.currentQueue.length} ${S.current.songs}"),
+                                    Text(
+                                      S.current.upNext,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge,
+                                    ),
+                                    Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            playerController
+                                                .toggleQueueLoopMode();
+                                          },
+                                          child: Obx(
+                                            () => Container(
+                                              height: 30,
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 20),
+                                              decoration: BoxDecoration(
+                                                color: playerController
+                                                        .isQueueLoopModeEnabled
+                                                        .isFalse
+                                                    ? Colors.white24
+                                                    : Colors.white.withValues(
+                                                        alpha: 0.8),
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
                                               ),
+                                              child: Center(
+                                                  child:
+                                                      Text(S.current.queueLoop)),
                                             ),
                                           ),
-                                          IconButton(
-                                              onPressed: () {
-                                                if (playerController
-                                                    .isShuffleModeEnabled
-                                                    .isTrue) {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(snackbar(
-                                                          context,
-                                                          S.current.queueShufflingDeniedMsg,
-                                                          size: SanckBarSize
-                                                              .BIG));
-                                                  return;
-                                                }
-                                                playerController.shuffleQueue();
-                                              },
-                                              icon: const Icon(Icons.shuffle)),
-                                          IconButton(
-                                              onPressed: () {
-                                                playerController.clearQueue();
-                                              },
-                                              icon: const Icon(
-                                                  Icons.playlist_remove)),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                )),
-                              ),
+                                        ),
+                                        IconButton(
+                                            onPressed: () {
+                                              if (playerController
+                                                  .isShuffleModeEnabled
+                                                  .isTrue) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(snackbar(
+                                                        context,
+                                                        S.current.queueShufflingDeniedMsg,
+                                                        size: SanckBarSize
+                                                            .BIG));
+                                                return;
+                                              }
+                                              playerController.shuffleQueue();
+                                            },
+                                            icon: const Icon(Icons.shuffle)),
+                                        IconButton(
+                                            onPressed: () {
+                                              playerController.clearQueue();
+                                            },
+                                            icon: const Icon(
+                                                Icons.playlist_remove)),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )),
                             ),
-                            const Expanded(
-                              child: UpNextQueue(
-                                isQueueInSlidePanel: false,
-                              ),
+                          ),
+                          const Expanded(
+                            child: UpNextQueue(
+                              isQueueInSlidePanel: false,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    )
-                  : null,
-              drawerScrimColor: Colors.transparent,
-              body: Obx(() => playerController.isPlayerVisible.value
-                  ? SlidingUpPanel(
-                      onPanelSlide: playerController.panellistener,
-                      controller: playerController.playerPanelController,
-                      minHeight: playerController.playerPanelMinHeight.value,
-                      maxHeight: size.height,
-                      isDraggable: !isWideScreen,
-                      renderPanelSheet: false,
-                      boxShadow: const [],
-                      onSwipeUp: () {
-                        playerController.queuePanelController.open();
-                      },
-                      panel: Obx(() => playerController.panelPosition.value > 0
-                          ? const Player()
-                          : const SizedBox.shrink()),
-                      body: const ScreenNavigation(),
-                      header: !isWideScreen
-                          ? InkWell(
-                              onTap: () {
-                                if (panelController.isAttached) {
+                    ),
+                  )
+                : null,
+            drawerScrimColor: Colors.transparent,
+            body: Obx(() => playerController.isPlayerVisible.value
+                ? SlidingUpPanel(
+                    onPanelSlide: playerController.panellistener,
+                    controller: playerController.playerPanelController,
+                    minHeight: playerController.playerPanelMinHeight.value,
+                    maxHeight: size.height,
+                    isDraggable: !isWideScreen,
+                    renderPanelSheet: false,
+                    boxShadow: const [],
+                    onSwipeUp: () {
+                      playerController.queuePanelController.open();
+                    },
+                    panel: Obx(() => playerController.panelPosition.value > 0
+                        ? const Player()
+                        : const SizedBox.shrink()),
+                    body: const ScreenNavigation(),
+                    header: !isWideScreen
+                        ? InkWell(
+                            onTap: () {
+                              if (panelController.isAttached) {
                                   panelController.open();
-                                }
-                              },
-                              child: const MiniPlayer(),
-                            )
-                          : const MiniPlayer(),
-                    )
-                  : const ScreenNavigation())),
-        ),
+                              }
+                            },
+                            child: const MiniPlayer(),
+                          )
+                        : const MiniPlayer(),
+                  )
+                : const ScreenNavigation())),
       ),
     );
   }

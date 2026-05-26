@@ -15,6 +15,7 @@ import '/models/quick_picks.dart';
 import '/services/music_service.dart';
 import '../Settings/settings_screen_controller.dart';
 import '/ui/widgets/new_version_dialog.dart';
+import '../../../services/app_backup_service.dart';
 
 class HomeScreenController extends GetxController {
   final MusicServices _musicServices = Get.find<MusicServices>();
@@ -51,6 +52,15 @@ class HomeScreenController extends GetxController {
     _loadCommunityPlaylists();
     _loadKeepListening();
     _loadSimilarRecommendations();
+    
+    // Delayed non-blocking automatic backup check
+    Future.delayed(const Duration(seconds: 5), () {
+      try {
+        Get.find<AppBackupService>().runAutomaticBackupIfNeeded();
+      } catch (e) {
+        printERROR("HomeScreenController: Failed to trigger auto backup: $e");
+      }
+    });
   }
 
   Future<void> _loadDailyDiscover() async {

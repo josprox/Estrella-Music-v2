@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
@@ -7,7 +8,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
 import '/ui/screens/Settings/settings_screen_controller.dart';
 import '/ui/widgets/loader.dart';
@@ -65,55 +65,13 @@ class BackupDialog extends StatelessWidget {
                                             : S.current.letsStrart,
                                 textAlign: TextAlign.center,
                               )),
-                          if (GetPlatform.isAndroid)
-                            Obx(() => (backupDialogController
-                                    .isDownloadedfilesSeclected.isTrue)
-                                ? Padding(
-                                    padding: const EdgeInsets.only(top: 8.0),
-                                    child: Text(
-                                      S.current.androidBackupWarning,
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                : const SizedBox.shrink())
                         ],
                       )
                     ],
                   )),
                 ),
               ),
-              if (!GetPlatform.isDesktop)
-                Obx(() => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Checkbox(
-                              value: backupDialogController
-                                  .isDownloadedfilesSeclected.value,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5)),
-                              onChanged:
-                                  backupDialogController.scanning.isTrue ||
-                                          backupDialogController
-                                              .backupRunning.isTrue ||
-                                          backupDialogController
-                                              .isbackupCompleted.isTrue
-                                      ? null
-                                      : (bool? value) {
-                                          backupDialogController
-                                              .isDownloadedfilesSeclected
-                                              .value = value!;
-                                        },
-                            ),
-                            Text(S.current.includeDownloadedFiles),
-                          ]),
-                    )),
+              const SizedBox(height: 8.0),
               SizedBox(
                 width: double.maxFinite,
                 child: Align(
@@ -168,26 +126,18 @@ class BackupDialogController extends GetxController {
   final scanning = false.obs;
   final isbackupCompleted = false.obs;
   final backupRunning = false.obs;
-  final isDownloadedfilesSeclected = false.obs;
   List<String> filesToExport = [];
   final supportDirPath = Get.find<SettingsScreenController>().supportDirPath;
 
   Future<void> scanFilesToBackup() async {
     final dbDir = await Get.find<SettingsScreenController>().dbDir;
     filesToExport.addAll(await processDirectoryInIsolate(dbDir));
-    if (isDownloadedfilesSeclected.value) {
-      List<String> downlodedSongFilePaths = Hive.box("SongDownloads")
-          .values
-          .map<String>((data) => data['url'])
-          .toList();
-      filesToExport.addAll(downlodedSongFilePaths);
-      try {
-        filesToExport.addAll(await processDirectoryInIsolate(
-            "$supportDirPath/thumbnails",
-            extensionFilter: ".png"));
-      } catch (e) {
-        printERROR(e);
-      }
+    try {
+      filesToExport.addAll(await processDirectoryInIsolate(
+          "$supportDirPath/thumbnails",
+          extensionFilter: ".png"));
+    } catch (e) {
+      printERROR(e);
     }
   }
 
