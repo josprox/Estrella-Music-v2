@@ -527,6 +527,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
                     ctrl: ctrl,
                     playerController: playerController,
                     isFromFavs: false,
+                    customPlayList: (songs['content'] as List?) ?? [],
                   ),
                   childCount: items.length,
                 ),
@@ -658,6 +659,7 @@ class _SpotifyArtistScreen extends StatelessWidget {
                           item: entry.value,
                           ctrl: ctrl,
                           playerController: playerController,
+                          customPlayList: (episodes['content'] as List?) ?? [],
                         );
                       }),
                     ],
@@ -877,6 +879,7 @@ class _TrackRow extends StatelessWidget {
   final ArtistScreenController ctrl;
   final PlayerController playerController;
   final bool isFromFavs;
+  final List? customPlayList;
 
   const _TrackRow({
     required this.index,
@@ -884,6 +887,7 @@ class _TrackRow extends StatelessWidget {
     required this.ctrl,
     required this.playerController,
     this.isFromFavs = false,
+    this.customPlayList,
   });
 
   void toggleLike(dynamic item) async {
@@ -905,14 +909,30 @@ class _TrackRow extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        if (isFromFavs) {
-          playerController.playPlayListSong(
-              List.from(ctrl.likedSongsOfArtist), index - 1);
+        if (customPlayList != null) {
+          final playlist = customPlayList!.map((e) {
+            if (e is MediaItem) return e;
+            return MediaItemBuilder.fromJson(e);
+          }).toList();
+          if (index - 1 >= 0 && index - 1 < playlist.length) {
+            playerController.playPlayListSong(playlist, index - 1);
+          }
+        } else if (isFromFavs) {
+          final playlist = List<MediaItem>.from(ctrl.likedSongsOfArtist);
+          if (index - 1 >= 0 && index - 1 < playlist.length) {
+            playerController.playPlayListSong(playlist, index - 1);
+          }
         } else {
           final songs = ctrl.artistData['Songs'];
           if (songs == null) return;
           final allItems = (songs['content'] as List?) ?? [];
-          playerController.playPlayListSong(List.from(allItems), index - 1);
+          final playlist = allItems.map((e) {
+            if (e is MediaItem) return e;
+            return MediaItemBuilder.fromJson(e);
+          }).toList();
+          if (index - 1 >= 0 && index - 1 < playlist.length) {
+            playerController.playPlayListSong(playlist, index - 1);
+          }
         }
       },
       borderRadius: BorderRadius.circular(8),
@@ -1218,6 +1238,7 @@ class _ContentModalState extends State<_ContentModal> {
                           ctrl: widget.ctrl,
                           playerController: widget.playerController,
                           isFromFavs: widget.isFromFavs,
+                          customPlayList: _filteredItems,
                         );
                       } else {
                         // For Albums/Videos in the modal
@@ -1689,6 +1710,7 @@ class _OfflineArtistView extends StatelessWidget {
                   ctrl: ctrl,
                   playerController: playerController,
                   isFromFavs: false,
+                  customPlayList: ctrl.offlineDownloadedSongs,
                 );
               },
               childCount: ctrl.offlineDownloadedSongs.length,

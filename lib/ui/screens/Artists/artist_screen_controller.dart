@@ -293,7 +293,14 @@ class ArtistScreenController extends GetxController
           Map<String, dynamic>.from(section),
           category,
         );
-        return result['results'] ?? [];
+        final results = result['results'] ?? [];
+        if (results.isNotEmpty) {
+          final updatedSection = Map<String, dynamic>.from(artistData[category]);
+          updatedSection['content'] = results;
+          artistData[category] = updatedSection;
+          artistData.refresh();
+        }
+        return results;
       } catch (e) {
         printERROR("Error fetching full category $category: $e");
       }
