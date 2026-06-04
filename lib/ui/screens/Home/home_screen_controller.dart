@@ -311,7 +311,7 @@ class HomeScreenController extends GetxController {
   }
 
   Future<void> loadContent() async {
-    final box = Hive.box("AppPrefs");
+    final box = await Hive.openBox("AppPrefs");
     final isCachedHomeScreenDataEnabled =
         box.get("cacheHomeScreenData") ?? true;
     if (isCachedHomeScreenDataEnabled) {
@@ -476,8 +476,8 @@ class HomeScreenController extends GetxController {
       isContentFetched.value = true;
 
       cachedHomeScreenData(updateAll: true);
-      await Hive.box("AppPrefs")
-          .put("homeScreenDataTime", DateTime.now().millisecondsSinceEpoch);
+      final appPrefs = await Hive.openBox("AppPrefs");
+      await appPrefs.put("homeScreenDataTime", DateTime.now().millisecondsSinceEpoch);
     } on NetworkError catch (r) {
       printERROR("Home Content not loaded due to ${r.message}");
       await Future.delayed(const Duration(seconds: 1));
@@ -643,7 +643,7 @@ class HomeScreenController extends GetxController {
       return;
     }
 
-    final homeScreenData = Hive.box("homeScreenData");
+    final homeScreenData = await Hive.openBox("homeScreenData");
 
     if (updateQuickPicksNMiddleContent) {
       await homeScreenData.putAll({
