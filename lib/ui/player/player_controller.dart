@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter_lyric/lyrics_reader.dart';
 import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
+import 'package:dio/dio.dart';
+import '../../services/translation_service.dart';
 import 'package:hive/hive.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -135,6 +137,9 @@ class PlayerController extends GetxController
   final lyricsMode = 0.obs;
   final lyricsTextScale = (1.0).obs;
   final lyricsAlignment = (LyricAlign.LEFT).obs;
+  final isTranslationEnabled = false.obs;
+  final isTranslationLoading = false.obs;
+  final translatedLyrics = <String, dynamic>{"synced": "", "plainLyrics": ""}.obs;
   bool isDesktopLyricsDialogOpen = false;
   // 0 for play, 1 for pause, 2 for blank
   final gesturePlayerVisibleState = 2.obs;
@@ -358,15 +363,20 @@ class PlayerController extends GetxController
           await _addRadioContinuation(radioInitiatorItem!);
         }
         lyrics.value = {"synced": "", "plainLyrics": ""};
+        translatedLyrics.value = {"synced": "", "plainLyrics": ""};
         showLyricsflag.value = false;
         if (isDesktopLyricsDialogOpen) {
           Navigator.pop(Get.context!);
         }
 
-        // Auto-load lyrics in background for the new player scroll-style
+        // Auto-load lyrics and translation in background
         Future.delayed(const Duration(milliseconds: 800), () {
           if (currentSong.value?.id == mediaItem.id) {
-            loadLyrics();
+            loadLyrics().then((_) {
+              if (isTranslationEnabled.value) {
+                loadTranslation();
+              }
+            });
           }
         });
 
@@ -972,6 +982,115 @@ class PlayerController extends GetxController
     showLyricsflag.value = !showLyricsflag.value;
     if (showLyricsflag.value) {
       await loadLyrics();
+      if (isTranslationEnabled.value) {
+        await loadTranslation();
+      }
+    }
+  }
+
+  Future<void> loadTranslation() async {
+    final song = currentSong.value;
+    if (song == null) return;
+    
+    if (translatedLyrics["synced"].isNotEmpty || translatedLyrics["plainLyrics"].isNotEmpty) {
+      return;
+    }
+    
+    isTranslationLoading.value = true;
+    try {
+      final lyricsBox = await Hive.openBox("lyrics");
+      final cached = lyricsBox.get(song.id);
+      if (cached != null && cached is Map) {
+        final cachedTranslatedSynced = cached["translatedSynced"]?.toString() ?? "";
+        final cachedTranslatedPlain = cached["translatedPlain"]?.toString() ?? "";
+        if (cachedTranslatedSynced.isNotEmpty || cachedTranslatedPlain.isNotEmpty) {
+          translatedLyrics.value = {
+            "synced": cachedTranslatedSynced,
+            "plainLyrics": cachedTranslatedPlain,
+          };
+          isTranslationLoading.value = false;
+          await lyricsBox.close();
+          return;
+        }
+      }
+      await lyricsBox.close();
+      
+      if (lyrics["synced"].isEmpty && lyrics["plainLyrics"].isEmpty) {
+        await loadLyrics();
+      }
+      
+      final originalSynced = lyrics["synced"].toString();
+      final originalPlain = lyrics["plainLyrics"].toString();
+      
+      if (originalSynced.isEmpty && originalPlain.isEmpty) {
+        translatedLyrics.value = {"synced": "", "plainLyrics": ""};
+        isTranslationLoading.value = false;
+        return;
+      }
+      
+      final neteaseRes = await TranslationService.fetchNetEaseTranslation(song.title, song.artist ?? "");
+      if (neteaseRes != null) {
+        final tSynced = neteaseRes["synced"] ?? "";
+        final tPlain = neteaseRes["plain"] ?? "";
+        translatedLyrics.value = {
+          "synced": tSynced,
+          "plainLyrics": tPlain,
+        };
+        await SyncedLyricsService.saveTranslation(song.id, tSynced, tPlain);
+        isTranslationLoading.value = false;
+        return;
+      }
+      
+      String sourceText = originalSynced.isNotEmpty ? originalSynced : originalPlain;
+      final isSynced = originalSynced.isNotEmpty;
+      
+      String translatedResult = "";
+      if (isSynced) {
+        translatedResult = await TranslationService.translateLrcWithGoogle(sourceText, targetLang: "es");
+      } else {
+        final res = await Dio().get(
+          "https://translate.googleapis.com/translate_a/single",
+          queryParameters: {
+            'client': 'gtx',
+            'sl': 'auto',
+            'tl': 'es',
+            'dt': 't',
+            'q': sourceText,
+          },
+        );
+        if (res.statusCode == 200 && res.data != null && res.data[0] is List) {
+          final List segments = res.data[0];
+          final StringBuffer sb = StringBuffer();
+          for (var segment in segments) {
+            if (segment is List && segment.isNotEmpty) {
+              sb.write(segment[0].toString());
+            }
+          }
+          translatedResult = sb.toString();
+        }
+      }
+      
+      final tSynced = isSynced ? translatedResult : "";
+      final tPlain = isSynced ? "" : translatedResult;
+      
+      translatedLyrics.value = {
+        "synced": tSynced,
+        "plainLyrics": tPlain,
+      };
+      
+      await SyncedLyricsService.saveTranslation(song.id, tSynced, tPlain);
+    } catch (e) {
+      printERROR("Failed to load lyrics translation: $e");
+      translatedLyrics.value = {"synced": "", "plainLyrics": ""};
+    } finally {
+      isTranslationLoading.value = false;
+    }
+  }
+
+  Future<void> toggleTranslation() async {
+    isTranslationEnabled.value = !isTranslationEnabled.value;
+    if (isTranslationEnabled.value) {
+      await loadTranslation();
     }
   }
 

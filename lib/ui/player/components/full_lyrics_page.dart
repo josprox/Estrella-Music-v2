@@ -640,6 +640,41 @@ class FullLyricsPage extends StatelessWidget {
                   ),
                 );
               }),
+              const SizedBox(
+                height: 16,
+                child: VerticalDivider(
+                  color: Colors.white24,
+                  width: 12,
+                  thickness: 1,
+                ),
+              ),
+              Obx(() {
+                final themeCtrl = Get.find<ThemeController>();
+                final isTranslationLoading = ctrl.isTranslationLoading.value;
+                final isTranslationEnabled = ctrl.isTranslationEnabled.value;
+                return IconButton(
+                  onPressed: isTranslationLoading ? null : () => ctrl.toggleTranslation(),
+                  tooltip: "Traducir",
+                  icon: isTranslationLoading
+                      ? const SizedBox(
+                          width: 14,
+                          height: 14,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : Icon(
+                          Icons.translate_rounded,
+                          size: 16,
+                          color: isTranslationEnabled ? themeCtrl.primaryColor.value : Colors.white70,
+                        ),
+                  style: IconButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(28, 28),
+                  ),
+                );
+              }),
             ],
           ),
         ),

@@ -28,6 +28,9 @@ class LyricsWidget extends StatelessWidget {
       // Accessing reactive variables to ensure Obx rebuilds when they change
       final currentScale = playerController.lyricsTextScale.value;
       final currentAlign = playerController.lyricsAlignment.value;
+      final showTranslation = playerController.isTranslationEnabled.value;
+      final tSynced = playerController.translatedLyrics["synced"].toString();
+      final tPlain = playerController.translatedLyrics["plainLyrics"].toString();
 
       // Determine what to show based on availability and preferred mode
       bool showSynced = false;
@@ -40,6 +43,11 @@ class LyricsWidget extends StatelessWidget {
       Widget content;
 
       if (showSynced) {
+        var model = LyricsModelBuilder.create().bindLyricToMain(synced);
+        if (showTranslation && tSynced.isNotEmpty) {
+          model = model.bindLyricToExt(tSynced);
+        }
+        
         content = IgnorePointer(
           ignoring: !isFull,
           child: LyricsReader(
@@ -47,13 +55,26 @@ class LyricsWidget extends StatelessWidget {
             lyricUi: playerController.lyricUi,
             position: playerController
                 .progressBarStatus.value.current.inMilliseconds,
-            model: LyricsModelBuilder.create()
-                .bindLyricToMain(synced)
-                .getModel(),
+            model: model.getModel(),
             emptyBuilder: () => _buildNoLyrics(context, playerController),
           ),
         );
       } else if (hasPlain || (mode == 1 && !hasSynced)) {
+        String displayedText = hasPlain ? plain : S.current.lyricsNotAvailable;
+        if (showTranslation && tPlain.isNotEmpty && tPlain != "null" && tPlain != "NA") {
+          final originalLines = plain.split('\n');
+          final translatedLines = tPlain.split('\n');
+          final List<String> combined = [];
+          for (int i = 0; i < originalLines.length; i++) {
+            combined.add(originalLines[i].trim());
+            if (i < translatedLines.length && translatedLines[i].trim().isNotEmpty) {
+              combined.add("(${translatedLines[i].trim()})");
+            }
+            combined.add(""); // Empty line for stanza spacing
+          }
+          displayedText = combined.join('\n');
+        }
+
         content = Center(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -61,7 +82,7 @@ class LyricsWidget extends StatelessWidget {
             child: TextSelectionTheme(
               data: Theme.of(context).textSelectionTheme,
               child: SelectableText(
-                hasPlain ? plain : S.current.lyricsNotAvailable,
+                displayedText,
                 textAlign: currentAlign == LyricAlign.LEFT ? TextAlign.left : TextAlign.center,
                 style: playerController.isDesktopLyricsDialogOpen
                     ? Theme.of(context).textTheme.titleMedium!.copyWith(

@@ -94,4 +94,18 @@ class SyncedLyricsService {
     printINFO("Manually selected lyrics saved to Hive for song $songId (synced=$isSynced)");
     return lyricsData;
   }
+
+  /// Save manual/automatic translation to local Hive box for a song ID
+  static Future<void> saveTranslation(
+      String songId, String translatedSynced, String translatedPlain) async {
+    final lyricsBox = await Hive.openBox("lyrics");
+    final Map<String, dynamic> lyricsData = Map<String, dynamic>.from(
+      lyricsBox.get(songId) ?? {"synced": "", "plainLyrics": ""}
+    );
+    lyricsData["translatedSynced"] = translatedSynced;
+    lyricsData["translatedPlain"] = translatedPlain;
+    await lyricsBox.put(songId, lyricsData);
+    await lyricsBox.close();
+    printINFO("Saved lyrics translation to Hive for song $songId");
+  }
 }
