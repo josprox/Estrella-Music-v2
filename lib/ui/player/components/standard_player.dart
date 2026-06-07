@@ -13,6 +13,7 @@ import '/ui/player/components/animated_play_button.dart';
 import '/ui/player/components/backgroud_image.dart';
 import '/ui/player/components/lyrics_widget.dart';
 import '/ui/player/player_controller.dart';
+import '../../../../services/colistening_service.dart';
 import 'full_lyrics_page.dart';
 import '/ui/widgets/image_widget.dart';
 import '/ui/widgets/songinfo_bottom_sheet.dart';
@@ -293,6 +294,14 @@ class _TopBar extends StatelessWidget {
           ),
 
           const SizedBox(width: 12),
+          // Co-listening button
+          _GlassIconButton(
+            icon: Icons.group_rounded,
+            size: 22,
+            onTap: () => _openCoListeningLobby(context),
+            colorScheme: colorScheme,
+          ),
+          const SizedBox(width: 12),
           // More options
           _GlassIconButton(
             icon: Icons.more_horiz_rounded,
@@ -302,6 +311,127 @@ class _TopBar extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _openCoListeningLobby(BuildContext context) {
+    final colistening = Get.find<ColisteningService>();
+    colistening.connect(); // Ensure connected
+
+    final roomController = TextEditingController();
+
+    Get.dialog(
+      Obx(() => AlertDialog(
+        backgroundColor: Theme.of(context).cardColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: const Row(
+          children: [
+            Icon(Icons.group_rounded),
+            SizedBox(width: 8),
+            Text("Escuchar en grupo"),
+          ],
+        ),
+        content: SizedBox(
+          width: 320,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (colistening.currentRoomCode.isEmpty) ...[
+                const Text(
+                  "Comparte un código de sala para escuchar la misma canción al mismo tiempo con amigos.",
+                  style: TextStyle(fontSize: 13),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.add_box_rounded),
+                  label: const Text("Crear Sala"),
+                  onPressed: () {
+                    colistening.createRoom();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 45),
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text("O UNIRSE A UNA EXISTENTE", style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: roomController,
+                  decoration: const InputDecoration(
+                    hintText: "Código de 6 dígitos",
+                    border: OutlineInputBorder(),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+                const SizedBox(height: 8),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.login_rounded),
+                  label: const Text("Unirse"),
+                  onPressed: () {
+                    final code = roomController.text.trim();
+                    if (code.length == 6) {
+                      colistening.joinRoom(code);
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 45),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                ),
+              ] else ...[
+                Text(
+                  colistening.isHost.isTrue ? "Eres el HOST de la sala" : "Te has unido a la sala",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    colistening.currentRoomCode.value,
+                    style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, letterSpacing: 4),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                if (colistening.isHost.isTrue)
+                  Text(
+                    "Miembros conectados: ${colistening.guests.length}",
+                    style: const TextStyle(fontSize: 14),
+                  )
+                else
+                  const Text("Sincronizando música...", style: TextStyle(fontSize: 14)),
+                const SizedBox(height: 24),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.exit_to_app_rounded, color: Colors.red),
+                  label: const Text("Salir de la Sala", style: TextStyle(color: Colors.red)),
+                  onPressed: () {
+                    colistening.disconnect();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 45),
+                    backgroundColor: Colors.red.withOpacity(0.1),
+                    elevation: 0,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text("Cerrar"),
+          ),
+        ],
+      )),
     );
   }
 

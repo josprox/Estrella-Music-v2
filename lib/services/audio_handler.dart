@@ -104,7 +104,11 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     final double initialSpeed = ((appPrefsBox.get("playbackSpeed") ?? 1.0) as num).toDouble();
     final double initialPitch = ((appPrefsBox.get("playbackPitch") ?? 1.0) as num).toDouble();
     _player.setSpeed(initialSpeed);
-    _player.setPitch(initialPitch);
+    try {
+      _player.setPitch(initialPitch);
+    } catch (e) {
+      printERROR("Failed to set initial pitch: $e");
+    }
     _listenForDurationChanges();
     if (GetPlatform.isAndroid) {
       _listenSessionIdStream();
@@ -601,7 +605,11 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
 
       case 'setPitch':
         final double pitch = (extras!['pitch'] as num).toDouble();
-        await _player.setPitch(pitch);
+        try {
+          await _player.setPitch(pitch);
+        } catch (e) {
+          printERROR("Failed to set pitch: $e");
+        }
         break;
 
       case 'toggleLoudnessNormalization':
@@ -1003,7 +1011,15 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         return;
       }
 
-      final nextSource = _createAudioSource(resolved.song);
+      // Reconstruct song with resolved stream URL in extras for _createAudioSource
+      final songWithUrl = resolved.song.copyWith(
+        extras: {
+          ...?resolved.song.extras,
+          'url': resolved.streamInfo.audio!.url,
+        },
+      );
+
+      final nextSource = _createAudioSource(songWithUrl);
 
       // Clean up any extra preloaded items in the concatenating list
       if (_playList.length > 1) {

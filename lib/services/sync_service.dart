@@ -8,6 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../utils/helper.dart';
 import 'auth_service.dart';
 import 'music_service.dart';
+import '../models/playlist.dart';
 import '../ui/screens/Library/library_controller.dart';
 
 class SyncService extends GetxService {
@@ -103,7 +104,11 @@ class SyncService extends GetxService {
           "description": plData['description'] ?? '',
           "thumbnails": plData['thumbnails'] ?? [{"url": ""}],
           "isPipedPlaylist": false,
-          "isCloudPlaylist": true
+          "isCloudPlaylist": true,
+          "isPublic": plData['isPublic'] ?? false,
+          "isCollaborative": plData['isCollaborative'] ?? false,
+          "collaborators": plData['collaborators'] ?? [],
+          "ownerId": plData['ownerId']
         });
 
         // Save playlist tracks
@@ -283,5 +288,87 @@ class SyncService extends GetxService {
     if (Get.isRegistered<LibrarySongsController>()) {
       Get.find<LibrarySongsController>().init();
     }
+  }
+
+  Future<bool> pushCollaborative(Playlist playlist) async {
+    if (!_authService.isAuthenticated.value) return false;
+    printINFO("SyncService: Pushing collaborative playlist...");
+
+    try {
+      final tracksBox = await Hive.openBox(playlist.playlistId);
+      final tracks = tracksBox.values.toList();
+
+      final plMap = playlist.toJson();
+      plMap['tracks'] = tracks;
+
+      final response = await _dio.post(
+        '${_normalizedBaseUrl()}api/sync/push-collaborative',
+        options: Options(headers: await _headers()),
+        data: {"playlist": plMap},
+      );
+
+      if (response.statusCode == 200) {
+        printINFO("SyncService: Collaborative push completed successfully.");
+        return true;
+      } else {
+        printERROR("SyncService: Collaborative push failed with status ${response.statusCode}");
+        return false;
+      }
+    } catch (e) {
+      printERROR("SyncService: Collaborative push failed with exception: $e");
+      return false;
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> searchUsers(String query) async {
+    if (!_authService.isAuthenticated.value) return [];
+    try {
+      final response = await _dio.get(
+        '${_normalizedBaseUrl()}api/users/search',
+        queryParameters: {"query": query},
+        options: Options(headers: await _headers()),
+      );
+      if (response.statusCode == 200 && response.data != null) {
+        final List users = response.data['users'] as List? ?? [];
+        return users.map((u) => Map<String, dynamic>.from(u)).toList();
+      }
+    } catch (e) {
+      printERROR("SyncService: Search users failed: $e");
+    }
+    return [];
+  }
+
+  Future<List<Map<String, dynamic>>> fetchFriends() async {
+    if (!_authService.isAuthenticated.value) return [];
+    try {
+      final response = await _dio.get(
+        '${_normalizedBaseUrl()}api/users/friends',
+        options: Options(headers: await _headers()),
+      );
+      if (response.statusCode == 200 && response.data != null) {
+        final List friends = response.data['friends'] as List? ?? [];
+        return friends.map((u) => Map<String, dynamic>.from(u)).toList();
+      }
+    } catch (e) {
+      printERROR("SyncService: Fetch friends failed: $e");
+    }
+    return [];
+  }
+
+  Future<List<Playlist>> fetchPublicPlaylists() async {
+    if (!_authService.isAuthenticated.value) return [];
+    try {
+      final response = await _dio.get(
+        '${_normalizedBaseUrl()}api/playlists/public',
+        options: Options(headers: await _headers()),
+      );
+      if (response.statusCode == 200 && response.data != null) {
+        final List playlists = response.data['playlists'] as List? ?? [];
+        return playlists.map((p) => Playlist.fromJson(p)).toList();
+      }
+    } catch (e) {
+      printERROR("SyncService: Fetch public playlists failed: $e");
+    }
+    return [];
   }
 }

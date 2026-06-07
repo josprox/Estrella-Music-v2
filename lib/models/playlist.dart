@@ -28,7 +28,11 @@ class Playlist {
       required this.thumbnailUrl,
       this.songCount,
       this.isPipedPlaylist = false,
-      this.isCloudPlaylist = true});
+      this.isCloudPlaylist = true,
+      this.isPublic = false,
+      this.isCollaborative = false,
+      this.collaborators = const [],
+      this.ownerId});
   final String playlistId;
   String title;
   final bool isPipedPlaylist;
@@ -36,6 +40,10 @@ class Playlist {
   String thumbnailUrl;
   final String? songCount;
   final bool isCloudPlaylist;
+  final bool isPublic;
+  final bool isCollaborative;
+  final List<dynamic> collaborators;
+  final int? ownerId;
   static const thumbPlaceholderUrl =
       "https://raw.githubusercontent.com/anandnet/Harmony-Music/refs/heads/main/playlist_placeholder.png";
 
@@ -50,7 +58,11 @@ class Playlist {
       description: json["description"] ?? "Playlist",
       songCount: json['itemCount'] ?? json['count'],
       isPipedPlaylist: json["isPipedPlaylist"] ?? false,
-      isCloudPlaylist: json["isCloudPlaylist"] ?? true);
+      isCloudPlaylist: json["isCloudPlaylist"] ?? true,
+      isPublic: json["isPublic"] ?? false,
+      isCollaborative: json["isCollaborative"] ?? false,
+      collaborators: json["collaborators"] as List? ?? [],
+      ownerId: json["ownerId"]);
 
   Map<String, dynamic> toJson() => {
         "title": title,
@@ -61,10 +73,21 @@ class Playlist {
         ],
         "itemCount": songCount,
         "isPipedPlaylist": isPipedPlaylist,
-        "isCloudPlaylist": isCloudPlaylist
+        "isCloudPlaylist": isCloudPlaylist,
+        "isPublic": isPublic,
+        "isCollaborative": isCollaborative,
+        "collaborators": collaborators,
+        "ownerId": ownerId
       };
 
-  Playlist copyWith({String? title, String? thumbnailUrl}) {
+  Playlist copyWith({
+    String? title,
+    String? thumbnailUrl,
+    bool? isPublic,
+    bool? isCollaborative,
+    List<dynamic>? collaborators,
+    int? ownerId,
+  }) {
     return Playlist(
         title: title ?? this.title,
         playlistId: playlistId,
@@ -72,7 +95,11 @@ class Playlist {
         description: description,
         songCount: songCount,
         isPipedPlaylist: isPipedPlaylist,
-        isCloudPlaylist: isCloudPlaylist);
+        isCloudPlaylist: isCloudPlaylist,
+        isPublic: isPublic ?? this.isPublic,
+        isCollaborative: isCollaborative ?? this.isCollaborative,
+        collaborators: collaborators ?? this.collaborators,
+        ownerId: ownerId ?? this.ownerId);
   }
 
   // Converts this object to a MediaItem object.

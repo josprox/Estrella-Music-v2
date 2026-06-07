@@ -23,6 +23,7 @@ import '../Home/home_screen_controller.dart';
 import '../Library/library_controller.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 import '../../../services/sync_service.dart';
+import '../../../services/auth_service.dart';
 
 ///PlaylistScreenController handles playlist screen
 ///
@@ -269,7 +270,13 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
     // Update the playlist thumbnail based on the first song's thumbnail
     _updatePlaylistThumbSongBased();
-    Get.find<SyncService>().triggerPush();
+
+    final myUserId = Get.find<AuthService>().userProfile.value?['id'];
+    if (playlist.value.isCollaborative && playlist.value.ownerId != myUserId && playlist.value.ownerId != null) {
+      Get.find<SyncService>().pushCollaborative(playlist.value);
+    } else {
+      Get.find<SyncService>().triggerPush();
+    }
   }
 
   @override
@@ -295,7 +302,13 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
     // Update the playlist thumbnail based on the first song's thumbnail
     _updatePlaylistThumbSongBased();
-    Get.find<SyncService>().triggerPush();
+
+    final myUserId = Get.find<AuthService>().userProfile.value?['id'];
+    if (playlist.value.isCollaborative && playlist.value.ownerId != myUserId && playlist.value.ownerId != null) {
+      Get.find<SyncService>().pushCollaborative(playlist.value);
+    } else {
+      Get.find<SyncService>().triggerPush();
+    }
   }
 
   void addNRemoveItemsinList(MediaItem? item,
@@ -722,5 +735,51 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
       ),
       barrierDismissible: false,
     );
+  }
+
+  void togglePlaylistPrivacy(bool value) async {
+    final updated = playlist.value.copyWith(isPublic: value);
+    playlist.value = updated;
+    final box = await Hive.openBox("LibraryPlaylists");
+    box.put(updated.playlistId, updated.toJson());
+    await box.close();
+    Get.find<LibraryPlaylistsController>().refreshLib();
+    Get.find<SyncService>().triggerPush();
+  }
+
+  void togglePlaylistCollaboration(bool value) async {
+    final updated = playlist.value.copyWith(isCollaborative: value);
+    playlist.value = updated;
+    final box = await Hive.openBox("LibraryPlaylists");
+    box.put(updated.playlistId, updated.toJson());
+    await box.close();
+    Get.find<LibraryPlaylistsController>().refreshLib();
+    Get.find<SyncService>().triggerPush();
+  }
+
+  void addCollaborator(Map<String, dynamic> user) async {
+    final list = List.from(playlist.value.collaborators);
+    if (!list.any((c) => c['id'] == user['id'])) {
+      list.add(user);
+      final updated = playlist.value.copyWith(collaborators: list);
+      playlist.value = updated;
+      final box = await Hive.openBox("LibraryPlaylists");
+      box.put(updated.playlistId, updated.toJson());
+      await box.close();
+      Get.find<LibraryPlaylistsController>().refreshLib();
+      Get.find<SyncService>().triggerPush();
+    }
+  }
+
+  void removeCollaborator(Map<String, dynamic> user) async {
+    final list = List.from(playlist.value.collaborators);
+    list.removeWhere((c) => c['id'] == user['id']);
+    final updated = playlist.value.copyWith(collaborators: list);
+    playlist.value = updated;
+    final box = await Hive.openBox("LibraryPlaylists");
+    box.put(updated.playlistId, updated.toJson());
+    await box.close();
+    Get.find<LibraryPlaylistsController>().refreshLib();
+    Get.find<SyncService>().triggerPush();
   }
 }

@@ -19,6 +19,8 @@ import '../../widgets/songinfo_bottom_sheet.dart';
 import '../../widgets/sort_widget.dart';
 import '../Library/library_controller.dart';
 import 'playlist_screen_controller.dart';
+import '../../../services/auth_service.dart';
+import '../../../services/sync_service.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 
 class PlaylistScreen extends StatelessWidget {
@@ -126,9 +128,7 @@ class PlaylistScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (!playlistController
-                                .playlist.value.isCloudPlaylist &&
-                            playlistController.isDefaultPlaylist.isFalse)
+                        if (playlistController.isDefaultPlaylist.isFalse)
                           SizedBox(
                             width: 50,
                             child: IconButton(
@@ -138,7 +138,7 @@ class PlaylistScreen extends StatelessWidget {
                                         const BoxConstraints(maxWidth: 500),
                                     shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(10.0)),
+                                          top: Radius.circular(15.0)),
                                     ),
                                     context: Get.find<PlayerController>()
                                         .homeScaffoldkey
@@ -146,57 +146,100 @@ class PlaylistScreen extends StatelessWidget {
                                         .context,
                                     barrierColor:
                                         Colors.transparent.withAlpha(100),
-                                    builder: (context) => SizedBox(
-                                      height: 140,
-                                      child: Column(
-                                        children: [
-                                          ListTile(
-                                            leading: const Icon(Icons.edit),
-                                            title: Text(S.current.renamePlaylist),
-                                            onTap: () {
-                                              Navigator.of(context).pop();
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    CreateNRenamePlaylistPopup(
-                                                        renamePlaylist: true,
-                                                        playlist:
+                                    builder: (context) => StatefulBuilder(
+                                      builder: (context, setStateSheet) {
+                                        final playlist = playlistController.playlist.value;
+                                        final isAuthenticated = Get.find<AuthService>().isAuthenticated.value;
+                                        final myUserId = Get.find<AuthService>().userProfile.value?['id'];
+                                        final isOwner = playlist.ownerId == null || playlist.ownerId == myUserId;
+
+                                        return SingleChildScrollView(
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(vertical: 10),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                ListTile(
+                                                  leading: const Icon(Icons.edit),
+                                                  title: Text(S.current.renamePlaylist),
+                                                  onTap: () {
+                                                    Navigator.of(context).pop();
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (context) =>
+                                                          CreateNRenamePlaylistPopup(
+                                                              renamePlaylist: true,
+                                                              playlist: playlistController.playlist.value),
+                                                    );
+                                                  },
+                                                ),
+                                                if (isAuthenticated && isOwner) ...[
+                                                  SwitchListTile(
+                                                    secondary: Icon(playlist.isPublic ? Icons.public : Icons.public_off),
+                                                    title: const Text("Playlist Pública"),
+                                                    subtitle: const Text("Cualquiera puede escuchar esta playlist"),
+                                                    value: playlist.isPublic,
+                                                    onChanged: (val) {
+                                                      setStateSheet(() {
+                                                        playlistController.togglePlaylistPrivacy(val);
+                                                      });
+                                                    },
+                                                  ),
+                                                  SwitchListTile(
+                                                    secondary: Icon(playlist.isCollaborative ? Icons.people : Icons.people_outline),
+                                                    title: const Text("Playlist Colaborativa"),
+                                                    subtitle: const Text("Amigos autorizados pueden editarla"),
+                                                    value: playlist.isCollaborative,
+                                                    onChanged: (val) {
+                                                      setStateSheet(() {
+                                                        playlistController.togglePlaylistCollaboration(val);
+                                                      });
+                                                    },
+                                                  ),
+                                                  if (playlist.isCollaborative)
+                                                    ListTile(
+                                                      leading: const Icon(Icons.person_add),
+                                                      title: const Text("Gestionar Colaboradores"),
+                                                      subtitle: Text("${playlist.collaborators.length} colaboradores"),
+                                                      onTap: () {
+                                                        Navigator.of(context).pop();
+                                                        _showCollaboratorsDialog(context, playlistController);
+                                                      },
+                                                    ),
+                                                ],
+                                                ListTile(
+                                                  leading: const Icon(Icons.delete, color: Colors.red),
+                                                  title: Text(S.current.removePlaylist, style: const TextStyle(color: Colors.red)),
+                                                  onTap: () {
+                                                    Navigator.of(context).pop();
+                                                    playlistController
+                                                        .addNremoveFromLibrary(
                                                             playlistController
-                                                                .playlist
-                                                                .value),
-                                              );
-                                            },
+                                                                .playlist.value,
+                                                            add: false)
+                                                        .then((value) {
+                                                      Get.nestedKey(
+                                                              ScreenNavigationSetup
+                                                                  .id)!
+                                                          .currentState!
+                                                          .pop();
+                                                      ScaffoldMessenger.of(
+                                                              Get.context!)
+                                                          .showSnackBar(snackbar(
+                                                              Get.context!,
+                                                              value
+                                                                  ? S.current.playlistRemovedAlert
+                                                                  : S.current.operationFailed,
+                                                              size: SanckBarSize
+                                                                  .MEDIUM));
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          ListTile(
-                                            leading: const Icon(Icons.delete),
-                                            title: Text(S.current.removePlaylist),
-                                            onTap: () {
-                                              Navigator.of(context).pop();
-                                              playlistController
-                                                  .addNremoveFromLibrary(
-                                                      playlistController
-                                                          .playlist.value,
-                                                      add: false)
-                                                  .then((value) {
-                                                Get.nestedKey(
-                                                        ScreenNavigationSetup
-                                                            .id)!
-                                                    .currentState!
-                                                    .pop();
-                                                ScaffoldMessenger.of(
-                                                        Get.context!)
-                                                    .showSnackBar(snackbar(
-                                                        Get.context!,
-                                                        value
-                                                            ? S.current.playlistRemovedAlert
-                                                            : S.current.operationFailed,
-                                                        size: SanckBarSize
-                                                            .MEDIUM));
-                                              });
-                                            },
-                                          ),
-                                        ],
-                                      ),
+                                        );
+                                      }
                                     ),
                                   );
                                 },
@@ -767,5 +810,168 @@ class PlaylistScreen extends StatelessWidget {
       barrierColor: Colors.transparent.withAlpha(100),
       builder: (context) => SongInfoBottomSheet(song),
     ).whenComplete(() => Get.delete<SongInfoController>());
+  }
+
+  void _showCollaboratorsDialog(BuildContext context, PlaylistScreenController controller) {
+    final textController = TextEditingController();
+    final searchResults = <Map<String, dynamic>>[].obs;
+    final isSearching = false.obs;
+    final friends = <Map<String, dynamic>>[].obs;
+    final isLoadingFriends = true.obs;
+
+    Get.find<SyncService>().fetchFriends().then((value) {
+      friends.value = value;
+      isLoadingFriends.value = false;
+    });
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Theme.of(context).cardColor,
+        title: const Text("Gestionar Colaboradores"),
+        content: SizedBox(
+          width: 400,
+          height: 400,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: textController,
+                      decoration: const InputDecoration(
+                        hintText: "Buscar por nombre de usuario...",
+                        border: OutlineInputBorder(),
+                      ),
+                      onSubmitted: (val) async {
+                        if (val.trim().isNotEmpty) {
+                          isSearching.value = true;
+                          final res = await Get.find<SyncService>().searchUsers(val);
+                          searchResults.value = res;
+                          isSearching.value = false;
+                        }
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () async {
+                      final val = textController.text;
+                      if (val.trim().isNotEmpty) {
+                        isSearching.value = true;
+                        final res = await Get.find<SyncService>().searchUsers(val);
+                        searchResults.value = res;
+                        isSearching.value = false;
+                      }
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Obx(() => isSearching.isTrue
+                  ? const Center(child: CircularProgressIndicator())
+                  : Expanded(
+                      child: ListView(
+                        children: [
+                          if (searchResults.isNotEmpty) ...[
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              child: Text("Resultados de búsqueda:", style: TextStyle(fontWeight: FontWeight.bold)),
+                            ),
+                            ...searchResults.map((user) => ListTile(
+                                  title: Text(user['username'] ?? ''),
+                                  subtitle: Text("${user['first_name'] ?? ''} ${user['last_name'] ?? ''}"),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.add_circle, color: Colors.green),
+                                    onPressed: () {
+                                      controller.addCollaborator(user);
+                                      Get.back();
+                                      _showCollaboratorsDialog(context, controller); // reopen to update
+                                    },
+                                  ),
+                                )),
+                            const Divider(),
+                          ],
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.0),
+                            child: Text("Añadir Amigos:", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          if (isLoadingFriends.isTrue)
+                            const Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(strokeWidth: 2),
+                                ),
+                              ),
+                            )
+                          else ...[
+                            ...(() {
+                              final collaboratorsIds = controller.playlist.value.collaborators.map((c) => c['id']).toSet();
+                              final addableFriends = friends.where((f) => !collaboratorsIds.contains(f['id'])).toList();
+                              if (addableFriends.isEmpty) {
+                                return [
+                                  const Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                                    child: Text(
+                                      "No hay amigos disponibles para añadir.",
+                                      style: TextStyle(fontStyle: FontStyle.italic, fontSize: 13),
+                                    ),
+                                  )
+                                ];
+                              }
+                              return addableFriends.map((friend) => ListTile(
+                                    contentPadding: EdgeInsets.zero,
+                                    title: Text(friend['username'] ?? ''),
+                                    subtitle: Text("${friend['first_name'] ?? ''} ${friend['last_name'] ?? ''}"),
+                                    trailing: IconButton(
+                                      icon: const Icon(Icons.add_circle, color: Colors.green),
+                                      onPressed: () {
+                                        controller.addCollaborator(friend);
+                                        Get.back();
+                                        _showCollaboratorsDialog(context, controller);
+                                      },
+                                    ),
+                                  )).toList();
+                            })()
+                          ],
+                          const Divider(),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.0),
+                            child: Text("Colaboradores actuales:", style: TextStyle(fontWeight: FontWeight.bold)),
+                          ),
+                          if (controller.playlist.value.collaborators.isEmpty)
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0),
+                              child: Text("No hay colaboradores añadidos.", style: TextStyle(fontStyle: FontStyle.italic)),
+                            ),
+                          ...controller.playlist.value.collaborators.map((user) => ListTile(
+                                title: Text(user['username'] ?? ''),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.remove_circle, color: Colors.red),
+                                  onPressed: () {
+                                    controller.removeCollaborator(Map<String, dynamic>.from(user));
+                                    Get.back();
+                                    _showCollaboratorsDialog(context, controller); // reopen to update
+                                  },
+                                ),
+                              )),
+                        ],
+                      ),
+                    )),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text("Cerrar"),
+          ),
+        ],
+      ),
+    );
   }
 }

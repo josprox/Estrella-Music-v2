@@ -30,6 +30,7 @@ import '/services/music_service.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 import '../../utils/l10n_extensions.dart';
 import '../../services/sync_service.dart';
+import '../../services/colistening_service.dart';
 import '../../services/discord_rpc_service.dart';
 
 enum PlayButtonState { paused, playing, loading }
@@ -389,6 +390,7 @@ class PlayerController extends GetxController
         }
 
         _saveSession();
+        _broadcastPlaybackState();
       }
     });
   }
@@ -753,10 +755,12 @@ class PlayerController extends GetxController
 
   void play() {
     _audioHandler.play();
+    _broadcastPlaybackState();
   }
 
   void pause() {
     _audioHandler.pause();
+    _broadcastPlaybackState();
   }
 
   void closePlayer() {
@@ -783,6 +787,25 @@ class PlayerController extends GetxController
     _audioHandler.seek(position);
     if (currentSong.value != null) {
       _updateDiscordRPC(currentSong.value!, buttonState.value == PlayButtonState.playing, position: position);
+    }
+    Future.delayed(const Duration(milliseconds: 100), () {
+      _broadcastPlaybackState();
+    });
+  }
+
+  void _broadcastPlaybackState() {
+    final colistening = Get.find<ColisteningService>();
+    if (colistening.isConnected.isTrue && colistening.currentRoomCode.isNotEmpty) {
+      if (currentSong.value != null) {
+        colistening.sendPlaybackSync({
+          "videoId": currentSong.value!.id,
+          "position": progressBarStatus.value.current.inMilliseconds,
+          "isPlaying": buttonState.value == PlayButtonState.playing,
+          "title": currentSong.value!.title,
+          "artist": currentSong.value!.artist,
+          "artUri": currentSong.value!.artUri?.toString(),
+        });
+      }
     }
   }
 

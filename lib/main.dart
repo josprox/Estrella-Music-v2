@@ -15,6 +15,7 @@ import '/services/auth_service.dart';
 import '/services/catalog_recovery_service.dart';
 import '/services/notification_service.dart';
 import '/services/sync_service.dart';
+import '/services/colistening_service.dart';
 import '/ui/screens/Search/search_screen_controller.dart';
 import '/services/downloader.dart';
 import '/services/piped_service.dart';
@@ -134,6 +135,7 @@ class MyApp extends StatelessWidget {
 Future<void> startApplicationServices() async {
   Get.put(AuthService(), permanent: true);
   Get.put(SyncService(), permanent: true);
+  Get.put(ColisteningService(), permanent: true);
   Get.put(CatalogRecoveryService(), permanent: true);
   Get.lazyPut(() => PipedServices(), fenix: true);
   Get.lazyPut(() => MusicServices(), fenix: true);
