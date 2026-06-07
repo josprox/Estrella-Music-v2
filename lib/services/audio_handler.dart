@@ -77,15 +77,20 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     _player = AudioPlayer(
         audioLoadConfiguration: const AudioLoadConfiguration(
             androidLoadControl: AndroidLoadControl(
-      minBufferDuration: Duration(seconds: 50),
-      maxBufferDuration: Duration(seconds: 120),
-      bufferForPlaybackDuration: Duration(milliseconds: 50),
-      bufferForPlaybackAfterRebufferDuration: Duration(seconds: 2),
-    )));
+              minBufferDuration: Duration(seconds: 60),
+              maxBufferDuration: Duration(seconds: 180),
+              bufferForPlaybackDuration: Duration(milliseconds: 100),
+              bufferForPlaybackAfterRebufferDuration: Duration(seconds: 3),
+            ),
+            darwinLoadControl: DarwinLoadControl(
+              preferredForwardBufferDuration: Duration(seconds: 60),
+            ),
+        ));
     _createCacheDir();
     _addEmptyList();
     _notifyAudioHandlerAboutPlaybackEvents();
     _listenToPlaybackForNextSong();
+    _listenToCurrentIndexStream();
     _listenForSequenceStateChanges();
     final appPrefsBox = Hive.box("AppPrefs");
     _player
@@ -168,33 +173,21 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
 
       //print("set ${playbackState.value.queueIndex},${event.currentIndex}");
     }, onError: (Object e, StackTrace st) async {
-      if (e is PlayerException) {
-        printERROR('Error code: ${e.code}');
-        printERROR('Error message: ${e.message}');
-      } else {
-        printERROR('An error occurred: $e');
-        Duration curPos = _player.position;
-        await _player.stop();
+      printERROR('Audio player playback stream error: $e');
+      Duration curPos = _player.position;
+      final savedIndex = currentIndex;
+      await _player.stop();
 
-        if (isPlayingUsingLockCachingSource &&
-            e.toString().contains("Connection closed while receiving data")) {
-          await _player.seek(curPos, index: 0);
+      // Check if we are still on the same song and attempt to recover
+      if (savedIndex == currentIndex) {
+        printINFO("Attempting to recover playback for song index $currentIndex at position $curPos");
+        try {
+          await customAction("playByIndex", {'index': currentIndex, 'newUrl': true});
+          await _player.seek(curPos);
           await _player.play();
-          return;
+        } catch (recoveryErr) {
+          printERROR("Auto recovery failed: $recoveryErr");
         }
-
-        //Workaround when 403 error encountered
-        // customAction("playByIndex", {'index': currentIndex, 'newUrl': true})
-        //     .whenComplete(() async {
-        //   await _player.stop();
-        //   if (currentSongUrl == null) {
-        //     networkErrorPause = true;
-        //   } else {
-        //     _player.play();
-        //   }
-        // });
-        customAction("playByIndex", {'index': currentIndex, 'newUrl': true});
-        await _player.seek(curPos, index: 0);
       }
     });
   }
@@ -209,7 +202,15 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
       if (_player.duration != null && _player.duration?.inSeconds != 0) {
         if (value.inMilliseconds >=
             (_player.duration!.inMilliseconds - playerDurationOffset)) {
-          await _triggerNext();
+          if (loopModeEnabled) {
+            await _player.seek(Duration.zero);
+            if (!_player.playing) {
+              _player.play();
+            }
+          } else if (_playList.length <= 1) {
+            // Only trigger manual skip if we don't have a preloaded next song
+            await _triggerNext();
+          }
         }
       }
     });
@@ -516,6 +517,9 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         } else {
           await _player.play();
         }
+        
+        // Trigger preloading of the next song asynchronously
+        _preloadNextSong();
         break;
 
       case 'checkWithCacheDb':
@@ -580,6 +584,9 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         }
 
         await _player.play();
+        
+        // Trigger preloading of the next song asynchronously
+        _preloadNextSong();
         break;
 
       case 'toggleSkipSilence':
@@ -948,6 +955,69 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     queue.add(updatedQueue);
     if (mediaItem.value?.id == oldSongId) {
       mediaItem.add(recoveredSong);
+    }
+  }
+
+  void _listenToCurrentIndexStream() {
+    _player.currentIndexStream.listen((index) async {
+      // index == 1 means just_audio transitioned automatically to the preloaded next song
+      if (index == 1) {
+        final nextIndex = _getNextSongIndex();
+        printINFO("Transitioned automatically to preloaded song. New index in queue: $nextIndex");
+        currentIndex = nextIndex;
+        
+        final currentSong = queue.value[currentIndex];
+        mediaItem.add(currentSong);
+        
+        // Remove the old song at index 0 from concatenating source
+        // so that the current song becomes index 0 again
+        if (_playList.length > 1) {
+          try {
+            await _playList.removeAt(0);
+          } catch (e) {
+            printERROR("Error removing old item from playlist: $e");
+          }
+        }
+        
+        // Preload the next song
+        _preloadNextSong();
+      }
+    });
+  }
+
+  Future<void> _preloadNextSong() async {
+    try {
+      final nextIndex = _getNextSongIndex();
+      if (nextIndex == currentIndex) {
+        // No next song to preload (e.g. end of queue and loop disabled)
+        return;
+      }
+
+      final nextSong = queue.value[nextIndex];
+      printINFO("Preloading next song: ${nextSong.title} (index: $nextIndex)");
+
+      // Asynchronously resolve song stream data. This handles search-recovery internally if ID is dead!
+      final resolved = await _resolveSongPlayback(nextSong);
+      if (!resolved.streamInfo.playable) {
+        printINFO("Preload failed: next song stream is not playable");
+        return;
+      }
+
+      final nextSource = _createAudioSource(resolved.song);
+
+      // Clean up any extra preloaded items in the concatenating list
+      if (_playList.length > 1) {
+        try {
+          await _playList.removeRange(1, _playList.length);
+        } catch (e) {
+          printERROR("Error clearing playlist extra ranges: $e");
+        }
+      }
+
+      await _playList.add(nextSource);
+      printINFO("Preloaded next song successfully.");
+    } catch (e) {
+      printERROR("Error preloading next song: $e");
     }
   }
 }

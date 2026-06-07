@@ -273,6 +273,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.9"
+  dart_discord_presence:
+    dependency: "direct main"
+    description:
+      name: dart_discord_presence
+      sha256: "6860826f809517d354e2af14e504e46809afde11c43ff3685c7438073d226211"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   dart_style:
     dependency: transitive
     description:
@@ -1686,7 +1694,7 @@ packages:
     source: hosted
     version: "1.1.0"
   xml:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: xml
       sha256: b015a8ad1c488f66851d762d3090a21c600e479dc75e68328c52774040cf9226
@@ -1711,5 +1719,5 @@ packages:
     source: git
     version: "2.3.7"
 sdks:
-  dart: ">=3.10.3 <4.0.0"
+  dart: ">=3.10.4 <4.0.0"
   flutter: ">=3.38.4"

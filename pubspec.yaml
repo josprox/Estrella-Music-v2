@@ -61,6 +61,8 @@ dependencies:
       ref: 6672eb82657d9e671abbf42122031c88aa9e6d80
   palette_generator: ^0.3.3+4
   onesignal_flutter: ^5.3.4
+  dart_discord_presence: any
+  xml: any
   path: ^1.8.3
   path_provider: ^2.1.1
   permission_handler: ^11.0.1

@@ -127,6 +127,37 @@ class MusicServices extends getx.GetxService {
   }
 
   Future<String?> genrateVisitorId() async {
+    // Try to get from sw.js_data first (Kotlin-like logic)
+    try {
+      final swResponse = await dio.get(
+        "https://music.youtube.com/sw.js_data",
+        options: Options(headers: _headers),
+      );
+      final rawData = swResponse.data.toString();
+      final jsonStr = rawData.startsWith(")]}'")
+          ? rawData.substring(rawData.indexOf('\n') + 1)
+          : rawData;
+      final decoded = json.decode(jsonStr);
+      if (decoded is List && decoded.isNotEmpty) {
+        final level1 = decoded[0];
+        if (level1 is List && level1.length > 2) {
+          final level2 = level1[2];
+          if (level2 is List) {
+            final visitorRegex = RegExp(r'^Cg[t|s]');
+            for (var item in level2) {
+              if (item is String && visitorRegex.hasMatch(item)) {
+                printINFO("Got Visitor ID from sw.js_data: $item");
+                return item;
+              }
+            }
+          }
+        }
+      }
+    } catch (e) {
+      printERROR("Failed to get visitor data from sw.js_data: $e");
+    }
+
+    // Fallback to original ytcfg extraction
     try {
       final response =
           await dio.get(domain, options: Options(headers: _headers));

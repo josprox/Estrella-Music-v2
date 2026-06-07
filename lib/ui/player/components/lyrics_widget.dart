@@ -25,21 +25,25 @@ class LyricsWidget extends StatelessWidget {
       final hasPlain = plain.isNotEmpty && plain != 'NA' && plain != 'null';
       final mode = playerController.lyricsMode.toInt();
 
+      // Accessing reactive variables to ensure Obx rebuilds when they change
+      final currentScale = playerController.lyricsTextScale.value;
+      final currentAlign = playerController.lyricsAlignment.value;
+
       // Determine what to show based on availability and preferred mode
       bool showSynced = false;
       if (mode == 0) {
-        // Preferred synced
         showSynced = hasSynced;
       } else {
-        // Preferred plain
         showSynced = !hasPlain && hasSynced;
       }
 
+      Widget content;
+
       if (showSynced) {
-        return IgnorePointer(
+        content = IgnorePointer(
           ignoring: !isFull,
           child: LyricsReader(
-            padding: const EdgeInsets.only(left: 10, right: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             lyricUi: playerController.lyricUi,
             position: playerController
                 .progressBarStatus.value.current.inMilliseconds,
@@ -49,10 +53,8 @@ class LyricsWidget extends StatelessWidget {
             emptyBuilder: () => _buildNoLyrics(context, playerController),
           ),
         );
-      }
-
-      if (hasPlain || (mode == 1 && !hasSynced)) {
-        return Center(
+      } else if (hasPlain || (mode == 1 && !hasSynced)) {
+        content = Center(
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             padding: padding,
@@ -60,35 +62,59 @@ class LyricsWidget extends StatelessWidget {
               data: Theme.of(context).textSelectionTheme,
               child: SelectableText(
                 hasPlain ? plain : S.current.lyricsNotAvailable,
-                textAlign: TextAlign.center,
+                textAlign: currentAlign == LyricAlign.LEFT ? TextAlign.left : TextAlign.center,
                 style: playerController.isDesktopLyricsDialogOpen
-                    ? Theme.of(context).textTheme.titleMedium!
-                    : const TextStyle(
+                    ? Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontSize: (Theme.of(context).textTheme.titleMedium!.fontSize ?? 16) * currentScale,
+                        )
+                    : TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 18 * currentScale,
                         fontWeight: FontWeight.w700,
-                        height: 1.5,
+                        height: 1.6,
                       ),
               ),
             ),
           ),
         );
+      } else {
+        content = _buildNoLyrics(context, playerController);
       }
 
-      return _buildNoLyrics(context, playerController);
+      // Elegant top/bottom fade edge blending
+      return ShaderMask(
+        shaderCallback: (rect) {
+          return const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.transparent,
+              Colors.black,
+              Colors.black,
+              Colors.transparent,
+            ],
+            stops: [0.0, 0.08, 0.92, 1.0],
+          ).createShader(rect);
+        },
+        blendMode: BlendMode.dstIn,
+        child: content,
+      );
     });
   }
 
   Widget _buildNoLyrics(BuildContext context, PlayerController ctrl) {
+    final currentScale = ctrl.lyricsTextScale.value;
     return Center(
       child: Text(
         S.current.lyricsNotAvailable,
         textAlign: TextAlign.center,
         style: ctrl.isDesktopLyricsDialogOpen
-            ? Theme.of(context).textTheme.titleMedium!
-            : const TextStyle(
+            ? Theme.of(context).textTheme.titleMedium!.copyWith(
+                  fontSize: (Theme.of(context).textTheme.titleMedium!.fontSize ?? 16) * currentScale,
+                )
+            : TextStyle(
                 color: Colors.white70,
-                fontSize: 18,
+                fontSize: 18 * currentScale,
                 fontWeight: FontWeight.w600,
               ),
       ),

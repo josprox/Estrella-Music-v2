@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter_lyric/lyrics_reader.dart';
 import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
 import 'package:hive/hive.dart';
 import 'package:get/get.dart';
@@ -27,10 +28,27 @@ import '/services/music_service.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 import '../../utils/l10n_extensions.dart';
 import '../../services/sync_service.dart';
+import '../../services/discord_rpc_service.dart';
 
 enum PlayButtonState { paused, playing, loading }
 
 class CustomLyricUI extends UINetease {
+  double get lyricsTextScale {
+    try {
+      return Get.find<PlayerController>().lyricsTextScale.value;
+    } catch (_) {
+      return 1.0;
+    }
+  }
+
+  LyricAlign get lyricAlignConfig {
+    try {
+      return Get.find<PlayerController>().lyricsAlignment.value;
+    } catch (_) {
+      return LyricAlign.LEFT;
+    }
+  }
+
   CustomLyricUI({
     super.defaultSize,
     super.defaultExtSize,
@@ -47,25 +65,28 @@ class CustomLyricUI extends UINetease {
   @override
   TextStyle getPlayingMainTextStyle() => TextStyle(
         color: Colors.white,
-        fontSize: defaultSize,
+        fontSize: defaultSize * lyricsTextScale,
         fontWeight: FontWeight.w900,
       );
 
   @override
   TextStyle getOtherMainTextStyle() => TextStyle(
         color: Colors.white.withValues(alpha: 0.35),
-        fontSize: otherMainSize,
+        fontSize: otherMainSize * lyricsTextScale,
         fontWeight: FontWeight.w600,
       );
 
   @override
-  double getLineSpace() => lineGap;
+  double getLineSpace() => lineGap * lyricsTextScale;
 
   @override
   double getPlayingLineBias() => bias;
 
   @override
   Color getLyricHightlightColor() => Colors.white;
+
+  @override
+  LyricAlign get lyricAlign => lyricAlignConfig;
 }
 
 class PlayerController extends GetxController
@@ -112,17 +133,19 @@ class PlayerController extends GetxController
   final showLyricsflag = false.obs;
   final isLyricsLoading = false.obs;
   final lyricsMode = 0.obs;
+  final lyricsTextScale = (1.0).obs;
+  final lyricsAlignment = (LyricAlign.LEFT).obs;
   bool isDesktopLyricsDialogOpen = false;
   // 0 for play, 1 for pause, 2 for blank
   final gesturePlayerVisibleState = 2.obs;
   final lyricUi = CustomLyricUI(
     highlight: true,
-    defaultSize: 22, // Active line size
+    defaultSize: 24, // Active line size
     otherMainSize: 18, // Inactive lines size
     defaultExtSize: 14,
-    lineGap: 32, // More space between lines
+    lineGap: 28, // More space between lines
     inlineGap: 10,
-    bias: 0.5, // Keep active line centered
+    bias: 0.45, // Keep active line centered
   );
   RxMap<String, dynamic> lyrics =
       <String, dynamic>{"synced": "", "plainLyrics": ""}.obs;
@@ -158,6 +181,7 @@ class PlayerController extends GetxController
 
   void _init() async {
     //_createAppDocDir();
+    DiscordRpcService().init();
     _listenForChangesInPlayerState();
     _listenForChangesInPosition();
     _listenForChangesInBufferedPosition();
@@ -248,6 +272,10 @@ class PlayerController extends GetxController
       // Keep the screen awake whenever playback is active and the setting is enabled.
       final shouldEnable = settings.keepScreenAwake.isTrue && isPlaying;
       _setWakelock(shouldEnable);
+
+      if (currentSong.value != null) {
+        _updateDiscordRPC(currentSong.value!, isPlaying);
+      }
     });
   }
 
@@ -325,6 +353,7 @@ class PlayerController extends GetxController
             .indexWhere((element) => element.id == currentSong.value!.id);
         await _checkFav();
         await _addToRP(currentSong.value!);
+        _updateDiscordRPC(mediaItem, buttonState.value == PlayButtonState.playing);
         if (isRadioModeOn && (currentSong.value!.id == currentQueue.last.id)) {
           await _addRadioContinuation(radioInitiatorItem!);
         }
@@ -724,6 +753,7 @@ class PlayerController extends GetxController
     pause();
     isPlayerVisible.value = false;
     playerPanelMinHeight.value = 0.0;
+    DiscordRpcService().clearPresence();
   }
 
   void playPause() {
@@ -741,6 +771,20 @@ class PlayerController extends GetxController
 
   void seek(Duration position) {
     _audioHandler.seek(position);
+    if (currentSong.value != null) {
+      _updateDiscordRPC(currentSong.value!, buttonState.value == PlayButtonState.playing, position: position);
+    }
+  }
+
+  void _updateDiscordRPC(MediaItem mediaItem, bool isPlaying, {Duration? position}) {
+    DiscordRpcService().updatePresence(
+      title: mediaItem.title,
+      artist: mediaItem.artist ?? "",
+      album: mediaItem.album,
+      isPlaying: isPlaying,
+      currentPosition: position ?? progressBarStatus.value.current,
+      totalDuration: progressBarStatus.value.total,
+    );
   }
 
   void seekByIndex(int index) {
@@ -996,6 +1040,7 @@ class PlayerController extends GetxController
     if (GetPlatform.isWindows) {
       Get.delete<WindowsAudioService>();
     }
+    DiscordRpcService().close();
     // ensure wakelock disabled when player controller disposed
     try {
       _setWakelock(false);
