@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../utils/helper.dart';
 import 'auth_service.dart';
+import 'music_service.dart';
 import '../ui/screens/Library/library_controller.dart';
 
 class SyncService extends GetxService {
@@ -170,6 +171,12 @@ class SyncService extends GetxService {
         }
       }
 
+      // 6. Sync Visitor ID
+      final visitorId = data['visitor_id']?.toString();
+      if (visitorId != null && visitorId.isNotEmpty) {
+        Get.find<MusicServices>().setVisitorId(visitorId);
+      }
+
       printINFO("SyncService: Pull completed successfully. Refreshing UI controllers...");
       
       // Refresh UI Controllers
@@ -239,6 +246,7 @@ class SyncService extends GetxService {
         "recent_plays": recentList,
         "albums": albumsList,
         "artists": artistsList,
+        "visitor_id": Hive.box('AppPrefs').get('visitorId')?['id'],
       };
 
       final response = await _dio.post(
