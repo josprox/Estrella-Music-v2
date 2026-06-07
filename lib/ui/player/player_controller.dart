@@ -337,7 +337,7 @@ class PlayerController extends GetxController
         // Auto-load lyrics in background for the new player scroll-style
         Future.delayed(const Duration(milliseconds: 800), () {
           if (currentSong.value?.id == mediaItem.id) {
-            showLyrics();
+            loadLyrics();
           }
         });
 
@@ -896,10 +896,8 @@ class PlayerController extends GetxController
     recentItem = mediaItem;
   }
 
-  Future<void> showLyrics() async {
-    showLyricsflag.value = !showLyricsflag.value;
-    if ((lyrics["synced"].isEmpty && lyrics['plainLyrics'].isEmpty) &&
-        showLyricsflag.value) {
+  Future<void> loadLyrics() async {
+    if (lyrics["synced"].isEmpty && lyrics['plainLyrics'].isEmpty) {
       isLyricsLoading.value = true;
       try {
         final Map<String, dynamic>? lyricsR =
@@ -923,6 +921,13 @@ class PlayerController extends GetxController
         lyrics.value = {"synced": "", "plainLyrics": "NA"};
       }
       isLyricsLoading.value = false;
+    }
+  }
+
+  Future<void> showLyrics() async {
+    showLyricsflag.value = !showLyricsflag.value;
+    if (showLyricsflag.value) {
+      await loadLyrics();
     }
   }
 

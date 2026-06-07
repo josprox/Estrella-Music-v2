@@ -1,13 +1,12 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../widgets/custom_marquee.dart';
 import '/utils/youtube_share_manager.dart';
 
 import '/models/playling_from.dart';
-import '/models/thumbnail.dart';
 import '/ui/widgets/playlist_album_scroll_behaviour.dart';
+import '../../widgets/playlist_cover_widget.dart';
 import '../../../services/downloader.dart';
 import '../../navigator.dart';
 import '../../player/player_controller.dart';
@@ -81,13 +80,9 @@ class PlaylistScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                        child: CachedNetworkImage(
-                          imageUrl: Thumbnail(playlistController
-                                  .playlist.value.thumbnailUrl)
-                              .extraHigh,
-                          fit: landscape ? BoxFit.fitHeight : BoxFit.cover,
-                          width: landscape ? null : size.width,
-                          height: landscape ? size.height : size.width,
+                        child: PlaylistCoverWidget(
+                          size: landscape ? size.height : size.width,
+                          playlist: playlistController.playlist.value,
                         ),
                       ))
                   : SizedBox(

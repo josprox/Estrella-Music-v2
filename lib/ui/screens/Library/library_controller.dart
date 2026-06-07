@@ -256,13 +256,43 @@ class LibraryPlaylistsController extends GetxController
 
   void refreshLib() async {
     final box = await Hive.openBox("LibraryPlaylists");
-    libraryPlaylists.value = [
-      ...initPlst,
-      ...(box.values
-          .map<Playlist?>((item) => Playlist.fromJson(item))
-          .whereType<Playlist>()
-          .toList())
-    ];
+    final List<Playlist> list = [];
+
+    // Process default playlists (Favorites, Downloads, Recents, Cache)
+    for (var plst in initPlst) {
+      final playlist = plst.copyWith();
+      if (playlist.thumbnailUrl == Playlist.thumbPlaceholderUrl) {
+        try {
+          final tracksBox = await Hive.openBox(playlist.playlistId);
+          if (tracksBox.isNotEmpty) {
+            final firstSong = tracksBox.get(0);
+            if (firstSong is Map && firstSong['thumbnails'] != null && firstSong['thumbnails'].isNotEmpty) {
+              playlist.thumbnailUrl = firstSong['thumbnails'][0]['url'] ?? playlist.thumbnailUrl;
+            }
+          }
+        } catch (_) {}
+      }
+      list.add(playlist);
+    }
+
+    // Process user custom playlists
+    for (var item in box.values) {
+      final playlist = Playlist.fromJson(item);
+      if (playlist.thumbnailUrl == Playlist.thumbPlaceholderUrl) {
+        try {
+          final tracksBox = await Hive.openBox(playlist.playlistId);
+          if (tracksBox.isNotEmpty) {
+            final firstSong = tracksBox.get(0);
+            if (firstSong is Map && firstSong['thumbnails'] != null && firstSong['thumbnails'].isNotEmpty) {
+              playlist.thumbnailUrl = firstSong['thumbnails'][0]['url'] ?? playlist.thumbnailUrl;
+            }
+          }
+        } catch (_) {}
+      }
+      list.add(playlist);
+    }
+
+    libraryPlaylists.value = list;
 
     final appPrefsBox = Hive.box("AppPrefs");
     if (appPrefsBox.containsKey("piped")) {
