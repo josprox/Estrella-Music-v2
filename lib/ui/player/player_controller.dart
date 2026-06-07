@@ -26,6 +26,7 @@ import '/models/durationstate.dart';
 import '/services/music_service.dart';
 import 'package:harmonymusic/generated/l10n.dart';
 import '../../utils/l10n_extensions.dart';
+import '../../services/sync_service.dart';
 
 enum PlayButtonState { paused, playing, loading }
 
@@ -838,6 +839,7 @@ class PlayerController extends GetxController
         isCurrentSongFav.isTrue) {
       Get.find<Downloader>().download(currMediaItem);
     }
+    Get.find<SyncService>().triggerPush();
   }
 
   // ignore: prefer_typing_uninitialized_variables
@@ -889,6 +891,7 @@ class PlayerController extends GetxController
 
         // ignore: empty_catches
       } catch (e) {}
+      Get.find<SyncService>().triggerPush();
     }
     recentItem = mediaItem;
   }

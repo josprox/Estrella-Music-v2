@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../services/auth_service.dart';
-import '../../services/user_data_bootstrap_service.dart';
 import '../home.dart';
 import '../screens/Update/update_screen.dart';
 import '../../services/update_service.dart';
@@ -40,7 +39,6 @@ class _AuthGateState extends State<AuthGate> {
   @override
   Widget build(BuildContext context) {
     final authService = Get.find<AuthService>();
-    final bootstrapService = Get.find<UserDataBootstrapService>();
     return Obx(() {
       if (isUpdateChecked.isFalse) {
         return const AccountBootstrapScreen(
@@ -61,23 +59,7 @@ class _AuthGateState extends State<AuthGate> {
       }
 
       if (authService.isAuthenticated.isFalse) {
-        bootstrapService.resetRuntimeState();
         return const MusicAuthScreen();
-      }
-
-      if (bootstrapService.needsBootstrapForCurrentUser) {
-        Future.microtask(bootstrapService.prepareForAuthenticatedUser);
-      }
-
-      if (bootstrapService.isPreparing.isTrue) {
-        return AccountBootstrapScreen(
-          title: 'Sincronizando tu cuenta',
-          message: bootstrapService.statusMessage.value,
-          details: bootstrapService.lastError.value.isEmpty
-              ? 'Estamos dejando lista tu cuenta para que entres con todos tus datos desde el primer momento.'
-              : bootstrapService.lastError.value,
-          willReplaceLocalData: bootstrapService.willReplaceLocalData.value,
-        );
       }
 
       if (authService.isAuthenticated.isTrue) {

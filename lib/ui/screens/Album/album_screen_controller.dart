@@ -13,6 +13,7 @@ import '../../../mixins/additional_opeartion_mixin.dart';
 import '../../../models/media_Item_builder.dart';
 import '../Home/home_screen_controller.dart';
 import '../Library/library_controller.dart';
+import '../../../services/sync_service.dart';
 
 ///AlbumScreenController handles album screen
 ///
@@ -207,6 +208,7 @@ class AlbumScreenController extends PlaylistAlbumScreenControllerBase
 
       //Update frontend
       Get.find<LibraryAlbumsController>().refreshLib();
+      Get.find<SyncService>().triggerPush();
 
       return true;
     } catch (e) {

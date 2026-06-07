@@ -5,7 +5,7 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:harmonymusic/ui/player/components/backgroud_image.dart';
-import 'package:ionicons/ionicons.dart';
+import '../../../utils/ionicons.dart';
 import '../../widgets/custom_marquee.dart';
 
 import '../../widgets/songinfo_bottom_sheet.dart';

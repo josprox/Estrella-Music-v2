@@ -13,6 +13,7 @@ import '/services/music_service.dart';
 import '/ui/screens/Home/home_screen_controller.dart';
 import '/ui/screens/Settings/settings_screen_controller.dart';
 import '../../../models/media_Item_builder.dart';
+import '../../../services/sync_service.dart';
 
 class ArtistScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -389,6 +390,7 @@ class ArtistScreenController extends GetxController
       isAddedToLibrary.value = add;
       //Update frontend
       Get.find<LibraryArtistsController>().refreshLib();
+      Get.find<SyncService>().triggerPush();
       return true;
     } catch (e) {
       return false;

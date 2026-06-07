@@ -22,6 +22,7 @@ import '../../../services/piped_service.dart';
 import '../Home/home_screen_controller.dart';
 import '../Library/library_controller.dart';
 import 'package:harmonymusic/generated/l10n.dart';
+import '../../../services/sync_service.dart';
 
 ///PlaylistScreenController handles playlist screen
 ///
@@ -249,6 +250,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
         final plstbox = await Hive.openBox(content.playlistId);
         plstbox.deleteFromDisk();
       }
+      Get.find<SyncService>().triggerPush();
       return true;
     } catch (e) {
       return false;
@@ -267,6 +269,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
     // Update the playlist thumbnail based on the first song's thumbnail
     _updatePlaylistThumbSongBased();
+    Get.find<SyncService>().triggerPush();
   }
 
   @override
@@ -292,6 +295,7 @@ class PlaylistScreenController extends PlaylistAlbumScreenControllerBase
 
     // Update the playlist thumbnail based on the first song's thumbnail
     _updatePlaylistThumbSongBased();
+    Get.find<SyncService>().triggerPush();
   }
 
   void addNRemoveItemsinList(MediaItem? item,

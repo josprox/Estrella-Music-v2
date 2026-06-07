@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'sync_service.dart';
 
 class AuthService extends GetxService {
   static const _jwtTokenKey = 'jwt_token';
@@ -27,7 +28,17 @@ class AuthService extends GetxService {
   final isLoadingSession = true.obs;
   final userProfile = Rxn<Map<String, dynamic>>();
 
-  String? get baseUrl => dotenv.env['JOSSRED'];
+  String? get baseUrl {
+    final isDebugEnv = dotenv.env['DEBUG']?.toLowerCase() == 'true';
+    if (kDebugMode && isDebugEnv) {
+      if (GetPlatform.isWindows) {
+        return 'http://127.0.0.1:9000';
+      } else if (GetPlatform.isAndroid) {
+        return 'http://10.0.2.2:9000';
+      }
+    }
+    return dotenv.env['JOSSRED'];
+  }
   String? get apiToken => dotenv.env['JOSSRED_API'];
   bool get isConfigured =>
       (baseUrl?.trim().isNotEmpty ?? false) &&
@@ -203,6 +214,16 @@ class AuthService extends GetxService {
         key: _cachedProfileKey,
         value: jsonEncode(profileData),
       );
+      final hasPending = Hive.box('AppPrefs').get('hasPendingSync', defaultValue: false) == true;
+      if (hasPending) {
+        Get.find<SyncService>().push().then((success) {
+          if (success) {
+            Get.find<SyncService>().pull();
+          }
+        });
+      } else {
+        Get.find<SyncService>().pull();
+      }
     } else {
       if (profileResult['isNetworkError'] == true) {
         // Fallback to offline cached profile

@@ -51,7 +51,7 @@ class Album {
           : [
               {'name': ''}
             ],
-      year: json['year'],
+      year: json['year']?.toString(),
       audioPlaylistId: json['audioPlaylistId'],
       description: json['description'] ?? json["type"] ?? (json['isPodcast'] == true ? "Podcast" : "Album"),
       isPodcast: json['isPodcast'] ?? false,

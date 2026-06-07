@@ -8,10 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../widgets/common_dialog_widget.dart';
 import '../../widgets/cust_switch.dart';
 import '../../widgets/export_file_dialog.dart';
-import '../../widgets/backup_dialog.dart';
-import '../../widgets/cloud_backup_dialog.dart';
-import '../../widgets/legacy_music_migration_dialog.dart';
-import '../../widgets/restore_dialog.dart';
+
 import '../Library/library_controller.dart';
 import '../../widgets/snackbar.dart';
 import '/ui/widgets/link_piped.dart';
@@ -307,36 +304,7 @@ class SettingsScreen extends StatelessWidget {
             child: Text(S.current.settings_logout, style: const TextStyle(fontWeight: FontWeight.bold)),
           ),
         )),
-        const Divider(height: 1, indent: 16, endIndent: 16),
-        SettingsTile(
-          title: S.current.settings_cloud_backup,
-          subtitle: S.current.settings_cloud_backup_desc,
-          leadingIcon: Icons.cloud_sync_rounded,
-          onTap: () => showDialog(context: context, builder: (_) => const CloudBackupDialog()).whenComplete(() => Get.delete<CloudBackupDialogController>()),
-          trailing: const Icon(Icons.chevron_right_rounded),
-        ),
-        SettingsTile(
-          title: S.current.settings_migration_title,
-          subtitle: S.current.settings_migration_desc,
-          leadingIcon: Icons.move_to_inbox_rounded,
-          onTap: () => showDialog(context: context, builder: (_) => const LegacyMusicMigrationDialog()).whenComplete(() => Get.delete<LegacyMusicMigrationDialogController>()),
-          trailing: const Icon(Icons.chevron_right_rounded),
-        ),
-        const Divider(height: 1, indent: 16, endIndent: 16),
-        SettingsTile(
-          title: S.current.backupAppData,
-          subtitle: S.current.backupSettingsAndPlaylistsDes,
-          leadingIcon: Icons.backup_rounded,
-          isThreeLine: true,
-          onTap: () => showDialog(context: context, builder: (_) => const BackupDialog()).whenComplete(() => Get.delete<BackupDialogController>()),
-        ),
-        SettingsTile(
-          title: S.current.restoreAppData,
-          subtitle: S.current.restoreSettingsAndPlaylistsDes,
-          leadingIcon: Icons.settings_backup_restore_rounded,
-          isThreeLine: true,
-          onTap: () => showDialog(context: context, builder: (_) => const RestoreDialog()).whenComplete(() => Get.delete<RestoreDialogController>()),
-        ),
+
         const Divider(height: 1, indent: 16, endIndent: 16),
         SettingsTile(
           title: S.current.resetToDefault,
