@@ -90,7 +90,6 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     _addEmptyList();
     _notifyAudioHandlerAboutPlaybackEvents();
     _listenToPlaybackForNextSong();
-    _listenToCurrentIndexStream();
     _listenForSequenceStateChanges();
     final appPrefsBox = Hive.box("AppPrefs");
     _player
@@ -206,15 +205,7 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
       if (_player.duration != null && _player.duration?.inSeconds != 0) {
         if (value.inMilliseconds >=
             (_player.duration!.inMilliseconds - playerDurationOffset)) {
-          if (loopModeEnabled) {
-            await _player.seek(Duration.zero);
-            if (!_player.playing) {
-              _player.play();
-            }
-          } else if (_playList.length <= 1) {
-            // Only trigger manual skip if we don't have a preloaded next song
-            await _triggerNext();
-          }
+          await _triggerNext();
         }
       }
     });
@@ -521,9 +512,6 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         } else {
           await _player.play();
         }
-        
-        // Trigger preloading of the next song asynchronously
-        _preloadNextSong();
         break;
 
       case 'checkWithCacheDb':
@@ -588,9 +576,6 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
         }
 
         await _player.play();
-        
-        // Trigger preloading of the next song asynchronously
-        _preloadNextSong();
         break;
 
       case 'toggleSkipSilence':
@@ -963,77 +948,6 @@ class MyAudioHandler extends BaseAudioHandler with GetxServiceMixin {
     queue.add(updatedQueue);
     if (mediaItem.value?.id == oldSongId) {
       mediaItem.add(recoveredSong);
-    }
-  }
-
-  void _listenToCurrentIndexStream() {
-    _player.currentIndexStream.listen((index) async {
-      // index == 1 means just_audio transitioned automatically to the preloaded next song
-      if (index == 1) {
-        final nextIndex = _getNextSongIndex();
-        printINFO("Transitioned automatically to preloaded song. New index in queue: $nextIndex");
-        currentIndex = nextIndex;
-        
-        final currentSong = queue.value[currentIndex];
-        mediaItem.add(currentSong);
-        
-        // Remove the old song at index 0 from concatenating source
-        // so that the current song becomes index 0 again
-        if (_playList.length > 1) {
-          try {
-            await _playList.removeAt(0);
-          } catch (e) {
-            printERROR("Error removing old item from playlist: $e");
-          }
-        }
-        
-        // Preload the next song
-        _preloadNextSong();
-      }
-    });
-  }
-
-  Future<void> _preloadNextSong() async {
-    try {
-      final nextIndex = _getNextSongIndex();
-      if (nextIndex == currentIndex) {
-        // No next song to preload (e.g. end of queue and loop disabled)
-        return;
-      }
-
-      final nextSong = queue.value[nextIndex];
-      printINFO("Preloading next song: ${nextSong.title} (index: $nextIndex)");
-
-      // Asynchronously resolve song stream data. This handles search-recovery internally if ID is dead!
-      final resolved = await _resolveSongPlayback(nextSong);
-      if (!resolved.streamInfo.playable) {
-        printINFO("Preload failed: next song stream is not playable");
-        return;
-      }
-
-      // Reconstruct song with resolved stream URL in extras for _createAudioSource
-      final songWithUrl = resolved.song.copyWith(
-        extras: {
-          ...?resolved.song.extras,
-          'url': resolved.streamInfo.audio!.url,
-        },
-      );
-
-      final nextSource = _createAudioSource(songWithUrl);
-
-      // Clean up any extra preloaded items in the concatenating list
-      if (_playList.length > 1) {
-        try {
-          await _playList.removeRange(1, _playList.length);
-        } catch (e) {
-          printERROR("Error clearing playlist extra ranges: $e");
-        }
-      }
-
-      await _playList.add(nextSource);
-      printINFO("Preloaded next song successfully.");
-    } catch (e) {
-      printERROR("Error preloading next song: $e");
     }
   }
 }

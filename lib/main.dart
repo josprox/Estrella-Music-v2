@@ -11,11 +11,15 @@ import 'package:dynamic_color/dynamic_color.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
+import '/services/app_backup_service.dart';
 import '/services/auth_service.dart';
 import '/services/catalog_recovery_service.dart';
+import '/services/cloud_backup_service.dart';
+import '/services/legacy_music_migration_service.dart';
 import '/services/notification_service.dart';
 import '/services/sync_service.dart';
 import '/services/colistening_service.dart';
+import '/services/user_data_bootstrap_service.dart';
 import '/ui/screens/Search/search_screen_controller.dart';
 import '/services/downloader.dart';
 import '/services/piped_service.dart';
@@ -31,7 +35,8 @@ import 'ui/screens/Library/library_controller.dart';
 import 'utils/system_tray.dart';
 import 'utils/update_check_flag_file.dart';
 
-
+import 'package:workmanager/workmanager.dart';
+import 'services/background_backup_handler.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +47,21 @@ Future<void> main() async {
   await initHive();
   final appPrefs = await Hive.openBox('AppPrefs');
   
-
+  // Initialize Background Backup (Android/iOS only — workmanager has no desktop implementation)
+  if (GetPlatform.isAndroid || GetPlatform.isIOS) {
+    Workmanager().initialize(
+      callbackDispatcher,
+    );
+    Workmanager().registerPeriodicTask(
+      "periodic-backup-task",
+      "backupTask",
+      frequency: const Duration(hours: 4),
+      existingWorkPolicy: ExistingPeriodicWorkPolicy.keep,
+      constraints: Constraints(
+        networkType: NetworkType.connected,
+      ),
+    );
+  }
 
   final appLang = appPrefs.get('currentAppLanguageCode') ?? Get.deviceLocale?.languageCode ?? "en";
   await S.load(Locale(appLang));
@@ -136,7 +155,11 @@ Future<void> startApplicationServices() async {
   Get.put(AuthService(), permanent: true);
   Get.put(SyncService(), permanent: true);
   Get.put(ColisteningService(), permanent: true);
+  Get.put(AppBackupService(), permanent: true);
   Get.put(CatalogRecoveryService(), permanent: true);
+  Get.put(CloudBackupService(), permanent: true);
+  Get.put(LegacyMusicMigrationService(), permanent: true);
+  Get.put(UserDataBootstrapService(), permanent: true);
   Get.lazyPut(() => PipedServices(), fenix: true);
   Get.lazyPut(() => MusicServices(), fenix: true);
   Get.lazyPut(() => ThemeController(), fenix: true);

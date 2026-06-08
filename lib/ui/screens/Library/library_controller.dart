@@ -19,7 +19,6 @@ import '/models/artist.dart';
 import '/models/media_Item_builder.dart';
 import '/models/playlist.dart';
 import 'package:harmonymusic/generated/l10n.dart';
-import '/services/sync_service.dart';
 
 class LibrarySongsController extends GetxController {
   late RxList<MediaItem> librarySongsList = RxList();
@@ -256,43 +255,13 @@ class LibraryPlaylistsController extends GetxController
 
   void refreshLib() async {
     final box = await Hive.openBox("LibraryPlaylists");
-    final List<Playlist> list = [];
-
-    // Process default playlists (Favorites, Downloads, Recents, Cache)
-    for (var plst in initPlst) {
-      final playlist = plst.copyWith();
-      if (playlist.thumbnailUrl == Playlist.thumbPlaceholderUrl) {
-        try {
-          final tracksBox = await Hive.openBox(playlist.playlistId);
-          if (tracksBox.isNotEmpty) {
-            final firstSong = tracksBox.get(0);
-            if (firstSong is Map && firstSong['thumbnails'] != null && firstSong['thumbnails'].isNotEmpty) {
-              playlist.thumbnailUrl = firstSong['thumbnails'][0]['url'] ?? playlist.thumbnailUrl;
-            }
-          }
-        } catch (_) {}
-      }
-      list.add(playlist);
-    }
-
-    // Process user custom playlists
-    for (var item in box.values) {
-      final playlist = Playlist.fromJson(item);
-      if (playlist.thumbnailUrl == Playlist.thumbPlaceholderUrl) {
-        try {
-          final tracksBox = await Hive.openBox(playlist.playlistId);
-          if (tracksBox.isNotEmpty) {
-            final firstSong = tracksBox.get(0);
-            if (firstSong is Map && firstSong['thumbnails'] != null && firstSong['thumbnails'].isNotEmpty) {
-              playlist.thumbnailUrl = firstSong['thumbnails'][0]['url'] ?? playlist.thumbnailUrl;
-            }
-          }
-        } catch (_) {}
-      }
-      list.add(playlist);
-    }
-
-    libraryPlaylists.value = list;
+    libraryPlaylists.value = [
+      ...initPlst,
+      ...(box.values
+          .map<Playlist?>((item) => Playlist.fromJson(item))
+          .whereType<Playlist>()
+          .toList())
+    ];
 
     final appPrefsBox = Hive.box("AppPrefs");
     if (appPrefsBox.containsKey("piped")) {
@@ -306,7 +275,6 @@ class LibraryPlaylistsController extends GetxController
     final box = await Hive.openBox("LibraryPlaylists");
     box.put(playlist.playlistId, playlist.toJson());
     refreshLib();
-    Get.find<SyncService>().triggerPush();
   }
 
   void removePipedPlaylists() {
@@ -379,7 +347,6 @@ class LibraryPlaylistsController extends GetxController
         box.put(playlist.playlistId, playlist.toJson());
       }
       refreshLib();
-      Get.find<SyncService>().triggerPush();
       return true;
     }
     return false;
@@ -440,7 +407,6 @@ class LibraryPlaylistsController extends GetxController
             .addToPlaylist(newplst.playlistId, songIds);
       }
       creationInProgress.value = false;
-      Get.find<SyncService>().triggerPush();
       return true;
     }
     return false;

@@ -108,7 +108,7 @@ class SettingsScreenController extends GetxController {
     cacheSongs.value = setBox.get('cacheSongs') ?? false;
     themeModetype.value = ThemeType.dynamic;
     skipSilenceEnabled.value =
-        isDesktop ? false : setBox.get("skipSilenceEnabled");
+        isDesktop ? false : (setBox.get("skipSilenceEnabled") ?? false);
     loudnessNormalizationEnabled.value = isDesktop
         ? false
         : (setBox.get("loudnessNormalizationEnabled") ?? false);
